@@ -29,6 +29,7 @@ DEBUG = True
 
 ALLOWED_HOSTS = [
     'theehhdude23.eu.pythonanywhere.com'
+    
 ]
 
 
