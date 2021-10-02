@@ -9,7 +9,7 @@ import useFetch from "../hooks/useFetch";
 
 export default function SkriptaSections() {
     const { skripta_id } = useParams();
-    const apiUrl = `http://127.0.0.1:8000/api/skripta/${skripta_id}/list`
+    const apiUrl = `${window.location.origin}/api/skripta/${skripta_id}/list`
     const { data, loading, error } = useFetch(apiUrl)
 
     if (loading) return "Loading..."; 
@@ -25,8 +25,8 @@ export default function SkriptaSections() {
                             <Link to={'/index/skripta/'+skripta_id+'/'+section.id}>{section_index+1}. {section.name}</Link>
                         </Card>
                     )
-                  })}
-              </Layout.Section>
+                })}
+            </Layout.Section>
         </Layout>
     </Page>
     )
