@@ -1,0 +1,42 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    {# <script type="module" src="{% static 'problems/js/main.js' %}"></script> #}
+    {# <script>
+        MathJax = {
+            tex: {
+                inlineMath: [['$', '$'], ['\\(', '\\)']]
+            },
+            svg: {
+                fontCache: 'global'
+            }
+        };
+    </script>
+    <script type="text/javascript" id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js">
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/@shopify/draggable@1.0.0-beta.11/lib/draggable.bundle.js"></script> #}
+
+</head>
+<body>
+
+{% block header %}
+{% endblock header %}
+
+{% block body %}
+{% endblock body %}
+
+{% block footer %}
+{% endblock footer %}
+
+    {# <script>
+        const sortable = new Draggable.Sortable(document.querySelectorAll('ul'), {
+            draggable: 'li'
+        });
+    </script> #}
+</body>
+</html>

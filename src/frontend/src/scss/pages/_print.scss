@@ -1,0 +1,19 @@
+@media print {
+    body * {
+        visibility: hidden;
+        font-size: 14px;
+    }
+    #printThis, #printThis * {
+        visibility: visible;
+        break-inside: avoid;
+    }
+    #printThis .problem {
+    }
+    #printThis {
+        padding: 10px;
+        position: absolute;
+        left: 0;
+        top: 0;
+        font-size: 14px;
+    }
+  }

@@ -1,0 +1,70 @@
+.header {
+    width: 100%;
+    padding: 1rem 3rem;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    justify-content: flex-end;
+    background-color: $blue-light;
+    border-bottom: 1px solid $white;
+
+    &__logo {
+
+    }
+
+    &__user {
+        display: flex;
+        gap: 1rem;
+        position: relative;
+        background-color: $secondary;
+        border-radius: .5rem;
+        padding: 1rem;
+        color: $white;
+
+        &:hover {
+            background-color: $blue-dark;
+            cursor: pointer;
+        }
+
+        .user {
+            &__icon {
+                border-radius: 9999px;
+                background: $primary-gradient;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                width: 2rem;
+                height: 2rem;
+                font-weight: bold;
+            }
+
+            &__dropdown {
+                display: none;
+
+                &.open {
+                    display: flex;
+                    flex-direction: column;
+                    position: absolute;
+                    top: 100%;
+                    left: 0;
+                    right: 0;
+                    background-color: $blue-dark;
+                    color: $white;
+                    margin-top: .25rem;
+                    border-radius: .5rem;
+                    padding: 1.25rem;
+                }
+
+                &-item {
+                    padding: .5rem 0;
+
+                    &:hover {
+                        background-color: $blue-dark;
+                    }
+                }
+            }
+        }
+    }
+
+
+}

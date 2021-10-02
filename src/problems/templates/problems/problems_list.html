@@ -1,0 +1,19 @@
+{% extends 'problems/base.html' %}
+
+
+
+{% block body %}
+{% comment %} <ul style="max-width: 800px; margin: 2rem auto;">
+    {% for section in sections reversed %}
+        <h2>{{ section.name }}</h2>
+        {% for problem in problems %}
+            {% if problem.section == section %}
+                <li>
+                    {{ problem.question }}
+                </li>
+            {% endif %}
+        {% endfor %}
+    {% endfor %}
+</ul> {% endcomment %}
+{% endblock body %}
+

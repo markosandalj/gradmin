@@ -1,0 +1,15 @@
+@import './scss/reset.scss';
+@import './scss/variables.scss';
+@import './scss/buttons.scss';
+@import './scss/forms.scss';
+
+@import './scss/parts/_header.scss';
+@import './scss/pages/_print';
+@import './scss/parts/_problem';
+@import './scss/parts/_problems-section';
+
+@media screen {
+    :root {
+        font-size: 16px !important;
+    }
+}

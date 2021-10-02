@@ -1,0 +1,22 @@
+.btn {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: .75rem 1.5rem;
+    border-radius: .25rem;
+    font-weight: bold;
+
+    &:hover {
+        opacity: .8;
+    }
+
+    &--primary {
+        background: $primary-gradient;
+        color: $white;
+    }
+
+    &--save {
+        background: $green-gradient;
+        color: $white;
+    }
+}
