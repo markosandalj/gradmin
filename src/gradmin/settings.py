@@ -145,7 +145,8 @@ STATIC_URL = '/static/'
 STATIC_ROOT = '/home/TheEhhDude23/gradmin/src/assets'
 
 STATICFILES_DIRS = [
-    BASE_DIR / "static",
+    # BASE_DIR / "static",
+    BASE_DIR / 'frontend/static',
 ]
 
 # Default primary key field type
