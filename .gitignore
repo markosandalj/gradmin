@@ -1,7 +1,8 @@
 # created by virtualenv automatically
 bin/
 lib/
-src/node_modules/*
+src/node_modules/
+
 # Django #
 *.log
 *.pot
