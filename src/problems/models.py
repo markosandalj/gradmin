@@ -76,6 +76,9 @@ class Problem(models.Model):
         AVAILABILABE = 'available', _('Available')
         UNAVAILABLE = 'unavailable', _('Unavailable')
         HIDDEN = 'hidden', _('Hidden')
+    class Approval(models.TextChoices):
+        APPROVED = 'approved', _('Approved')
+        UNAPPROVED = 'unapproved', _('Unapproved')
 
     name = models.TextField()
     number = models.CharField(
@@ -83,11 +86,16 @@ class Problem(models.Model):
         blank=True,
         null=True, 
     )
+    approval = models.CharField(
+        max_length=20, 
+        choices=Approval.choices, 
+        default=Approval.UNAPPROVED,
+    )
     shop_availability = models.CharField(
         max_length=20, 
         choices=Availability.choices, 
         default=Availability.HIDDEN,
-        help_text='Hidden = problem wont be shown anywhere'
+        help_text='Hidden = problem wont be shown anywhere, Available = it is going to br shown as free preview, Unavailable = wont be shown as a free preivew. Only when bought.'
     )
     matura = models.ForeignKey(
         Matura, 
