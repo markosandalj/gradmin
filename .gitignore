@@ -1,1 +1,4 @@
 # created by virtualenv automatically
+/bin/*
+/lib/*
+/src/node_modules/*

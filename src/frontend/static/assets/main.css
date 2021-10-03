@@ -61,8 +61,9 @@ textarea {
   position: relative;
   background-color: #0E2539;
   border-radius: 0.5rem;
-  padding: 1rem;
+  padding: 0.75rem;
   color: #FFFFFF;
+  align-items: center;
 }
 .header__user:hover {
   background-color: #051B2E;
@@ -74,8 +75,9 @@ textarea {
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 2rem;
-  height: 2rem;
+  width: 1.5rem;
+  height: 1.5rem;
+  font-size: 1rem;
   font-weight: bold;
 }
 .header__user .user__dropdown {
