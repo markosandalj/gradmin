@@ -99,8 +99,8 @@ DATABASES = {
         'NAME': 'gradmin',
         'HOST': 'TheEhhDude23.mysql.eu.pythonanywhere-services.com',
         # 'PORT': '3306',
-        'USER': 'root',
-        'PASSWORD': 'root',
+        'USER': 'TheEhhDude23',
+        'PASSWORD': 'DreamFar23!',
     }
 }
 
