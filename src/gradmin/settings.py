@@ -36,6 +36,8 @@ ALLOWED_HOSTS = [
 
 # APPS == components
 INSTALLED_APPS = [
+    'admin_interface',
+    'colorfield',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -54,6 +56,9 @@ INSTALLED_APPS = [
     'dbbackup',  # django-dbbackup
     'django_extensions',
 ]
+
+X_FRAME_OPTIONS = 'SAMEORIGIN'
+SILENCED_SYSTEM_CHECKS = ['security.W019']
 
 DBBACKUP_STORAGE = 'django.core.files.storage.FileSystemStorage'
 DBBACKUP_STORAGE_OPTIONS = {'location': Path(BASE_DIR / 'backups') }
