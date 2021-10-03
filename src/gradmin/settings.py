@@ -96,7 +96,7 @@ WSGI_APPLICATION = 'gradmin.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'gradmin',
+        'NAME': 'TheEhhDude23$gradmin',
         'HOST': 'TheEhhDude23.mysql.eu.pythonanywhere-services.com',
         # 'PORT': '3306',
         'USER': 'TheEhhDude23',
