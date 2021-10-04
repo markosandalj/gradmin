@@ -62,7 +62,7 @@ class ProblemSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Problem
-        fields = ('id', 'name', 'shop_availability', 'question', 'video_solution',)
+        fields = ('id', 'name', 'number', 'approval', 'shop_availability', 'question', 'video_solution', 'section')
 
 
 #  ---------------------------------------------------
