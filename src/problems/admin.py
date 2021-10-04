@@ -61,6 +61,7 @@ class QuestionAdmin(admin.ModelAdmin):
 class AnswerChoiceAdmin(admin.ModelAdmin):
     model = AnswerChoice
     search_fields = ('choice_text', 'id')
+    list_display = ('id', 'choice_text',)
     inlines = [
         ImageInline
     ]
@@ -104,7 +105,7 @@ class ProblemAdmin(admin.ModelAdmin):
 
 class CorrectAnswersAdmin(admin.ModelAdmin):
     model = CorrectAnswer
-    list_display = ('answer_text', 'answer_choice', 'question','created_at',)
+    list_display = ('id', 'answer_text', 'answer_choice', 'question','created_at',)
     search_fields = ('question__question_text','id', 'answer_text', 'answer_choice__choice_text') 
     readonly_fields = ('created_at', 'updated_at',)
     autocomplete_fields = ('answer_choice',)
