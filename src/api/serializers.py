@@ -56,9 +56,17 @@ class QuestionSerializer(serializers.ModelSerializer):
         model = Question
         fields =  ('id', 'question_text', 'subquestions', 'correct_answer', 'answer_choices', 'images' )  
 
+class SectionSerializer(serializers.ModelSerializer):
+    subject_name = serializers.ReadOnlyField(source='subject.name')
+
+    class Meta:
+        model = Section
+        fields = ('id', 'name', 'subject_name', 'shopify_page_id', 'order')
+
 class ProblemSerializer(serializers.ModelSerializer):
     question = QuestionSerializer(many=False, read_only=True)
     video_solution = VideoSerializer(many=False) 
+    section = SectionSerializer(many=False)
 
     class Meta:
         model = Problem
@@ -114,14 +122,6 @@ class SubjectSerializer(serializers.ModelSerializer):
     class Meta:
         model = Subject
         fields = ('id', 'name',)
-
-class SectionSerializer(serializers.ModelSerializer):
-    subject_name = serializers.ReadOnlyField(source='subject.name')
-
-    class Meta:
-        model = Section
-        fields = ('id', 'name', 'subject_name', 'shopify_page_id', 'order')
-
 
 # SKRIPTA VIEW SERIALIZERS
 class SectionProblemsSerializer(serializers.ModelSerializer):
