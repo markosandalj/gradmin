@@ -20,27 +20,27 @@ const Sidebar = () => {
                     selected: true,
                     subNavigationItems: [
                         {
-                            url: '/index/matura/fizika',
+                            url: '/index/matura/4/list',
                             disabled: false,
                             label: 'Fizika',
                         },
                         {
-                            url: '/index/matura/matematika/a',
+                            url: '/index/matura/2/list',
                             disabled: false,
                             label: 'Matematika A',
                         },
                         {
-                            url: '/index/matura/matematika/b',
+                            url: '/index/matura/3/list',
                             disabled: false,
                             label: 'Matematika B',
                         },
                         {
-                            url: '/index/matura/kemija',
+                            url: '/index/matura/5/list',
                             disabled: true,
                             label: 'Kemija',
                         },
                         {
-                            url: '/index/matura/informatika',
+                            url: '/index/matura/6/list',
                             disabled: true,
                             label: 'Informatika',
                         },
