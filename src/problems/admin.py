@@ -7,9 +7,7 @@ from django.utils.safestring import mark_safe
 from django.urls import reverse
 
 # Register your models here.
-from mature.models import Year, Term, Matura, MaturaSubject
-from media.models import Image, Video
-from skripte.models import Subject, Section, Equation, Skripta
+from media.models import Image
 from .models import Question
 from .models import AnswerChoice
 from .models import CorrectAnswer
@@ -73,7 +71,25 @@ class ProblemAdmin(admin.ModelAdmin):
     list_filter = ('shop_availability', 'subject', 'matura',)
     list_editable = ('shop_availability',)
     search_fields = ('name', 'question', 'section',)
-    actions = ['make_available', 'make_unavailable', 'make_hidden']
+    actions = ['make_available', 'make_unavailable', 'make_hidden', 'approve', 'unapprove',]
+
+    @admin.action(description='Approve selected items')
+    def approve(self, request, queryset):
+        updated = queryset.update(approval='approved')
+        self.message_user(request, ngettext(
+            '%d problem was successfully marked as approved.',
+            '%d problem were successfully marked as approved.',
+            updated,
+        ) % updated, messages.SUCCESS)
+
+    @admin.action(description='Unapprove selected items')
+    def approve(self, request, queryset):
+        updated = queryset.update(approval='unapproved')
+        self.message_user(request, ngettext(
+            '%d problem was successfully marked as unapproved.',
+            '%d problem were successfully marked as unapproved.',
+            updated,
+        ) % updated, messages.SUCCESS)
 
     @admin.action(description='Make selected items available')
     def make_available(self, request, queryset):
@@ -101,6 +117,7 @@ class ProblemAdmin(admin.ModelAdmin):
             '%d problem were successfully marked as hidden.',
             updated,
         ) % updated, messages.SUCCESS)
+        
     readonly_fields = ('created_at', 'updated_at',)
 
 class CorrectAnswersAdmin(admin.ModelAdmin):
