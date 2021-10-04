@@ -20,7 +20,7 @@ const Sidebar = () => {
                     selected: true,
                     subNavigationItems: [
                         {
-                            url: '/index/matura/4/list',
+                            url: '/index/matura/5/list',
                             disabled: false,
                             label: 'Fizika',
                         },
@@ -30,12 +30,12 @@ const Sidebar = () => {
                             label: 'Matematika A',
                         },
                         {
-                            url: '/index/matura/3/list',
+                            url: '/index/matura/4/list',
                             disabled: false,
                             label: 'Matematika B',
                         },
                         {
-                            url: '/index/matura/5/list',
+                            url: '/index/matura/7/list',
                             disabled: true,
                             label: 'Kemija',
                         },
