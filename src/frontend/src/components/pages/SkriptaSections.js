@@ -1,7 +1,7 @@
 import React, { Component, useState, useEffect } from "react";
 import { useParams } from 'react-router';
 
-import {AppProvider, Page, Card, Button, Layout} from '@shopify/polaris';
+import {Page, Layout} from '@shopify/polaris';
 import { Sortable } from '@shopify/draggable';
 import { Link } from "react-router-dom";
 import useFetch from "../hooks/useFetch";
@@ -21,9 +21,9 @@ export default function SkriptaSections() {
             <Layout.Section>
                 {data[0].sections.map( (section, section_index) => {
                     return (
-                        <Card sectioned key={section.id}>
+                        <div className="problems-section" sectioned key={section.id}>
                             <Link to={'/index/skripta/'+skripta_id+'/'+section.id}>{section_index+1}. {section.name}</Link>
-                        </Card>
+                        </div>
                     )
                 })}
             </Layout.Section>

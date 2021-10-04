@@ -1,6 +1,6 @@
 import * as actions from '../actions/actionTypes';
 
-const problemsBySectionReducer = (sections = [], action) => {
+const SkriptaReducer = (sections = [], action) => {
     if(sections.lenght > 0) {
         let payload = action?.payload
         let section_id = payload?.section_id
@@ -11,7 +11,7 @@ const problemsBySectionReducer = (sections = [], action) => {
     }
     
     switch (action.type) {
-        case actions.FETCH_PROBLEMS:
+        case actions.FETCH_SKRIPTA_PROBLEMS:
             console.log(action.payload)
             return action.payload[0].sections ? action.payload[0].sections : action.payload;
         case actions.UPDATE_QUESTION_TEXT:
@@ -35,4 +35,4 @@ const problemsBySectionReducer = (sections = [], action) => {
     }
 }
 
-export default problemsBySectionReducer;
+export default SkriptaReducer;

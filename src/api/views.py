@@ -1,11 +1,12 @@
 from django.shortcuts import render
+from mature.models import MaturaSubject
 from rest_framework import generics, status
 from rest_framework.views import APIView
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
 from problems.models import AnswerChoice, Matura, Problem, Question, Section
 from skripte.models import Skripta
-from .serializers import MaturaSerializer, ProblemSerializer, MaturaWithoutProblemsSerializer, SectionProblemsSerializer, SectionSerializer, SkriptaSectionsSerializer, SkriptaSerializer, UpdateQuestionSerializer
+from .serializers import MaturaProblemsSerializer, MaturaSerializer, ProblemSerializer, SectionProblemsSerializer, SectionSerializer, SkriptaSectionsSerializer, SkriptaSerializer, UpdateQuestionSerializer
 import json
 
 # Create your views here.
@@ -37,6 +38,32 @@ import json
 #             queryset = Matura.objects.all()
 #         return queryset
 
+class MaturaListApiView(generics.ListAPIView):
+    serializer_class = MaturaSerializer
+
+    def get_queryset(self):
+        subject = MaturaSubject.objects.get(pk = self.kwargs.get('subject_id'))
+        maturas = Matura.objects.filter(subject=subject)
+        queryset = maturas
+        
+        return queryset
+class MaturaProblemsApiView(generics.ListAPIView):
+    serializer_class = MaturaProblemsSerializer
+
+    def get_queryset(self):
+        matura = Matura.objects.get(pk = self.kwargs.get('matura_id'))
+        problems = Problem.objects.filter(matura=matura)
+        queryset = [
+            {
+                'id': matura.id,
+                'term': matura.term,
+                'year': matura.year,
+                'subject': matura.subject,
+                'problems': problems
+            }
+        ]
+        return queryset
+    
 
 class SkriptaApiView(generics.ListAPIView):
     serializer_class = SkriptaSerializer
@@ -105,5 +132,6 @@ class UpdateQuestionApiView(APIView):
                 if( ac['choice_text'] != answer_choice.choice_text):
                     answer_choice.choice_text = ac['choice_text']
                     answer_choice.save(update_fields=['choice_text'])
-
+        # if('images' in data.keys()):
+            # TODO upload images
         return Response(status=status.HTTP_200_OK)

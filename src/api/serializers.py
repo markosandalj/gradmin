@@ -85,8 +85,17 @@ class MaturaSubjectSerializer(serializers.ModelSerializer):
     class Meta:
         model = MaturaSubject
         fields = ('id', 'subject_name', 'level',)
-
 class MaturaSerializer(serializers.ModelSerializer):
+    term = TermSerializer(many=False)
+    year = YearSerializer(many=False)
+    subject = MaturaSubjectSerializer(many=False)
+
+    class Meta:
+        model = Matura
+        fields = ('id', 'year', 'term', 'subject', )
+
+# MATURA VIEW SERILEZERS
+class MaturaProblemsSerializer(serializers.ModelSerializer):
     problems = ProblemSerializer(many=True)
     term = TermSerializer(many=False)
     year = YearSerializer(many=False)
@@ -95,16 +104,6 @@ class MaturaSerializer(serializers.ModelSerializer):
     class Meta:
         model = Matura
         fields = ('id', 'year', 'term', 'subject', 'problems',)
-
-# MATURA VIEW SERILEZERS
-class MaturaWithoutProblemsSerializer(serializers.ModelSerializer):
-    term = TermSerializer(many=False)
-    year = YearSerializer(many=False)
-    subject = MaturaSubjectSerializer(many=False)
-
-    class Meta:
-        model = Matura
-        fields = ('id', 'year', 'term', 'subject', )
 
 
 #  ---------------------------------------------------

@@ -14,6 +14,8 @@ import Sidebar from "./layout/Sidebar";
 import Skripta from "./pages/Skripta";
 import SkriptaSections from "./pages/SkriptaSections";
 import HomePage from './pages/HomePage';
+import MaturaList from "./pages/MaturaList";
+import MaturaProblems from "./pages/MaturaProblems";
 
 export default function App() {
   const navigationMarkup = (
@@ -46,18 +48,12 @@ export default function App() {
           <Route exact path="/index/skripta/:skripta_id/:section_id">
             <Skripta></Skripta>
           </Route>
-          {/* <Route exact path="/index/problems/fizika/matura/:id">
-            <ProblemsByMaturaList></ProblemsByMaturaList>
-          </Route> */}
-          {/* <Route exact path="/index/problems/fizika/matura/:id/print">
-            <ProblemsByMaturaPrint></ProblemsByMaturaPrint>
-          </Route> */}
-          {/* <Route exact path="/index/skripta/:subject/:level">
-            <SkriptaSections></SkriptaSections>
-          </Route> */}
-          {/* <Route exact path="/index/skripta/:subject/:level/:id">
-            <Skripta></Skripta>
-          </Route> */}
+          <Route exact path="/index/matura/:subject_id/list">
+            <MaturaList></MaturaList>
+          </Route>
+          <Route exact path="/index/matura/:matura_id">
+            <MaturaProblems></MaturaProblems>
+          </Route>
         </Switch>
       </Frame>
     </Router>   

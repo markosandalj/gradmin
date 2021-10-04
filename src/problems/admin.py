@@ -60,7 +60,7 @@ class QuestionAdmin(admin.ModelAdmin):
 
 class AnswerChoiceAdmin(admin.ModelAdmin):
     model = AnswerChoice
-    search_fields = ('choice_text',)
+    search_fields = ('choice_text', 'id')
     inlines = [
         ImageInline
     ]

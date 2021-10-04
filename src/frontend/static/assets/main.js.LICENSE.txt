@@ -886,6 +886,10 @@ PERFORMANCE OF THIS SOFTWARE.
 
 /*! ./pages/HomePage */
 
+/*! ./pages/MaturaList */
+
+/*! ./pages/MaturaProblems */
+
 /*! ./pages/ProblemsByMatura */
 
 /*! ./pages/ProblemsByMaturaPrint */
@@ -1659,6 +1663,10 @@ PERFORMANCE OF THIS SOFTWARE.
   \****************************************************/
 
 /*!*****************************************************!*\
+  !*** ./frontend/src/components/pages/MaturaList.js ***!
+  \*****************************************************/
+
+/*!*****************************************************!*\
   !*** ./node_modules/axios/lib/core/enhanceError.js ***!
   \*****************************************************/
 
@@ -1753,6 +1761,10 @@ PERFORMANCE OF THIS SOFTWARE.
 /*!********************************************************!*\
   !*** ./node_modules/react-redux/es/connect/connect.js ***!
   \********************************************************/
+
+/*!*********************************************************!*\
+  !*** ./frontend/src/components/pages/MaturaProblems.js ***!
+  \*********************************************************/
 
 /*!*********************************************************!*\
   !*** ./node_modules/@shopify/polaris/dist/esm/types.js ***!

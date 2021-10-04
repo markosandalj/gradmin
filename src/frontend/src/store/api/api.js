@@ -13,6 +13,18 @@ export const fetchProblems = (skripta_id, section_id = null) => {
     return axios.get(apiUrl)
 }
 
+export const fetchMaturaList = (subject_id) => {
+    let apiUrl = `${window.location.origin}/${subject_id}/list`;
+
+    return axios.get(apiUrl)
+}
+
+export const fetchMaturaProblems = (matura_id) => {
+    let apiUrl = `${window.location.origin}/${matura_id}`;
+
+    return axios.get(apiUrl)
+}
+
 export const postProblems = (formData) => {
     let apiUrl = window.location.origin += '/api/question/update';
     

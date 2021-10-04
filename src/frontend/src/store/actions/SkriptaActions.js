@@ -4,7 +4,7 @@ import * as api from '../api/api';
 export const getProblems = (skripta_id, section_id) => async (dispatch)  => {
     try {
         const { data } = await api.fetchProblems(skripta_id, section_id);
-        dispatch({ type: actions.FETCH_PROBLEMS, payload: data })
+        dispatch({ type: actions.FETCH_SKRIPTA_PROBLEMS, payload: data })
     } catch(error) {
         console.log(error.message)
     }
