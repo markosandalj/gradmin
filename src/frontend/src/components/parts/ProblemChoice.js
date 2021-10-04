@@ -12,7 +12,7 @@ import { faPen} from '@fortawesome/free-solid-svg-icons'
 // ACTIONS
 import { addAnswerChoice } from "../../store/actions/problemFieldsActions";
 
-const ProblemChoice = ({ choice, choice_label }) => {
+const ProblemChoice = ({ choice, choice_label, problem }) => {
     const [choiceText, setChoiceText] = useState(choice.choice_text)
     const [editChoiceFieldOpen, setEditChoiceFieldOpen] = useState(false);
     const [hasChanged, setHasChanged] = useState(false)
@@ -29,36 +29,6 @@ const ProblemChoice = ({ choice, choice_label }) => {
         [],
       );
 
-    useEffect( () => {
-        if(file) {
-            setImgSrc( window.URL.createObjectURL(file))
-            setChoiceImageFields({
-                ...choiceImageFields,
-                [choice.images[0].id]: {
-                    'id': choice.images[0].id,
-                    'file': file,
-                    'name': file.name
-                }
-            })
-            setChoiceFields( {
-                ...choiceFields,
-                [choice.id]: {
-                    'id': choice.id,
-                    'images': choiceImageFields
-                }
-            })
-            setProblemFields({
-                ...problemFields,
-                [problemId]: {
-                  'id': problemId,
-                  'question_text': problemText,
-                  'answer_choices': choiceFields
-                }
-              })
-            console.log( JSON.stringify(choiceImageFields))
-        } 
-    }, [file])
-
     const validImageTypes = ['image/gif', 'image/jpeg', 'image/png'];
         
     const fileUpload = !file && <DropZone.FileUpload />;
@@ -74,7 +44,6 @@ const ProblemChoice = ({ choice, choice_label }) => {
         setChoiceText(newValue)
         setHasChanged(true)
         dispatch(addAnswerChoice(newValue, id))
-        console.log(answer_choices)
     }
 
     const handleEditChoiceFieldToggle = () => {
@@ -93,8 +62,16 @@ const ProblemChoice = ({ choice, choice_label }) => {
     return (
         <div className='problem__choice'>
             {(choice.images).length > 0}
-            {!hasImage && <div className="choice__text" dangerouslySetInnerHTML={changeChoiceTextElement()}></div>}
-            {hasImage && <img className='choice__image' src={imageSrc} /> }
+            {!hasImage && !view.site_preview && <div className="choice__text" dangerouslySetInnerHTML={changeChoiceTextElement()}></div>}
+            {hasImage && !view.site_preview && <img className='choice__image' src={imageSrc} /> }
+            {view.site_preview && 
+                <div className={`choice__input ${problem.question.correct_answer[0].answer_choice?.id === choice.id && 'choice__input--correct' }`}>
+                    <input id={choice.id} type="radio" className="choice__checkbox" name={`problem-choices-${problem.question.id}`} />
+                    <label htmlFor={choice.id} >
+                        {choice_label} {choiceText}
+                    </label>
+                </div>
+            }
             {view.editing && 
                 <button type="button" className={ `choice__text-edit ${editChoiceFieldOpen ? 'open' : ''}`} onClick={handleEditChoiceFieldToggle}>
                     <FontAwesomeIcon icon={faPen} />

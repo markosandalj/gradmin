@@ -2,12 +2,14 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    padding: .75rem 1.5rem;
+    padding: .5rem 1rem;
     border-radius: .25rem;
     font-weight: bold;
+    font-size: 1rem;
 
     &:hover {
         opacity: .8;
+        cursor: pointer;
     }
 
     &--primary {

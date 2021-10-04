@@ -7,7 +7,7 @@ import { TextField } from '@shopify/polaris';
 
 // FONTAWESOME
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faGripLinesVertical, faPen} from '@fortawesome/free-solid-svg-icons'
+import { faGripLinesVertical, faPen, faCheckCircle } from '@fortawesome/free-solid-svg-icons'
 
 // QRcode
 import QRCode from 'qrcode.react'
@@ -94,6 +94,17 @@ const Problem = ({ sectionIndex, problem_index, problem } ) => {
         }
         <div className="problem__content-container">
           <div className="problem__content">
+            {view.site_preview && problem.video_solution?.vimeo_id && 
+              <div className="problem__video">
+                <iframe src={`https://player.vimeo.com/video/${problem.video_solution.vimeo_id}?h=fdbe29ff73&amp;badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479`} 
+                        frameBorder="0" 
+                        allow="autoplay; fullscreen; picture-in-picture" 
+                        allowFullScreen 
+                        title="26">
+                </iframe>
+                <script src="https://player.vimeo.com/api/player.js"></script>
+              </div>
+            }
             {!view.printing && <div className="problem__text" dangerouslySetInnerHTML={changeProblemTextElement()}></div>}
             {view.printing && <div className="problem__text" dangerouslySetInnerHTML={printProblemText()}></div>}
             {view.editing &&
@@ -125,21 +136,27 @@ const Problem = ({ sectionIndex, problem_index, problem } ) => {
                 )
               }
             )}
-            <div className={`problem__choices ${numberOfChoiceImages > 0 ? imageWidthClasses[numberOfChoiceImages] : ''}`}>
+            <form className={`problem__choices ${numberOfChoiceImages > 0 ? imageWidthClasses[numberOfChoiceImages] : ''}`}>
               {questionChoices.map( (choice, index) => {
                 return (
                   <ProblemChoice 
                     key={choice.id} 
                     choice={choice} 
                     choice_label={`${choiceLabel[index]}.`}
+                    problem={problem}
                   />
                   )
                 })}
-            </div>
+            </form>
           </div>
         </div>
         {!view.editing && qrUrl && <a className="problem__qr-link" href={qrUrl}><QRCode value={qrUrl} renderAs="svg" /></a>}
       </div>
+      {view.site_preview && 
+        <div className="problem__approve">
+          <button className='btn btn--save'><FontAwesomeIcon icon={faCheckCircle} /></button>
+        </div>
+      }
   </div>
   )
 }

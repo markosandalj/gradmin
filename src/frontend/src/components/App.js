@@ -8,12 +8,9 @@ import { AppProvider, Frame } from '@shopify/polaris';
 
 // COMPONENTS
 import Header from "./layout/Header";
-import ProblemsByMaturaList from "./pages/ProblemsByMatura";
-import ProblemsByMaturaPrint from "./pages/ProblemsByMaturaPrint";
 import Sidebar from "./layout/Sidebar";
 import Skripta from "./pages/Skripta";
 import SkriptaSections from "./pages/SkriptaSections";
-import HomePage from './pages/HomePage';
 import MaturaList from "./pages/MaturaList";
 import MaturaProblems from "./pages/MaturaProblems";
 

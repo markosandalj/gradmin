@@ -13,3 +13,11 @@ export const togglePrintingView = (printing = null) => ({
         printing: printing
     }
 })
+
+
+export const toggleSitePreviewView = (site_preview = null) => ({
+    type: actions.TOGGLE_SITE_PREVIEW,
+    payload: {
+        site_preview: site_preview
+    }
+})

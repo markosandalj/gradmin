@@ -4,29 +4,6 @@ import { Sortable } from '@shopify/draggable';
 import store from './store/store';
 import App from './components/App';
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 function initializeMathJax() {
     if (document.body.querySelector('#app') ||
     document.body.textContent.match(/(?:\$|\\\(|\\\[|\\begin\{.*?})/)) {
@@ -53,8 +30,3 @@ setTimeout( () => {
         handle: '.drag-handle'
     })
 }, 1500)
-
-
-    // setTimeout( () => {
-    //     window.print()
-    // }, 2000)

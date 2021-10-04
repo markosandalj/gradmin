@@ -20,12 +20,14 @@ button {
   display: flex;
   justify-content: center;
   align-items: center;
-  padding: 0.75rem 1.5rem;
+  padding: 0.5rem 1rem;
   border-radius: 0.25rem;
   font-weight: bold;
+  font-size: 1rem;
 }
 .btn:hover {
   opacity: 0.8;
+  cursor: pointer;
 }
 .btn--primary {
   background: linear-gradient(#E052A0, #F15C41);
@@ -144,6 +146,21 @@ textarea {
 .problem__content-container {
   width: 100%;
 }
+.problem__video {
+  padding-bottom: 56.25%;
+  position: relative;
+  max-width: 100%;
+  height: 0;
+  overflow: hidden;
+  margin-bottom: 1rem;
+}
+.problem__video iframe {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
 .problem__text {
   margin-bottom: 1rem;
   padding-right: 3rem;
@@ -236,6 +253,21 @@ textarea {
 .problem__choice .choice__image {
   max-width: 100%;
 }
+.problem__choice .choice__input {
+  display: flex;
+  gap: 0.75rem;
+}
+.problem__choice .choice__input input:checked + label {
+  color: red;
+}
+.problem__choice .choice__input--correct input:checked + label {
+  color: green;
+}
+.problem__approve {
+  display: flex;
+  justify-content: flex-end;
+  font-size: 3rem;
+}
 
 .drag-handle {
   font-size: 1.125rem;
@@ -269,14 +301,14 @@ textarea {
   display: flex;
   gap: 1.25rem;
 }
-.problems-section__edit, .problems-section__print {
+.problems-section__edit, .problems-section__print, .problems-section__preview {
   font-size: 1.25rem;
 }
-.problems-section__edit:hover, .problems-section__print:hover {
+.problems-section__edit:hover, .problems-section__print:hover, .problems-section__preview:hover {
   cursor: pointer;
   color: #EC5958;
 }
-.problems-section__edit.active, .problems-section__print.active {
+.problems-section__edit.active, .problems-section__print.active, .problems-section__preview.active {
   color: #EC5958;
 }
 .problems-section__add-new {
@@ -292,6 +324,13 @@ textarea {
 }
 .problems-section__add-new i {
   opacity: 0.4;
+}
+
+.matura__actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 1rem;
+  padding: 1rem 0;
 }
 
 @media screen {
