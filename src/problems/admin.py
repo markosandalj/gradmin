@@ -83,7 +83,7 @@ class ProblemAdmin(admin.ModelAdmin):
         ) % updated, messages.SUCCESS)
 
     @admin.action(description='Unapprove selected items')
-    def approve(self, request, queryset):
+    def unapprove(self, request, queryset):
         updated = queryset.update(approval='unapproved')
         self.message_user(request, ngettext(
             '%d problem was successfully marked as unapproved.',
@@ -117,7 +117,7 @@ class ProblemAdmin(admin.ModelAdmin):
             '%d problem were successfully marked as hidden.',
             updated,
         ) % updated, messages.SUCCESS)
-        
+
     readonly_fields = ('created_at', 'updated_at',)
 
 class CorrectAnswersAdmin(admin.ModelAdmin):
