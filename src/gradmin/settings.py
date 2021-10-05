@@ -36,6 +36,7 @@ ALLOWED_HOSTS = [
 
 # APPS == components
 INSTALLED_APPS = [
+    'admin_override',
     'admin_interface',
     'colorfield',
     'django.contrib.admin',

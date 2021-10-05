@@ -1,0 +1,28 @@
+{% extends "admin/base_site.html" %}
+
+{% block extrahead %}
+{# <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        elements: document.querySelectorAll(".latex")
+    });
+</script>
+<script>
+MathJax = {
+  tex: {
+    inlineMath: [['$', '$'], ['\\(', '\\)']]
+  }
+};
+</script>
+<script id="MathJax-script" async
+  src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js">
+</script> #}
+<style>
+  .aligned .form-row input, .aligned .form-row select, .aligned .form-row textarea {
+    max-width: 80% !important;
+  }
+  .admin-interface .related-widget-wrapper {
+    max-width: 80% !important;
+  }
+</style>
+{{ block.super }}
+{% endblock %}
