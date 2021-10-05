@@ -31,7 +31,7 @@ class SectionAdmin(SortableAdminMixin, admin.ModelAdmin):
         headers = {'Content-Type': 'application/json', 'X-Shopify-Access-Token': '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' }
         pages_url = '/admin/api/2021-10/pages.json'
         for section in queryset:
-            if( section.shopify_page_id != '' ):
+            if( section.shopify_page_id == '' ):
                 page_data = {
                     'page': {
                         'title' : section.name,
@@ -40,6 +40,7 @@ class SectionAdmin(SortableAdminMixin, admin.ModelAdmin):
                 }
                 url = base_url + pages_url
                 response = requests.post(url, headers=headers, json = page_data)
+                section.update(shopify_page_id=response.json().page.id)
                 print(response.json())
 
 
