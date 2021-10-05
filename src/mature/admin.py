@@ -45,7 +45,6 @@ class MaturaAdmin(admin.ModelAdmin):
         for matura in queryset:
             product_id = matura.shopify_product_id
             metafields_url = '/admin/products/{id}/metafields.json'.format(id=product_id)
-            namespace = str(matura.subject.subject.subject_name) + str(matura.year.year) + str(matura.term.term)
             problems = Problem.objects.filter(matura=matura)
             serilizer = ProblemSerializer(problems, many=True)
             json_string = json.dumps(serilizer.data)

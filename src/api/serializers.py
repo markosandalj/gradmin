@@ -93,6 +93,7 @@ class MaturaSubjectSerializer(serializers.ModelSerializer):
     class Meta:
         model = MaturaSubject
         fields = ('id', 'subject_name', 'level',)
+
 class MaturaSerializer(serializers.ModelSerializer):
     term = TermSerializer(many=False)
     year = YearSerializer(many=False)
@@ -125,9 +126,7 @@ class SubjectSerializer(serializers.ModelSerializer):
 
 # SKRIPTA VIEW SERIALIZERS
 class SectionProblemsSerializer(serializers.ModelSerializer):
-    # sections = SectionSerializer(many=True, read_only=True)
     problems = ProblemSerializer(many=True,read_only=True,)
-    
     class Meta:
         model = Section
         fields = ('id', 'name', 'problems', 'order')
@@ -136,21 +135,18 @@ class SkriptaSerializer(serializers.ModelSerializer):
     sections = SectionProblemsSerializer(many=True, read_only=True)
     problems = ProblemSerializer(many=True,read_only=True,)
     subject = MaturaSubjectSerializer(many=False)
-
     class Meta:
         model = Skripta
         fields = ('id', 'name', 'subject', 'sections', 'problems')
 
 class SkriptaSectionsSerializer(serializers.ModelSerializer):
     sections = SectionSerializer(many=True, read_only=True)
-    
     class Meta:
         model = Skripta
         fields = ('id', 'name', 'sections',)
 
 class UpdateQuestionSerializer(serializers.ModelSerializer):
     answer_choices = AnswerChoiceSerializer(many=True)
-
     class Meta:
         model = Question
         fields = ('question_text', 'answer_choices', )
