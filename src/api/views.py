@@ -1,3 +1,4 @@
+from django.db.models.fields import IntegerField
 from django.shortcuts import render
 from mature.models import MaturaSubject
 from rest_framework import generics, status
@@ -8,35 +9,9 @@ from problems.models import AnswerChoice, Matura, Problem, Question, Section
 from skripte.models import Skripta
 from .serializers import MaturaProblemsSerializer, MaturaSerializer, ProblemSerializer, SectionProblemsSerializer, SectionSerializer, SkriptaSectionsSerializer, SkriptaSerializer, UpdateQuestionSerializer
 import json
+from django.db.models.functions import Cast
 
 # Create your views here.
-
-# class MaturaApiView(generics.ListAPIView):
-#     # queryset = Matura.objects.filter(pk=pk)
-#     serializer_class = MaturaSerializer
-
-#     def get_queryset(self):
-#         if( self.kwargs.get('pk') ):
-#             queryset = Matura.objects.filter(pk=self.kwargs.get('pk'))
-#         else:
-#             queryset = Matura.objects.all()
-#         return queryset
-
-# class MaturaWithoutProblemsApiView(generics.ListAPIView):
-#     serializer_class = MaturaWithoutProblemsSerializer
-
-#     def get_queryset(self):
-#         kwargs_values = self.kwargs
-#         arguments = {}
-#         for k, v in kwargs_values.items():
-#             if v:
-#                 arguments[k] = v
-
-#         if(len(arguments) > 0 ):
-#             queryset = Matura.objects.filter(**arguments)
-#         else:
-#             queryset = Matura.objects.all()
-#         return queryset
 
 class MaturaListApiView(generics.ListAPIView):
     serializer_class = MaturaSerializer
@@ -52,14 +27,14 @@ class MaturaProblemsApiView(generics.ListAPIView):
 
     def get_queryset(self):
         matura = Matura.objects.get(pk = self.kwargs.get('matura_id'))
-        problems = Problem.objects.filter(matura=matura)
+        problems = Problem.objects.annotate(number_field=Cast('number', IntegerField())).filter(matura=matura)
         queryset = [
             {
                 'id': matura.id,
                 'term': matura.term,
                 'year': matura.year,
                 'subject': matura.subject,
-                'problems': problems
+                'problems': problems.order_by('number_field')
             }
         ]
         return queryset

@@ -5,6 +5,7 @@ from problems.models import Problem, Question
 from django.urls import reverse
 from django.utils.safestring import mark_safe
 from api.serializers import ProblemSerializer
+from adminsortable2.admin import SortableAdminMixin, SortableInlineAdminMixin
 
 import requests
 import json
@@ -26,7 +27,7 @@ class DisplayLatex(object):
             return mark_safe(u'<div style="font-size: 22px; max-width: 60%;"class="latex">{u}</div>'.format(u=text))
         else:
             return ''
-class ProblemInline(DisplayLatex, VimeoEmbed, admin.StackedInline):
+class ProblemInline(DisplayLatex, VimeoEmbed, SortableInlineAdminMixin, admin.StackedInline):
     model = Problem
     extra = 0
     # readonly_fields = ('vimeo_embed', 'disply_latex')
@@ -37,6 +38,7 @@ class MaturaAdmin(admin.ModelAdmin):
         ProblemInline,
     ]
     actions = ['update_problems',]
+    list_editable = ('shopify_product_id',)
 
     @admin.action(description='Update product on Shopify')
     def update_problems(self, request, queryset):
