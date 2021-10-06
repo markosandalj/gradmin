@@ -1,11 +1,9 @@
 from mature.models import MaturaSubject
 from problems.models import AnswerChoice, CorrectAnswer, Problem, Question, Section, Matura, Subject, Term, Video, Year
-from openpyxl import load_workbook
 
 # from pathlib import Path 
 import pathlib
 import json
-import requests
 
 from skripte.models import Skripta
 
@@ -187,8 +185,8 @@ def importProblems(subject, filename, level = 0):
                     subject_id = getSubject(zad, subject)
                     section_id = getSection(zad)
                     video_id = getVideoSolution(zad, subject, level)
-                    skripta_id = getSkripta(zad, subject)
+                    skripta_id = getSkripta(zad, subject, level)
                     getProblem(name, number, matura_id, question_id, subject_id, section_id, video_id, skripta_id)
     print('Import ending!')
 
-importProblems('Matematika', 'gradiva copy', 'A')
+importProblems('Matematika', 'gradivaB', 'B')
