@@ -230,7 +230,7 @@ textarea {
 }
 .problem__choice {
   position: relative;
-  width: max-content;
+  width: 100%;
 }
 .problem__choice .choice__text {
   position: relative;
@@ -264,9 +264,25 @@ textarea {
   color: green;
 }
 .problem__approve {
+  font-size: 3rem;
+  margin-left: 1rem;
+}
+.problem__footer {
+  display: flex;
+  justify-content: space-between;
+}
+.problem__approval-status {
+  font-size: 1rem;
+}
+.problem__approval-status--approved {
+  color: green;
+}
+.problem__approval-status--unapproved {
+  color: red;
+}
+.problem__btns {
   display: flex;
   justify-content: flex-end;
-  font-size: 3rem;
 }
 
 .drag-handle {

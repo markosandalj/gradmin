@@ -23,3 +23,11 @@ export const addAnswerChoice = (answer_choice, id) => ({
         answer_choice: answer_choice
     }
 })
+
+export const approveProblem = (approval, id) => ({
+    type: actions.APPROVE_PROBLEM,
+    payload: {
+        id: id,
+        approval: approval
+    }
+})

@@ -67,9 +67,9 @@ class AnswerChoiceAdmin(admin.ModelAdmin):
 # PROBLEMS
 class ProblemAdmin(admin.ModelAdmin):
     model = Problem
-    list_display = ('name', 'question', 'shop_availability', 'matura', 'subject',)
-    list_filter = ('shop_availability', 'subject', 'matura',)
-    list_editable = ('shop_availability',)
+    list_display = ('name', 'question', 'shop_availability', 'approval',)
+    list_filter = ('subject', 'matura','shop_availability', )
+    list_editable = ('shop_availability','approval',)
     search_fields = ('name', 'question', 'section',)
     actions = ['make_available', 'make_unavailable', 'make_hidden', 'approve', 'unapprove',]
 

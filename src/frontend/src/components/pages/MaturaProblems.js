@@ -28,6 +28,7 @@ const MaturaProblems = () => {
 
     const dispatch = useDispatch()
     const view = useSelector( state => state?.problems_view )
+    const problem_fields = useSelector(state => state.problem_fields)
 
     if (loading) return "Loading..."; 
     if (error) return "Error!"; 
@@ -50,34 +51,67 @@ const MaturaProblems = () => {
         dispatch(toggleSitePreviewView(!prevState))
         if(view.editing) dispatch(toggleEditingView(prevState))
     }
+
+    const handleSubmit = (event) => {
+        event.preventDefault();
+
+        if(Object.keys(problem_fields).length > 0) {
+            let formData = new FormData();
+            
+            for(const [key, value] of Object.entries(problem_fields)){
+                formData.append(key, JSON.stringify(value) )
+            };
+            console.log(...formData)
+            let apiUrl = window.location.origin + '/api/question/update';
+            axios.post(
+                    apiUrl,
+                    formData,
+                    {
+                        headers: {'X-CSRFToken': csrftoken, "Content-type": "multipart/form-data"}
+                    }
+                ).then(res => {
+                    console.log(`Successfully sent form data` + res.data);
+                })
+                .catch(err => {
+                    console.log(err);
+                })
+        } else {
+            console.log(problem_fields)
+            console.log(state)
+            console.log('Empty')
+        }
+    }
+
     
     return (
         <Page>
             <Layout>
                 <Layout.Section>
-                    <div className="matura__actions">
-                    <button type="button" onClick={mathTypeset} className={`problems-section__edit`}>
-                            <FontAwesomeIcon icon={faTools} />
-                        </button>
-                        <button type="button" onClick={handleEditingToggle} className={`problems-section__edit ${view.editing && 'active'}`}>
-                            <FontAwesomeIcon icon={faPen} />
-                        </button>
-                        <button type="button" onClick={handleSitePreviewToggle} className={`problems-section__preview ${view.site_preview && 'active'}`}>
-                            <FontAwesomeIcon icon={faSearchPlus} />
-                        </button>
-                        <button className="btn btn--save">Save</button>
-                    </div>
-                    {data[0].problems.map( (problem, index) => {
-                        return (
-                            <div className='problems-section' key={problem.id}>
-                                <Problem 
-                                    key={problem.id}
-                                    problem_index={index} 
-                                    problem={problem}
-                                ></Problem>
-                            </div>
-                        )
-                    })} 
+                    {/* <form onSubmit={handleSubmit}> */}
+                        <div className="matura__actions">
+                            <button type="button" onClick={mathTypeset} className={`problems-section__edit`}>
+                                <FontAwesomeIcon icon={faTools} />
+                            </button>
+                            <button type="button" onClick={handleEditingToggle} className={`problems-section__edit ${view.editing && 'active'}`}>
+                                <FontAwesomeIcon icon={faPen} />
+                            </button>
+                            <button type="button" onClick={handleSitePreviewToggle} className={`problems-section__preview ${view.site_preview && 'active'}`}>
+                                <FontAwesomeIcon icon={faSearchPlus} />
+                            </button>
+                            <button onClick={handleSubmit} className="btn btn--save">Save</button>
+                        </div>
+                        {data[0].problems.map( (problem, index) => {
+                            return (
+                                <div className='problems-section' key={problem.id}>
+                                    <Problem 
+                                        key={problem.id}
+                                        problem_index={index} 
+                                        problem={problem}
+                                    ></Problem>
+                                </div>
+                            )
+                        })} 
+                    {/* </form> */}
                 </Layout.Section>
             </Layout>
         </Page>

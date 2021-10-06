@@ -130,7 +130,7 @@
 
     &__choice {
         position: relative; 
-        width: max-content;
+        width: 100%;
         
         .choice {
             &__text {
@@ -175,9 +175,28 @@
     }
 
     &__approve {
+        font-size: 3rem;
+        margin-left: 1rem;
+    }
+
+    &__footer {
+        display: flex;
+        justify-content: space-between;
+    }
+
+    &__approval-status {
+        font-size: 1rem;
+        &--approved {
+            color: green;
+        }
+        &--unapproved {
+            color: red;
+        }
+    }
+
+    &__btns {
         display: flex;
         justify-content: flex-end;
-        font-size: 3rem;
     }
 }
 

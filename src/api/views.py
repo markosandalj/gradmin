@@ -132,6 +132,13 @@ class UpdateQuestionApiView(APIView):
                 if( ac['choice_text'] != answer_choice.choice_text):
                     answer_choice.choice_text = ac['choice_text']
                     answer_choice.save(update_fields=['choice_text'])
+        if('problems' in data.keys()):
+            for pr in json.loads(data['problems']):
+                problem = Problem.objects.get(id=int(pr['id']))
+                if( pr['approval'] != problem.approval):
+                    problem.approval = pr['approval']
+                    problem.save(update_fields=['approval'])
+
         # if('images' in data.keys()):
             # TODO upload images
         return Response(status=status.HTTP_200_OK)

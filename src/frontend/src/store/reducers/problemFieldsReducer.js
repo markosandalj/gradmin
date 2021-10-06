@@ -16,6 +16,7 @@ const ProblemFieldsReducer = (problem_fields = {}, action) => {
                 problem_fields.images.push(action.payload)
             }
             return {...problem_fields}
+
         case actions.UPDATE_QUESTION_FIELDS:
             if(problem_fields.questions) {
                 let questionIndex = problem_fields.questions.findIndex(question => question.id === action.payload.id )
@@ -30,6 +31,22 @@ const ProblemFieldsReducer = (problem_fields = {}, action) => {
                 problem_fields.questions.push(action.payload)
             }
             return {...problem_fields}
+
+        case actions.APPROVE_PROBLEM:
+            if(problem_fields.problems) {
+                let problemIndex = problem_fields.problems.findIndex(problem => problem.id === action.payload.id )
+                let problem = problem_fields.problems.find(problem => problem.id === action.payload.id)
+                if(problem) {
+                    problem_fields.problems.splice(problemIndex, 1, action.payload)
+                } else {
+                    problem_fields.problems.push(action.payload)
+                }
+            } else {
+                problem_fields.problems = []
+                problem_fields.problems.push(action.payload)
+            }
+            return {...problem_fields}
+
         case actions.UPDATE_ANSWER_CHOICE_FIELDS:
             if(problem_fields.answer_choices) {
                 let answerChoiceIndex = problem_fields.answer_choices.findIndex(answer_choice => answer_choice.id === action.payload.id )

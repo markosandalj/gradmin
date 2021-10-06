@@ -7,7 +7,7 @@ import { TextField } from '@shopify/polaris';
 
 // FONTAWESOME
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faGripLinesVertical, faPen, faCheckCircle } from '@fortawesome/free-solid-svg-icons'
+import { faGripLinesVertical, faPen, faCheckCircle, faTimesCircle } from '@fortawesome/free-solid-svg-icons'
 
 // QRcode
 import QRCode from 'qrcode.react'
@@ -18,7 +18,7 @@ import Subquestions from './Subquestions';
 import ProblemImage from "./ProblemImage";
 
 // ACTIONS
-import { addQuestion } from "../../store/actions/problemFieldsActions";
+import { addQuestion, approveProblem } from "../../store/actions/problemFieldsActions";
 
 const Problem = ({ sectionIndex, problem_index, problem } ) => {
   const [problemId, setProblemId] = useState(problem.id)
@@ -29,10 +29,13 @@ const Problem = ({ sectionIndex, problem_index, problem } ) => {
   const [subquestions, setSubquestions] = useState(problem.question.subquestions)
   const [questionChoices, setQuestionChocies] = useState(problem.question.answer_choices)
   const [questionImages, setQuestionImages] = useState(problem.question.images);
+  const [approvalStatus, setApprovalStatus] = useState(problem.approval === 'approved' ? true : false);
   const [editFieldOpen, setEditFieldOpen] = useState(false);
   const [hasChanged, setHasChanged] = useState(false)
   const [numberOfChoiceImages, setNumberOfChoiceImages] = useState(problem.question.answer_choices.filter( choice => choice.images.length > 0).length)
   
+
+
   const qrUrl = problem?.matura && `https://gradivo.hr/products/${problem?.matura.subject.name}-matura-${problem?.matura.year.year-1}-${(problem?.matura.year.year).toString(10).slice(-2)}?brZad=${problem?.video_solution.vimeo_id}`
   const choiceLabel = { 0: 'A', 1: 'B', 2: 'C', 3: 'D', 4: 'E', 5: 'F' }
   
@@ -62,6 +65,13 @@ const Problem = ({ sectionIndex, problem_index, problem } ) => {
     dispatch(addQuestion(newValue, id))
     console.log(problem_fields)
   };
+  
+  const handleApproveBtn = (approval, id) => {
+    approval = approval ? 'approved' : 'unapproved';
+    dispatch(approveProblem(approval, id))
+    setApprovalStatus(approval)
+    console.log(problem_fields)
+  }
 
 
   const changeProblemTextElement = () => {
@@ -153,8 +163,18 @@ const Problem = ({ sectionIndex, problem_index, problem } ) => {
         {!view.editing && qrUrl && <a className="problem__qr-link" href={qrUrl}><QRCode value={qrUrl} renderAs="svg" /></a>}
       </div>
       {view.site_preview && 
-        <div className="problem__approve">
-          <button className='btn btn--save'><FontAwesomeIcon icon={faCheckCircle} /></button>
+        <div className="problem__footer">
+          <div className={`problem__approval-status ${approvalStatus ? 'problem__approval-status--approved' : 'problem__approval-status--unapproved'}`}>
+            {approvalStatus ? 'Approved' : 'Not approved'}
+          </div>
+          <div className="problem__btns">
+            <div className="problem__unapprove">
+              <button className='btn btn--primary' onClick={() => handleApproveBtn(false, problemId)} ><FontAwesomeIcon icon={faTimesCircle} /></button>
+            </div>
+            <div className="problem__approve">
+              <button className='btn btn--save' onClick={() => handleApproveBtn(true, problemId)} ><FontAwesomeIcon icon={faCheckCircle} /></button>
+            </div>
+          </div>
         </div>
       }
   </div>
