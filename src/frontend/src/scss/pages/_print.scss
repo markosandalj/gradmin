@@ -16,4 +16,10 @@
         top: 0;
         font-size: 14px;
     }
+    .problems-section {
+        box-shadow: none !important;
+    }
+    .btn, button, .problems-section.problems-section__add-new {
+        display:none !important;
+    }
   }

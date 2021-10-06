@@ -23,7 +23,7 @@ import { togglePrintingView } from "../../store/actions/problemsViewActions";
 
 
 export default function Skripta() {
-    const { skripta_id, section_id } = useParams();
+    const { skripta_id, section_id, section_order } = useParams();
     const dispatch = useDispatch()
 
     useEffect(() => {
@@ -111,7 +111,7 @@ export default function Skripta() {
                                 <div key={section.name}>
                                     <form onSubmit={handleSubmit} className="problems-section">
                                         <div className="problems-section__header">
-                                            <h3 className="problems-section__title">{section.order}. {section.name}</h3>
+                                            <h3 className="problems-section__title">{section_order}. {section.name}</h3>
                                             <div className="problems-section__actions">
                                                 <button type="button" onClick={handleEditingToggle} className={`problems-section__edit ${view.editing && 'active'}`}>
                                                     <FontAwesomeIcon icon={faPen} />

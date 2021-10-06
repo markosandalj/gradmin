@@ -146,7 +146,7 @@ const Problem = ({ sectionIndex, problem_index, problem } ) => {
                 )
               }
             )}
-            <form className={`problem__choices ${numberOfChoiceImages > 0 ? imageWidthClasses[numberOfChoiceImages] : ''}`}>
+            <div className={`problem__choices ${numberOfChoiceImages > 0 ? imageWidthClasses[numberOfChoiceImages] : ''}`}>
               {questionChoices.map( (choice, index) => {
                 return (
                   <ProblemChoice 
@@ -157,7 +157,7 @@ const Problem = ({ sectionIndex, problem_index, problem } ) => {
                   />
                   )
                 })}
-            </form>
+            </div>
           </div>
         </div>
         {!view.editing && qrUrl && <a className="problem__qr-link" href={qrUrl}><QRCode value={qrUrl} renderAs="svg" /></a>}

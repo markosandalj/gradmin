@@ -20,9 +20,10 @@ export default function SkriptaSections() {
         <Layout>
             <Layout.Section>
                 {data[0].sections.map( (section, section_index) => {
+                    section_index+=1
                     return (
-                        <div className="problems-section" sectioned key={section.id}>
-                            <Link to={'/index/skripta/'+skripta_id+'/'+section.id}>{section_index+1}. {section.name}</Link>
+                        <div className="problems-section" key={section.id}>
+                            <Link to={'/index/skripta/'+skripta_id+'/'+section.id+'/'+section_index}>{section_index}. {section.name}</Link>
                         </div>
                     )
                 })}

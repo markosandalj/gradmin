@@ -42,7 +42,7 @@ export default function App() {
           <Route exact path="/index/skripta/:skripta_id">
             <Skripta></Skripta>
           </Route>
-          <Route exact path="/index/skripta/:skripta_id/:section_id">
+          <Route exact path="/index/skripta/:skripta_id/:section_id/:section_order">
             <Skripta></Skripta>
           </Route>
           <Route exact path="/index/matura/:subject_id/list">
