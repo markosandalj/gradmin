@@ -31,7 +31,7 @@ export default function App() {
     <Router>
       <Frame 
         navigation={navigationMarkup}
-        topBar={topBarMarkup}
+        // topBar={topBarMarkup}
       >
         <Switch >
           <Route exact path="/index">

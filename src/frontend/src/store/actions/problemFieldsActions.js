@@ -16,11 +16,11 @@ export const addQuestion = (question_text, id) => ({
     }
 })
 
-export const addAnswerChoice = (answer_choice, id) => ({
+export const addAnswerChoice = (choice_text, id) => ({
     type: actions.UPDATE_ANSWER_CHOICE_FIELDS,
     payload: {
         id: id,
-        answer_choice: answer_choice
+        choice_text: choice_text
     }
 })
 
