@@ -3,6 +3,7 @@ from django.db.models.fields import IntegerField
 from django.db.models.functions.comparison import Cast
 
 from mature.models import Matura, MaturaSubject, Term, Year
+from problems.admin import EditLinkToInlineObject
 from problems.models import Problem, Question
 from django.urls import reverse
 from django.utils.safestring import mark_safe
@@ -29,10 +30,13 @@ class DisplayLatex(object):
             return mark_safe(u'<div style="font-size: 22px; max-width: 60%;"class="latex">{u}</div>'.format(u=text))
         else:
             return ''
-class MaturaProblemInline(DisplayLatex, VimeoEmbed, admin.StackedInline):
+            
+class MaturaProblemInline(EditLinkToInlineObject, admin.StackedInline):
     model = Problem
     extra = 0
-    # readonly_fields = ('vimeo_embed', 'disply_latex')
+    # search_fields = ('section', 'skripta',)
+    autocomplete_fields = ('section', 'skripta',)
+    readonly_fields = ('question', )
 
 class MaturaAdmin(admin.ModelAdmin):
     model = Matura

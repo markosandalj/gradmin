@@ -14,6 +14,7 @@ class SkriptaAdmin(admin.ModelAdmin):
     model = Skripta
     list_filter = ('subject',)
     list_display = ('name','id', )
+    search_fields = ('name',)
     
     inlines = [
         SectionInline,
@@ -24,6 +25,7 @@ class SectionAdmin(SortableAdminMixin, admin.ModelAdmin):
     list_filter = ('subject',)
     readonly_fields = ('created_at', 'updated_at',)
     actions = ['create_shopify_page',]
+    search_fields = ('name',)
 
     @admin.action(description='Create page on Shopify')
     def create_shopify_page(self, request, queryset):
