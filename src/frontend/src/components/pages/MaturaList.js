@@ -23,9 +23,10 @@ const MaturaList = () => {
             <Layout>
                 <Layout.Section>
                     {data.map( (matura, matura_index) => {
+                        let matura_name = matura.subject.level != 0 ? matura.subject.subject_name + ' ' + matura.subject.level : matura.subject.subject_name;
                         return (
                             <div className='problems-section' key={matura.id}>
-                                <Link to={'/index/matura/'+matura.id}>{matura.subject.subject_name} - {matura.year.year}. {matura.term.term}</Link>
+                                <Link to={'/index/matura/'+matura.id}>{matura_name} - {matura.year.year}. {matura.term.term}</Link>
                             </div>
                         )
                     })} 

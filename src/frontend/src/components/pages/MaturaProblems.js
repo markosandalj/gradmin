@@ -81,24 +81,29 @@ const MaturaProblems = () => {
             console.log('Empty')
         }
     }
-
+    
+    const matura = data[0];
+    let matura_name = matura.subject.level != 0 ? matura.subject.subject_name + ' ' + matura.subject.level : matura.subject.subject_name;
     
     return (
         <Page>
             <Layout>
                 <Layout.Section>
                     {/* <form onSubmit={handleSubmit}> */}
-                        <div className="matura__actions">
-                            <button type="button" onClick={mathTypeset} className={`problems-section__edit`}>
-                                <FontAwesomeIcon icon={faTools} />
-                            </button>
-                            <button type="button" onClick={handleEditingToggle} className={`problems-section__edit ${view.editing && 'active'}`}>
-                                <FontAwesomeIcon icon={faPen} />
-                            </button>
-                            <button type="button" onClick={handleSitePreviewToggle} className={`problems-section__preview ${view.site_preview && 'active'}`}>
-                                <FontAwesomeIcon icon={faSearchPlus} />
-                            </button>
-                            <button onClick={handleSubmit} className="btn btn--save">Save</button>
+                        <div className="matura__header">
+                            <h3 className="problems-section__title">{`${matura_name} - ${matura.year.year}. ${matura.term.term}`}</h3>
+                            <div className="matura__actions">
+                                <button type="button" onClick={mathTypeset} className={`problems-section__edit`}>
+                                    <FontAwesomeIcon icon={faTools} />
+                                </button>
+                                <button type="button" onClick={handleEditingToggle} className={`problems-section__edit ${view.editing && 'active'}`}>
+                                    <FontAwesomeIcon icon={faPen} />
+                                </button>
+                                <button type="button" onClick={handleSitePreviewToggle} className={`problems-section__preview ${view.site_preview && 'active'}`}>
+                                    <FontAwesomeIcon icon={faSearchPlus} />
+                                </button>
+                                <button onClick={handleSubmit} className="btn btn--save">Save</button>
+                            </div>
                         </div>
                         {data[0].problems.map( (problem, index) => {
                             return (

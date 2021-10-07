@@ -1,8 +1,27 @@
 .matura {
+    &__header {
+        display: flex;
+        justify-content: space-between;
+        padding: 1rem 0;
+        position: sticky;
+        top: 0;
+        background: #F6F6F7;
+        z-index: 10;
+        border-bottom: 1px solid black;
+        margin: 0 -3px;
+    }
     &__actions {
         display: flex;
-        justify-content: flex-end;
         gap: 1rem;
-        padding: 1rem 0;
+
+        &.fixed {
+            position: fixed;
+            top: 0;
+            right: 0;
+            z-index: 10;
+            left: 0;
+            border-bottom: 1px solid black;
+            padding-right: 1rem;
+        }
     }
 }

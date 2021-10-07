@@ -104,6 +104,16 @@ export default function Skripta() {
         <Page>
             <Layout>
                 <Layout.Section>
+                    <div className="problems-section__actions">
+                        <button type="button" onClick={handleEditingToggle} className={`problems-section__edit ${view.editing && 'active'}`}>
+                            <FontAwesomeIcon icon={faPen} />
+                        </button>
+                        <button type="button" onClick={handlePrintingToggle} className={`problems-section__print ${view.printing && 'active'}`}>
+                            <FontAwesomeIcon icon={faPrint} />
+                        </button>
+                        <button type="submit" className="btn btn--save">Save</button>
+                        <button type="button" onClick={handlePrint} className="btn btn--primary">Print</button>
+                    </div>
                     <div id="printThis">
                     {sections.map((section) => {
                         if (section.problems.length > 0) {
@@ -112,16 +122,6 @@ export default function Skripta() {
                                     <form onSubmit={handleSubmit} className="problems-section">
                                         <div className="problems-section__header">
                                             <h3 className="problems-section__title">{section_order}. {section.name}</h3>
-                                            <div className="problems-section__actions">
-                                                <button type="button" onClick={handleEditingToggle} className={`problems-section__edit ${view.editing && 'active'}`}>
-                                                    <FontAwesomeIcon icon={faPen} />
-                                                </button>
-                                                <button type="button" onClick={handlePrintingToggle} className={`problems-section__print ${view.printing && 'active'}`}>
-                                                    <FontAwesomeIcon icon={faPrint} />
-                                                </button>
-                                                <button type="submit" className="btn btn--save">Save</button>
-                                                <button type="button" onClick={handlePrint} className="btn btn--primary">Print</button>
-                                            </div>
                                         </div>
                                         {section.problems.map((problem, index) => {
                                             return (
