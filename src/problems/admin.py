@@ -7,7 +7,7 @@ from django.contrib import messages
 from django.utils.translation import ngettext
 from django.utils.safestring import mark_safe
 from django.urls import reverse
-from django_reverse_admin import ReverseModelAdmin
+# from django_reverse_admin import ReverseModelAdmin
 
 # Register your models here.
 from media.models import Image
