@@ -34,7 +34,7 @@ const Problem = ({ sectionIndex, problem_index, problem } ) => {
   const [hasChanged, setHasChanged] = useState(false)
   const [numberOfChoiceImages, setNumberOfChoiceImages] = useState(problem.question.answer_choices.filter( choice => choice.images.length > 0).length)
   
-
+  const vimeo_embed_src = problem?.video_solution?.vimeo_embed_url ? problem.video_solution.vimeo_embed_url : problem?.video_solution?.vimeo_id ? `https://player.vimeo.com/video/${problem.video_solution.vimeo_id}` : false;
 
   const qrUrl = problem?.matura && `https://gradivo.hr/products/${problem?.matura.subject.name}-matura-${problem?.matura.year.year-1}-${(problem?.matura.year.year).toString(10).slice(-2)}?brZad=${problem?.video_solution.vimeo_id}`
   const choiceLabel = { 0: 'A', 1: 'B', 2: 'C', 3: 'D', 4: 'E', 5: 'F' }
@@ -104,9 +104,9 @@ const Problem = ({ sectionIndex, problem_index, problem } ) => {
         }
         <div className="problem__content-container">
           <div className="problem__content">
-            {view.site_preview && problem.video_solution?.vimeo_id && 
+            {view.site_preview && vimeo_embed_src && 
               <div className="problem__video">
-                <iframe src={`https://player.vimeo.com/video/${problem.video_solution.vimeo_id}?h=fdbe29ff73&amp;badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479`} 
+                <iframe src={vimeo_embed_src} 
                         frameBorder="0" 
                         allow="autoplay; fullscreen; picture-in-picture" 
                         allowFullScreen 

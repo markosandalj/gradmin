@@ -1,5 +1,5 @@
-from mature.models import MaturaSubject
-from problems.models import AnswerChoice, CorrectAnswer, Problem, Question, Section, Matura, Subject, Term, Video, Year
+# from mature.models import MaturaSubject
+# from problems.models import AnswerChoice, CorrectAnswer, Problem, Question, Section, Matura, Subject, Term, Video, Year
 
 # from pathlib import Path 
 import pathlib
