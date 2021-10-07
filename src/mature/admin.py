@@ -29,19 +29,19 @@ class DisplayLatex(object):
             return mark_safe(u'<div style="font-size: 22px; max-width: 60%;"class="latex">{u}</div>'.format(u=text))
         else:
             return ''
-class ProblemInline(DisplayLatex, VimeoEmbed, SortableInlineAdminMixin, admin.StackedInline):
+class MaturaProblemInline(DisplayLatex, VimeoEmbed, admin.StackedInline):
     model = Problem
     extra = 0
-    ordering = [Cast('number', IntegerField() ),]
     # readonly_fields = ('vimeo_embed', 'disply_latex')
 
 class MaturaAdmin(admin.ModelAdmin):
     model = Matura
     inlines = [
-        ProblemInline,
+        MaturaProblemInline,
     ]
     actions = ['update_problems',]
-    list_editable = ('shopify_product_id',)
+    # list_editable = ('shopify_product_id',)
+    
 
     @admin.action(description='Update product on Shopify')
     def update_problems(self, request, queryset):

@@ -132,9 +132,8 @@ class Problem(models.Model):
     skripta = models.ManyToManyField(Skripta, blank=True,related_name='problems')
     created_at = models.DateTimeField(auto_now_add=True, editable=False)
     updated_at = models.DateTimeField(auto_now=True, editable=False)
-
     class Meta(object):
-        ordering = ['question', 'number',]
+        ordering = [Cast('number', IntegerField() ),]
         
 
     def __str__(self):
