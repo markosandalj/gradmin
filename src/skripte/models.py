@@ -21,7 +21,7 @@ class Section(models.Model):
     updated_at = models.DateTimeField(auto_now=True, editable=False)
 
     class Meta(object):
-        ordering = ['order']
+        ordering = ['order', ]
     
     def __str__(self):
         return str(self.name)

@@ -26,7 +26,7 @@ class Question(models.Model):
     updated_at = models.DateTimeField(auto_now=True, editable=False)
 
     class Meta(object):
-        ordering = ['order']
+        ordering = ['order',]
 
     def __str__(self):
         return str(self.question_text)
@@ -43,7 +43,7 @@ class AnswerChoice(models.Model):
     updated_at = models.DateTimeField(auto_now=True, editable=False)
 
     class Meta(object):
-        ordering = ['order']
+        ordering = ['order',]
 
     def __str__(self):
         return str(self.choice_text)
@@ -134,7 +134,8 @@ class Problem(models.Model):
     updated_at = models.DateTimeField(auto_now=True, editable=False)
 
     class Meta(object):
-        ordering = [Cast('number', IntegerField()),]
+        ordering = ['question', 'number',]
+        
 
     def __str__(self):
         return str(self.name)

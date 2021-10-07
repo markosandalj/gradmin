@@ -61,7 +61,7 @@ class SectionSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Section
-        fields = ('id', 'name', 'subject_name', 'shopify_page_id', 'order')
+        fields = ('id', 'name', 'subject_name', 'shopify_page_id', 'order', )
 
 class ProblemSerializer(serializers.ModelSerializer):
     question = QuestionSerializer(many=False, read_only=True)
@@ -129,7 +129,7 @@ class SectionProblemsSerializer(serializers.ModelSerializer):
     problems = ProblemSerializer(many=True,read_only=True,)
     class Meta:
         model = Section
-        fields = ('id', 'name', 'problems', 'order')
+        fields = ('id', 'name', 'problems', 'order', )
 
 class SkriptaSerializer(serializers.ModelSerializer):
     sections = SectionProblemsSerializer(many=True, read_only=True)

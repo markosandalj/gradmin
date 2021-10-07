@@ -1,4 +1,6 @@
 from django.contrib import admin
+from django.db.models.fields import IntegerField
+from django.db.models.functions.comparison import Cast
 
 from mature.models import Matura, MaturaSubject, Term, Year
 from problems.models import Problem, Question
@@ -30,6 +32,7 @@ class DisplayLatex(object):
 class ProblemInline(DisplayLatex, VimeoEmbed, SortableInlineAdminMixin, admin.StackedInline):
     model = Problem
     extra = 0
+    ordering = [Cast('number', IntegerField() ),]
     # readonly_fields = ('vimeo_embed', 'disply_latex')
 
 class MaturaAdmin(admin.ModelAdmin):

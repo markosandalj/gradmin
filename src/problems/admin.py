@@ -1,4 +1,6 @@
 from django.contrib import admin
+from django.db.models.fields import IntegerField
+from django.db.models.functions.comparison import Cast
 from adminsortable2.admin import SortableAdminMixin, SortableInlineAdminMixin
 from django.db.models.base import Model
 from django.contrib import messages
@@ -72,6 +74,7 @@ class ProblemAdmin(admin.ModelAdmin):
     list_editable = ('shop_availability','approval',)
     search_fields = ('name', 'question', 'section',)
     actions = ['make_available', 'make_unavailable', 'make_hidden', 'approve', 'unapprove',]
+    ordering = [Cast('number', IntegerField() ),]
 
     @admin.action(description='Approve selected items')
     def approve(self, request, queryset):

@@ -72,7 +72,7 @@ class Matura(models.Model):
     updated_at = models.DateTimeField(auto_now=True, editable=False)
 
     class Meta(object):
-        ordering = ['year']
+        ordering = ['year',]
 
     def __str__(self):
         razina = self.subject.level if self.subject.level != self.subject.MaturaLevels.NEMA_RAZINE else ''
