@@ -7,6 +7,7 @@ from django.contrib import messages
 from django.utils.translation import ngettext
 from django.utils.safestring import mark_safe
 from django.urls import reverse
+from django_reverse_admin import ReverseModelAdmin
 
 # Register your models here.
 from media.models import Image
@@ -30,6 +31,7 @@ class QuestionInline(EditLinkToInlineObject, admin.StackedInline):
     model = Question
     extra=0
     readonly_fields = ('edit_link', )
+    
 
 class AnswerChoiceInline(EditLinkToInlineObject, SortableInlineAdminMixin, admin.StackedInline):
     model = AnswerChoice
@@ -73,8 +75,11 @@ class ProblemAdmin(admin.ModelAdmin):
     list_filter = ('subject', 'matura','shop_availability', )
     list_editable = ('shop_availability','approval',)
     search_fields = ('name', 'question', 'section',)
+    autocomplete_fields = ('matura',)
     actions = ['make_available', 'make_unavailable', 'make_hidden', 'approve', 'unapprove',]
-    ordering = [Cast('number', IntegerField() ),]
+    
+    # inline_type = 'stacked'
+    # inline_reverse = ['question', ]
 
     @admin.action(description='Approve selected items')
     def approve(self, request, queryset):

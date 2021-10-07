@@ -43,6 +43,7 @@ class MaturaAdmin(admin.ModelAdmin):
     inlines = [
         MaturaProblemInline,
     ]
+    search_fields = ('name',)
     actions = ['update_problems',]
     # list_editable = ('shopify_product_id',)
     
