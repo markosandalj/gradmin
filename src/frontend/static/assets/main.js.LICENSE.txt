@@ -42,9 +42,23 @@ PERFORMANCE OF THIS SOFTWARE.
 
 /*! ../../../../../../utilities/unique-id/hooks.js */
 
+/*! ../../../../../Badge/Badge.js */
+
+/*! ../../../../../Button/Button.js */
+
 /*! ../../../../../Collapsible/Collapsible.js */
 
+/*! ../../../../../Heading/Heading.js */
+
+/*! ../../../../../Link/Link.js */
+
 /*! ../../../../../Modal/Modal.js */
+
+/*! ../../../../../Popover/Popover.js */
+
+/*! ../../../../../Stack/Stack.js */
+
+/*! ../../../../../TextContainer/TextContainer.js */
 
 /*! ../../../../Navigation.scss.js */
 
@@ -84,6 +98,8 @@ PERFORMANCE OF THIS SOFTWARE.
 
 /*! ../../../ActionMenu/ActionMenu.js */
 
+/*! ../../../Avatar/Avatar.js */
+
 /*! ../../../Badge/Badge.js */
 
 /*! ../../../Breadcrumbs/Breadcrumbs.js */
@@ -112,6 +128,8 @@ PERFORMANCE OF THIS SOFTWARE.
 
 /*! ../../../KeypressListener/KeypressListener.js */
 
+/*! ../../../MessageIndicator/MessageIndicator.js */
+
 /*! ../../../Pagination/Pagination.js */
 
 /*! ../../../Popover/Popover.js */
@@ -119,6 +137,8 @@ PERFORMANCE OF THIS SOFTWARE.
 /*! ../../../Portal/Portal.js */
 
 /*! ../../../PositionedOverlay/PositionedOverlay.js */
+
+/*! ../../../ScrollLock/ScrollLock.js */
 
 /*! ../../../Scrollable/Scrollable.js */
 
@@ -133,6 +153,8 @@ PERFORMANCE OF THIS SOFTWARE.
 /*! ../../../TrapFocus/TrapFocus.js */
 
 /*! ../../../UnstyledLink/UnstyledLink.js */
+
+/*! ../../../VisuallyHidden/VisuallyHidden.js */
 
 /*! ../../../css-loader/dist/runtime/api.js */
 
@@ -173,6 +195,8 @@ PERFORMANCE OF THIS SOFTWARE.
 /*! ../../store/actions/problemsViewActions */
 
 /*! ../../types.js */
+
+/*! ../../utilities/banner-context.js */
 
 /*! ../../utilities/breakpoints.js */
 
@@ -298,6 +322,8 @@ PERFORMANCE OF THIS SOFTWARE.
 
 /*! ../MediaQueryProvider/MediaQueryProvider.js */
 
+/*! ../Menu/Menu.js */
+
 /*! ../MenuGroup/MenuGroup.js */
 
 /*! ../Pane/Pane.js */
@@ -311,6 +337,8 @@ PERFORMANCE OF THIS SOFTWARE.
 /*! ../ScrollLock/ScrollLock.js */
 
 /*! ../Scrollable/Scrollable.js */
+
+/*! ../SearchDismissOverlay/SearchDismissOverlay.js */
 
 /*! ../SecondaryAction/SecondaryAction.js */
 
@@ -422,6 +450,8 @@ PERFORMANCE OF THIS SOFTWARE.
 
 /*! ./Actions.scss.js */
 
+/*! ./Avatar.scss.js */
+
 /*! ./Backdrop.scss.js */
 
 /*! ./Badge.scss.js */
@@ -484,9 +514,17 @@ PERFORMANCE OF THIS SOFTWARE.
 
 /*! ./Layout.scss.js */
 
+/*! ./Link.scss.js */
+
 /*! ./Loading.scss.js */
 
+/*! ./Menu.scss.js */
+
 /*! ./MenuGroup.scss.js */
+
+/*! ./Message.scss.js */
+
+/*! ./MessageIndicator.scss.js */
 
 /*! ./Modal.scss.js */
 
@@ -507,6 +545,12 @@ PERFORMANCE OF THIS SOFTWARE.
 /*! ./RollupActions.scss.js */
 
 /*! ./Scrollable.scss.js */
+
+/*! ./Search.scss.js */
+
+/*! ./SearchDismissOverlay.scss.js */
+
+/*! ./SearchField.scss.js */
 
 /*! ./SecondaryAction.scss.js */
 
@@ -534,9 +578,13 @@ PERFORMANCE OF THIS SOFTWARE.
 
 /*! ./TooltipOverlay.scss.js */
 
+/*! ./TopBar.scss.js */
+
 /*! ./Transition */
 
 /*! ./TransitionGroupContext */
+
+/*! ./UserMenu.scss.js */
 
 /*! ./VisuallyHidden.scss.js */
 
@@ -746,6 +794,10 @@ PERFORMANCE OF THIS SOFTWARE.
 
 /*! ./components/Loading/Loading.js */
 
+/*! ./components/Menu/Menu.js */
+
+/*! ./components/Message/Message.js */
+
 /*! ./components/Pane/Pane.js */
 
 /*! ./components/PopoverOverlay/PopoverOverlay.js */
@@ -760,6 +812,10 @@ PERFORMANCE OF THIS SOFTWARE.
 
 /*! ./components/ScrollTo/ScrollTo.js */
 
+/*! ./components/Search/Search.js */
+
+/*! ./components/SearchField/SearchField.js */
+
 /*! ./components/Secondary/Secondary.js */
 
 /*! ./components/Section/Section.js */
@@ -771,6 +827,8 @@ PERFORMANCE OF THIS SOFTWARE.
 /*! ./components/ToastManager/ToastManager.js */
 
 /*! ./components/TooltipOverlay/TooltipOverlay.js */
+
+/*! ./components/UserMenu/UserMenu.js */
 
 /*! ./components/connectAdvanced */
 
@@ -2041,6 +2099,10 @@ PERFORMANCE OF THIS SOFTWARE.
   \************************************************************************/
 
 /*!************************************************************************!*\
+  !*** ./node_modules/@shopify/polaris/dist/esm/components/Link/Link.js ***!
+  \************************************************************************/
+
+/*!************************************************************************!*\
   !*** ./node_modules/@shopify/polaris/dist/esm/components/Page/Page.js ***!
   \************************************************************************/
 
@@ -2173,11 +2235,19 @@ PERFORMANCE OF THIS SOFTWARE.
   \***************************************************************************/
 
 /*!****************************************************************************!*\
+  !*** ./node_modules/@shopify/polaris-icons/dist/icons/SearchMinor.svg.mjs ***!
+  \****************************************************************************/
+
+/*!****************************************************************************!*\
   !*** ./node_modules/@shopify/polaris-icons/dist/icons/SelectMinor.svg.mjs ***!
   \****************************************************************************/
 
 /*!****************************************************************************!*\
   !*** ./node_modules/@shopify/polaris-icons/dist/icons/UploadMajor.svg.mjs ***!
+  \****************************************************************************/
+
+/*!****************************************************************************!*\
+  !*** ./node_modules/@shopify/polaris/dist/esm/components/Avatar/Avatar.js ***!
   \****************************************************************************/
 
 /*!****************************************************************************!*\
@@ -2193,6 +2263,14 @@ PERFORMANCE OF THIS SOFTWARE.
   \****************************************************************************/
 
 /*!****************************************************************************!*\
+  !*** ./node_modules/@shopify/polaris/dist/esm/components/TopBar/TopBar.js ***!
+  \****************************************************************************/
+
+/*!****************************************************************************!*\
+  !*** ./node_modules/@shopify/polaris/dist/esm/utilities/banner-context.js ***!
+  \****************************************************************************/
+
+/*!****************************************************************************!*\
   !*** ./node_modules/style-loader/dist/runtime/injectStylesIntoStyleTag.js ***!
   \****************************************************************************/
 
@@ -2202,6 +2280,10 @@ PERFORMANCE OF THIS SOFTWARE.
 
 /*!*****************************************************************************!*\
   !*** ./node_modules/@shopify/polaris/dist/esm/components/Icon/Icon.scss.js ***!
+  \*****************************************************************************/
+
+/*!*****************************************************************************!*\
+  !*** ./node_modules/@shopify/polaris/dist/esm/components/Link/Link.scss.js ***!
   \*****************************************************************************/
 
 /*!*****************************************************************************!*\
@@ -2325,6 +2407,10 @@ PERFORMANCE OF THIS SOFTWARE.
   \*********************************************************************************/
 
 /*!*********************************************************************************!*\
+  !*** ./node_modules/@shopify/polaris/dist/esm/components/Avatar/Avatar.scss.js ***!
+  \*********************************************************************************/
+
+/*!*********************************************************************************!*\
   !*** ./node_modules/@shopify/polaris/dist/esm/components/Button/Button.scss.js ***!
   \*********************************************************************************/
 
@@ -2338,6 +2424,10 @@ PERFORMANCE OF THIS SOFTWARE.
 
 /*!*********************************************************************************!*\
   !*** ./node_modules/@shopify/polaris/dist/esm/components/Scrollable/context.js ***!
+  \*********************************************************************************/
+
+/*!*********************************************************************************!*\
+  !*** ./node_modules/@shopify/polaris/dist/esm/components/TopBar/TopBar.scss.js ***!
   \*********************************************************************************/
 
 /*!*********************************************************************************!*\
@@ -2391,6 +2481,10 @@ PERFORMANCE OF THIS SOFTWARE.
 /*!**********************************************************************************!*\
   !*** ./node_modules/style-loader/dist/runtime/setAttributesWithoutAttributes.js ***!
   \**********************************************************************************/
+
+/*!***********************************************************************************!*\
+  !*** ./node_modules/@shopify/polaris-icons/dist/icons/ExternalSmallMinor.svg.mjs ***!
+  \***********************************************************************************/
 
 /*!***********************************************************************************!*\
   !*** ./node_modules/@shopify/polaris/dist/esm/components/Caption/Caption.scss.js ***!
@@ -2459,6 +2553,10 @@ PERFORMANCE OF THIS SOFTWARE.
 /*!************************************************************************************!*\
   !*** ./node_modules/@shopify/polaris/dist/esm/utilities/within-content-context.js ***!
   \************************************************************************************/
+
+/*!*************************************************************************************!*\
+  !*** ./node_modules/@shopify/polaris-icons/dist/icons/MobileHamburgerMajor.svg.mjs ***!
+  \*************************************************************************************/
 
 /*!*************************************************************************************!*\
   !*** ./node_modules/@shopify/polaris/dist/esm/components/Backdrop/Backdrop.scss.js ***!
@@ -2577,6 +2675,10 @@ PERFORMANCE OF THIS SOFTWARE.
   \******************************************************************************************/
 
 /*!******************************************************************************************!*\
+  !*** ./node_modules/@shopify/polaris/dist/esm/components/TopBar/components/Menu/Menu.js ***!
+  \******************************************************************************************/
+
+/*!******************************************************************************************!*\
   !*** ./node_modules/@shopify/polaris/dist/esm/utilities/use-isomorphic-layout-effect.js ***!
   \******************************************************************************************/
 
@@ -2656,6 +2758,10 @@ PERFORMANCE OF THIS SOFTWARE.
   !*** ./node_modules/@shopify/polaris/dist/esm/components/Navigation/components/Item/Item.js ***!
   \**********************************************************************************************/
 
+/*!**********************************************************************************************!*\
+  !*** ./node_modules/@shopify/polaris/dist/esm/components/TopBar/components/Search/Search.js ***!
+  \**********************************************************************************************/
+
 /*!***********************************************************************************************!*\
   !*** ./node_modules/@shopify/polaris/dist/esm/components/ButtonGroup/components/Item/Item.js ***!
   \***********************************************************************************************/
@@ -2684,6 +2790,10 @@ PERFORMANCE OF THIS SOFTWARE.
   !*** ./node_modules/@shopify/polaris/dist/esm/components/TextContainer/TextContainer.scss.js ***!
   \***********************************************************************************************/
 
+/*!***********************************************************************************************!*\
+  !*** ./node_modules/@shopify/polaris/dist/esm/components/TopBar/components/Menu/Menu.scss.js ***!
+  \***********************************************************************************************/
+
 /*!************************************************************************************************!*\
   !*** ./node_modules/@shopify/polaris/dist/esm/components/Frame/components/Toast/Toast.scss.js ***!
   \************************************************************************************************/
@@ -2694,6 +2804,10 @@ PERFORMANCE OF THIS SOFTWARE.
 
 /*!************************************************************************************************!*\
   !*** ./node_modules/@shopify/polaris/dist/esm/components/Layout/components/Section/Section.js ***!
+  \************************************************************************************************/
+
+/*!************************************************************************************************!*\
+  !*** ./node_modules/@shopify/polaris/dist/esm/components/MessageIndicator/MessageIndicator.js ***!
   \************************************************************************************************/
 
 /*!*************************************************************************************************!*\
@@ -2724,12 +2838,20 @@ PERFORMANCE OF THIS SOFTWARE.
   !*** ./node_modules/@shopify/polaris/dist/esm/components/PositionedOverlay/PositionedOverlay.js ***!
   \**************************************************************************************************/
 
+/*!**************************************************************************************************!*\
+  !*** ./node_modules/@shopify/polaris/dist/esm/components/TopBar/components/UserMenu/UserMenu.js ***!
+  \**************************************************************************************************/
+
 /*!***************************************************************************************************!*\
   !*** ./node_modules/@shopify/polaris/dist/esm/components/TextField/components/Resizer/Resizer.js ***!
   \***************************************************************************************************/
 
 /*!***************************************************************************************************!*\
   !*** ./node_modules/@shopify/polaris/dist/esm/components/TextField/components/Spinner/Spinner.js ***!
+  \***************************************************************************************************/
+
+/*!***************************************************************************************************!*\
+  !*** ./node_modules/@shopify/polaris/dist/esm/components/TopBar/components/Search/Search.scss.js ***!
   \***************************************************************************************************/
 
 /*!****************************************************************************************************!*\
@@ -2757,6 +2879,10 @@ PERFORMANCE OF THIS SOFTWARE.
   \****************************************************************************************************/
 
 /*!*****************************************************************************************************!*\
+  !*** ./node_modules/@shopify/polaris/dist/esm/components/MessageIndicator/MessageIndicator.scss.js ***!
+  \*****************************************************************************************************/
+
+/*!*****************************************************************************************************!*\
   !*** ./node_modules/@shopify/polaris/dist/esm/utilities/scroll-lock-manager/scroll-lock-manager.js ***!
   \*****************************************************************************************************/
 
@@ -2772,12 +2898,20 @@ PERFORMANCE OF THIS SOFTWARE.
   !*** ./node_modules/@shopify/polaris/dist/esm/components/PositionedOverlay/PositionedOverlay.scss.js ***!
   \*******************************************************************************************************/
 
+/*!*******************************************************************************************************!*\
+  !*** ./node_modules/@shopify/polaris/dist/esm/components/TopBar/components/UserMenu/UserMenu.scss.js ***!
+  \*******************************************************************************************************/
+
 /*!********************************************************************************************************!*\
   !*** ./node_modules/@shopify/polaris/dist/esm/components/ActionMenu/components/MenuGroup/MenuGroup.js ***!
   \********************************************************************************************************/
 
 /*!********************************************************************************************************!*\
   !*** ./node_modules/@shopify/polaris/dist/esm/components/DropZone/components/FileUpload/FileUpload.js ***!
+  \********************************************************************************************************/
+
+/*!********************************************************************************************************!*\
+  !*** ./node_modules/@shopify/polaris/dist/esm/components/TopBar/components/SearchField/SearchField.js ***!
   \********************************************************************************************************/
 
 /*!*********************************************************************************************************!*\
@@ -2808,6 +2942,10 @@ PERFORMANCE OF THIS SOFTWARE.
   !*** ./node_modules/@shopify/polaris/dist/esm/components/DropZone/components/FileUpload/FileUpload.scss.js ***!
   \*************************************************************************************************************/
 
+/*!*************************************************************************************************************!*\
+  !*** ./node_modules/@shopify/polaris/dist/esm/components/TopBar/components/SearchField/SearchField.scss.js ***!
+  \*************************************************************************************************************/
+
 /*!**************************************************************************************************************!*\
   !*** ./node_modules/@shopify/polaris/dist/esm/components/Frame/components/CSSAnimation/CSSAnimation.scss.js ***!
   \**************************************************************************************************************/
@@ -2826,6 +2964,10 @@ PERFORMANCE OF THIS SOFTWARE.
 
 /*!****************************************************************************************************************!*\
   !*** ./node_modules/@shopify/polaris/dist/esm/components/ActionMenu/components/RollupActions/RollupActions.js ***!
+  \****************************************************************************************************************/
+
+/*!****************************************************************************************************************!*\
+  !*** ./node_modules/@shopify/polaris/dist/esm/components/TopBar/components/Menu/components/Message/Message.js ***!
   \****************************************************************************************************************/
 
 /*!*****************************************************************************************************************!*\
@@ -2852,6 +2994,10 @@ PERFORMANCE OF THIS SOFTWARE.
   !*** ./node_modules/@shopify/polaris/dist/esm/components/ActionMenu/components/RollupActions/RollupActions.scss.js ***!
   \*********************************************************************************************************************/
 
+/*!*********************************************************************************************************************!*\
+  !*** ./node_modules/@shopify/polaris/dist/esm/components/TopBar/components/Menu/components/Message/Message.scss.js ***!
+  \*********************************************************************************************************************/
+
 /*!************************************************************************************************************************!*\
   !*** ./node_modules/@shopify/polaris/dist/esm/components/Frame/components/ContextualSaveBar/ContextualSaveBar.scss.js ***!
   \************************************************************************************************************************/
@@ -2867,6 +3013,14 @@ PERFORMANCE OF THIS SOFTWARE.
 /*!**************************************************************************************************************************!*\
   !*** ./node_modules/@shopify/polaris/dist/esm/components/PortalsManager/components/PortalsContainer/PortalsContainer.js ***!
   \**************************************************************************************************************************/
+
+/*!**************************************************************************************************************************!*\
+  !*** ./node_modules/@shopify/polaris/dist/esm/components/TopBar/components/SearchDismissOverlay/SearchDismissOverlay.js ***!
+  \**************************************************************************************************************************/
+
+/*!*******************************************************************************************************************************!*\
+  !*** ./node_modules/@shopify/polaris/dist/esm/components/TopBar/components/SearchDismissOverlay/SearchDismissOverlay.scss.js ***!
+  \*******************************************************************************************************************************/
 
 /*!**************************************************************************************************************************************************************!*\
   !*** ./node_modules/@shopify/polaris/dist/esm/components/Frame/components/ContextualSaveBar/components/DiscardConfirmationModal/DiscardConfirmationModal.js ***!

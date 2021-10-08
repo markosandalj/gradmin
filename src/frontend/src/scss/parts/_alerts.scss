@@ -33,6 +33,13 @@
         left: 5px;
     }
     
+    button {
+        &:hover {
+            cursor: pointer;
+            opacity: .7;
+        }
+    }
+
     i {
         color: $white;
     }

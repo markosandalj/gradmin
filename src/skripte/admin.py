@@ -1,5 +1,5 @@
 from django.contrib import admin
-from adminsortable2.admin import SortableAdminMixin
+from adminsortable2.admin import SortableAdminMixin, SortableInlineAdminMixin
 import requests
 import json
 
@@ -7,7 +7,7 @@ import json
 from .models import Subject, Section, Equation, Skripta
 from problems.models import Problem
 
-class SectionProblemInline(admin.StackedInline):
+class SectionProblemInline(SortableInlineAdminMixin, admin.StackedInline):
     model = Problem
     extra = 0
     # search_fields = ('section', 'skripta',)
@@ -27,7 +27,7 @@ class SkriptaAdmin(admin.ModelAdmin):
     inlines = [
         SectionInline,
     ]
-class SectionAdmin(SortableAdminMixin, admin.ModelAdmin):
+class SectionAdmin(admin.ModelAdmin):
     model = Section
     list_display = ('name','shopify_page_id', )
     list_filter = ('subject',)

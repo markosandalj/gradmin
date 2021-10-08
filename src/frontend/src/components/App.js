@@ -1,10 +1,10 @@
 // REACT & REDUX
-import React, { Component, useState, useEffect } from "react";
+import React, { Component, useState, useEffect, useCallback } from "react";
 import { render } from "react-dom";
 import { BrowserRouter as Router, Route, Switch, Link } from "react-router-dom";
 
 // SHOPIFY
-import { AppProvider, Frame } from '@shopify/polaris';
+import { AppProvider, Frame, TopBar } from '@shopify/polaris';
 
 // COMPONENTS
 import Header from "./layout/Header";
@@ -15,12 +15,26 @@ import MaturaList from "./pages/MaturaList";
 import MaturaProblems from "./pages/MaturaProblems";
 
 export default function App() {
+  const [mobileNavigationActive, setMobileNavigationActive] = useState(false);
+
+  const toggleMobileNavigationActive = useCallback(
+    () =>
+      setMobileNavigationActive(
+        (mobileNavigationActive) => !mobileNavigationActive,
+      ),
+    [],
+  );
+
   const navigationMarkup = (
     <Sidebar></Sidebar>
   );
 
   const topBarMarkup = (
-    <Header></Header>
+    // <Header></Header>
+    <TopBar
+      showNavigationToggle
+      onNavigationToggle={toggleMobileNavigationActive}
+    />
   )
 
   return (
@@ -31,7 +45,9 @@ export default function App() {
     <Router>
       <Frame 
         navigation={navigationMarkup}
-        // topBar={topBarMarkup}
+        topBar={topBarMarkup}
+        showMobileNavigation={mobileNavigationActive}
+        onNavigationDismiss={toggleMobileNavigationActive}
       >
         <Switch >
           <Route exact path="/index">
