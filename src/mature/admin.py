@@ -35,7 +35,7 @@ class MaturaProblemInline(EditLinkToInlineObject, admin.StackedInline):
     model = Problem
     extra = 0
     # search_fields = ('section', 'skripta',)
-    autocomplete_fields = ('section', 'skripta',)
+    autocomplete_fields = ('section', 'skripta', 'question',)
     # readonly_fields = ('question', )
 
 class MaturaAdmin(admin.ModelAdmin):
