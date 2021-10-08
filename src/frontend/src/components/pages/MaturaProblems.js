@@ -16,7 +16,7 @@ import Problem from "../parts/Problem";
 
 // FONTAWESOME
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faList, faPen, faSearchPlus, faTools } from '@fortawesome/free-solid-svg-icons'
+import { faList, faPen, faSearchPlus, faTools, faTimes } from '@fortawesome/free-solid-svg-icons'
 
 // ACTIONS
 import { toggleEditingView, toggleSitePreviewView } from "../../store/actions/problemsViewActions";
@@ -29,6 +29,14 @@ const MaturaProblems = () => {
     const dispatch = useDispatch()
     const view = useSelector( state => state?.problems_view )
     const problem_fields = useSelector(state => state.problem_fields)
+
+    const [displaySuccesAlert, setDisplaySuccesAlert] = useState(false)
+    const [displayErrorAlert, setDisplayErrorAlert] = useState(false)
+
+    const closeAlert = () => {
+        setDisplaySuccesAlert(false);
+        setDisplayErrorAlert(false);
+    }
 
     if (loading) return "Loading..."; 
     if (error) return "Error!"; 
@@ -70,10 +78,12 @@ const MaturaProblems = () => {
                         headers: {'X-CSRFToken': csrftoken, "Content-type": "multipart/form-data"}
                     }
                 ).then(res => {
+                    setDisplaySuccesAlert(true);
                     console.log(`Successfully sent form data` + res.data);
                 })
                 .catch(err => {
                     console.log(err);
+                    setDisplayErrorAlert(true)
                 })
         } else {
             console.log(problem_fields)
@@ -89,6 +99,20 @@ const MaturaProblems = () => {
         <Page>
             <Layout>
                 <Layout.Section>
+                    {displayErrorAlert && 
+                        <div className="alert alert--error">
+                            <span>Podatci uspješno spremljeni u bazu!</span>
+                            <button onClick={closeAlert}>
+                                <FontAwesomeIcon icon={faTimes} />
+                            </button>
+                        </div>}
+                    {displaySuccesAlert &&
+                        <div className="alert alert--succes">
+                        <span>Podatci neuspješno spremljeni u bazu! Zovi 112 (ili Marka)</span>
+                            <button onClick={closeAlert}>
+                                <FontAwesomeIcon icon={faTimes} />
+                            </button>
+                        </div>}
                     {/* <form onSubmit={handleSubmit}> */}
                         <div className="matura__header">
                             <h3 className="problems-section__title">{`${matura_name} - ${matura.year.year}. ${matura.term.term}`}</h3>
