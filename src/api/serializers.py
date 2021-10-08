@@ -63,16 +63,6 @@ class SectionSerializer(serializers.ModelSerializer):
         model = Section
         fields = ('id', 'name', 'subject_name', 'shopify_page_id', 'order', )
 
-class ProblemSerializer(serializers.ModelSerializer):
-    question = QuestionSerializer(many=False, read_only=True)
-    video_solution = VideoSerializer(many=False) 
-    section = SectionSerializer(many=False)
-
-    class Meta:
-        model = Problem
-        fields = ('id', 'name', 'number', 'approval', 'shop_availability', 'question', 'video_solution', 'section')
-
-
 #  ---------------------------------------------------
 
 
@@ -102,6 +92,16 @@ class MaturaSerializer(serializers.ModelSerializer):
     class Meta:
         model = Matura
         fields = ('id', 'year', 'term', 'subject', )
+
+class ProblemSerializer(serializers.ModelSerializer):
+    question = QuestionSerializer(many=False, read_only=True)
+    video_solution = VideoSerializer(many=False) 
+    section = SectionSerializer(many=False)
+    matura = MaturaSerializer(many=False)
+
+    class Meta:
+        model = Problem
+        fields = ('id', 'name', 'number', 'approval', 'shop_availability', 'question', 'video_solution', 'section', 'matura',)
 
 # MATURA VIEW SERILEZERS
 class MaturaProblemsSerializer(serializers.ModelSerializer):
