@@ -194,7 +194,7 @@ textarea {
   max-width: 100%;
 }
 .problem__image-container {
-  max-width: 25%;
+  aspect-ratio: 16/9;
   position: relative;
 }
 .problem__image-edit {
@@ -382,6 +382,55 @@ textarea {
   left: 0;
   border-bottom: 1px solid black;
   padding-right: 1rem;
+}
+
+.alert {
+  border-radius: 0.25rem;
+  position: fixed;
+  top: 4rem;
+  color: #FFFFFF;
+  font-weight: bold;
+  padding: 1rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 1rem;
+  z-index: 11;
+  right: 3.2rem;
+  gap: 2rem;
+  max-width: 100%;
+}
+@media (max-width: 48.0625em) and (min-width: 30.625em), (min-width: 45.625em) {
+  .alert {
+    right: 2rem;
+  }
+}
+@media (max-width: 768px) {
+  .alert {
+    right: 3.2rem;
+    left: 3.2rem;
+  }
+}
+@media (max-width: 744px) {
+  .alert {
+    right: 2rem;
+    left: 2rem;
+  }
+}
+@media (max-width: 490px) {
+  .alert {
+    right: 5px;
+    left: 5px;
+  }
+}
+.alert i {
+  color: #FFFFFF;
+}
+.alert--succes {
+  background: linear-gradient(#4BBC4F, #81E585);
+}
+.alert--error {
+  background-color: #EC5958;
 }
 
 @media screen {

@@ -10,7 +10,7 @@ import { Sortable } from '@shopify/draggable';
 
 // FONTAWESOME
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faPen, faPrint, faPlus } from '@fortawesome/free-solid-svg-icons';
+import { faPen, faPrint, faPlus, faTimes } from '@fortawesome/free-solid-svg-icons';
 
 // COMPONENTS
 import Problem from "../parts/Problem";
@@ -34,6 +34,14 @@ export default function Skripta() {
     const sections = useSelector( (state) => state?.sections )
     const view = useSelector( state => state?.problems_view )
     const problem_fields = useSelector(state => state.problem_fields)
+
+    const [displaySuccesAlert, setDisplaySuccesAlert] = useState(false)
+    const [displayErrorAlert, setDisplayErrorAlert] = useState(false)
+
+    const closeAlert = () => {
+        setDisplaySuccesAlert(false);
+        setDisplayErrorAlert(false);
+    }
 
     const mathTypeset = () => {
         if( window.MathJax ) {
@@ -72,10 +80,12 @@ export default function Skripta() {
                         headers: {'X-CSRFToken': csrftoken, "Content-type": "multipart/form-data"}
                     }
                 ).then(res => {
+                    setDisplaySuccesAlert(true);
                     console.log(`Successfully sent form data` + res.data);
                 })
                 .catch(err => {
                     console.log(err);
+                    setDisplayErrorAlert(true)
                 })
         } else {
             console.log(problem_fields)
@@ -104,44 +114,60 @@ export default function Skripta() {
         <Page>
             <Layout>
                 <Layout.Section>
-                    <div className="problems-section__actions">
-                        <button type="button" onClick={handleEditingToggle} className={`problems-section__edit ${view.editing && 'active'}`}>
-                            <FontAwesomeIcon icon={faPen} />
-                        </button>
-                        <button type="button" onClick={handlePrintingToggle} className={`problems-section__print ${view.printing && 'active'}`}>
-                            <FontAwesomeIcon icon={faPrint} />
-                        </button>
-                        <button type="submit" className="btn btn--save">Save</button>
-                        <button type="button" onClick={handlePrint} className="btn btn--primary">Print</button>
-                    </div>
-                    <div id="printThis">
-                    {sections.map((section) => {
-                        if (section.problems.length > 0) {
-                            return (
-                                <div key={section.name}>
-                                    <form onSubmit={handleSubmit} className="problems-section">
-                                        <div className="problems-section__header">
-                                            <h3 className="problems-section__title">{section_order}. {section.name}</h3>
+                    {displayErrorAlert && 
+                        <div className="alert alert--error">
+                            <span>Podatci uspješno spremljeni u bazu!</span>
+                            <button onClick={closeAlert}>
+                                <FontAwesomeIcon icon={faTimes} />
+                            </button>
+                        </div>}
+                    {displaySuccesAlert &&
+                        <div className="alert alert--succes">
+                        <span>Podatci neuspješno spremljeni u bazu! Zovi 112 (ili Marka)</span>
+                            <button onClick={closeAlert}>
+                                <FontAwesomeIcon icon={faTimes} />
+                            </button>
+                        </div>}
+                    <form onSubmit={handleSubmit}>
+                        <div className="problems-section__actions">
+                            <button type="button" onClick={handleEditingToggle} className={`problems-section__edit ${view.editing && 'active'}`}>
+                                <FontAwesomeIcon icon={faPen} />
+                            </button>
+                            <button type="button" onClick={handlePrintingToggle} className={`problems-section__print ${view.printing && 'active'}`}>
+                                <FontAwesomeIcon icon={faPrint} />
+                            </button>
+                            <button type="submit" className="btn btn--save">Save</button>
+                            <button type="button" onClick={handlePrint} className="btn btn--primary">Print</button>
+                        </div>
+                        <div id="printThis">
+                        {sections.map((section) => {
+                            if (section.problems.length > 0) {
+                                return (
+                                    <div key={section.name}>
+                                        <div className="problems-section">
+                                            <div className="problems-section__header">
+                                                <h3 className="problems-section__title">{section_order}. {section.name}</h3>
+                                            </div>
+                                            {section.problems.map((problem, index) => {
+                                                return (
+                                                    <Problem 
+                                                        key={problem.id} 
+                                                        sectionIndex={section.order}
+                                                        problem_index={index} 
+                                                        problem={problem}
+                                                    ></Problem>
+                                                )
+                                            })}
                                         </div>
-                                        {section.problems.map((problem, index) => {
-                                            return (
-                                                <Problem 
-                                                    key={problem.id} 
-                                                    sectionIndex={section.order}
-                                                    problem_index={index} 
-                                                    problem={problem}
-                                                ></Problem>
-                                            )
-                                        })}
-                                    </form>
-                                    <div className="problems-section problems-section__add-new">    
-                                        <FontAwesomeIcon icon={faPlus} />
+                                        <div className="problems-section problems-section__add-new">    
+                                            <FontAwesomeIcon icon={faPlus} />
+                                        </div>
                                     </div>
-                                </div>
-                            )
-                        }
-                    })}
-                    </div>
+                                )
+                            }
+                        })}
+                        </div>
+                    </form>
                 </Layout.Section>
             </Layout>
         </Page>

@@ -40,9 +40,14 @@ const ProblemImage = ({image}) => {
     const validImageTypes = ['image/gif', 'image/jpeg', 'image/png'];
         
     const fileUpload = !file && <DropZone.FileUpload />;
+    // <div className={`${problemImageWidthClasses(file.width, file.height)}`} ></div>
+
+    const problemImageWidthClasses = (width, height) => {
+        // if()
+    }
 
     return (
-        <div className='problem__image-container'>
+        <div className={`problem__image-container ${problemImageWidthClasses(file.width, file.height)}`}>
             <img className='problem__image' src={imageSrc} />
             {view.editing && 
                 <button type="button" className={ `problem__image-edit ${editImageFieldOpen ? 'open' : ''}`} onClick={handleEditImageFieldToggle}>

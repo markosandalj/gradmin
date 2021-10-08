@@ -67,8 +67,10 @@
 
     &__image {
         max-width: 100%;
+
         &-container {
-            max-width: 25%;
+            // max-width: 25%;
+            aspect-ratio: 16 / 9;
             position: relative;
         }
 

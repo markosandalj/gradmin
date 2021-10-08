@@ -86,7 +86,7 @@ const Problem = ({ sectionIndex, problem_index, problem } ) => {
     };
   }
 
-  const imageWidthClasses = {
+  const choiceImageWidthClasses = {
     '1': 'problem__choices--with-images problem__choices--with-images--single',
     '2': 'problem__choices--with-images problem__choices--with-images--half',
     '3': 'problem__choices--with-images problem__choices--with-images--third',
@@ -146,7 +146,7 @@ const Problem = ({ sectionIndex, problem_index, problem } ) => {
                 )
               }
             )}
-            <div className={`problem__choices ${numberOfChoiceImages > 0 ? imageWidthClasses[numberOfChoiceImages] : ''}`}>
+            <div className={`problem__choices ${numberOfChoiceImages > 0 ? choiceImageWidthClasses[numberOfChoiceImages] : ''}`}>
               {questionChoices.map( (choice, index) => {
                 return (
                   <ProblemChoice 
