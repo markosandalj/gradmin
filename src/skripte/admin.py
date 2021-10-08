@@ -5,6 +5,14 @@ import json
 
 # Register your models here.
 from .models import Subject, Section, Equation, Skripta
+from problems.models import Problem
+
+class SectionProblemInline(admin.StackedInline):
+    model = Problem
+    extra = 0
+    # search_fields = ('section', 'skripta',)
+    autocomplete_fields = ('section', 'skripta', 'question',)
+    # readonly_fields = ('question', )
 
 class SectionInline(admin.StackedInline):
     model = Section.skripta.through
@@ -26,6 +34,9 @@ class SectionAdmin(SortableAdminMixin, admin.ModelAdmin):
     readonly_fields = ('created_at', 'updated_at',)
     actions = ['create_shopify_page',]
     search_fields = ('name',)
+    inlines = [
+        SectionProblemInline,
+    ]
 
     @admin.action(description='Create page on Shopify')
     def create_shopify_page(self, request, queryset):
