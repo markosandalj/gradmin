@@ -14,7 +14,7 @@ class SectionProblemInline(SortableInlineAdminMixin, admin.StackedInline):
     autocomplete_fields = ('section', 'skripta', 'question',)
     # readonly_fields = ('question', )
 
-class SectionInline(admin.StackedInline):
+class SectionInline(SortableInlineAdminMixin, admin.TabularInline):
     model = Section.skripta.through
     extra = 0
 

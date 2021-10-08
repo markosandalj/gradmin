@@ -13,12 +13,12 @@ class Subject(models.Model):
 class Section(models.Model):
     name = models.TextField()
     subject = models.ForeignKey(Subject, on_delete=models.PROTECT, blank=True, null=True, related_name="subject_name", )
-    skripta = models.ManyToManyField('Skripta', blank=True, related_name='sections')
     shopify_page_id = models.BigIntegerField(blank=True, null=True, unique=True)
     shopify_page_url = models.URLField(blank=True, null=True,)
     order = models.PositiveIntegerField(default=0, blank=False, null=False)
     created_at = models.DateTimeField(auto_now_add=True, editable=False)
     updated_at = models.DateTimeField(auto_now=True, editable=False)
+    skripta = models.ManyToManyField('Skripta', blank=True, related_name='sections', through='SkriptaSection')
 
     class Meta(object):
         ordering = ['order', ]
@@ -38,6 +38,14 @@ class Skripta(models.Model):
 
     def __str__(self):
         return str(self.name)
+
+class SkriptaSection(models.Model):
+    skripta = models.ForeignKey(Skripta, on_delete=models.CASCADE)
+    section = models.ForeignKey(Section, on_delete=models.CASCADE)
+    section_order = models.PositiveIntegerField(default=0)
+
+    class Meta:
+        ordering = ('section_order',)
 
 class Equation(models.Model):
     name = models.TextField()
