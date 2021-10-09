@@ -160,7 +160,7 @@ const Problem = ({ sectionIndex, problem_index, problem } ) => {
             </div>
           </div>
         </div>
-        {!view.editing && qrUrl && <a className="problem__qr-link" href={qrUrl}><QRCode value={qrUrl} renderAs="svg" /></a>}
+        {!view.editing && !view.site_preview && qrUrl && <a className="problem__qr-link" href={qrUrl}><QRCode value={qrUrl} renderAs="svg" /></a>}
       </div>
       {view.site_preview && 
         <div className="problem__footer">
