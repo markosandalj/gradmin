@@ -64,7 +64,7 @@ class MaturaAdmin(admin.ModelAdmin):
             id = matura.vimeo_folder_id
             response = c.get("https://api.vimeo.com/me/projects/"+str(id)+"/videos?per_page=100")
             data = response.json()['data']
-            problems = Problem.objects.filter(matura=matura)
+            problems = Problem.objects.annotate(number_field=Cast('number', IntegerField())).filter(matura=matura)
             if(len(data) == len(problems)):
                 for item, problem in zip(reversed(data), problems):
                     print(item['name'], problem.name, item['link'].replace('https://vimeo.com/', '').split('/')[1])
