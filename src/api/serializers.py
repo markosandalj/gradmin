@@ -58,10 +58,16 @@ class QuestionSerializer(serializers.ModelSerializer):
 
 class SectionSerializer(serializers.ModelSerializer):
     subject_name = serializers.ReadOnlyField(source='subject.name')
+    number_of_problems = serializers.SerializerMethodField('get_number_of_problems')
+
+    def get_number_of_problems(self, obj):
+        section = obj
+        problems = Problem.objects.filter(section=section)
+        return len(problems)
 
     class Meta:
         model = Section
-        fields = ('id', 'name', 'subject_name', 'shopify_page_id', 'order', )
+        fields = ('id', 'name', 'subject_name', 'shopify_page_id', 'order', 'number_of_problems')
 
 #  ---------------------------------------------------
 
@@ -88,10 +94,16 @@ class MaturaSerializer(serializers.ModelSerializer):
     term = TermSerializer(many=False)
     year = YearSerializer(many=False)
     subject = MaturaSubjectSerializer(many=False)
+    number_of_problems = serializers.SerializerMethodField('get_number_of_problems')
 
+    def get_number_of_problems(self, obj):
+        matura = obj
+        problems = Problem.objects.filter(matura=matura)
+        return len(problems)
+    
     class Meta:
         model = Matura
-        fields = ('id', 'year', 'term', 'subject', )
+        fields = ('id', 'year', 'term', 'subject', 'number_of_problems')
 
 class ProblemSerializer(serializers.ModelSerializer):
     question = QuestionSerializer(many=False, read_only=True)
@@ -143,7 +155,7 @@ class SkriptaSectionsSerializer(serializers.ModelSerializer):
     sections = SectionSerializer(many=True, read_only=True)
     class Meta:
         model = Skripta
-        fields = ('id', 'name', 'sections',)
+        fields = ('id', 'name', 'sections', )
 
 class UpdateQuestionSerializer(serializers.ModelSerializer):
     answer_choices = AnswerChoiceSerializer(many=True)
