@@ -12,6 +12,7 @@ class SectionProblemInline(SortableInlineAdminMixin, admin.StackedInline):
     extra = 0
     # search_fields = ('section', 'skripta',)
     autocomplete_fields = ('section', 'skripta', 'question',)
+    exclude = ('skripta', 'subject', 'shop_availability','approval','matura', 'number')
     # readonly_fields = ('question', )
 
 class SectionInline(SortableInlineAdminMixin, admin.TabularInline):
