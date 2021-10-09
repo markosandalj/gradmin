@@ -62,38 +62,41 @@ class MaturaAdmin(admin.ModelAdmin):
             )
         for matura in queryset:
             id = matura.vimeo_folder_id
-            response = c.get("https://api.vimeo.com/me/projects/"+str(id)+"/videos?per_page=100")
-            data = response.json()['data']
-            problems = Problem.objects.annotate(number_field=Cast('number', IntegerField())).filter(matura=matura)
-            if(len(data) == len(problems)):
-                for item, problem in zip(reversed(data), problems):
-                    print(item['name'], problem.name, item['link'].replace('https://vimeo.com/', '').split('/')[1])
-                    iframe = item['embed']['html']  
-                    soup = BeautifulSoup(iframe, 'html.parser')
-                    tag = soup.find_all('iframe')[0]
-                    if(problem.video_solution):
-                        video = problem.video_solution
-                        video.name=problem.name
-                        video.vimeo_id=int(item['uri'].replace('/videos/', ''))
-                        video.vimeo_secondary_id=item['link'].replace('https://vimeo.com/', '').split('/')[1]
-                        video.vimeo_view_url=item['link']
-                        video.vimeo_embed_url=tag['src']
-                        video.save()
-                        messages.success(request, "Video {v} uspješno ažuriran".format(v=video.name))
-                    else:
-                        new_video_solution = Video(
-                            name=problem.name,
-                            vimeo_id=int(item['uri'].replace('/videos/', '')),
-                            vimeo_secondary_id=item['link'].replace('https://vimeo.com/', '').split('/')[1],
-                            vimeo_view_url=item['link'],
-                            vimeo_embed_url=tag['src'],
-                        )
-                        new_video_solution.save()
-                        problem.video_solution = new_video_solution
-                        problem.save()
-                        messages.success(request, "Video {v} uspješno dodan u bazu i problem {p}".format(v=new_video_solution.name, p=problem.name))
-            else:
-                messages.error(request, "Broj zadataka u bazi je razlicit od broja videa u folderu")
+            try:
+                response = c.get("https://api.vimeo.com/me/projects/"+str(id)+"/videos?per_page=100")
+                data = response.json()['data']
+                problems = Problem.objects.annotate(number_field=Cast('number', IntegerField())).filter(matura=matura)
+                if(len(data) == len(problems)):
+                    for item, problem in zip(reversed(data), problems):
+                        print(item['name'], problem.name, item['link'].replace('https://vimeo.com/', '').split('/')[1])
+                        iframe = item['embed']['html']  
+                        soup = BeautifulSoup(iframe, 'html.parser')
+                        tag = soup.find_all('iframe')[0]
+                        if(problem.video_solution):
+                            video = problem.video_solution
+                            video.name=problem.name
+                            video.vimeo_id=int(item['uri'].replace('/videos/', ''))
+                            video.vimeo_secondary_id=item['link'].replace('https://vimeo.com/', '').split('/')[1]
+                            video.vimeo_view_url=item['link']
+                            video.vimeo_embed_url=tag['src']
+                            video.save()
+                            messages.success(request, "Video {v} uspješno ažuriran".format(v=video.name))
+                        else:
+                            new_video_solution = Video(
+                                name=problem.name,
+                                vimeo_id=int(item['uri'].replace('/videos/', '')),
+                                vimeo_secondary_id=item['link'].replace('https://vimeo.com/', '').split('/')[1],
+                                vimeo_view_url=item['link'],
+                                vimeo_embed_url=tag['src'],
+                            )
+                            new_video_solution.save()
+                            problem.video_solution = new_video_solution
+                            problem.save()
+                            messages.success(request, "Video {v} uspješno dodan u bazu i problem {p}".format(v=new_video_solution.name, p=problem.name))
+                else:
+                    messages.error(request, "Broj zadataka u bazi je razlicit od broja videa u folderu")
+            except:
+                messages.error(request, "No response. Zovi policiju!")
 
     
 
