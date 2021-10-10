@@ -92,7 +92,7 @@ class MaturaAdmin(admin.ModelAdmin):
                             new_video_solution.save()
                             problem.video_solution = new_video_solution
                             problem.save()
-                            messages.success(request, "Video {v} uspješno dodan u bazu i problem {p}".format(v=item['name'], p=problem.name))
+                            messages.success(request, "Video {v} uspješno dodan u bazu i pod problem {p}".format(v=item['name'], p=problem.name))
                 else:
                     messages.error(request, "Broj zadataka u bazi je razlicit od broja videa u folderu")
             except:
