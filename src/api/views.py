@@ -34,7 +34,7 @@ class MaturaProblemsApiView(generics.ListAPIView):
                 'term': matura.term,
                 'year': matura.year,
                 'subject': matura.subject,
-                'problems': problems.order_by('number_field')
+                'problems': problems
             }
         ]
         return queryset
