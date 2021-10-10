@@ -80,7 +80,7 @@ class MaturaAdmin(admin.ModelAdmin):
                             video.vimeo_view_url=item['link']
                             video.vimeo_embed_url=tag['src']
                             video.save()
-                            messages.success(request, "Video {v} uspješno ažuriran".format(v=video.name))
+                            messages.success(request, "Video {v} uspješno ažuriran".format(v=item['name']))
                         else:
                             new_video_solution = Video(
                                 name=problem.name,
@@ -92,7 +92,7 @@ class MaturaAdmin(admin.ModelAdmin):
                             new_video_solution.save()
                             problem.video_solution = new_video_solution
                             problem.save()
-                            messages.success(request, "Video {v} uspješno dodan u bazu i problem {p}".format(v=new_video_solution.name, p=problem.name))
+                            messages.success(request, "Video {v} uspješno dodan u bazu i problem {p}".format(v=item['name'], p=problem.name))
                 else:
                     messages.error(request, "Broj zadataka u bazi je razlicit od broja videa u folderu")
             except:
