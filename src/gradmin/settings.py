@@ -28,7 +28,7 @@ SECRET_KEY = 'django-insecure--b59a9xgnba6n^qvew%0+2^kt-_5)#57undlgi3u&3v1blqhqe
 DEBUG = True
 
 ALLOWED_HOSTS = [
-    # 'theehhdude23.eu.pythonanywhere.com'    
+    'theehhdude23.eu.pythonanywhere.com'    
 ]
 
 
@@ -102,11 +102,11 @@ WSGI_APPLICATION = 'gradmin.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'gradmin',
-        'HOST': '127.0.0.1',
-        'PORT': '3306',
-        'USER': 'root',
-        'PASSWORD': 'root',
+        'NAME': 'TheEhhDude23$gradmin',
+        'HOST': 'TheEhhDude23.mysql.eu.pythonanywhere-services.com',
+        # 'PORT': '3306',
+        'USER': 'TheEhhDude23',
+        'PASSWORD': 'DreamFar23!',
     }
 }
 
