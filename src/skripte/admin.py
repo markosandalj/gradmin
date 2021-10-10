@@ -1,4 +1,4 @@
-from django.contrib import admin
+from django.contrib import admin, messages
 from adminsortable2.admin import SortableAdminMixin, SortableInlineAdminMixin
 import requests
 import json
@@ -45,18 +45,23 @@ class SectionAdmin(admin.ModelAdmin):
         headers = {'Content-Type': 'application/json', 'X-Shopify-Access-Token': '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' }
         pages_url = '/admin/api/2021-10/pages.json'
         for section in queryset:
-            if( section.shopify_page_id == '' ):
+            if( section.shopify_page_id != '' ):
                 page_data = {
                     'page': {
                         'title' : section.name,
-                        'published': False
+                        'published': False,
+                        'template_suffix' : 'online_skripta_full_view'
                     }
                 }
                 url = base_url + pages_url
                 response = requests.post(url, headers=headers, json = page_data)
-                section.update(shopify_page_id=response.json().page.id)
-                print(response.json())
-
+                print(response.json()['page']['id'])
+                section.shopify_page_id=response.json()['page']['id']
+                section.save()
+                # print('response:', response.json())
+                messages.success(request, "Page for {s} created".format(s=section.name))
+            else:
+                messages.error(request, "Page with that id already exists")
 
 admin.site.register(Equation)
 admin.site.register(Section, SectionAdmin)
