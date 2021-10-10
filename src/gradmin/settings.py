@@ -49,6 +49,7 @@ INSTALLED_APPS = [
     'skripte',
     'mature',
     'media',
+    'shopify_models',
     'adminsortable2',
     'rest_framework',
     'api',
