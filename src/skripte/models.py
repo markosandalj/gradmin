@@ -1,5 +1,7 @@
 from django.db import models
 
+from shopify_models.models import Page
+
 # Create your models here.
 
 class Subject(models.Model):
@@ -19,6 +21,12 @@ class Section(models.Model):
     created_at = models.DateTimeField(auto_now_add=True, editable=False)
     updated_at = models.DateTimeField(auto_now=True, editable=False)
     skripta = models.ManyToManyField('Skripta', blank=True, related_name='sections', through='SkriptaSection')
+    page = models.ForeignKey(
+        Page,
+        blank=True,
+        null=True,
+        on_delete=models.SET_NULL,
+    )
 
     class Meta(object):
         ordering = ['order', ]

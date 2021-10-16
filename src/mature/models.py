@@ -3,6 +3,7 @@ from datetime import datetime
 from django.db.models.deletion import SET_NULL
 from django.db.models.fields.related import ForeignKey
 from django.utils.translation import gettext_lazy as _
+from shopify_models.models import Product
 
 from skripte.models import Subject
 
@@ -70,6 +71,12 @@ class Matura(models.Model):
     shopify_product_url = models.URLField(blank=True, null=True,)
     created_at = models.DateTimeField(auto_now_add=True, editable=False)
     updated_at = models.DateTimeField(auto_now=True, editable=False)
+    product = models.ForeignKey(
+        Product,
+        blank=True,
+        null=True,
+        on_delete=models.SET_NULL,
+    )
 
     class Meta(object):
         ordering = ['year',]
