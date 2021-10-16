@@ -101,14 +101,14 @@ const MaturaProblems = () => {
                 <Layout.Section>
                     {displayErrorAlert && 
                         <div className="alert alert--error">
-                            <span>Podatci uspješno spremljeni u bazu!</span>
+                            <span>Podatci neuspješno spremljeni u bazu! Zovi 112 (ili Marka)</span>
                             <button onClick={closeAlert}>
                                 <FontAwesomeIcon icon={faTimes} />
                             </button>
                         </div>}
                     {displaySuccesAlert &&
                         <div className="alert alert--succes">
-                        <span>Podatci neuspješno spremljeni u bazu! Zovi 112 (ili Marka)</span>
+                        <span>Podatci uspješno spremljeni u bazu!</span>
                             <button onClick={closeAlert}>
                                 <FontAwesomeIcon icon={faTimes} />
                             </button>
