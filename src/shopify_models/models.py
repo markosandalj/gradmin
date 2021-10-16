@@ -7,27 +7,33 @@ from django.utils.translation import gettext_lazy as _
 class Page(models.Model):
     class StatusChoices(models.TextChoices):
         ACTIVE = 'active', _('Active')
-        ARCHIVED = 'archived', _('Archived')
-        DRAFT = 'draft', _('Draft')
+        HIDDEN = 'hidden', _('Hidden')
         
     page_id = models.BigIntegerField(blank=True, null=True, unique=True)
     title = models.TextField(blank=False, null=False)
-    handle = models.CharField(max_length=255, blank=False, null=False, unique=True)
+    handle = models.CharField(max_length=255, blank=True, null=True, unique=True)
     seo_title = models.TextField(blank=True, null=True)
     seo_description = models.TextField(blank=True, null=True)
-    product_type = models.TextField(blank=True, null=True)
+    graphql_api_id = models.TextField(blank=True, null=True)
     status = models.CharField(
         max_length=8, 
-        blank=False, 
-        null=False,
-        choices=StatusChoices.choices
+        blank=True, 
+        null=True,
+        choices=StatusChoices.choices,
+        default=StatusChoices.HIDDEN
     )
     created_at = models.DateTimeField(auto_now_add=True, editable=False)
     updated_at = models.DateTimeField(auto_now=True, editable=False)
-    
+    template = models.ForeignKey(
+        'Template',
+        blank=True, 
+        null=True,
+        on_delete=models.SET_NULL,
+    )
     # template_sufix = models.CharField(max_length=500,blank=False, null=False, unique=True)
     # create template object that is gonna store all tempaltes so we can have dropdown picker 
-
+    def __str__(self):
+        return self.title
 
 class Product(models.Model):
     class StatusChoices(models.TextChoices):
@@ -35,15 +41,15 @@ class Product(models.Model):
         ARCHIVED = 'archived', _('Archived')
         DRAFT = 'draft', _('Draft')
         
-    product_id = models.IntegerField(blank=True, null=True)
-    title = models.TextField(blank=False, null=False)
+    product_id = models.IntegerField(blank=True, null=True,unique=True)
+    title = models.TextField(blank=True, null=True)
     seo_title = models.TextField(blank=True, null=True)
     seo_description = models.TextField(blank=True, null=True)
     product_type = models.TextField(blank=True, null=True)
     status = models.CharField(
-        max_length=8, 
-        blank=False, 
-        null=False,
+        max_length=8,
+        blank=True, 
+        null=True,
         choices=StatusChoices.choices
     )
     created_at = models.DateTimeField(auto_now_add=True, editable=False)
@@ -52,3 +58,7 @@ class Product(models.Model):
     # template_sufix = models.CharField(max_length=500,blank=False, null=False, unique=True)
     # create 
 
+class Template(models.Model):
+    template_suffix = models.CharField(max_length=500, blank=True, null=True)
+    def __str__(self):
+        return self.template_suffix

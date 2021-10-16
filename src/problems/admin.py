@@ -122,7 +122,7 @@ class ProblemAdmin(admin.ModelAdmin):
         updated = queryset.update(shop_availability='hidden')
         self.message_user(request, ngettext(
             '%d problem was successfully marked as hidden.',
-            '%d problem were successfully marked as hidden.',
+            '%d problems were successfully marked as hidden.',
             updated,
         ) % updated, messages.SUCCESS)
 

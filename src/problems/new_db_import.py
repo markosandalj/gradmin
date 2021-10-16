@@ -4,6 +4,10 @@
 # from pathlib import Path 
 import pathlib
 import json
+import vimeo
+import requests
+from bs4 import BeautifulSoup
+from shopify_models.models import Template
 
 from skripte.models import Skripta
 
@@ -190,3 +194,38 @@ def importProblems(subject, filename, level = 0):
     print('Import ending!')
 
 importProblems('Matematika', 'gradivaB', 'B')
+
+def getTemplate(template_suffix):
+    try:
+        new_template = Template.objects.get(
+            template_suffix=template_suffix
+        )
+        return new_template.id
+    except:
+        new_template = Template(
+            template_suffix=template_suffix
+        )
+        new_template.save()
+        return new_template.id
+    
+
+def importShopifyPages():
+    base_url = 'https://msandalj23.myshopify.com'
+    headers = {'Content-Type': 'application/json', 'X-Shopify-Access-Token': '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' }
+    pages_url = '/admin/api/2021-10/pages.json'
+    url = base_url + pages_url
+    response = requests.get(url, headers=headers)
+    pages = response.json()['pages']
+    for page in pages:
+        status = 'hidden' if page['published_at'] == None else 'active'
+        new_page = Page(
+            page_id=page['id'],
+            title=page['title'],
+            handle=page['handle'],
+            template=Template.objects.get(id=getTemplate(page['template_suffix'])),
+            graphql_api_id=page['admin_graphql_api_id'],
+            status=status
+        )
+        new_page.save()
+
+    # print(response.json())
