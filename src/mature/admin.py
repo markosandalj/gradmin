@@ -94,7 +94,7 @@ class MaturaAdmin(admin.ModelAdmin):
                             problem.save()
                             messages.success(request, "Video {v} uspješno dodan u bazu i pod problem {p}".format(v=item['name'], p=problem.name))
                 else:
-                    messages.error(request, "Broj zadataka u bazi ({bz}) je razlicit od broja videa u folderu {bv}".format(bz=len(data), bv= len(problems)))
+                    messages.error(request, "Broj zadataka u bazi ({bz}) je razlicit od broja videa u folderu {bv}".format(bv=len(data), bz= len(problems)))
             except:
                 messages.error(request, "No response. Zovi policiju!")
 
