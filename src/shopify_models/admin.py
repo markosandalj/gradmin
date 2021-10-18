@@ -6,9 +6,9 @@ import requests
 from .models import Product, Page, Template
 
 class PageAdmin(admin.ModelAdmin):
-    actions = ['delete_pages', 'publish_pages', 'hide_pages']
+    actions = ['publish_pages', 'hide_pages', 'delete_pages',]
 
-    @admin.action(description='Delete selected pages from Shopify')
+    @admin.action(description='OPREZNO!!!! Delete selected pages from Shopify')
     def delete_pages(self, request, queryset):
         base_url = 'https://msandalj23.myshopify.com'
         headers = { 'Content-Type': 'application/json', 'X-Shopify-Access-Token': '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' }

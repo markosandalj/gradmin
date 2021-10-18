@@ -45,6 +45,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'cloudinary_storage',
+    'cloudinary',
     'problems',
     'skripte',
     'mature',
@@ -162,7 +164,8 @@ STATICFILES_DIRS = [
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 MEDIA_ROOT = Path(BASE_DIR / 'problems' / 'static' / 'problems' / 'images')
-MEDIA_URL = str('/problems/static/problems/images/')
+# MEDIA_URL = str('/problems/static/problems/images/')
+DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
 
 CORS_ALLOWED_ORIGINS = [
     "http://localhost:8000",
@@ -171,3 +174,10 @@ CORS_ALLOWED_ORIGINS = [
     'https://localhost:8000',
     'https://theehhdude23.eu.pythonanywhere.com'
 ]
+
+
+CLOUDINARY_STORAGE = {
+    'CLOUD_NAME': 'gradivo-hr',
+    'API_KEY': '796223118618557',
+    'API_SECRET': '5NHpFMFy5SKy7MVm-BOhjb11bPE'
+}

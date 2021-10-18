@@ -212,7 +212,7 @@ def getTemplate(template_suffix):
 def importShopifyPages():
     base_url = 'https://msandalj23.myshopify.com'
     headers = {'Content-Type': 'application/json', 'X-Shopify-Access-Token': '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' }
-    pages_url = '/admin/api/2021-10/pages.json'
+    pages_url = '/admin/api/2021-10/pages.json?limit=250'
     url = base_url + pages_url
     response = requests.get(url, headers=headers)
     pages = response.json()['pages']
@@ -227,5 +227,11 @@ def importShopifyPages():
             status=status
         )
         new_page.save()
+        try:
+            update_section = Section.objects.get(shopify_page_id=page['id'])
+            update_section.page = new_page
+            update_section.save()
+            print('ima')
+        except:
+            print('nema')
 
-    # print(response.json())
