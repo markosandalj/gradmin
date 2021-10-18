@@ -16,7 +16,7 @@ pyparsing==2.4.7
 PyPDF2==1.26.0
 PyQRCode==1.2.1
 qrcode==7.1
-requests==0.13.1
+requests==2.26.0
 simplejson==3.17.5
 six==1.15.0
 urllib3==1.26.6
