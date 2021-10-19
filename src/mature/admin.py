@@ -106,7 +106,7 @@ class MaturaAdmin(admin.ModelAdmin):
         headers = {'Content-Type': 'application/json', 'X-Shopify-Access-Token': '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' }
         for matura in queryset:
             product_id = matura.shopify_product_id
-            metafields_url = '/admin/products/{id}/metafields.json'.format(id=product_id)
+            metafields_url = '/admin/api/2021-10/products/{id}/metafields.json'.format(id=product_id)
             problems = Problem.objects.annotate(number_field=Cast('number', IntegerField())).filter(matura=matura).order_by('number_field', 'question')
             serilizer = ProblemSerializer(problems, many=True)
             json_string = json.dumps(serilizer.data)
@@ -114,13 +114,14 @@ class MaturaAdmin(admin.ModelAdmin):
                 "metafield": {
                         "namespace": "matura",
                         "key": "zadatci_"+str(matura.term.term),
-                        "value_type": "json_string",
+                        "type": "json",
                         "value": json_string,
                     }
                 }
             url = base_url + metafields_url
             response = requests.post(url, headers=headers, json = metafield_data)
             print(response.json())
+            messages.success(request, "Proizvod {product} uspješno ažuriran".format(product=response.json()['product']['title']))
         
     list_display = ( '__str__' ,'created_at', 'shopify_product_id', 'subject')
     readonly_fields = ('created_at', 'updated_at',)

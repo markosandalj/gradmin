@@ -143,6 +143,13 @@ class SectionProblemsSerializer(serializers.ModelSerializer):
         model = Section
         fields = ('id', 'name', 'problems', 'order', )
 
+class ShopifyPageProblemsSerializer(serializers.ModelSerializer):
+    question = QuestionSerializer(many=False, read_only=True)
+    video_solution = VideoSerializer(many=False)
+    class Meta:
+        model = Problem
+        fields = ('id', 'name', 'question', 'video_solution' )
+
 class SkriptaSerializer(serializers.ModelSerializer):
     sections = SectionProblemsSerializer(many=True, read_only=True)
     problems = ProblemSerializer(many=True,read_only=True,)
