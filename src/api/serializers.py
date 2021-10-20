@@ -3,7 +3,7 @@ from django.db.models import fields
 from django.utils import tree
 from rest_framework import serializers
 from problems.models import AnswerChoice, CorrectAnswer, Matura, Problem, Question
-from skripte.models import Section, Skripta, Subject
+from skripte.models import Equation, Section, Skripta, Subject
 from media.models import Image, Video
 from mature.models import Matura, MaturaSubject, Term, Year
 
@@ -115,6 +115,13 @@ class ProblemSerializer(serializers.ModelSerializer):
         model = Problem
         fields = ('id', 'name', 'number', 'approval', 'shop_availability', 'question', 'video_solution', 'section', 'matura',)
 
+class SectionProblemSerializer(serializers.ModelSerializer):
+    question = QuestionSerializer(many=False, read_only=True)
+
+    class Meta:
+        model = Problem
+        fields = ('id', 'name', 'number', 'question')
+
 # MATURA VIEW SERILEZERS
 class MaturaProblemsSerializer(serializers.ModelSerializer):
     problems = ProblemSerializer(many=True)
@@ -137,11 +144,23 @@ class SubjectSerializer(serializers.ModelSerializer):
         fields = ('id', 'name',)
 
 # SKRIPTA VIEW SERIALIZERS
+
+class EquationSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Equation
+        fields = ('id', 'name', 'equation',)
 class SectionProblemsSerializer(serializers.ModelSerializer):
-    problems = ProblemSerializer(many=True,read_only=True,)
+    problems = SectionProblemSerializer(many=True,read_only=True,)
+    # equations = EquationSerializer(many=True,read_only=True,)
+    equations = serializers.SerializerMethodField('get_equations')
+
+    def get_equations(self, instance):
+        equations = Equation.objects.filter(section__name = instance['name'])
+        response = EquationSerializer(equations, many=True).data
+        return response
     class Meta:
         model = Section
-        fields = ('id', 'name', 'problems', 'order', )
+        fields = ('id', 'name', 'order', 'equations', 'problems', )
 
 class ShopifyPageProblemsSerializer(serializers.ModelSerializer):
     question = QuestionSerializer(many=False, read_only=True)

@@ -17,18 +17,21 @@ export default function SkriptaSections() {
 
     return(
         <Page>
-        <Layout>
-            <Layout.Section>
-                {data[0].sections.map( (section, section_index) => {
-                    section_index+=1
-                    return (
-                        <div className="problems-section" key={section.id}>
-                            <Link to={'/index/skripta/'+skripta_id+'/'+section.id+'/'+section_index}>{section_index}. {section.name}</Link>
-                        </div>
-                    )
-                })}
-            </Layout.Section>
-        </Layout>
-    </Page>
+            <Layout>
+                <Layout.Section>
+                    <div className="problems-section">
+                        <Link to={'/index/skripta/'+skripta_id}>Cijela skripta</Link>
+                    </div>
+                    {data[0].sections.map( (section, section_index) => {
+                        section_index+=1
+                        return (
+                            <div className="problems-section" key={section.id}>
+                                <Link to={'/index/skripta/'+skripta_id+'/'+section.id+'/'+section_index}>{section_index}. {section.name}</Link>
+                            </div>
+                        )
+                    })}
+                </Layout.Section>
+            </Layout>
+        </Page>
     )
 }

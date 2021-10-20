@@ -60,4 +60,104 @@
             opacity: .4;
         }
     }
+
+    &__equations {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        gap: 4rem;
+        padding: 1.5rem;
+        border-radius: .75rem;
+        border: 2.5px solid rgba($black, .2);
+        margin: 1.5rem 0;
+        position: relative;
+
+        &-title {
+            position: absolute;
+            bottom: 100%;
+            background: $white;
+            z-index: 1;
+            padding: .5rem .75rem;
+            left: .75rem;
+            transform: translateY(46%);
+            text-transform: uppercase;
+            font-size: .75rem;
+            font-weight: bold;
+            color: rgba($black, .5);
+        }
+    }
+
+    &__equation {
+        display: flex;
+        flex-direction: column;
+        gap: .75rem;
+        
+        &-name {
+            font-weight: bold;
+            font-size: .875rem;
+            text-transform: uppercase;
+        }
+        &-latex {
+            padding-left: .75rem;
+        }
+    }
+
+}
+
+.solutions-table {
+    display: flex;
+    flex-wrap: wrap;
+    margin-bottom: 3.5rem;
+    position: relative;
+
+    &__title {
+        position: absolute;
+        bottom: 100%;
+        background: $white;
+        z-index: 1;
+        padding: .5rem .75rem;
+        left: .25rem;
+        transform: translateY(46%);
+        text-transform: uppercase;
+        font-size: .75rem;
+        font-weight: bold;
+        color: rgba($black, .5);
+    }
+
+    &__number {
+        font-size: 1.125rem;
+        font-weight: bold;
+        display: block;
+    }
+
+    &__item {
+        padding: 1rem;
+        width: 25%;
+        border-left: 1px solid $black;
+        border-bottom: 1px solid $black;
+
+        &:last-child {
+            border-right: 1px solid $black; 
+        }
+
+        &:nth-child(2) {
+            border-top: 1px solid $black;
+        }
+
+        &:nth-child(3) {
+            border-top: 1px solid $black;
+        }
+
+        &:nth-child(4) {
+            border-top: 1px solid $black;
+        }
+
+        &:nth-child(5) {
+            border-top: 1px solid $black;
+        }
+
+        &:nth-child(4n+1) {
+            border-right: 1px solid $black;
+        }
+    }
 }

@@ -366,6 +366,92 @@ textarea {
 .problems-section__add-new i {
   opacity: 0.4;
 }
+.problems-section__equations {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  gap: 4rem;
+  padding: 1.5rem;
+  border-radius: 0.75rem;
+  border: 2.5px solid rgba(0, 0, 0, 0.2);
+  margin: 1.5rem 0;
+  position: relative;
+}
+.problems-section__equations-title {
+  position: absolute;
+  bottom: 100%;
+  background: #FFFFFF;
+  z-index: 1;
+  padding: 0.5rem 0.75rem;
+  left: 0.75rem;
+  transform: translateY(46%);
+  text-transform: uppercase;
+  font-size: 0.75rem;
+  font-weight: bold;
+  color: rgba(0, 0, 0, 0.5);
+}
+.problems-section__equation {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+.problems-section__equation-name {
+  font-weight: bold;
+  font-size: 0.875rem;
+  text-transform: uppercase;
+}
+.problems-section__equation-latex {
+  padding-left: 0.75rem;
+}
+
+.solutions-table {
+  display: flex;
+  flex-wrap: wrap;
+  margin-bottom: 3.5rem;
+  position: relative;
+}
+.solutions-table__title {
+  position: absolute;
+  bottom: 100%;
+  background: #FFFFFF;
+  z-index: 1;
+  padding: 0.5rem 0.75rem;
+  left: 0.25rem;
+  transform: translateY(46%);
+  text-transform: uppercase;
+  font-size: 0.75rem;
+  font-weight: bold;
+  color: rgba(0, 0, 0, 0.5);
+}
+.solutions-table__number {
+  font-size: 1.125rem;
+  font-weight: bold;
+  display: block;
+}
+.solutions-table__item {
+  padding: 1rem;
+  width: 25%;
+  border-left: 1px solid #000000;
+  border-bottom: 1px solid #000000;
+}
+.solutions-table__item:last-child {
+  border-right: 1px solid #000000;
+}
+.solutions-table__item:nth-child(2) {
+  border-top: 1px solid #000000;
+}
+.solutions-table__item:nth-child(3) {
+  border-top: 1px solid #000000;
+}
+.solutions-table__item:nth-child(4) {
+  border-top: 1px solid #000000;
+}
+.solutions-table__item:nth-child(5) {
+  border-top: 1px solid #000000;
+}
+.solutions-table__item:nth-child(4n+1) {
+  border-right: 1px solid #000000;
+}
 
 .matura__header {
   display: flex;

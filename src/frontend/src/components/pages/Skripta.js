@@ -140,41 +140,86 @@ export default function Skripta() {
                             <button type="button" onClick={handlePrint} className="btn btn--primary">Print</button>
                         </div>
                         <div id="printThis">
-                        {sections.map((section) => {
-                            if (section.problems.length > 0) {
-                                return (
-                                    <div key={section.name}>
-                                        <div className="problems-section">
-                                            <div className="problems-section__header">
-                                                <h3 className="problems-section__title">{section_order}. {section.name}</h3>
+                            {sections.map((section, section_index) => {
+                                if (section.problems.length > 0 || section.equations.length > 0 ) {
+                                    return (
+                                        <div key={section.name}>
+                                            <div className="problems-section">
+                                                <div className="problems-section__header">
+                                                    <h3 className="problems-section__title">{section_order ? section_order : section_index+1}. {section.name}</h3>
+                                                </div>
+                                                {section.equations.length > 0 &&
+                                                    <div className="problems-section__equations">
+                                                        <h4 className="problems-section__equations-title">Formule</h4>
+                                                        {section.equations.map( equation => {
+                                                            return (
+                                                                <div className="problems-section__equation">
+                                                                    <div className="problems-section__equation-name">
+                                                                        {equation.name}
+                                                                    </div>
+                                                                    <div className="problems-section__equation-latex">
+                                                                        $ {equation.equation} $
+                                                                    </div>
+                                                                </div>
+                                                            )
+                                                        })}
+                                                    </div>
+                                                }
+                                                {section.problems.map((problem, index) => {
+                                                    return (
+                                                        <Problem 
+                                                            key={problem.id} 
+                                                            sectionIndex={section_order ? section_order : section_index+1}
+                                                            problem_index={index} 
+                                                            problem={problem}
+                                                        ></Problem>
+                                                    )
+                                                })}
                                             </div>
-                                            {section.problems.map((problem, index) => {
-                                                return (
-                                                    <Problem 
-                                                        key={problem.id} 
-                                                        sectionIndex={section.order}
-                                                        problem_index={index} 
-                                                        problem={problem}
-                                                    ></Problem>
-                                                )
-                                            })}
+                                            <div className="problems-section problems-section__add-new">    
+                                                <FontAwesomeIcon icon={faPlus} />
+                                            </div>
                                         </div>
-                                        <div className="problems-section problems-section__add-new">    
-                                            <FontAwesomeIcon icon={faPlus} />
-                                        </div>
-                                    </div>
-                                )
-                            }
-                        })}
+                                    )
+                                }
+                            })}
                         </div>
+                        {sections.length > 0 &&
+                            <div className="problems-section">
+                                <div>
+                                    {sections.map((section, section_index) => {
+                                        if (section.problems.length > 0) {
+                                            return (
+                                                <div className="solutions-table" key={section.id}>
+                                                    <h4 className="solutions-table__title">{section.name}</h4>
+                                                    {section.problems.map((problem, index) => {
+                                                        return (
+                                                            <div className="solutions-table__item" key={problem.id}>
+                                                                {problem.question.correct_answer.map(answer => {
+                                                                    return (
+                                                                        <div key={answer.id}>
+                                                                            <span className="solutions-table__number">{section_order ? section_order : section_index+1}.{index+1}.</span>
+                                                                            {answer?.answer_choice?.choice_text}
+                                                                            {answer?.answer_text}
+                                                                            {answer?.answer_choice?.images.map( image => {
+                                                                                <ProblemImage image={image} key={image.id}></ProblemImage>
+                                                                            })}
+                                                                        </div>
+                                                                    )
+                                                                })}
+                                                            </div>
+                                                        )
+                                                    })}
+                                                </div>
+                                            )
+                                        }
+                                    })}
+                                </div>
+                            </div>
+                        }
                     </form>
                 </Layout.Section>
             </Layout>
         </Page>
     )
 }
-
-// import useFetch from "../hooks/useFetch";
-// const { data, loading, error } = useFetch(apiUrl)
-// if (loading) return "Loading...";
-// if (error) return "Error!";
