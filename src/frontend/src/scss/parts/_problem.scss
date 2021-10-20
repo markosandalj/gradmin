@@ -91,7 +91,12 @@
     }
 
     &__subquestion {
-        position: relative
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        gap: .75rem;
+        margin: 1rem 0 0 1rem;
+        padding-right: 2rem;
     }
 
     &__choices {
