@@ -207,6 +207,22 @@ export default function Skripta() {
                                                                         </div>
                                                                     )
                                                                 })}
+                                                                { problem.question.subquestions.length > 0 && 
+                                                                    <span className="solutions-table__number">{section_order ? section_order : section_index+1}.{index+1}.</span>
+                                                                }
+                                                                {problem.question.subquestions.map( subquestion => {
+                                                                    {subquestion.correct_answer.map(answer => {
+                                                                        return (
+                                                                            <div key={answer.id}>
+                                                                                {answer?.answer_choice?.choice_text}
+                                                                                {answer?.answer_text}
+                                                                                {answer?.answer_choice?.images.map( image => {
+                                                                                    <ProblemImage image={image} key={image.id}></ProblemImage>
+                                                                                })}
+                                                                            </div>
+                                                                        )
+                                                                    })}
+                                                                })}
                                                             </div>
                                                         )
                                                     })}
