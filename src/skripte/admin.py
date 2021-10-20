@@ -135,7 +135,13 @@ class SectionAdmin(admin.ModelAdmin):
             except:
                 messages.error(request, 'Gradivo {section} ne postoji u skripti {skripta}'.format(section=section, skripta=skripta.name))
 
-admin.site.register(Equation)
+class EquationAdmin(admin.ModelAdmin):
+    model = Equation
+    list_display = ('name','equation', )
+    search_fields = ('name', 'equation')
+
+
+admin.site.register(Equation, EquationAdmin)
 admin.site.register(Section, SectionAdmin)
 admin.site.register(Subject)
 admin.site.register(Skripta, SkriptaAdmin)
