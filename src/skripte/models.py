@@ -72,6 +72,7 @@ class Equation(models.Model):
     section = models.ManyToManyField(
         Section, 
         blank=True,
+        related_name='equations'
     )
 
     def __str__(self):
