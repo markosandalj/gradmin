@@ -117,10 +117,14 @@ class ProblemSerializer(serializers.ModelSerializer):
 
 class SectionProblemSerializer(serializers.ModelSerializer):
     question = QuestionSerializer(many=False, read_only=True)
+    matura = serializers.SerializerMethodField('has_matura')
 
+    def has_matura(self, obj):
+        problem = obj
+        return True if problem.matura else False
     class Meta:
         model = Problem
-        fields = ('id', 'name', 'number', 'question')
+        fields = ('id', 'name', 'number', 'question', 'matura')
 
 # MATURA VIEW SERILEZERS
 class MaturaProblemsSerializer(serializers.ModelSerializer):

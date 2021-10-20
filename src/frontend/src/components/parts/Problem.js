@@ -32,6 +32,7 @@ const Problem = ({ sectionIndex, problem_index, problem } ) => {
   const [approvalStatus, setApprovalStatus] = useState(problem.approval === 'approved' ? true : false);
   const [editFieldOpen, setEditFieldOpen] = useState(false);
   const [hasChanged, setHasChanged] = useState(false)
+  const [isFromMatura, setIsFromMatura] = useState(problem.matura)
   const [numberOfChoiceImages, setNumberOfChoiceImages] = useState(problem.question.answer_choices.filter( choice => choice.images.length > 0).length)
   
   const vimeo_embed_src = problem?.video_solution?.vimeo_embed_url ? problem.video_solution.vimeo_embed_url : problem?.video_solution?.vimeo_id ? `https://player.vimeo.com/video/${problem.video_solution.vimeo_id}` : false;
@@ -81,9 +82,15 @@ const Problem = ({ sectionIndex, problem_index, problem } ) => {
   }
 
   const printProblemText = () => {
-    return { __html: 
-      `<strong>${sectionIndex}.${problemIndex}</strong> (<i>${problemName}</i>) ${questionText.split(' ').splice(1).join(' ')}`
-    };
+    if(isFromMatura){
+      return { __html: 
+        `<strong>${sectionIndex}.${problemIndex}</strong> (<i>${problemName}</i>) ${questionText.split(' ').splice(1).join(' ')}`
+      };
+    } else {
+      return { __html: 
+        `<strong>${sectionIndex}.${problemIndex}</strong> ${questionText}`
+      };
+    }
   }
 
   const choiceImageWidthClasses = {
