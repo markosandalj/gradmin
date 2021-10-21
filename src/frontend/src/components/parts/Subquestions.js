@@ -13,7 +13,7 @@ import { faPen } from '@fortawesome/free-solid-svg-icons'
 import { addQuestion } from "../../store/actions/problemFieldsActions";
 
 
-const Subquestions = ({question}) => {
+const Subquestions = ({question, subquestion_index, is_from_matura}) => {
     const [questionText, setQuestionText] = useState(question.question_text)
     const [subquestions, setSubquestions] = useState(question.subquestions)
     const [questionChoices, setQuestionChocies] = useState(question.answer_choices)
@@ -23,6 +23,8 @@ const Subquestions = ({question}) => {
     const dispatch = useDispatch()
     const view = useSelector( state => state?.problems_view )
     const problem_fields = useSelector(state => state?.problem_fields)
+    const choiceLabel = { 0: 'A', 1: 'B', 2: 'C', 3: 'D', 4: 'E', 5: 'F', 6 : 'G', 7 : 'H' }
+    const subquestionLabel = { 0: 'a)', 1: 'b)', 2: 'c)', 3: 'd)', 4: 'e)', 5: 'f)', 6 : 'g)', 7 : 'h)' }
 
     const mathTypeset = () => {
       if( window.MathJax ) {
@@ -57,7 +59,7 @@ const Subquestions = ({question}) => {
 
     return (
         <div className="problem__subquestion">
-            <div className="problem__text">{questionText}</div>
+            <div className="problem__text">{is_from_matura && subquestionLabel[subquestion_index]}{questionText}</div>
             {view.editing &&
                 <button type="button" className={`problem__text-edit ${editFieldOpen && 'open'}`} onClick={handleEditFieldToggle}>
                     <FontAwesomeIcon icon={faPen} />
