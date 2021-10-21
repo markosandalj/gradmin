@@ -59,7 +59,7 @@ const Subquestions = ({question, subquestion_index, is_from_matura}) => {
 
     return (
         <div className="problem__subquestion">
-            <div className="problem__text">{is_from_matura && subquestionLabel[subquestion_index]}{questionText}</div>
+            <div className="problem__text">{!is_from_matura && subquestionLabel[subquestion_index]} {questionText}</div>
             {view.editing &&
                 <button type="button" className={`problem__text-edit ${editFieldOpen && 'open'}`} onClick={handleEditFieldToggle}>
                     <FontAwesomeIcon icon={faPen} />
