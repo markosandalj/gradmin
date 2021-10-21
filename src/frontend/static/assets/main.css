@@ -126,7 +126,7 @@ textarea {
   }
 
   #printThis {
-    padding: 10px;
+    padding: 0;
     position: absolute;
     left: 0;
     top: 0;
@@ -137,8 +137,17 @@ textarea {
     box-shadow: none !important;
   }
 
+  .problems-section__actions {
+    display: none !important;
+  }
+
   .btn, button, .problems-section.problems-section__add-new {
     display: none !important;
+  }
+
+  @page {
+    size: auto;
+    margin: 3mm 1mm 3mm 1mm;
   }
 }
 .problem {

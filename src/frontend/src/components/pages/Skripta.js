@@ -128,7 +128,7 @@ export default function Skripta() {
                                 <FontAwesomeIcon icon={faTimes} />
                             </button>
                         </div>}
-                    <form onSubmit={handleSubmit}>
+                    <form id="printThis" onSubmit={handleSubmit}>
                         <div className="problems-section__actions">
                             <button type="button" onClick={handleEditingToggle} className={`problems-section__edit ${view.editing && 'active'}`}>
                                 <FontAwesomeIcon icon={faPen} />
@@ -139,7 +139,7 @@ export default function Skripta() {
                             <button type="submit" className="btn btn--save">Save</button>
                             <button type="button" onClick={handlePrint} className="btn btn--primary">Print</button>
                         </div>
-                        <div id="printThis">
+                        <div>
                             {sections.map((section, section_index) => {
                                 if (section.problems.length > 0 || section.equations.length > 0 ) {
                                     return (
