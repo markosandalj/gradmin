@@ -230,7 +230,6 @@ textarea {
   position: relative;
   display: flex;
   flex-direction: column;
-  margin: 1rem 0 0 1rem;
   padding-right: 2rem;
 }
 .problem__choices {
