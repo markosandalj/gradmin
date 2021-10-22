@@ -179,5 +179,6 @@ CORS_ALLOWED_ORIGINS = [
 CLOUDINARY_STORAGE = {
     'CLOUD_NAME': 'gradivo-hr',
     'API_KEY': '796223118618557',
-    'API_SECRET': '5NHpFMFy5SKy7MVm-BOhjb11bPE'
+    'API_SECRET': '5NHpFMFy5SKy7MVm-BOhjb11bPE',
+    'API_PROXY': 'proxy.server:3128',
 }
