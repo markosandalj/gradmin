@@ -235,3 +235,56 @@ def importShopifyPages():
         except:
             print('nema')
 
+
+
+def importShopifyProducts():
+    base_url = 'https://msandalj23.myshopify.com'
+    headers = {'Content-Type': 'application/json', 'X-Shopify-Access-Token': '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' }
+    pages_url = '/admin/api/2021-10/pages.json?limit=250'
+    url = base_url + pages_url
+    response = requests.get(url, headers=headers)
+    pages = response.json()['pages']
+    for page in pages:
+        status = 'hidden' if page['published_at'] == None else 'active'
+        new_page = Page(
+            page_id=page['id'],
+            title=page['title'],
+            handle=page['handle'],
+            template=Template.objects.get(id=getTemplate(page['template_suffix'])),
+            graphql_api_id=page['admin_graphql_api_id'],
+            status=status
+        )
+        new_page.save()
+        try:
+            update_section = Section.objects.get(shopify_page_id=page['id'])
+            update_section.page = new_page
+            update_section.save()
+            print('ima')
+        except:
+            print('nema')
+
+def importEquations():
+    filepath = str(pathlib.Path().resolve()) + '/problems/eq.json'
+    with open(filepath, 'r', encoding='utf-8') as json_file:
+        data = json.load(json_file)
+        for section in data['sections']:
+            if('z-gpg_' in section):
+                for k, v in data['sections'][section].items():
+                    if(k == 'blocks'):
+                        for key, value in data['sections'][section][k].items():
+                            if(value['type'] and value['type'] == 'equation'):
+                                equation = value['settings']['equation'] if len(value['settings']['equation']) > 0 else 'ŠTA JE OVO??'
+                                equation_label = value['settings']['equation_label'] if len(value['settings']['equation_label']) > 0 else 'POPUNITI!'
+                                if(equation_label != 'POPUNITI!' or equation != 'ŠTA JE OVO??'):
+                                    try: 
+                                        section_obj = Section.objects.get(page__handle = section.replace('z-gpg_', ''))
+                                    except:
+                                        section_obj = None
+                                    new_eq_obj = Equation(
+                                        name = equation_label,
+                                        equation = equation,
+                                        description = equation_label,
+                                        subject = Subject.objects.get(name='Fizika'),
+                                    )
+                                    new_eq_obj.save()
+                                    new_eq_obj.section.set([section_obj, ])
