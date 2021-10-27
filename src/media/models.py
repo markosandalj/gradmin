@@ -1,7 +1,6 @@
-from django.db import models
-
 # Create your models here.
 from django.db import models
+from django.core.validators import FileExtensionValidator
 
 
 # from problems.models import AnswerChoice, Question
@@ -29,7 +28,8 @@ class Image(models.Model):
 
 
 class Video(models.Model):
-    name = models.TextField(blank=True,null=True, )
+    name = models.TextField(blank=True,null=True,)
+    length = models.BigIntegerField(blank=True,null=True,)
     vimeo_id = models.IntegerField(blank=True,null=True,)
     vimeo_secondary_id = models.CharField(max_length = 200, blank=True,null=True,)
     vimeo_view_url = models.URLField(max_length = 1000, blank=True,null=True,)
@@ -39,3 +39,8 @@ class Video(models.Model):
 
     def __str__(self):
         return str(self.name)
+
+class SVG(models.Model):
+    image = models.FileField(validators=[FileExtensionValidator(['svg'])])
+    created_at = models.DateTimeField(auto_now_add=True, editable=False)
+    updated_at = models.DateTimeField(auto_now=True, editable=False)
