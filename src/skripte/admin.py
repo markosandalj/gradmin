@@ -70,11 +70,12 @@ class SkriptaAdmin(admin.ModelAdmin):
     
 class SectionAdmin(admin.ModelAdmin):
     model = Section
-    list_display = ('name', )
+    list_display = ('name', 'category')
     list_filter = ('subject',)
     readonly_fields = ('created_at', 'updated_at',)
     actions = ['create_shopify_page','update_problems_metafield', 'update_navigation_metafield',]
     search_fields = ('name',)
+    list_editable = ('category',)
     inlines = [
         SectionProblemInline,
     ]
