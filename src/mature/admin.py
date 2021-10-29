@@ -121,7 +121,7 @@ class MaturaAdmin(admin.ModelAdmin):
             url = base_url + metafields_url
             response = requests.post(url, headers=headers, json = metafield_data)
             print(response.json())
-            messages.success(request, "Proizvod {product} uspješno ažuriran".format(product=response.json()['product']['title']))
+            messages.success(request, "Proizvod uspješno ažuriran")
         
     list_display = ( '__str__' ,'created_at', 'shopify_product_id', 'subject')
     readonly_fields = ('created_at', 'updated_at',)
