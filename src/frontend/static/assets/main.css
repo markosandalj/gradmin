@@ -211,7 +211,6 @@ textarea {
   max-width: 100%;
 }
 .problem__image-container {
-  aspect-ratio: 16/9;
   position: relative;
 }
 .problem__image-edit {
@@ -235,7 +234,8 @@ textarea {
 }
 .problem__choices {
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
+  flex-wrap: wrap;
   gap: 0.75rem;
   margin: 1rem 0 0 1rem;
   padding-right: 2rem;
@@ -245,6 +245,7 @@ textarea {
   flex-wrap: wrap;
   flex-direction: row;
   gap: 0;
+  align-items: flex-end;
 }
 .problem__choices--with-images--single .problem__choice {
   width: 65%;
@@ -292,6 +293,11 @@ textarea {
 }
 .problem__choice .choice__input--correct input:checked + label {
   color: green;
+}
+.problem__choice .choice__input {
+  bottom: 0;
+  left: 0;
+  position: absolute;
 }
 .problem__approve {
   font-size: 3rem;

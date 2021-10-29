@@ -63,6 +63,7 @@ const ProblemChoice = ({ choice, choice_label, problem }) => {
         <div className='problem__choice'>
             {(choice.images).length > 0}
             {!hasImage && !view.site_preview && <div className="choice__text" dangerouslySetInnerHTML={changeChoiceTextElement()}></div>}
+            {hasImage && !view.site_preview && <span className='choice__label'>{choice_label}</span>}
             {hasImage && !view.site_preview && <img className='choice__image' src={imageSrc} /> }
             {view.site_preview && 
                 <div className={`choice__input ${problem.question?.correct_answer[0]?.answer_choice?.id === choice.id && 'choice__input--correct' }`}>

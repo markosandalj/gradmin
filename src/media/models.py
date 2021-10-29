@@ -23,6 +23,13 @@ class Image(models.Model):
         on_delete=models.CASCADE,
         related_name='images'
     )
+    correct_answer = models.ForeignKey(
+        'problems.CorrectAnswer',
+        blank=True, 
+        null=True, 
+        on_delete=models.CASCADE,
+        related_name='images'
+    )
     created_at = models.DateTimeField(auto_now_add=True, editable=False)
     updated_at = models.DateTimeField(auto_now=True, editable=False)
 

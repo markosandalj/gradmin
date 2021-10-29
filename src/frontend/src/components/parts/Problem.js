@@ -138,7 +138,7 @@ const Problem = ({ sectionIndex, problem_index, problem } ) => {
                 id={questionId}
               />
             }
-            {questionImages.length > 0 && 
+            {questionImages.length > 0 && !view.site_preview &&
               <div className="problem__images">
                 {questionImages.map(image => {
                   return (

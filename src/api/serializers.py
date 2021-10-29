@@ -1,41 +1,55 @@
 from django.db import models
 from django.db.models import fields
+from django.db.models.base import Model
 from django.utils import tree
 from rest_framework import serializers
 from problems.models import AnswerChoice, CorrectAnswer, Matura, Problem, Question
-from skripte.models import Equation, Section, Skripta, Subject
-from media.models import Image, Video
+from shopify_models.models import Page
+from skripte.models import Category, Equation, Razred, Section, Skripta, SkriptaSection, Subject
+from media.models import SVG, Image, Video
 from mature.models import Matura, MaturaSubject, Term, Year
 
+## --------- BASE SERIALIZERS --------- ##
 
-# MEDIA BASE SERIALIZERS 
+class PageSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Page
+        fields = ('id', 'page_id', 'handle')
+
+class EquationSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Equation
+        fields = ('id', 'name', 'equation',)
+
 class ImageSerializer(serializers.ModelSerializer):
     class Meta:
         model = Image
-        fields = ('id', 'image',)
+        fields = ('id', 'image')
 
 class VideoSerializer(serializers.ModelSerializer):
     class Meta:
         model = Video
-        fields = ('id', 'vimeo_id', 'vimeo_view_url', 'vimeo_embed_url',)
+        fields = ('id', 'vimeo_id', 'vimeo_secondary_id', 'vimeo_view_url', 'vimeo_embed_url', 'length')
 
+class SVGSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = SVG
+        fields = ('id', 'image',)
 
-#  ---------------------------------------------------
-
-
-# PROBLEMS BASE SERILIZERS
 class AnswerChoiceSerializer(serializers.ModelSerializer):
     images = ImageSerializer(many=True)
+
     class Meta:
         model = AnswerChoice
         fields = ('id', 'choice_text', 'images')
 
 class CorrectAnswerSerializer(serializers.ModelSerializer):
     answer_choice = AnswerChoiceSerializer(many=False)
+    images = ImageSerializer(many=True)
 
     class Meta:
         model = CorrectAnswer
-        fields = ('id', 'answer_text', 'answer_choice',)
+        fields = ('id', 'answer_text', 'answer_choice', 'images')
 
 class SubqestionSerializer(serializers.ModelSerializer):
     correct_answer = CorrectAnswerSerializer(many=True)
@@ -44,7 +58,7 @@ class SubqestionSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Question
-        fields =  ('id', 'question_text', 'correct_answer', 'answer_choices', 'images', ) 
+        fields =  ('id', 'question_text', 'correct_answer', 'answer_choices', 'images', )
 
 class QuestionSerializer(serializers.ModelSerializer):
     subquestions = SubqestionSerializer(many=True, read_only=True)
@@ -54,11 +68,33 @@ class QuestionSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Question
-        fields =  ('id', 'question_text', 'subquestions', 'correct_answer', 'answer_choices', 'images' )  
+        fields =  ('id', 'question_text', 'subquestions', 'correct_answer', 'answer_choices', 'images' ) 
+
+class SkriptaSectionSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = SkriptaSection
+        fields = ('section_order',)
+
+class RazredSerializer(serializers.ModelSerializer):
+
+    class Meta:
+        model = Razred
+        fields = ('id', 'name', )
+
+class CategorySerialzier(serializers.ModelSerializer):
+    razred = RazredSerializer(many=False)
+
+    class Meta:
+        model = Category
+        fields = ('id', 'name', 'razred')
 
 class SectionSerializer(serializers.ModelSerializer):
     subject_name = serializers.ReadOnlyField(source='subject.name')
+    section_order = SkriptaSectionSerializer(many=False, read_only=True)
     number_of_problems = serializers.SerializerMethodField('get_number_of_problems')
+    category = CategorySerialzier(many=False, read_only=True)
+    page = PageSerializer(many=False, read_only=True)
+    icon = SVGSerializer(many=False, read_only=True)
 
     def get_number_of_problems(self, obj):
         section = obj
@@ -67,12 +103,8 @@ class SectionSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Section
-        fields = ('id', 'name', 'subject_name', 'shopify_page_id', 'order', 'number_of_problems')
+        fields = ('id', 'name', 'subject_name', 'section_order', 'number_of_problems', 'category', 'page', 'icon')
 
-#  ---------------------------------------------------
-
-
-# MATURA BASE SERIALIZERS
 class YearSerializer(serializers.ModelSerializer):
     class Meta:
         model = Year
@@ -82,6 +114,11 @@ class TermSerializer(serializers.ModelSerializer):
     class Meta:
         model = Term
         fields = ('id', 'term',)
+
+class SubjectSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Subject
+        fields = ('id', 'name')
 
 class MaturaSubjectSerializer(serializers.ModelSerializer):
     subject_name = serializers.ReadOnlyField(source='subject.name')
@@ -115,21 +152,13 @@ class ProblemSerializer(serializers.ModelSerializer):
         model = Problem
         fields = ('id', 'name', 'number', 'approval', 'shop_availability', 'question', 'video_solution', 'section', 'matura',)
 
-class SectionProblemSerializer(serializers.ModelSerializer):
-    question = QuestionSerializer(many=False, read_only=True)
-    # matura = serializers.SerializerMethodField('has_matura')
-    matura = MaturaSerializer(many=False)
-    video_solution = VideoSerializer(many=False) 
 
-    def has_matura(self, obj):
-        problem = obj
-        return True if problem.matura else False
-    class Meta:
-        model = Problem
-        fields = ('id', 'name', 'number', 'question', 'matura', 'video_solution')
 
-# MATURA VIEW SERILEZERS
-class MaturaProblemsSerializer(serializers.ModelSerializer):
+
+
+## --------- FE MATURA SERIALIZERS --------- ##
+
+class FEMaturaSerializer(serializers.ModelSerializer):
     problems = ProblemSerializer(many=True)
     term = TermSerializer(many=False)
     year = YearSerializer(many=False)
@@ -140,54 +169,85 @@ class MaturaProblemsSerializer(serializers.ModelSerializer):
         fields = ('id', 'year', 'term', 'subject', 'problems',)
 
 
-#  ---------------------------------------------------
 
+## --------- QR SKRIPTA SERIALIZERS --------- ##
 
-# SKRIPTA BASE SERIALIZERS
-class SubjectSerializer(serializers.ModelSerializer):
+class QRSkriptaProblemSerializer(serializers.ModelSerializer):
+    question = QuestionSerializer(many=False, read_only=True)
+    video_solution = VideoSerializer(many=False)
+    matura = MaturaSerializer(many=False) # needed for creation of QR codes
+
     class Meta:
-        model = Subject
-        fields = ('id', 'name',)
+        model = Problem
+        fields = ('id', 'name', 'number', 'question', 'matura', 'video_solution')
 
-# SKRIPTA VIEW SERIALIZERS
-
-class EquationSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = Equation
-        fields = ('id', 'name', 'equation',)
-class SectionProblemsSerializer(serializers.ModelSerializer):
-    problems = SectionProblemSerializer(many=True,read_only=True,)
-    # equations = EquationSerializer(many=True,read_only=True,)
+class QRSkriptaSectionSerializer(serializers.ModelSerializer):
+    problems = QRSkriptaProblemSerializer(many=True,read_only=True,)
     equations = serializers.SerializerMethodField('get_equations')
+    section_order = SkriptaSectionSerializer(many=False, read_only=True)
 
     def get_equations(self, instance):
         equations = Equation.objects.filter(section__name = instance['name'])
         response = EquationSerializer(equations, many=True).data
         return response
+
     class Meta:
         model = Section
-        fields = ('id', 'name', 'order', 'equations', 'problems', )
+        fields = ('id', 'name', 'equations', 'problems', 'section_order',)
 
-class ShopifyPageProblemsSerializer(serializers.ModelSerializer):
+class QRSkriptaSerializer(serializers.ModelSerializer):
+    sections = QRSkriptaSectionSerializer(many=True, read_only=True)
+    subject = MaturaSubjectSerializer(many=False)
+
+    class Meta:
+        model = Skripta
+        fields = ('id', 'name', 'subject', 'sections')
+
+class QRSkriptaListSerializer(serializers.ModelSerializer):
+    sections = SectionSerializer(many=True, read_only=True)
+
+    class Meta:
+        model = Skripta
+        fields = ('id', 'name', 'sections', )
+
+
+
+
+## --------- SHOPIFY-PAGE SERIALIZERS --------- ##
+
+class ShopifyPageProblemSerializer(serializers.ModelSerializer):
     question = QuestionSerializer(many=False, read_only=True)
     video_solution = VideoSerializer(many=False)
+
     class Meta:
         model = Problem
         fields = ('id', 'name', 'question', 'video_solution' )
 
-class SkriptaSerializer(serializers.ModelSerializer):
-    sections = SectionProblemsSerializer(many=True, read_only=True)
-    problems = ProblemSerializer(many=True,read_only=True,)
-    subject = MaturaSubjectSerializer(many=False)
+class ShopifyPageSectionSerializer(serializers.ModelSerializer):
+    problems = QRSkriptaProblemSerializer(many=True,read_only=True,)
+    
     class Meta:
-        model = Skripta
-        fields = ('id', 'name', 'subject', 'sections', 'problems')
+        model = Section
+        fields = ('id', 'name', 'problems', )
 
-class SkriptaSectionsSerializer(serializers.ModelSerializer):
+class ShopifyPageSkriptaListSerializer(serializers.ModelSerializer):
     sections = SectionSerializer(many=True, read_only=True)
+
     class Meta:
         model = Skripta
         fields = ('id', 'name', 'sections', )
+
+
+
+
+
+
+## --------- SHOPIFY-PRODUCT SERIALIZERS --------- ##
+
+
+
+
+## --------- POST SERIALIZERS --------- ##
 
 class UpdateQuestionSerializer(serializers.ModelSerializer):
     answer_choices = AnswerChoiceSerializer(many=True)

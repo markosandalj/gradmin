@@ -1,4 +1,6 @@
 from django.db import models
+from django.db.models.fields import TextField
+from media.models import SVG
 
 from shopify_models.models import Page
 
@@ -15,11 +17,7 @@ class Subject(models.Model):
 class Section(models.Model):
     name = models.TextField()
     subject = models.ForeignKey(Subject, on_delete=models.PROTECT, blank=True, null=True, related_name="subject_name", )
-    shopify_page_id = models.BigIntegerField(blank=True, null=True, unique=True)
-    shopify_page_url = models.URLField(blank=True, null=True,)
     order = models.PositiveIntegerField(default=0, blank=False, null=False)
-    created_at = models.DateTimeField(auto_now_add=True, editable=False)
-    updated_at = models.DateTimeField(auto_now=True, editable=False)
     skripta = models.ManyToManyField('Skripta', blank=True, related_name='sections', through='SkriptaSection')
     page = models.ForeignKey(
         Page,
@@ -27,7 +25,20 @@ class Section(models.Model):
         null=True,
         on_delete=models.SET_NULL,
     )
-    
+    category = models.ForeignKey(
+        'Category',
+        blank=True,
+        null=True,
+        on_delete=models.SET_NULL,
+    )
+    icon = models.ForeignKey(
+        SVG,
+        blank=True,
+        null=True,
+        on_delete=models.SET_NULL,
+    )
+    created_at = models.DateTimeField(auto_now_add=True, editable=False)
+    updated_at = models.DateTimeField(auto_now=True, editable=False)
 
     class Meta(object):
         ordering = ['order', ]
@@ -40,6 +51,12 @@ class Skripta(models.Model):
 
     subject = models.ForeignKey(
         Subject,
+        blank=True,
+        null=True, 
+        on_delete=models.SET_NULL,
+    )
+    page = models.ForeignKey(
+        Page,
         blank=True,
         null=True, 
         on_delete=models.SET_NULL,
@@ -77,3 +94,22 @@ class Equation(models.Model):
 
     def __str__(self):
         return str(self.name)
+
+class Razred(models.Model):
+    name = models.TextField()
+
+    def __str__(self):
+        return str(self.name)
+
+class Category(models.Model):
+    name = models.TextField()
+    razred = models.ForeignKey(
+        Razred,         
+        blank=True,
+        null=True, 
+        on_delete=models.SET_NULL
+    )
+
+    def __str__(self):
+        return str(self.name)
+

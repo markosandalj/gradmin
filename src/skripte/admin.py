@@ -4,23 +4,25 @@ from django import forms
 from adminsortable2.admin import SortableAdminMixin, SortableInlineAdminMixin
 import requests
 import json
-from api.serializers import SectionProblemsSerializer, ShopifyPageProblemsSerializer
+from api.serializers import ShopifyPageProblemSerializer, ShopifyPageSkriptaListSerializer
 from django.db.models.functions.comparison import Cast
 
 from shopify_models.models import Template
 
 # Register your models here.
-from .models import SkriptaSection, Subject, Section, Equation, Skripta
+from .models import Category, Razred, SkriptaSection, Subject, Section, Equation, Skripta
 from problems.models import Problem
 from django.contrib.admin.helpers import ActionForm
 
 class PickSkriptaForm(ActionForm):
     skriptas = Skripta.objects.all()
     skripta = forms.ModelChoiceField(queryset=skriptas, required=False)
+    
 class UpdateShopifyPageForm(ActionForm):
     templates = Template.objects.all()
     template_choices = ((x, x) for x in templates)
     template = forms.ChoiceField(choices=template_choices)
+
 class SectionProblemInline(SortableInlineAdminMixin, admin.StackedInline):
     model = Problem
     extra = 0
@@ -36,13 +38,39 @@ class SkriptaAdmin(admin.ModelAdmin):
     list_filter = ('subject',)
     list_display = ('name','id', )
     search_fields = ('name',)
-    
+    actions = ('update_shopify_page',)
+
     inlines = [
         SectionInline,
     ]
+
+    @admin.action(description='Update page (online skipta - popis) on Shopify')
+    def update_shopify_page(self, request, queryset):
+        base_url = 'https://msandalj23.myshopify.com'
+        headers = {'Content-Type': 'application/json', 'X-Shopify-Access-Token': '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' }
+
+        for skripta in queryset:
+            page_url = '/admin/api/2021-10/pages/{id}/metafields.json'.format(id=skripta.page.page_id)
+            serilizer = ShopifyPageSkriptaListSerializer(skripta)
+            json_string = json.dumps(serilizer.data)
+            metafield_data = {
+                "metafield": {
+                    "namespace": "section",
+                    "key": "list",
+                    "type": "json",
+                    "value": json_string
+                }
+            }
+            url = base_url + page_url
+            response = requests.post(url, headers=headers, json = metafield_data)
+            print(response.json())
+            messages.success(request, "Page {page} uspješno ažuriran".format(page=skripta.page.title))
+
+
+    
 class SectionAdmin(admin.ModelAdmin):
     model = Section
-    list_display = ('name','shopify_page_id', )
+    list_display = ('name', )
     list_filter = ('subject',)
     readonly_fields = ('created_at', 'updated_at',)
     actions = ['create_shopify_page','update_problems_metafield', 'update_navigation_metafield',]
@@ -84,7 +112,7 @@ class SectionAdmin(admin.ModelAdmin):
         for section in queryset:
             problems = Problem.objects.annotate(number_field=Cast('number', IntegerField())).filter(section=section, shop_availability='available', approval='approved' ).exclude(video_solution=None).order_by('number_field', 'question')
             if(len(problems) > 0 ):
-                serilizer = ShopifyPageProblemsSerializer(problems, many=True)
+                serilizer = ShopifyPageProblemSerializer(problems, many=True)
                 json_string = json.dumps(serilizer.data)
                 metafield_data = {
                     "metafield": {
@@ -143,5 +171,7 @@ class EquationAdmin(admin.ModelAdmin):
 
 admin.site.register(Equation, EquationAdmin)
 admin.site.register(Section, SectionAdmin)
+admin.site.register(Category)
+admin.site.register(Razred)
 admin.site.register(Subject)
 admin.site.register(Skripta, SkriptaAdmin)

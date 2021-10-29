@@ -1,7 +1,7 @@
 from django.contrib import admin
 
 # Register your models here.
-from .models import Image, Video
+from .models import SVG, Image, Video
 
 class VideoAdmin(admin.ModelAdmin):
     model = Video
@@ -10,3 +10,4 @@ class VideoAdmin(admin.ModelAdmin):
 
 admin.site.register(Video, VideoAdmin)
 admin.site.register(Image)
+admin.site.register(SVG)

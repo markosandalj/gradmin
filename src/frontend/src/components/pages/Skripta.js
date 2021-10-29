@@ -14,6 +14,7 @@ import { faPen, faPrint, faPlus, faTimes } from '@fortawesome/free-solid-svg-ico
 
 // COMPONENTS
 import Problem from "../parts/Problem";
+import ProblemImage from "../parts/ProblemImage";
 
 // ACTIONS
 import { getProblems } from "../../store/actions/SkriptaActions";
@@ -153,7 +154,7 @@ export default function Skripta() {
                                                         <h4 className="problems-section__equations-title">Formule</h4>
                                                         {section.equations.map( equation => {
                                                             return (
-                                                                <div className="problems-section__equation">
+                                                                <div key={equation.id} className="problems-section__equation">
                                                                     <div className="problems-section__equation-name">
                                                                         {equation.name}
                                                                     </div>

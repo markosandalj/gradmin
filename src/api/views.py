@@ -6,8 +6,8 @@ from rest_framework.views import APIView
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
 from problems.models import AnswerChoice, Matura, Problem, Question, Section
-from skripte.models import Skripta
-from .serializers import MaturaProblemsSerializer, MaturaSerializer, ProblemSerializer, SectionProblemsSerializer, SectionSerializer, SkriptaSectionsSerializer, SkriptaSerializer, UpdateQuestionSerializer
+from skripte.models import Equation, Skripta, SkriptaSection
+from .serializers import FEMaturaSerializer, MaturaSerializer, ProblemSerializer, QRSkriptaListSerializer, QRSkriptaSectionSerializer, QRSkriptaSerializer, SectionSerializer, ShopifyPageSectionSerializer, ShopifyPageSkriptaListSerializer, UpdateQuestionSerializer
 import json
 from django.db.models.functions import Cast
 
@@ -22,26 +22,37 @@ class MaturaListApiView(generics.ListAPIView):
         queryset = maturas
         
         return queryset
-class MaturaProblemsApiView(generics.ListAPIView):
-    serializer_class = MaturaProblemsSerializer
+
+class MaturaApiView(generics.ListAPIView):
+    serializer_class = FEMaturaSerializer
 
     def get_queryset(self):
         matura = Matura.objects.get(pk = self.kwargs.get('matura_id'))
         problems = Problem.objects.annotate(number_field=Cast('number', IntegerField())).filter(matura=matura).order_by('number_field', 'question')
-        queryset = [
-            {
-                'id': matura.id,
-                'term': matura.term,
-                'year': matura.year,
-                'subject': matura.subject,
-                'problems': problems
-            }
-        ]
+        queryset = [{
+            'id': matura.id,
+            'term': matura.term,
+            'year': matura.year,
+            'subject': matura.subject,
+            'problems': problems
+        }]
         return queryset
     
 
-class SkriptaApiView(generics.ListAPIView):
-    serializer_class = SkriptaSerializer
+
+
+
+## --------- QR SKRIPTA VIEWS --------- ##
+
+class QRSkriptaListView(generics.ListAPIView):
+    serializer_class = QRSkriptaListSerializer
+
+    def get_queryset(self):
+        queryset = Skripta.objects.filter(pk=self.kwargs.get('skripta_id'))
+        return queryset
+
+class QRSkriptaView(generics.ListAPIView):
+    serializer_class = QRSkriptaSerializer
 
     def get_queryset(self):
         skripta = Skripta.objects.get(pk=self.kwargs.get('pk'))
@@ -51,44 +62,71 @@ class SkriptaApiView(generics.ListAPIView):
         sections = []
         for section in skripta.sections.all():
             problems = Problem.objects.filter(skripta=skripta, section=section)
+            equations = Equation.objects.filter(section=section)
+            skripta_section = SkriptaSection.objects.get(section=section, skripta=skripta)
             section_obj = {
                 'id': section.id,
                 'name': section.name,
-                'problems': problems
+                'equations': equations,
+                'problems': problems,
+                'section_order': skripta_section.section_order
             }
             sections.append(section_obj)
 
-        queryset = [
-            {
+        queryset = [{
                 'id': id,
                 'name': name,
                 'subject': subject,
                 'sections': sections
-            }
-        ]
+            }]
         return queryset
 
-class SkriptaSectionProblemsApiView(generics.ListAPIView):
-    serializer_class = SectionProblemsSerializer
+class QRSkriptaSectionView(generics.ListAPIView):
+    serializer_class = QRSkriptaSectionSerializer
 
     def get_queryset(self):
         skripta = Skripta.objects.get(pk=self.kwargs.get('skripta_id'))
         section = Section.objects.get(pk=self.kwargs.get('section_id'))
         problems = Problem.objects.filter(skripta=skripta, section=section)
+        equations = Equation.objects.filter(section=section)
+        skripta_section = SkriptaSection.objects.get(section=section, skripta=skripta)
+
         queryset = [{
-            'order': section.order,
-            'name': section,
-            'problems': problems
+            'id': section.id,
+            'name': section.name,
+            'equations': equations,
+            'problems': problems,
+            'section_order': skripta_section.section_order
         }]
         return queryset
 
-class SkriptaSectionsApiView(generics.ListAPIView):
-    serializer_class = SkriptaSectionsSerializer
+
+
+
+## --------- SHOPIFY-PAGE VIEWS --------- ##
+
+class ShopifyPageSectionView(generics.ListAPIView):
+    serializer_class = ShopifyPageSectionSerializer
+
+    def get_queryset(self):
+        queryset = Section.objects.filter(pk=self.kwargs.get('section_id'))
+        return queryset
+
+class ShopifyPageSkriptaListView(generics.ListAPIView):
+    serializer_class = ShopifyPageSkriptaListSerializer
 
     def get_queryset(self):
         queryset = Skripta.objects.filter(pk=self.kwargs.get('skripta_id'))
         return queryset
 
+
+
+
+
+## --------- SHOPIFY-PRODUCT VIEWS --------- ##
+
+
+## --------- POST VIEWS --------- ##
 
 class UpdateQuestionApiView(APIView):
     serializer_class = UpdateQuestionSerializer

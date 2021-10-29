@@ -69,7 +69,6 @@
         max-width: 100%;
 
         &-container {
-            aspect-ratio: 16 / 9;
             position: relative;
         }
 
@@ -99,7 +98,8 @@
 
     &__choices {
         display: flex;
-        flex-direction: column;
+        flex-direction: row;
+        flex-wrap: wrap;
         gap: .75rem;
         margin: 1rem 0 0 1rem;
         padding-right: 2rem;
@@ -109,6 +109,7 @@
             flex-wrap: wrap;
             flex-direction: row;
             gap: 0;
+            align-items: flex-end;
 
             &--single{
                 .problem__choice {
@@ -175,6 +176,11 @@
                        color: green; 
                     }
                 }
+            }
+            &__input {
+                bottom: 0;
+                left: 0;
+                position: absolute;
             }
         }
     }
