@@ -293,7 +293,7 @@ textarea {
 .problem__choice .choice__input--correct input:checked + label {
   color: green;
 }
-.problem__choice .choice__input {
+.problem__choice .choice__label {
   bottom: 0;
   left: 0;
   position: absolute;
