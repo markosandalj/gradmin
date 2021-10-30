@@ -5,9 +5,6 @@
     }
     #printThis, #printThis * {
         visibility: visible;
-        break-inside: avoid;
-    }
-    #printThis .problem {
     }
     #printThis {
         padding: 0;
@@ -15,6 +12,10 @@
         left: 0;
         top: 0;
         font-size: 14px;
+
+        .problem, .drag-item {
+            break-inside: avoid;
+        }
     }
     .problems-section {
         box-shadow: none !important;

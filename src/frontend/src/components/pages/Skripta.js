@@ -209,7 +209,7 @@ export default function Skripta() {
                                                                                 answer?.answer_choice?.choice_text
                                                                             }
                                                                             {answer?.answer_text}
-                                                                            {answer?.images.length > 0  &&  answer?.images.map( image => {
+                                                                            {answer?.images.length > 0 && answer?.images.map( image => {
                                                                                     return (
                                                                                         <ProblemImage image={image} key={image.id}></ProblemImage>
                                                                                     )

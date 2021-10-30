@@ -122,7 +122,6 @@ textarea {
 
   #printThis, #printThis * {
     visibility: visible;
-    break-inside: avoid;
   }
 
   #printThis {
@@ -131,6 +130,9 @@ textarea {
     left: 0;
     top: 0;
     font-size: 14px;
+  }
+  #printThis .problem, #printThis .drag-item {
+    break-inside: avoid;
   }
 
   .problems-section {
