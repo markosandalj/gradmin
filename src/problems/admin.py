@@ -11,11 +11,13 @@ from django.urls import reverse
 
 # Register your models here.
 from media.models import Image
+from skripte.models import Equation
 from .models import Question
 from .models import AnswerChoice
 from .models import CorrectAnswer
 from .models import Hint
 from .models import Problem
+from skripte.admin import ProblemEquationInline
 
 class EditLinkToInlineObject(object):
     def edit_link(self, instance):
@@ -77,9 +79,9 @@ class ProblemAdmin(admin.ModelAdmin):
     search_fields = ('name', 'question', 'section',)
     autocomplete_fields = ('matura', 'question',)
     actions = ['make_available', 'make_unavailable', 'make_hidden', 'approve', 'unapprove',]
-    
-    # inline_type = 'stacked'
-    # inline_reverse = ['question', ]
+    inlines = [
+        ProblemEquationInline
+    ]
 
     @admin.action(description='Approve selected items')
     def approve(self, request, queryset):

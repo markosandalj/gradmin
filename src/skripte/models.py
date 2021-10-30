@@ -1,6 +1,8 @@
 from django.db import models
 from django.db.models.fields import TextField
+from django.db.models.fields.related import ForeignKey
 from media.models import SVG
+# from problems.models import Problem
 
 from shopify_models.models import Page
 
@@ -19,6 +21,7 @@ class Section(models.Model):
     subject = models.ForeignKey(Subject, on_delete=models.PROTECT, blank=True, null=True, related_name="subject_name", )
     order = models.PositiveIntegerField(default=0, blank=False, null=False)
     skripta = models.ManyToManyField('Skripta', blank=True, related_name='sections', through='SkriptaSection')
+    related_sections = models.ManyToManyField('self', blank=True, related_name='related_sections', through='SectionSection')
     page = models.ForeignKey(
         Page,
         blank=True,
@@ -46,9 +49,17 @@ class Section(models.Model):
     def __str__(self):
         return str(self.name)
 
+class SectionSection(models.Model):
+    main_section = models.ForeignKey('Section', on_delete=models.CASCADE, related_name='main_section')
+    related_section = models.ForeignKey('Section', on_delete=models.CASCADE, related_name='related_section')
+    related_section_order = models.PositiveIntegerField(default=0)
+
+    class Meta:
+        ordering = ('related_section_order',)
+
+
 class Skripta(models.Model):
     name = models.TextField()
-
     subject = models.ForeignKey(
         Subject,
         blank=True,
@@ -73,6 +84,14 @@ class SkriptaSection(models.Model):
     class Meta:
         ordering = ('section_order',)
 
+class ProblemEquation(models.Model):
+    problem = ForeignKey('problems.Problem', on_delete=models.PROTECT)
+    equation = ForeignKey('Equation', on_delete=models.PROTECT)
+    equation_order = models.PositiveIntegerField(default=0)
+
+    class Meta:
+        ordering = ('equation_order',)
+
 class Equation(models.Model):
     name = models.TextField()
     equation = models.TextField()
@@ -90,6 +109,12 @@ class Equation(models.Model):
         Section, 
         blank=True,
         related_name='equations'
+    )
+    problem = models.ManyToManyField(
+        'problems.Problem',
+        blank=True,
+        related_name='equations',
+        through=ProblemEquation
     )
 
     def __str__(self):

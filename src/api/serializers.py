@@ -1,11 +1,12 @@
 from django.db import models
 from django.db.models import fields
 from django.db.models.base import Model
+from django.db.models.expressions import F
 from django.utils import tree
 from rest_framework import serializers
 from problems.models import AnswerChoice, CorrectAnswer, Matura, Problem, Question
 from shopify_models.models import Page
-from skripte.models import Category, Equation, Razred, Section, Skripta, SkriptaSection, Subject
+from skripte.models import Category, Equation, Razred, Section, SectionSection, Skripta, SkriptaSection, Subject
 from media.models import SVG, Image, Video
 from mature.models import Matura, MaturaSubject, Term, Year
 
@@ -14,7 +15,7 @@ from mature.models import Matura, MaturaSubject, Term, Year
 class PageSerializer(serializers.ModelSerializer):
     class Meta:
         model = Page
-        fields = ('id', 'page_id', 'handle')
+        fields = ('id', 'handle')
 
 class EquationSerializer(serializers.ModelSerializer):
     class Meta:
@@ -223,12 +224,12 @@ class ShopifyPageProblemSerializer(serializers.ModelSerializer):
         model = Problem
         fields = ('id', 'name', 'question', 'video_solution' )
 
-class ShopifyPageSectionSerializer(serializers.ModelSerializer):
-    problems = QRSkriptaProblemSerializer(many=True,read_only=True,)
+class ShopifyPageSkriptaSerializer(serializers.ModelSerializer):
+    page = PageSerializer(many=False, read_only=True)
     
     class Meta:
-        model = Section
-        fields = ('id', 'name', 'problems', )
+        model = Skripta
+        fields = ('id', 'name', 'page', )
 
 class ShopifyPageSkriptaListSerializer(serializers.ModelSerializer):
     sections = SectionSerializer(many=True, read_only=True)
@@ -237,6 +238,25 @@ class ShopifyPageSkriptaListSerializer(serializers.ModelSerializer):
         model = Skripta
         fields = ('id', 'name', 'sections', )
 
+class ShopifyPageRelatedSectionSerializer(serializers.ModelSerializer):
+    page = PageSerializer(many=False, read_only=True)
+    icon = SVGSerializer(many=False, read_only=True)
+
+    class Meta:
+        model = Section
+        fields = ('id', 'name', 'page', 'icon')
+
+class ShopifyPageSectionSerializer(serializers.ModelSerializer):
+    def get_related_sections(self, instance):
+        response = ShopifyPageRelatedSectionSerializer(instance.related_sections.all(), many=True).data
+        return response
+
+    problems = ShopifyPageProblemSerializer(many=True,read_only=True,)
+    related_sections = serializers.SerializerMethodField('get_related_sections')
+    
+    class Meta:
+        model = Section
+        fields = ('id', 'name', 'problems', 'related_sections',)
 
 
 

@@ -1,6 +1,6 @@
 from django.urls import path
 
-from .views import MaturaApiView, MaturaListApiView, QRSkriptaListView, QRSkriptaSectionView, QRSkriptaView, UpdateQuestionApiView
+from .views import MaturaApiView, MaturaListApiView, QRSkriptaListView, QRSkriptaSectionView, QRSkriptaView, ShopifyPageSectionView, UpdateQuestionApiView
 
 urlpatterns = [
     # path('maturas/', MaturaWithoutProblemsApiView.as_view()),
@@ -13,5 +13,6 @@ urlpatterns = [
     path('skripta/<int:pk>', QRSkriptaView.as_view()),
     path('skripta/<int:skripta_id>/<int:section_id>', QRSkriptaSectionView.as_view()),
     path('matura/<int:matura_id>', MaturaApiView.as_view()),
-    path('matura/<int:subject_id>/list', MaturaListApiView.as_view())
+    path('matura/<int:subject_id>/list', MaturaListApiView.as_view()),
+    path('shopify_page/section/<int:section_id>', ShopifyPageSectionView.as_view())
 ]

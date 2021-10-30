@@ -4,13 +4,13 @@ from django import forms
 from adminsortable2.admin import SortableAdminMixin, SortableInlineAdminMixin
 import requests
 import json
-from api.serializers import ShopifyPageProblemSerializer, ShopifyPageSkriptaListSerializer
+from api.serializers import ShopifyPageProblemSerializer, ShopifyPageRelatedSectionSerializer, ShopifyPageSkriptaListSerializer
 from django.db.models.functions.comparison import Cast
 
 from shopify_models.models import Template
 
 # Register your models here.
-from .models import Category, Razred, SkriptaSection, Subject, Section, Equation, Skripta
+from .models import Category, ProblemEquation, Razred, SectionSection, SkriptaSection, Subject, Section, Equation, Skripta
 from problems.models import Problem
 from django.contrib.admin.helpers import ActionForm
 
@@ -31,6 +31,20 @@ class SectionProblemInline(SortableInlineAdminMixin, admin.StackedInline):
 
 class SectionInline(SortableInlineAdminMixin, admin.TabularInline):
     model = Section.skripta.through
+    extra = 0
+
+class SectionSectionInline(SortableInlineAdminMixin, admin.TabularInline):
+    model = SectionSection
+    fk_name = "main_section"
+    extra = 0
+
+class ProblemEquationInline(SortableInlineAdminMixin, admin.TabularInline):
+    model = ProblemEquation
+    autocomplete_fields = ('equation',)
+    extra=0
+
+class SectionEquationInline(SortableInlineAdminMixin, admin.TabularInline):
+    model = Equation.section.through
     extra = 0
 
 class SkriptaAdmin(admin.ModelAdmin):
@@ -77,7 +91,7 @@ class SectionAdmin(admin.ModelAdmin):
     search_fields = ('name',)
     list_editable = ('category',)
     inlines = [
-        SectionProblemInline,
+        SectionProblemInline, SectionSectionInline 
     ]
     action_form = PickSkriptaForm
 
@@ -129,7 +143,7 @@ class SectionAdmin(admin.ModelAdmin):
                 print(response.json())
                 messages.success(request, "Page {page} uspješno ažuriran".format(page=section.page.title))
             else:
-                messages.error(request, "U gradivu {section} nema niti jedan zadatak koji zadovoljava sve umvjete.".format(section=section.name))
+                messages.error(request, "U gradivu {section} nema niti jedan zadatak koji zadovoljava sve uvjete.".format(section=section.name))
 
     @admin.action(description='Update pages metafield with navigation on Shopify')
     def update_navigation_metafield(self, request, queryset):
@@ -138,15 +152,20 @@ class SectionAdmin(admin.ModelAdmin):
         skripta_id = str(request.POST['skripta'])
         for section in queryset:
             skripta = Skripta.objects.get(id=int(skripta_id))
+            print(section.related_sections.all())
             try:
                 skripta_section = SkriptaSection.objects.get(section=section, skripta=skripta)
-                prev_section = SkriptaSection.objects.filter(section_order__lt=skripta_section.section_order).order_by('section_order').first()
+                prev_section = SkriptaSection.objects.filter(section_order__lt=skripta_section.section_order).order_by('-section_order').first()
                 next_section = SkriptaSection.objects.filter(section_order__gt=skripta_section.section_order).order_by('section_order').first()
                 prev_section_handle = prev_section.section.page.handle if prev_section else None
                 next_section_handle = next_section.section.page.handle if next_section else None
+                serilizer = ShopifyPageRelatedSectionSerializer(section.related_sections.all(), many=True)
+                related_sections = serilizer.data
                 json_string = {
                     'prev_section' : prev_section_handle,
                     'next_section' : next_section_handle,
+                    'skripta_handle' : skripta.page.handle,
+                    'related_sections' : related_sections
                 }
                 metafield_data = {
                     "metafield": {
@@ -163,6 +182,8 @@ class SectionAdmin(admin.ModelAdmin):
                 messages.success(request, "Page {page} uspješno ažuriran".format(page=section.page.title))
             except:
                 messages.error(request, 'Gradivo {section} ne postoji u skripti {skripta}'.format(section=section, skripta=skripta.name))
+
+
 
 class EquationAdmin(admin.ModelAdmin):
     model = Equation
