@@ -200,11 +200,20 @@ export default function Skripta() {
                                                                     return (
                                                                         <div key={answer.id}>
                                                                             <span className="solutions-table__number">{section_order ? section_order : section_index+1}.{index+1}.</span>
-                                                                            {answer?.answer_choice?.choice_text}
+                                                                            {answer?.answer_choice?.images.length > 0 ? 
+                                                                                answer?.answer_choice?.images.map( image => {
+                                                                                    return (
+                                                                                        <ProblemImage image={image} key={image.id}></ProblemImage>
+                                                                                    )
+                                                                                }) :
+                                                                                answer?.answer_choice?.choice_text
+                                                                            }
                                                                             {answer?.answer_text}
-                                                                            {answer?.answer_choice?.images.map( image => {
-                                                                                <ProblemImage image={image} key={image.id}></ProblemImage>
-                                                                            })}
+                                                                            {answer?.images.length > 0  &&  answer?.images.map( image => {
+                                                                                    return (
+                                                                                        <ProblemImage image={image} key={image.id}></ProblemImage>
+                                                                                    )
+                                                                                })}
                                                                         </div>
                                                                     )
                                                                 })}

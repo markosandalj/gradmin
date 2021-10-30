@@ -232,32 +232,6 @@ textarea {
   padding-right: 2rem;
   margin-left: 1rem;
 }
-.problem__choices {
-  display: flex;
-  flex-direction: column;
-  gap: 0.75rem;
-  margin: 1rem 0 0 1rem;
-  padding-right: 2rem;
-}
-.problem__choices--with-images {
-  display: flex;
-  flex-wrap: wrap;
-  flex-direction: row;
-  gap: 0;
-  align-items: flex-end;
-}
-.problem__choices--with-images--single .problem__choice {
-  width: 65%;
-}
-.problem__choices--with-images--half .problem__choice {
-  width: 50%;
-}
-.problem__choices--with-images--thrid .problem__choice {
-  width: 33.33%;
-}
-.problem__choices--with-images--quarter .problem__choice {
-  width: 25%;
-}
 .problem__choice {
   position: relative;
   width: 100%;
@@ -297,6 +271,32 @@ textarea {
   bottom: 0;
   left: 0;
   position: absolute;
+}
+.problem__choices {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  margin: 1rem 0 0 1rem;
+  padding-right: 2rem;
+}
+.problem__choices--with-images {
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
+  gap: 0;
+  align-items: flex-end;
+}
+.problem__choices--with-images--single .problem__choice {
+  width: 65%;
+}
+.problem__choices--with-images--half .problem__choice {
+  width: 50%;
+}
+.problem__choices--with-images--third .problem__choice {
+  width: 33.33%;
+}
+.problem__choices--with-images--quarter .problem__choice {
+  width: 25%;
 }
 .problem__approve {
   font-size: 3rem;
