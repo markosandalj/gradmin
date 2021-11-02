@@ -184,8 +184,8 @@ class QRSkriptaProblemSerializer(serializers.ModelSerializer):
 
 class QRSkriptaSectionSerializer(serializers.ModelSerializer):
     problems = QRSkriptaProblemSerializer(many=True,read_only=True,)
-    equations = serializers.SerializerMethodField('get_equations')
     section_order = SkriptaSectionSerializer(many=False, read_only=True)
+    equations = serializers.SerializerMethodField('get_equations')
 
     def get_equations(self, instance):
         equations = Equation.objects.filter(section__name = instance['name'])
@@ -247,13 +247,13 @@ class ShopifyPageRelatedSectionSerializer(serializers.ModelSerializer):
         fields = ('id', 'name', 'page', 'icon')
 
 class ShopifyPageSectionSerializer(serializers.ModelSerializer):
+    problems = ShopifyPageProblemSerializer(many=True,read_only=True,)
+    related_sections = serializers.SerializerMethodField('get_related_sections')
+    
     def get_related_sections(self, instance):
         response = ShopifyPageRelatedSectionSerializer(instance.related_sections.all(), many=True).data
         return response
 
-    problems = ShopifyPageProblemSerializer(many=True,read_only=True,)
-    related_sections = serializers.SerializerMethodField('get_related_sections')
-    
     class Meta:
         model = Section
         fields = ('id', 'name', 'problems', 'related_sections',)
@@ -264,8 +264,29 @@ class ShopifyPageSectionSerializer(serializers.ModelSerializer):
 
 ## --------- SHOPIFY-PRODUCT SERIALIZERS --------- ##
 
+class ShopifyProductProblemSerializer(serializers.ModelSerializer):
+    equations = serializers.SerializerMethodField('get_equations')
+    video_solution = VideoSerializer(many=False) 
+    section = SectionSerializer(many=False)
+    question = QuestionSerializer(many=False, read_only=True)
 
+    def get_equations(self, instance):
+        response = EquationSerializer(instance.equations.all(), many=True).data
+        return response
 
+    class Meta:
+        model = Problem
+        fields = ('id', 'approval', 'shop_availability', 'question', 'video_solution', 'section', 'equations')
+
+class ShopifyProductMaturaSerializer(serializers.ModelSerializer):
+    problems = ShopifyProductProblemSerializer(many=True,read_only=True,)
+    term = TermSerializer(many=False)
+    year = YearSerializer(many=False)
+    subject = MaturaSubjectSerializer(many=False)
+
+    class Meta:
+        model = Matura
+        fields = ('id', 'year', 'term', 'subject', 'problems',)
 
 ## --------- POST SERIALIZERS --------- ##
 

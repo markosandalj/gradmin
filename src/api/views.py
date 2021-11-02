@@ -7,7 +7,7 @@ from rest_framework.decorators import api_view
 from rest_framework.response import Response
 from problems.models import AnswerChoice, Matura, Problem, Question, Section
 from skripte.models import Equation, Skripta, SkriptaSection
-from .serializers import FEMaturaSerializer, MaturaSerializer, ProblemSerializer, QRSkriptaListSerializer, QRSkriptaSectionSerializer, QRSkriptaSerializer, SectionSerializer, ShopifyPageSectionSerializer, ShopifyPageSkriptaListSerializer, UpdateQuestionSerializer
+from .serializers import FEMaturaSerializer, MaturaSerializer, ProblemSerializer, QRSkriptaListSerializer, QRSkriptaSectionSerializer, QRSkriptaSerializer, SectionSerializer, ShopifyPageSectionSerializer, ShopifyPageSkriptaListSerializer, ShopifyProductMaturaSerializer, UpdateQuestionSerializer
 import json
 from django.db.models.functions import Cast
 
@@ -124,6 +124,13 @@ class ShopifyPageSkriptaListView(generics.ListAPIView):
 
 
 ## --------- SHOPIFY-PRODUCT VIEWS --------- ##
+
+class ShopifyProductMaturaView(generics.ListAPIView):
+    serializer_class = ShopifyProductMaturaSerializer
+
+    def get_queryset(self):
+        queryset = Matura.objects.filter(pk=self.kwargs.get('matura_id'))
+        return queryset
 
 
 ## --------- POST VIEWS --------- ##

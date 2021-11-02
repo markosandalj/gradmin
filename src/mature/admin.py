@@ -9,7 +9,7 @@ from problems.admin import EditLinkToInlineObject
 from problems.models import Problem, Question
 from django.urls import reverse
 from django.utils.safestring import mark_safe
-from api.serializers import ProblemSerializer
+from api.serializers import ProblemSerializer, ShopifyPageProblemSerializer, ShopifyProductProblemSerializer
 from adminsortable2.admin import SortableAdminMixin, SortableInlineAdminMixin
 import vimeo
 
@@ -98,8 +98,6 @@ class MaturaAdmin(admin.ModelAdmin):
             except:
                 messages.error(request, "No response. Zovi policiju!")
 
-    
-
     @admin.action(description='Update product on Shopify')
     def update_problems(self, request, queryset):
         base_url = 'https://msandalj23.myshopify.com'
@@ -108,7 +106,7 @@ class MaturaAdmin(admin.ModelAdmin):
             product_id = matura.shopify_product_id
             metafields_url = '/admin/api/2021-10/products/{id}/metafields.json'.format(id=product_id)
             problems = Problem.objects.annotate(number_field=Cast('number', IntegerField())).filter(matura=matura).order_by('number_field', 'question')
-            serilizer = ProblemSerializer(problems, many=True)
+            serilizer = ShopifyProductProblemSerializer(problems, many=True)
             json_string = json.dumps(serilizer.data)
             metafield_data = {
                 "metafield": {
