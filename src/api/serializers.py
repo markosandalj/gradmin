@@ -276,7 +276,7 @@ class ShopifyProductProblemSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Problem
-        fields = ('id', 'approval', 'shop_availability', 'question', 'video_solution', 'section', 'equations')
+        fields = ('id', 'approval', 'number', 'shop_availability', 'question', 'video_solution', 'section', 'equations')
 
 class ShopifyProductMaturaSerializer(serializers.ModelSerializer):
     problems = ShopifyProductProblemSerializer(many=True,read_only=True,)
