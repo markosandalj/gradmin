@@ -84,7 +84,7 @@ class SkriptaAdmin(admin.ModelAdmin):
     
 class SectionAdmin(admin.ModelAdmin):
     model = Section
-    list_display = ('name', 'category')
+    list_display = ('name', 'icon')
     list_filter = ('subject',)
     readonly_fields = ('created_at', 'updated_at',)
     actions = ['create_shopify_page','update_problems_metafield', 'update_navigation_metafield',]
