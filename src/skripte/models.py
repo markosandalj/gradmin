@@ -1,7 +1,7 @@
 from django.db import models
 from django.db.models.fields import TextField
 from django.db.models.fields.related import ForeignKey
-from media.models import SVG
+from media.models import PDF, SVG
 # from problems.models import Problem
 
 from shopify_models.models import Page
@@ -70,6 +70,12 @@ class Skripta(models.Model):
         Page,
         blank=True,
         null=True, 
+        on_delete=models.SET_NULL,
+    )
+    file = models.ForeignKey(
+        PDF,
+        blank=True,
+        null=True,
         on_delete=models.SET_NULL,
     )
 

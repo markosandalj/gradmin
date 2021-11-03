@@ -6,7 +6,7 @@ from django.utils.translation import gettext_lazy as _
 from media.models import PDF
 from shopify_models.models import Product
 
-from skripte.models import Subject
+from skripte.models import Skripta, Subject
 
 # MATURA related models
 class Year(models.Model):
@@ -70,8 +70,6 @@ class Matura(models.Model):
     vimeo_folder_id = models.BigIntegerField(blank=True, null=True,)
     shopify_product_id = models.BigIntegerField(blank=True, null=True,)
     shopify_product_url = models.URLField(blank=True, null=True,)
-    created_at = models.DateTimeField(auto_now_add=True, editable=False)
-    updated_at = models.DateTimeField(auto_now=True, editable=False)
     product = models.ForeignKey(
         Product,
         blank=True,
@@ -84,6 +82,15 @@ class Matura(models.Model):
         null=True,
         on_delete=models.SET_NULL,
     )
+    skripta = models.ForeignKey(
+        Skripta,
+        blank=True,
+        null=True,
+        on_delete=models.SET_NULL,
+    )
+
+    created_at = models.DateTimeField(auto_now_add=True, editable=False)
+    updated_at = models.DateTimeField(auto_now=True, editable=False)
 
     class Meta(object):
         ordering = ['year',]

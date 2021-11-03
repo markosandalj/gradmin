@@ -7,8 +7,11 @@ from rest_framework import serializers
 from problems.models import AnswerChoice, CorrectAnswer, Matura, Problem, Question
 from shopify_models.models import Page
 from skripte.models import Category, Equation, Razred, Section, SectionSection, Skripta, SkriptaSection, Subject
-from media.models import SVG, Image, Video
+from media.models import PDF, SVG, Image, Video
 from mature.models import Matura, MaturaSubject, Term, Year
+
+from django.db.models.fields import IntegerField
+from django.db.models.functions.comparison import Cast
 
 ## --------- BASE SERIALIZERS --------- ##
 
@@ -36,6 +39,11 @@ class SVGSerializer(serializers.ModelSerializer):
     class Meta:
         model = SVG
         fields = ('id', 'image',)
+
+class PDFSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = PDF
+        fields = ('id', 'file',)
 
 class AnswerChoiceSerializer(serializers.ModelSerializer):
     images = ImageSerializer(many=True)
@@ -264,6 +272,13 @@ class ShopifyPageSectionSerializer(serializers.ModelSerializer):
 
 ## --------- SHOPIFY-PRODUCT SERIALIZERS --------- ##
 
+class ShopifyProductSkriptaSerializer(serializers.ModelSerializer):
+    file = PDFSerializer(many=False)
+
+    class Meta:
+        model = Skripta
+        fields = ('id', 'name', 'file',)
+
 class ShopifyProductProblemSerializer(serializers.ModelSerializer):
     equations = serializers.SerializerMethodField('get_equations')
     video_solution = VideoSerializer(many=False) 
@@ -279,14 +294,20 @@ class ShopifyProductProblemSerializer(serializers.ModelSerializer):
         fields = ('id', 'approval', 'number', 'shop_availability', 'question', 'video_solution', 'section', 'equations')
 
 class ShopifyProductMaturaSerializer(serializers.ModelSerializer):
-    problems = ShopifyProductProblemSerializer(many=True,read_only=True,)
+    problems = serializers.SerializerMethodField('get_problems')
     term = TermSerializer(many=False)
     year = YearSerializer(many=False)
     subject = MaturaSubjectSerializer(many=False)
+    file = PDFSerializer(many=False)
+    skripta = ShopifyProductSkriptaSerializer(many=False)
+
+    def get_problems(self, instance):
+        response = ShopifyProductProblemSerializer(Problem.objects.annotate(number_field=Cast('number', IntegerField())).filter(matura=instance).order_by('number_field', 'question'), many=True)
+        return response.data
 
     class Meta:
         model = Matura
-        fields = ('id', 'year', 'term', 'subject', 'problems',)
+        fields = ('id', 'year', 'term', 'subject', 'file', 'skripta', 'problems',)
 
 ## --------- POST SERIALIZERS --------- ##
 

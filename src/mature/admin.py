@@ -9,7 +9,7 @@ from problems.admin import EditLinkToInlineObject
 from problems.models import Problem, Question
 from django.urls import reverse
 from django.utils.safestring import mark_safe
-from api.serializers import ProblemSerializer, ShopifyPageProblemSerializer, ShopifyProductProblemSerializer
+from api.serializers import ProblemSerializer, ShopifyPageProblemSerializer, ShopifyProductMaturaSerializer, ShopifyProductProblemSerializer
 from adminsortable2.admin import SortableAdminMixin, SortableInlineAdminMixin
 import vimeo
 
@@ -40,7 +40,7 @@ class MaturaProblemInline(EditLinkToInlineObject, admin.StackedInline):
     extra = 0
     # search_fields = ('section', 'skripta',)
     autocomplete_fields = ('section', 'skripta', 'question',)
-    ordering = [Cast('number', IntegerField() ), 'question']
+    ordering = [Cast('number', IntegerField() ), ]
     exclude = ('order',)
     # readonly_fields = ('question', )
 
@@ -51,7 +51,10 @@ class MaturaAdmin(admin.ModelAdmin):
     ]
     search_fields = ('name',)
     actions = ['update_problems', 'import_videos',]
-    # list_editable = ('shopify_product_id',)
+    list_editable = ('file',)
+    list_display = ( '__str__' , 'file')
+    readonly_fields = ('created_at', 'updated_at',)
+    list_filter = ('subject',)
 
     @admin.action(description='Import videos from Vimeo')
     def import_videos(self, request, queryset):
@@ -105,9 +108,10 @@ class MaturaAdmin(admin.ModelAdmin):
         for matura in queryset:
             product_id = matura.shopify_product_id
             metafields_url = '/admin/api/2021-10/products/{id}/metafields.json'.format(id=product_id)
-            problems = Problem.objects.annotate(number_field=Cast('number', IntegerField())).filter(matura=matura).order_by('number_field', 'question')
-            serilizer = ShopifyProductProblemSerializer(problems, many=True)
-            json_string = json.dumps(serilizer.data)
+            # problems = Problem.objects.annotate(number_field=Cast('number', IntegerField())).filter(matura=matura).order_by('number_field', 'question')
+            # serilizer = ShopifyProductProblemSerializer(problems, many=True)
+            serializer = ShopifyProductMaturaSerializer(matura, many=False)
+            json_string = json.dumps(serializer.data)
             metafield_data = {
                 "metafield": {
                         "namespace": "matura",
@@ -120,10 +124,6 @@ class MaturaAdmin(admin.ModelAdmin):
             response = requests.post(url, headers=headers, json = metafield_data)
             print(response.json())
             messages.success(request, "Proizvod uspješno ažuriran")
-        
-    list_display = ( '__str__' ,'created_at', 'shopify_product_id', 'subject')
-    readonly_fields = ('created_at', 'updated_at',)
-    list_filter = ('subject',)
 
 admin.site.register(Year)
 admin.site.register(Term)
