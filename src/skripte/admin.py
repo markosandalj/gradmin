@@ -89,7 +89,7 @@ class SectionAdmin(admin.ModelAdmin):
     readonly_fields = ('created_at', 'updated_at',)
     actions = ['create_shopify_page','update_problems_metafield', 'update_navigation_metafield',]
     search_fields = ('name',)
-    list_editable = ('category',)
+    list_editable = ('icon',)
     inlines = [
         SectionProblemInline, SectionSectionInline 
     ]
