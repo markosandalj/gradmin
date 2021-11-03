@@ -48,6 +48,13 @@ class Video(models.Model):
         return str(self.name)
 
 class SVG(models.Model):
-    image = models.FileField(validators=[FileExtensionValidator(['svg'])])
+    name = models.TextField(blank=True,null=True,)
+    image = models.FileField(upload_to="svg/", validators=[FileExtensionValidator(['svg'])])
+    created_at = models.DateTimeField(auto_now_add=True, editable=False)
+    updated_at = models.DateTimeField(auto_now=True, editable=False)
+
+class PDF(models.Model):
+    name = models.TextField(blank=True,null=True,)
+    file = models.FileField(upload_to="pdf/", validators=[FileExtensionValidator(['pdf'])])
     created_at = models.DateTimeField(auto_now_add=True, editable=False)
     updated_at = models.DateTimeField(auto_now=True, editable=False)
