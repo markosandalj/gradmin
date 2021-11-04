@@ -25,7 +25,7 @@ function initializeMathJax() {
 
 setTimeout( () => {
     initializeMathJax()
-    const sortable = new Sortable(document.querySelectorAll('.Polaris-Card > .Polaris-Card__Section'), {
+    const sortable = new Sortable(document.querySelectorAll('.problems-section'), {
         draggable: '.drag-item',
         handle: '.drag-handle'
     })

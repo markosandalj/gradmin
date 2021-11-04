@@ -4,7 +4,7 @@ from django import forms
 from adminsortable2.admin import SortableAdminMixin, SortableInlineAdminMixin
 import requests
 import json
-from api.serializers import ShopifyPageProblemSerializer, ShopifyPageRelatedSectionSerializer, ShopifyPageSkriptaListSerializer
+from api.serializers import CategorySerialzier, ShopifyPageProblemSerializer, ShopifyPageRelatedSectionSerializer, ShopifyPageSkriptaListSerializer
 from django.db.models.functions.comparison import Cast
 
 from shopify_models.models import Template
@@ -165,7 +165,8 @@ class SectionAdmin(admin.ModelAdmin):
                     'prev_section' : prev_section_handle,
                     'next_section' : next_section_handle,
                     'skripta_handle' : skripta.page.handle,
-                    'related_sections' : related_sections
+                    'related_sections' : related_sections,
+                    'category': CategorySerialzier(section.category).data
                 }
                 metafield_data = {
                     "metafield": {
