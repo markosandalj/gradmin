@@ -13,7 +13,7 @@ from django.db.models.deletion import CASCADE, PROTECT
 
 # related models from other apps
 from mature.models import Matura
-from media.models import Video
+from media.models import Image, Video
 from skripte.models import Section, Subject, Skripta
 
 
@@ -62,6 +62,12 @@ class CorrectAnswer(models.Model):
         null=True, 
         on_delete=models.CASCADE,
         related_name='correct_answer',
+    )
+    image = models.ForeignKey(
+        Image,
+        blank=True, 
+        null=True, 
+        on_delete=models.CASCADE,
     )
     created_at = models.DateTimeField(auto_now_add=True, editable=False)
     updated_at = models.DateTimeField(auto_now=True, editable=False)
