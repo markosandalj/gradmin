@@ -32,7 +32,7 @@ class Question(models.Model):
         return str(self.question_text)
 
 class AnswerChoice(models.Model):
-    choice_text = models.TextField()
+    choice_text = models.TextField(blank=True, null=True,)
     question = models.ForeignKey(
         Question, 
         on_delete=models.CASCADE,
