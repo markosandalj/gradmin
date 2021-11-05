@@ -32,13 +32,13 @@ class EditLinkToInlineObject(object):
 class QuestionInline(EditLinkToInlineObject, admin.StackedInline):
     model = Question
     extra=0
-    readonly_fields = ('edit_link', )
+    readonly_fields = ('edit_link',)
     
 
 class AnswerChoiceInline(EditLinkToInlineObject, SortableInlineAdminMixin, admin.StackedInline):
     model = AnswerChoice
     extra=0
-    readonly_fields = ('edit_link', )
+    readonly_fields = ('edit_link', 'id')
 
 class CorrectAnswerInline(EditLinkToInlineObject, admin.StackedInline):
     model = CorrectAnswer
