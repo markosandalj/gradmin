@@ -302,7 +302,7 @@ class ShopifyProductMaturaSerializer(serializers.ModelSerializer):
     skripta = ShopifyProductSkriptaSerializer(many=False)
 
     def get_problems(self, instance):
-        response = ShopifyProductProblemSerializer(Problem.objects.annotate(number_field=Cast('number', IntegerField())).filter(matura=instance).order_by('number_field', 'question'), many=True)
+        response = ShopifyProductProblemSerializer(Problem.objects.annotate(number_field=Cast('number', IntegerField())).filter(matura=instance).order_by('number_field'), many=True)
         return response.data
 
     class Meta:
