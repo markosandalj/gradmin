@@ -40,7 +40,7 @@ class MaturaProblemInline(EditLinkToInlineObject, admin.StackedInline):
     extra = 0
     # search_fields = ('section', 'skripta',)
     autocomplete_fields = ('section', 'skripta', 'question',)
-    ordering = [Cast('number', IntegerField() ), ]
+    ordering = [Cast('number', IntegerField() ), 'name']
     exclude = ('order',)
     # readonly_fields = ('question', )
 
@@ -68,7 +68,7 @@ class MaturaAdmin(admin.ModelAdmin):
             try:
                 response = c.get("https://api.vimeo.com/me/projects/"+str(id)+"/videos?per_page=100")
                 data = response.json()['data']
-                problems = Problem.objects.annotate(number_field=Cast('number', IntegerField())).filter(matura=matura).order_by('number_field', 'question')
+                problems = Problem.objects.annotate(number_field=Cast('number', IntegerField())).filter(matura=matura).order_by('number_field', 'name')
                 if(len(data) == len(problems)):
                     for item, problem in zip(reversed(data), problems):
                         print(item['name'], problem.name, item['link'].replace('https://vimeo.com/', '').split('/')[1])

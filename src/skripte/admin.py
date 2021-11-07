@@ -125,7 +125,7 @@ class SectionAdmin(admin.ModelAdmin):
         base_url = 'https://msandalj23.myshopify.com'
         headers = {'Content-Type': 'application/json', 'X-Shopify-Access-Token': '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' }
         for section in queryset:
-            problems = Problem.objects.annotate(number_field=Cast('number', IntegerField())).filter(section=section, shop_availability='available', approval='approved' ).exclude(video_solution=None).order_by('number_field', 'question')
+            problems = Problem.objects.annotate(number_field=Cast('number', IntegerField())).filter(section=section, shop_availability='available', approval='approved' ).exclude(video_solution=None).order_by('number_field', 'name')
             if(len(problems) > 0 ):
                 serilizer = ShopifyPageProblemSerializer(problems, many=True)
                 json_string = json.dumps(serilizer.data)
