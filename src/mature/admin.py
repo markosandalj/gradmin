@@ -108,8 +108,6 @@ class MaturaAdmin(admin.ModelAdmin):
         for matura in queryset:
             product_id = matura.shopify_product_id
             metafields_url = '/admin/api/2021-10/products/{id}/metafields.json'.format(id=product_id)
-            # problems = Problem.objects.annotate(number_field=Cast('number', IntegerField())).filter(matura=matura).order_by('number_field', 'question')
-            # serilizer = ShopifyProductProblemSerializer(problems, many=True)
             serializer = ShopifyProductMaturaSerializer(matura, many=False)
             json_string = json.dumps(serializer.data)
             metafield_data = {

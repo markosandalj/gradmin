@@ -82,10 +82,9 @@ class QuestionSerializer(serializers.ModelSerializer):
 class SkriptaSectionSerializer(serializers.ModelSerializer):
     class Meta:
         model = SkriptaSection
-        fields = ('section_order',)
+        fields = ('id', 'section_order',)
 
 class RazredSerializer(serializers.ModelSerializer):
-
     class Meta:
         model = Razred
         fields = ('id', 'name', )
@@ -239,8 +238,23 @@ class ShopifyPageSkriptaSerializer(serializers.ModelSerializer):
         model = Skripta
         fields = ('id', 'name', 'page', )
 
+class ShopifyPageSectionListSerializer(serializers.ModelSerializer):
+    subject_name = serializers.ReadOnlyField(source='subject.name')
+    category = CategorySerialzier(many=False, read_only=True)
+    page = PageSerializer(many=False, read_only=True)
+    icon = SVGSerializer(many=False, read_only=True)
+
+    class Meta:
+        model = Section
+        fields = ('id', 'name', 'subject_name', 'category', 'page', 'icon')
+
 class ShopifyPageSkriptaListSerializer(serializers.ModelSerializer):
-    sections = SectionSerializer(many=True, read_only=True)
+    sections = serializers.SerializerMethodField('get_sections')
+
+    def get_sections(self, instance):
+        sections = Section.objects.filter(skripta__in = [instance.id])
+        response = ShopifyPageSectionListSerializer(sections.order_by('skriptasection__section_order'), many=True)
+        return response.data
 
     class Meta:
         model = Skripta
@@ -302,7 +316,7 @@ class ShopifyProductMaturaSerializer(serializers.ModelSerializer):
     skripta = ShopifyProductSkriptaSerializer(many=False)
 
     def get_problems(self, instance):
-        response = ShopifyProductProblemSerializer(Problem.objects.annotate(number_field=Cast('number', IntegerField())).filter(matura=instance).order_by('number_field'), many=True)
+        response = ShopifyProductProblemSerializer(Problem.objects.annotate(number_field=Cast('number', IntegerField())).filter(matura=instance).order_by('number_field', 'name'), many=True)
         return response.data
 
     class Meta:
