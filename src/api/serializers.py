@@ -248,6 +248,11 @@ class ShopifyPageSectionListSerializer(serializers.ModelSerializer):
         model = Section
         fields = ('id', 'name', 'subject_name', 'category', 'page', 'icon')
 
+class ShopifyPageSectionSecondaryListSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Section
+        fields = ('id',)
+
 class ShopifyPageSkriptaListSerializer(serializers.ModelSerializer):
     sections = serializers.SerializerMethodField('get_sections')
 
@@ -259,6 +264,18 @@ class ShopifyPageSkriptaListSerializer(serializers.ModelSerializer):
     class Meta:
         model = Skripta
         fields = ('id', 'name', 'sections', )
+
+class ShopifyPageSkriptaSecondaryListSerializer(serializers.ModelSerializer):
+    sections = serializers.SerializerMethodField('get_sections')
+
+    def get_sections(self, instance):
+        sections = Section.objects.filter(skripta__in = [instance.id])
+        response = ShopifyPageSectionSecondaryListSerializer(sections.order_by('skriptasection__section_order'), many=True)
+        return response.data
+
+    class Meta:
+        model = Skripta
+        fields = ('id', 'sections', )
 
 class ShopifyPageRelatedSectionSerializer(serializers.ModelSerializer):
     page = PageSerializer(many=False, read_only=True)

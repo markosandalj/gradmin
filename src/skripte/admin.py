@@ -4,7 +4,7 @@ from django import forms
 from adminsortable2.admin import SortableAdminMixin, SortableInlineAdminMixin
 import requests
 import json
-from api.serializers import CategorySerialzier, ShopifyPageProblemSerializer, ShopifyPageRelatedSectionSerializer, ShopifyPageSkriptaListSerializer
+from api.serializers import CategorySerialzier, ShopifyPageProblemSerializer, ShopifyPageRelatedSectionSerializer, ShopifyPageSectionSecondaryListSerializer, ShopifyPageSkriptaListSerializer
 from django.db.models.functions.comparison import Cast
 
 from shopify_models.models import Template
@@ -31,7 +31,11 @@ class SectionProblemInline(SortableInlineAdminMixin, admin.StackedInline):
 
 class SectionInline(SortableInlineAdminMixin, admin.TabularInline):
     model = Section.skripta.through
+    readonly_fields = ("exclude_section",)
     extra = 0
+
+    def exclude_section(self, instance):
+        return instance.section.exclude
 
 class SectionSectionInline(SortableInlineAdminMixin, admin.TabularInline):
     model = SectionSection
@@ -52,7 +56,7 @@ class SkriptaAdmin(admin.ModelAdmin):
     list_filter = ('subject',)
     list_display = ('name','id', )
     search_fields = ('name',)
-    actions = ('update_shopify_page',)
+    actions = ('update_shopify_page','update_secundary_list')
 
     inlines = [
         SectionInline,
@@ -80,6 +84,28 @@ class SkriptaAdmin(admin.ModelAdmin):
             print(response.json())
             messages.success(request, "Page {page} uspješno ažuriran".format(page=skripta.page.title))
 
+    @admin.action(description='Update page (online skipta - sekundarni popis) on Shopify')
+    def update_secundary_list(self, request, queryset):
+        base_url = 'https://msandalj23.myshopify.com'
+        headers = {'Content-Type': 'application/json', 'X-Shopify-Access-Token': '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' }
+
+        for skripta in queryset:
+            page_url = '/admin/api/2021-10/pages/{id}/metafields.json'.format(id=skripta.page.page_id)
+            serilizer = ShopifyPageSectionSecondaryListSerializer(skripta)
+            json_string = json.dumps(serilizer.data)
+            metafield_data = {
+                "metafield": {
+                    "namespace": "section",
+                    "key": "secondary_list",
+                    "type": "json",
+                    "value": json_string
+                }
+            }
+            url = base_url + page_url
+            response = requests.post(url, headers=headers, json = metafield_data)
+            print(response.json())
+            messages.success(request, "Page {page} uspješno ažuriran".format(page=skripta.page.title))
+
 
     
 class SectionAdmin(admin.ModelAdmin):
@@ -87,7 +113,7 @@ class SectionAdmin(admin.ModelAdmin):
     list_display = ('name', 'icon')
     list_filter = ('subject',)
     readonly_fields = ('created_at', 'updated_at',)
-    actions = ['create_shopify_page','update_problems_metafield', 'update_navigation_metafield',]
+    actions = ['create_shopify_page','update_problems_metafield', 'update_navigation_metafield', 'update_secondary_problems_metafield',]
     search_fields = ('name',)
     list_editable = ('icon',)
     inlines = [
@@ -124,8 +150,9 @@ class SectionAdmin(admin.ModelAdmin):
     def update_problems_metafield(self, request, queryset):
         base_url = 'https://msandalj23.myshopify.com'
         headers = {'Content-Type': 'application/json', 'X-Shopify-Access-Token': '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' }
+        skripta_id = str(request.POST['skripta'])
         for section in queryset:
-            problems = Problem.objects.annotate(number_field=Cast('number', IntegerField())).filter(section=section, shop_availability='available', approval='approved' ).exclude(video_solution=None).order_by('number_field', 'name')
+            problems = Problem.objects.annotate(number_field=Cast('number', IntegerField())).filter(section=section, shop_availability='available', approval='approved', skripta__id = skripta_id ).exclude(video_solution=None).order_by('number_field', 'name')
             if(len(problems) > 0 ):
                 serilizer = ShopifyPageProblemSerializer(problems, many=True)
                 json_string = json.dumps(serilizer.data)
@@ -145,6 +172,33 @@ class SectionAdmin(admin.ModelAdmin):
             else:
                 messages.error(request, "U gradivu {section} nema niti jedan zadatak koji zadovoljava sve uvjete.".format(section=section.name))
 
+    @admin.action(description='Update pages metafield with secondary problems on Shopify')
+    def update_secondary_problems_metafield(self, request, queryset):
+        base_url = 'https://msandalj23.myshopify.com'
+        headers = {'Content-Type': 'application/json', 'X-Shopify-Access-Token': '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' }
+        skripta_id = str(request.POST['skripta'])
+        for section in queryset:
+            problems = Problem.objects.annotate(number_field=Cast('number', IntegerField())).filter(section=section, shop_availability='available', approval='approved', skripta__id = skripta_id ).exclude(video_solution=None).order_by('number_field', 'name')
+            if(len(problems) > 0 ):
+                serilizer = ShopifyPageProblemSerializer(problems, many=True)
+                json_string = json.dumps(serilizer.data)
+                metafield_data = {
+                    "metafield": {
+                        "namespace": "section",
+                        "key": "secondary_problems",
+                        "type": "json",
+                        "value": json_string
+                    }
+                }
+                page_url = '/admin/api/2021-10/pages/{id}/metafields.json'.format(id=section.page.page_id)
+                url = base_url + page_url
+                response = requests.post(url, headers=headers, json = metafield_data)
+                print(response.json())
+                messages.success(request, "Page {page} uspješno ažuriran".format(page=section.page.title))
+            else:
+                messages.error(request, "U gradivu {section} nema niti jedan zadatak koji zadovoljava sve uvjete.".format(section=section.name))
+
+
     @admin.action(description='Update pages metafield with navigation on Shopify')
     def update_navigation_metafield(self, request, queryset):
         base_url = 'https://msandalj23.myshopify.com'
@@ -152,9 +206,10 @@ class SectionAdmin(admin.ModelAdmin):
         skripta_id = str(request.POST['skripta'])
         for section in queryset:
             skripta = Skripta.objects.get(id=int(skripta_id))
-            print(section.related_sections.all())
             try:
                 skripta_section = SkriptaSection.objects.get(section=section, skripta=skripta)
+                skripta_sections = SkriptaSection.objects.filter(section=section)
+                skripta_tags = [ section.skripta.name for section in skripta_sections ]
                 prev_section = SkriptaSection.objects.filter(section_order__lt=skripta_section.section_order).order_by('-section_order').first()
                 next_section = SkriptaSection.objects.filter(section_order__gt=skripta_section.section_order).order_by('section_order').first()
                 prev_section_handle = prev_section.section.page.handle if prev_section else None
@@ -166,7 +221,8 @@ class SectionAdmin(admin.ModelAdmin):
                     'next_section' : next_section_handle,
                     'skripta_handle' : skripta.page.handle,
                     'related_sections' : related_sections,
-                    'category': CategorySerialzier(section.category).data
+                    'category': CategorySerialzier(section.category).data,
+                    'tags': skripta_tags
                 }
                 metafield_data = {
                     "metafield": {
