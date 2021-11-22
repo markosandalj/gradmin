@@ -106,7 +106,7 @@ class MaturaAdmin(admin.ModelAdmin):
         base_url = 'https://msandalj23.myshopify.com'
         headers = {'Content-Type': 'application/json', 'X-Shopify-Access-Token': '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' }
         for matura in queryset:
-            product_id = matura.shopify_product_id
+            product_id = matura.product.product_id
             metafields_url = '/admin/api/2021-10/products/{id}/metafields.json'.format(id=product_id)
             serializer = ShopifyProductMaturaSerializer(matura, many=False)
             json_string = json.dumps(serializer.data)
