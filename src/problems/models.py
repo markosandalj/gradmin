@@ -82,6 +82,7 @@ class Problem(models.Model):
         AVAILABILABE = 'available', _('Available')
         UNAVAILABLE = 'unavailable', _('Unavailable')
         HIDDEN = 'hidden', _('Hidden')
+        
     class Approval(models.TextChoices):
         APPROVED = 'approved', _('Approved')
         UNAPPROVED = 'unapproved', _('Unapproved')
