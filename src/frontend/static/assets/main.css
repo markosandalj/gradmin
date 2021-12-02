@@ -116,7 +116,6 @@ textarea {
 
 @media print {
   body * {
-    visibility: hidden;
     font-size: 14px;
   }
 
@@ -337,9 +336,18 @@ textarea {
   background-color: #FFFFFF;
   box-shadow: rgba(23, 24, 24, 0.05) 0px 0px 5px 0px, rgba(0, 0, 0, 0.15) 0px 1px 2px 0px;
   outline: 0.1rem solid transparent;
+  position: relative;
 }
 .problems-section + * {
   margin-top: 1rem;
+}
+.problems-section__logo {
+  position: absolute;
+  top: 1rem;
+  right: 0;
+  max-height: 2.5rem;
+  background-color: #383838;
+  padding: 0.75rem;
 }
 .problems-section__header {
   display: flex;
