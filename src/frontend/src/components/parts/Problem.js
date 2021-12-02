@@ -68,9 +68,9 @@ const Problem = ({ sectionIndex, problem_index, problem } ) => {
   };
   
   const handleApproveBtn = (approval, id) => {
-    approval = approval ? 'approved' : 'unapproved';
-    dispatch(approveProblem(approval, id))
     setApprovalStatus(approval)
+    approval = approval === true ? 'approved' : 'unapproved';
+    dispatch(approveProblem(approval, id))
     console.log(problem_fields)
   }
 
