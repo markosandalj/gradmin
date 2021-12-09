@@ -103,7 +103,7 @@ class Equation(models.Model):
     name = models.TextField()
     equation = models.TextField()
     description = models.TextField(null=True, blank=True)
-    related_equation = models.ManyToManyField('self')
+    related_equation = models.ManyToManyField('self', null=True, blank=True)
     created_at = models.DateTimeField(auto_now_add=True, editable=False)
     updated_at = models.DateTimeField(auto_now=True, editable=False)
     subject = models.ForeignKey(

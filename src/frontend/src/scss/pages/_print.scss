@@ -1,6 +1,6 @@
 @media print {
     body * {
-        visibility: hidden;
+        // visibility: hidden;
         font-size: 14px;
     }
     #printThis, #printThis * {
@@ -33,3 +33,6 @@
         margin: 3mm 1mm 3mm 1mm; 
     }
 }
+
+
+  
