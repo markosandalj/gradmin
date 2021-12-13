@@ -129,11 +129,11 @@ class MaturaAdmin(admin.ModelAdmin):
             problems = Problem.objects.annotate(number_field=Cast('number', IntegerField())).filter(matura=matura).order_by('number_field')
             for i, problem in enumerate(problems):
                 if(i >= 7):
-                    problem.approval = 'unavailable'
+                    problem.shop_availability = 'unavailable'
                     problem.save()
                     messages.success(request, "Problem {p} je sada unavailable".format(p=problem.name))
                 else:
-                    problem.approval = 'available'
+                    problem.shop_availability = 'available'
                     problem.save()
                     messages.success(request, "Problem {p} je sada available".format(p=problem.name))
 
