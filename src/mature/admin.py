@@ -50,7 +50,7 @@ class MaturaAdmin(admin.ModelAdmin):
         MaturaProblemInline,
     ]
     search_fields = ('name',)
-    actions = ['update_problems', 'import_videos',]
+    actions = ['update_problems', 'import_videos', 'lock_problems']
     list_editable = ('file',)
     list_display = ( '__str__' , 'file')
     readonly_fields = ('created_at', 'updated_at',)
@@ -122,6 +122,21 @@ class MaturaAdmin(admin.ModelAdmin):
             response = requests.post(url, headers=headers, json = metafield_data)
             print(response.json())
             messages.success(request, "Proizvod uspješno ažuriran")
+
+    @admin.action(description='Make only first 7 problems available')
+    def lock_problems(self, request, queryset):
+        for matura in queryset:
+            problems = Problem.objects.annotate(number_field=Cast('number', IntegerField())).filter(matura=matura).order_by('number_field')
+            for i, problem in enumerate(problems):
+                if(i >= 7):
+                    problem.approval = 'unavailable'
+                    problem.save()
+                    messages.success(request, "Problem {p} je sada unavailable".format(p=problem.name))
+                else:
+                    problem.approval = 'available'
+                    problem.save()
+                    messages.success(request, "Problem {p} je sada available".format(p=problem.name))
+
 
 admin.site.register(Year)
 admin.site.register(Term)

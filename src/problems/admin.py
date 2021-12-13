@@ -76,7 +76,7 @@ class ProblemAdmin(admin.ModelAdmin):
     list_display = ('name', 'shop_availability', 'approval', 'question', )
     list_filter = ('subject', 'matura','shop_availability', )
     list_editable = ('shop_availability','approval',)
-    search_fields = ('name', 'question', 'section',)
+    search_fields = ('name', 'question__question_text', 'section__name',)
     autocomplete_fields = ('matura', 'question',)
     actions = ['make_available', 'make_unavailable', 'make_hidden', 'approve', 'unapprove',]
     inlines = [
