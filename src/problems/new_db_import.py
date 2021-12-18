@@ -6,8 +6,10 @@ import pathlib
 import json
 import vimeo
 import requests
+import time
 from bs4 import BeautifulSoup
-from shopify_models.models import Template
+from problems.models import Problem
+from shopify_models.models import Product, Template
 
 from skripte.models import Skripta
 
@@ -288,3 +290,99 @@ def importEquations():
                                     )
                                     new_eq_obj.save()
                                     new_eq_obj.section.set([section_obj, ])
+
+
+
+def fetchVideoLegths():
+    c = vimeo.VimeoClient(
+        token='efe0a81055184db54700aa97ec9aa821',
+        key='8e5f364f348c8c12ab10a8a3d48e35461a1e55fb',
+        secret='zQHi4Z9WAalZ6LPUPP9lybCu5utepNl5mHtvL1QEnYpR/sgsKLFsC5Xvj/hMopJf9T0jJGfNHuWFTutePS7dGmZ8pRg1n3cVxf+RQOSRt0Kyf3eotVkWglaWmhX34UQn'
+    )
+    videos = Video.objects.all()
+    for video in videos:
+        if(video.vimeo_id != None):
+            if(video.length == None):
+                try:
+                    response = c.get("https://api.vimeo.com/me/videos/" + str(video.vimeo_id) )
+                    data = response.json()
+                    duration = data['duration']
+                    video.length = duration
+                    video.save()
+                    time.sleep(0.5)
+                except:
+                    print('1. Nes je krepalo:', video.vimeo_id)
+            if(video.vimeo_secondary_id == None):
+                try:
+                    response = c.get("https://api.vimeo.com/me/videos/" + str(video.vimeo_id) )
+                    data = response.json()
+                    secondary_id = data['link'].replace('https://vimeo.com/', '').split('/')[1]
+                    video.vimeo_secondary_id = secondary_id
+                    video.save()
+                    time.sleep(0.5)
+                except:
+                    print('2. Nes je krepalo:', video.vimeo_id)
+            if(video.vimeo_embed_url == None):
+                try:
+                    response = c.get("https://api.vimeo.com/me/videos/" + str(video.vimeo_id) )
+                    data = response.json()
+                    print(data['embed']['html'] )
+                    iframe = data['embed']['html']  
+                    soup = BeautifulSoup(iframe, 'html.parser')
+                    tag = soup.find_all('iframe')[0]
+                    video.vimeo_embed_url = tag['src']
+                    video.save()
+                    time.sleep(0.5)
+                except: 
+                    print('3. Nes je krepalo:', video.vimeo_id)
+            if(video.vimeo_view_url == None):
+                
+
+
+
+def deleteUslessVideoObjects():
+    videos = Video.objects.all()
+    for video in videos:
+        try:
+            problem = Problem.objects.get(video_solution=video)
+        except:
+            print(video.id)
+            video.delete()
+
+
+def importShopifyProducts():
+    base_url = 'https://msandalj23.myshopify.com'
+    headers = {'Content-Type': 'application/json', 'X-Shopify-Access-Token': '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' }
+    products_url = '/admin/api/2021-10/products.json?limit=250'
+    url = base_url + products_url
+    response = requests.get(url, headers=headers)
+    products = response.json()['products']
+    for product in products:
+        try:
+            new_product = Product.object.get(product_id = product['id'])
+            # product_id = product.id,
+            # title = product.title,
+            # vendor = product.vendor,
+        except:
+            print(product)
+            status = 'draft' if product['published_at'] == None else 'active'
+            new_product = Product(
+                product_id = product['id'],
+                title = product['title'],
+                vendor = product['vendor'],
+                type = product['product_type'],
+                handle = product['handle'],
+                graphql_api_id = product['admin_graphql_api_id'],
+                status = status
+            )
+            new_product.save()
+
+
+def replaceProductIdsWithProductModels():
+    maturas = Matura.objects.all()
+    for matura in maturas:
+        try:
+            matura.product = Product.objects.get(product_id = matura.shopify_product_id)
+            matura.save()
+        except:
+            print(matura)
