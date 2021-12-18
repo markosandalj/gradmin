@@ -140,11 +140,20 @@ export default function Skripta() {
                             <button type="submit" className="btn btn--save">Save</button>
                             <button type="button" onClick={handlePrint} className="btn btn--primary">Print</button>
                         </div>
+                        {/* <div className="problems-section">
+                        {sections.map((section, section_index) => {
+                            return(
+                                <a href={`#${section.id}`}>
+                                    <h3 className="problems-section__link">{section_order ? section_order : section_index+1}. {section.name}</h3>
+                                </a>
+                            )
+                        })}
+                        </div> */}
                         <div>
                             {sections.map((section, section_index) => {
                                 if (section.problems.length > 0 || section.equations.length > 0 ) {
                                     return (
-                                        <div key={section.name}>
+                                        <div key={section.name} id={section.id}>
                                             <div className="problems-section">
                                                 <div className="problems-section__header">
                                                     <h3 className="problems-section__title">{section_order ? section_order : section_index+1}. {section.name}</h3>
