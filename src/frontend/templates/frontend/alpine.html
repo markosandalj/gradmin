@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Gradivo.hr</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static "assets/main.css" %}">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css" integrity="sha384-DyZ88mC6Up2uqS4h/KRgHuoeGwBcD4Ng9SiP4dIRy0EXTlnuz47vAwmeGwVChigm" crossorigin="anonymous">
+</head>
+<body>
+    <div class="nav" x-data="{ open: false }">
+        <button class="hamburger" @click="open = !open">
+            <i class="fas fa-bars" x-show="open === false"></i>
+            <i class="fas fa-times" x-show="open === true"></i>
+        </button>
+        <ul class="nav-items" x-show="open === true" @click.outside="open = false">
+            <li>Item 1</li>
+            <li>Item 2</li>
+            <li>Item 3</li>
+            <li>Item 4</li>
+        </ul>
+    </div>
+
+    <div class="container">
+        <div class="counter" x-data="{ counter: 0 }">
+            <button @click="counter++">+</button> <span x-text="counter"></span> <button @click="counter--">-</button>
+            <input type="hidden" x-bind:value="counter">
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="accordion" x-data="{ open: false }" @click="open = !open">
+            <div class="accordion__title">Accordion</div>
+            <div class="accordion__content" x-show="open" x-transition:enter.duration.500ms x-transition:leave.duration.400ms >Accordion Accordion Accordion Accordion Accordion Accordion Accordion</div>
+        </div>
+    </div>
+    
+    <div class="container tabs" x-data="{ tab: 1 }">
+        <template x-for="i in [1, 2, 3]">
+            <div>
+                <button @click="tab = i" x-text="i" :class=" tab === i ? 'active' : '' " ></button>
+                <div class="tab" x-show=" tab === i">
+                    Ovo je tab broj: <span x-text="i"></span>
+                </div>
+            </div>
+        </template>
+        <div class="tab">
+            Ovo je tab broj: <span x-text="tab"></span>
+        </div>
+    </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <script>
+        window.equations = {{ equations|safe }}
+    </script>
+    
+    <div class="container" x-data="equationsData(window.equations)">
+        <ul class="equation__list">
+            <input type="search" placeholder="Search equations..." x-ref="searchTerm" @keydown="filterEquations($refs.searchTerm.value)" @keyup="filterEquations($refs.searchTerm.value)"/>
+            <template x-for="equation in getEquations()">
+                <li class="equation">
+                    <div class="equation__name">
+                        <span x-text="equation.fields.name"></span> <i class="fas fa-info-circle" @click="toggleModal(equation)"></i>
+                    </div>
+                    <div class="equation__math" x-text="formatEquation(equation)">
+                    </div>
+                </li>
+            </template>
+        </ul>
+        <template x-if="isModalOpen()">
+            <div class="modal__wrapper">
+                <div class="modal">
+                    <button class="modal__close" @click="toggleModal()">
+                        <i class="far fa-times-circle"></i>
+                    </button>
+                    <div class="modal__title" x-text="getActiveEquation()?.name">
+                    </div>
+                    <div class="modal__equation" x-text=" '$' + getActiveEquation()?.equation + '$' ">
+                    </div>
+                    <div class="modal__description" x-text="getActiveEquation()?.description">
+                    </div>
+                </div>
+            </div>
+        </template>
+    </div>
+
+
+</body>
+<script src="{% static "assets/main.js" %}"></script>
+</html>

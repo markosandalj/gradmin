@@ -1,0 +1,204 @@
+body {
+    background: #f5f5f5;
+    font-family: 'Montserrat';
+    padding-top: 8rem;
+
+    > * {
+        padding: 2rem 0;
+    }
+}
+
+.container {
+    max-width: 1000px;
+    margin: 2rem auto;
+}
+
+.equation {
+    padding: 1.25rem 0;
+    display: flex;
+    flex-direction: column;
+    gap: .5rem;
+
+    &__list {
+        display: flex;
+        flex-direction: column; 
+        padding: 2.5rem 2rem;
+        background: $white;
+        box-shadow: 0 0 40px rgba($black, .1);
+        border-radius: 1.25rem;
+
+        input {
+            padding: .5rem;
+            border-radius: 10px;
+        }
+    }
+
+    &__name {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+
+        i {
+            &:hover {
+                cursor: pointer;
+                color: $primary;
+            }
+        }
+    }
+}
+
+.modal {
+    border-radius: 1.25rem;
+    position: absolute;
+    box-shadow: 0 0 40px rgba($black, .1);
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: $white;
+    padding: 2rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+    min-width: 500px;
+    align-items: center;
+    
+    &__wrapper {
+        position: fixed;
+        width: 100%;
+        height: 100%;
+        background: rgba($black, .5);
+        top: 0;
+        bottom: 0;
+        left: 0;
+        right: 0;
+    }
+
+    &__title {
+         font-weight: bold;
+         font-size: 1.125rem;
+         margin-bottom: 1rem;
+    }
+
+    &__close {
+        position: absolute;
+        right: 2rem;
+        top: 2rem;
+
+        &:hover {
+            cursor: pointer;
+            color: $primary;
+        }
+    }
+}
+
+.counter {
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+
+    button {
+        padding : 1rem;
+        font-weight: bold;
+        font-size: 1.25rem;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 1.25rem;
+        background: $secondary;
+        width: 2.5rem;
+        height: 2.5rem;
+        color: $white;
+    }
+
+    span {
+        width: 2rem;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+}
+
+.accordion {
+    background: $secondary;
+    color: $white;
+    font-weight: bold;
+
+    &:hover {
+        cursor: pointer;
+    }
+    
+    > * {
+        padding: 1.5rem;
+    }
+}
+
+
+.tabs {
+    display: flex;
+    gap: 2rem;
+
+    button {
+        padding : 1rem;
+        font-weight: bold;
+        font-size: 1.25rem;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: .5rem;
+        background: $secondary;
+        width: 8.5rem;
+        height: 2.5rem;
+        color: $white;
+
+        &.active {
+            background: $primary;
+        }
+
+        &:hover {
+            cursor: pointer;
+            background: $primary;
+        }
+    }
+
+    .tab {
+        padding: 1rem 0;
+    }
+}
+
+
+.nav {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    height: 1.5rem;
+    background: $secondary;
+    display: flex;
+    padding: 2rem 12rem;
+    // justify-content: flex-end;
+
+    button {
+        &:hover {
+            cursor: pointer;
+            color: $primary;
+        }
+    }
+
+    .hamburger {
+        font-size: 1.5rem;
+        color: $white;
+    }
+
+    &-items {
+        position: absolute;
+        top: 90%;
+        background: $white;
+        padding: 2rem;
+        border-radius: .5rem;
+        box-shadow: 0 0 40px rgba($black, .1);
+        min-width: 300px;
+
+        > * {
+            padding: 1rem 0;
+        }
+    }
+}
