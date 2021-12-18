@@ -6,7 +6,9 @@ from django.db.models.base import Model
 from django.contrib import messages
 from django.utils.translation import ngettext
 from django.utils.safestring import mark_safe
+from django.utils.translation import gettext_lazy as _
 from django.urls import reverse
+from django.contrib.admin import SimpleListFilter
 # from django_reverse_admin import ReverseModelAdmin
 
 # Register your models here.
@@ -71,10 +73,28 @@ class AnswerChoiceAdmin(admin.ModelAdmin):
     ]
 
 # PROBLEMS
+class EmptyAnswerFilter(SimpleListFilter):
+    title = 'empty answer' # or use _('country') for translated title
+    parameter_name = 'empty_answer'
+
+    def lookups(self, request, model_admin):
+        return [ 
+            ('no_answer', _('No answer')),
+            ('has_answer', _('Has answer')),
+            ]
+
+    def queryset(self, request, queryset):
+        answer_question_ids = [ans.question.id for ans in CorrectAnswer.objects.all()]
+        no_ans_queryset = queryset.exclude(question__id__in = answer_question_ids)
+        if self.value() == 'no_answer':
+            return no_ans_queryset
+        if self.value():
+            return queryset
+
 class ProblemAdmin(admin.ModelAdmin):
     model = Problem
     list_display = ('name', 'shop_availability', 'approval', 'question', )
-    list_filter = ('subject', 'matura','shop_availability', )
+    list_filter = ('subject', 'matura','shop_availability', 'approval', EmptyAnswerFilter)
     list_editable = ('shop_availability','approval',)
     search_fields = ('name', 'question__question_text', 'section__name',)
     autocomplete_fields = ('matura', 'question',)
