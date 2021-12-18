@@ -25,3 +25,8 @@ __pycache__/
 *.py[cod]
 *.pyc
 *.*.pyc
+
+
+# databse model images
+src/*.png
+src/backups/
