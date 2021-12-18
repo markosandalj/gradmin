@@ -1,5 +1,5 @@
 from django.urls import path
-from .views import IndexView
+from .views import AlpineView, IndexView
 
 urlpatterns = [
     path('index', IndexView),
@@ -9,4 +9,5 @@ urlpatterns = [
     path('index/skripta/<str>/<int>/<i>', IndexView),
     path('index/matura/<int>/list', IndexView),
     path('index/matura/<int>', IndexView),
+    path('alpine', AlpineView),
 ]

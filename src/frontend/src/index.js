@@ -1,8 +1,9 @@
 import './index.scss'
-import '@shopify/polaris/dist/styles.css';
-import { Sortable } from '@shopify/draggable';
-import store from './store/store';
-import App from './components/App';
+// import '@shopify/polaris/dist/styles.css';
+// import { Sortable } from '@shopify/draggable';
+// import store from './store/store';
+// import App from './components/App';
+import './components/alpine';
 
 function initializeMathJax() {
     if (document.body.querySelector('#app') ||
@@ -25,8 +26,8 @@ function initializeMathJax() {
 
 setTimeout( () => {
     initializeMathJax()
-    const sortable = new Sortable(document.querySelectorAll('.problems-section'), {
-        draggable: '.drag-item',
-        handle: '.drag-handle'
-    })
-}, 1500)
+    // const sortable = new Sortable(document.querySelectorAll('.problems-section'), {
+    //     draggable: '.drag-item',
+    //     handle: '.drag-handle'
+    // })
+}, 200)
