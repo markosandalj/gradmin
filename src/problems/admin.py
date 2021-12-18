@@ -86,9 +86,12 @@ class EmptyAnswerFilter(SimpleListFilter):
     def queryset(self, request, queryset):
         answer_question_ids = [ans.question.id for ans in CorrectAnswer.objects.all()]
         no_ans_queryset = queryset.exclude(question__id__in = answer_question_ids)
+        has_ans_queryset = queryset.filter(question__id__in = answer_question_ids)
         if self.value() == 'no_answer':
             return no_ans_queryset
-        if self.value():
+        elif self.value() == 'has_answer':
+            return has_ans_queryset
+        elif self.value():
             return queryset
 
 class ProblemAdmin(admin.ModelAdmin):
