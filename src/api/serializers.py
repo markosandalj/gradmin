@@ -193,6 +193,7 @@ class QRSkriptaSectionSerializer(serializers.ModelSerializer):
     problems = QRSkriptaProblemSerializer(many=True,read_only=True,)
     section_order = SkriptaSectionSerializer(many=False, read_only=True)
     equations = serializers.SerializerMethodField('get_equations')
+    file = PDFSerializer(many=False, read_only=True)
 
     def get_equations(self, instance):
         equations = Equation.objects.filter(section__name = instance['name'])
@@ -201,7 +202,7 @@ class QRSkriptaSectionSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Section
-        fields = ('id', 'name', 'equations', 'problems', 'section_order',)
+        fields = ('id', 'name', 'equations', 'problems', 'section_order', 'file')
 
 class QRSkriptaSerializer(serializers.ModelSerializer):
     sections = QRSkriptaSectionSerializer(many=True, read_only=True)
@@ -246,7 +247,7 @@ class ShopifyPageSectionListSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Section
-        fields = ('id', 'name', 'subject_name', 'category', 'page', 'icon')
+        fields = ('id', 'name', 'subject_name', 'category', 'page', 'icon', )
 
 class ShopifyPageSectionSecondaryListSerializer(serializers.ModelSerializer):
     class Meta:
@@ -263,7 +264,7 @@ class ShopifyPageSkriptaListSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Skripta
-        fields = ('id', 'name', 'sections', )
+        fields = ('id', 'name', 'label', 'sections', )
 
 class ShopifyPageSkriptaSecondaryListSerializer(serializers.ModelSerializer):
     sections = serializers.SerializerMethodField('get_sections')

@@ -125,7 +125,7 @@ class SectionAdmin(admin.ModelAdmin):
     def create_shopify_page(self, request, queryset):
         action_form = UpdateShopifyPageForm
         base_url = 'https://msandalj23.myshopify.com'
-        headers = {'Content-Type': 'application/json', 'X-Shopify-Access-Token': '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' }
+        headers = { 'Content-Type': 'application/json', 'X-Shopify-Access-Token': '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' }
         pages_url = '/admin/api/2021-10/pages.json'
         for section in queryset:
             if( not section.page.page_id ):
@@ -149,7 +149,7 @@ class SectionAdmin(admin.ModelAdmin):
     @admin.action(description='Update pages metafield with problems on Shopify')
     def update_problems_metafield(self, request, queryset):
         base_url = 'https://msandalj23.myshopify.com'
-        headers = {'Content-Type': 'application/json', 'X-Shopify-Access-Token': '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' }
+        headers = { 'Content-Type': 'application/json', 'X-Shopify-Access-Token': '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' }
         skripta_id = str(request.POST['skripta'])
         for section in queryset:
             problems = Problem.objects.annotate(number_field=Cast('number', IntegerField())).filter(section=section, shop_availability='available', approval='approved', skripta__id = skripta_id ).exclude(video_solution=None).order_by('number_field', 'name')

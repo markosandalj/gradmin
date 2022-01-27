@@ -61,6 +61,11 @@ class SectionSection(models.Model):
 
 class Skripta(models.Model):
     name = models.TextField()
+    label = models.CharField(
+        blank=True,
+        null=True, 
+        max_length=255
+    )
     subject = models.ForeignKey(
         Subject,
         blank=True,
