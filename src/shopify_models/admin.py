@@ -51,7 +51,7 @@ class PageAdmin(admin.ModelAdmin):
 
         for page in queryset:
             page_url = '/admin/api/2021-10/pages/{id}/metafields.json'.format(id=page.page_id)
-            skriptas = Skripta.objects.filter(page=page)
+            skriptas = Skripta.objects.filter(page=page).order_by('order')
             skriptas_list = []
             
             for skripta in skriptas:
