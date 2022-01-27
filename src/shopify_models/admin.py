@@ -1,16 +1,27 @@
+from pyexpat import model
 from django.contrib import admin
 from django.contrib import messages
 import requests
 import json
+from adminsortable2.admin import SortableAdminMixin, SortableInlineAdminMixin
 
 # Register your models here.
 from .models import Product, Page, Template
 from skripte.models import Skripta
 from api.serializers import ShopifyPageSkriptaListSerializer
 
+
+class SkriptaInline(SortableInlineAdminMixin, admin.StackedInline):
+    model = Skripta
+    extra = 0
+
 class PageAdmin(admin.ModelAdmin):
     actions = ['publish_pages', 'hide_pages', 'delete_pages', 'update_page_content']
     list_filter = ('template',)
+
+    inlines = [
+        SkriptaInline,
+    ]
 
     @admin.action(description='OPREZNO!!!! Delete selected pages from Shopify')
     def delete_pages(self, request, queryset):

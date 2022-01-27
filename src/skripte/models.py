@@ -19,7 +19,6 @@ class Subject(models.Model):
 class Section(models.Model):
     name = models.TextField()
     subject = models.ForeignKey(Subject, on_delete=models.PROTECT, blank=True, null=True, related_name="subject_name", )
-    order = models.PositiveIntegerField(default=0, blank=False, null=False)
     skripta = models.ManyToManyField('Skripta', blank=True, related_name='sections', through='SkriptaSection')
     related_sections = models.ManyToManyField('self', blank=True, related_name='related_sections', through='SectionSection')
     page = models.ForeignKey(
@@ -43,6 +42,7 @@ class Section(models.Model):
     exclude = models.BooleanField(default=False)
     created_at = models.DateTimeField(auto_now_add=True, editable=False)
     updated_at = models.DateTimeField(auto_now=True, editable=False)
+    order = models.PositiveIntegerField(default=0, blank=False, null=False)
 
     class Meta(object):
         ordering = ['order', ]
@@ -84,6 +84,10 @@ class Skripta(models.Model):
         null=True,
         on_delete=models.SET_NULL,
     )
+    order = models.PositiveIntegerField(default=0, blank=False, null=False)
+
+    class Meta(object):
+        ordering = ['order', ]
 
     def __str__(self):
         return str(self.name)
