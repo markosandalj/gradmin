@@ -210,8 +210,8 @@ class SectionAdmin(admin.ModelAdmin):
                 skripta_section = SkriptaSection.objects.get(section=section, skripta=skripta)
                 skripta_sections = SkriptaSection.objects.filter(section=section)
                 skripta_tags = [ section.skripta.name for section in skripta_sections ]
-                prev_section = SkriptaSection.objects.filter(section_order__lt=skripta_section.section_order).order_by('-section_order').first()
-                next_section = SkriptaSection.objects.filter(section_order__gt=skripta_section.section_order).order_by('section_order').first()
+                prev_section = SkriptaSection.objects.filter(skripta=skripta, section_order__lt=skripta_section.section_order).order_by('-section_order').first()
+                next_section = SkriptaSection.objects.filter(skripta=skripta, section_order__gt=skripta_section.section_order).order_by('section_order').first()
                 prev_section_handle = prev_section.section.page.handle if prev_section else None
                 next_section_handle = next_section.section.page.handle if next_section else None
                 serilizer = ShopifyPageRelatedSectionSerializer(section.related_sections.all(), many=True)
