@@ -47,6 +47,9 @@ class VideoAdmin(admin.ModelAdmin):
                     if(video.vimeo_view_url == None):
                         video.vimeo_view_url = data['link']
                         shuldSave = True
+                    if(video.vimeo_thumbnail_url == None):
+                        video.vimeo_thumbnail_url = data['pictures']['base_link']
+                        shuldSave = True
                     
                     if(shuldSave):
                         video.save()

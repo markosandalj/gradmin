@@ -33,7 +33,7 @@ class ImageSerializer(serializers.ModelSerializer):
 class VideoSerializer(serializers.ModelSerializer):
     class Meta:
         model = Video
-        fields = ('id', 'vimeo_id', 'vimeo_secondary_id', 'vimeo_view_url', 'vimeo_embed_url', 'length')
+        fields = ('id', 'vimeo_id', 'vimeo_secondary_id', 'vimeo_view_url', 'vimeo_embed_url', 'vimeo_thumbnail_url', 'length')
 
 class SVGSerializer(serializers.ModelSerializer):
     class Meta:

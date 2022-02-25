@@ -41,6 +41,7 @@ class Video(models.Model):
     vimeo_secondary_id = models.CharField(max_length = 200, blank=True,null=True,)
     vimeo_view_url = models.URLField(max_length = 1000, blank=True,null=True,)
     vimeo_embed_url = models.URLField(max_length = 1000, blank=True,null=True,)
+    vimeo_thumbnail_url = models.URLField(max_length = 1000, blank=True,null=True,)
     created_at = models.DateTimeField(auto_now_add=True, editable=False)
     updated_at = models.DateTimeField(auto_now=True, editable=False)
 
