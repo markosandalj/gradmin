@@ -22,7 +22,7 @@ class ProuctSerializer(serializers.ModelSerializer):
 class PageSerializer(serializers.ModelSerializer):
     class Meta:
         model = Page
-        fields = ('id', 'handle')
+        fields = ('id', 'page_id', 'handle', 'title')
 
 class EquationSerializer(serializers.ModelSerializer):
     class Meta:
