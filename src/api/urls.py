@@ -1,6 +1,17 @@
 from django.urls import path
 
-from .views import MaturaApiView, MaturaListApiView, QRSkriptaListView, QRSkriptaSectionView, QRSkriptaView, ShopifyPageSectionView, ShopifyPageSkriptaListView, ShopifyProductMaturaView, UpdateQuestionApiView
+from .views import (
+    MaturaApiView, 
+    MaturaListApiView, 
+    QRSkriptaListView, 
+    QRSkriptaSectionView, 
+    QRSkriptaView, 
+    ShopifyPageSectionView, 
+    ShopifyPageSkriptaListView, 
+    ShopifyProductMaturaView, 
+    UpdateQuestionApiView, 
+    PrintSkripta
+)
 
 urlpatterns = [
     # path('maturas/', MaturaWithoutProblemsApiView.as_view()),
@@ -9,6 +20,7 @@ urlpatterns = [
     # path('maturas/<str:subject__name>/<str:year__year>', MaturaWithoutProblemsApiView.as_view()),
     # path('maturas/<str:subject__name>/<str:year__year>/<str:term__term>', MaturaWithoutProblemsApiView.as_view()),
     path('question/update', UpdateQuestionApiView.as_view()),
+    path('skripta/print', PrintSkripta.as_view()),
     path('skripta/<int:skripta_id>/list', QRSkriptaListView.as_view()),
     path('skripta/<int:pk>', QRSkriptaView.as_view()),
     path('skripta/<int:skripta_id>/<int:section_id>', QRSkriptaSectionView.as_view()),

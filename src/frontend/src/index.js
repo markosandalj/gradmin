@@ -1,5 +1,6 @@
 import './index.scss'
 import '@shopify/polaris/dist/styles.css';
+// import "react-loader-spinner/dist/loader/css/react-spinner-loader.css";
 import { Sortable } from '@shopify/draggable';
 import store from './store/store';
 import App from './components/App';
@@ -12,14 +13,15 @@ function initializeMathJax() {
                     tex: {
                         inlineMath: {'[+]': [['$', '$']]}
                     },
-                    svg: {fontCache: 'global'}
+                    svg: {fontCache: 'local'}
                 };
             }
             var script = document.createElement('script');
             script.setAttribute('id', 'MathJaxScriptTag')
             script.src = 'https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js';
+            // script.src = 'https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML-full'
             // script.src = 'https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js';
-            document.head.appendChild(script);
+            document.body.appendChild(script);
     }
 }
 

@@ -8,7 +8,10 @@ const devMode = process.env.NODE_ENV !== "production";
 const outputDir = devMode ? 'build_dev' : 'build';
 
 module.exports = {
-  entry: "./frontend/src/index.js",
+  entry: {
+    main: "./frontend/src/index.js",
+    print: "./frontend/src/print.scss"
+  },
   output: {
     path: path.resolve(__dirname, "./frontend/static/assets"),
     filename: "[name].js",
@@ -29,10 +32,11 @@ module.exports = {
         use: ['style-loader', 'css-loader'],
       },
       {
-          test: /\.scss$/,
+          test: /\.s?css$/,
           use: [
               MiniCssExtractPlugin.loader,
               'css-loader',
+              "resolve-url-loader",
               'sass-loader',
           ],
       },

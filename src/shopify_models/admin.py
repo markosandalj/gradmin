@@ -7,8 +7,9 @@ from adminsortable2.admin import SortableAdminMixin, SortableInlineAdminMixin
 
 # Register your models here.
 from .models import Product, Page, Template
-from skripte.models import Skripta
-from api.serializers import ShopifyPageSkriptaListSerializer
+from skripte.models import Skripta, Section
+from problems.models import Problem
+from api.serializers import ShopifyPageSkriptaListSerializer, ShopifyPageSectionSerializer, ShopifyPageProblemSerializer
 
 
 class SkriptaInline(SortableInlineAdminMixin, admin.StackedInline):
@@ -16,12 +17,16 @@ class SkriptaInline(SortableInlineAdminMixin, admin.StackedInline):
     extra = 0
 
 class PageAdmin(admin.ModelAdmin):
-    actions = ['publish_pages', 'hide_pages', 'delete_pages', 'update_page_content']
+    actions = ['create_pages', 'delete_pages', 'update_page_content', 'publish_pages', 'hide_pages',]
     list_filter = ('template',)
 
     inlines = [
         SkriptaInline,
     ]
+
+    @admin.action(description='Create selected pages on Shopify')
+    def create_pages(self, request, queryset):
+        return 1
 
     @admin.action(description='OPREZNO!!!! Delete selected pages from Shopify')
     def delete_pages(self, request, queryset):
@@ -54,26 +59,63 @@ class PageAdmin(admin.ModelAdmin):
             skriptas = Skripta.objects.filter(page=page).order_by('order')
             skriptas_list = []
             
-            for skripta in skriptas:
-                serilizer = ShopifyPageSkriptaListSerializer(skripta)
-                skriptas_list.append(serilizer.data)
+            if len(skriptas) > 0:
+                for skripta in skriptas:
+                    serilizer = ShopifyPageSkriptaListSerializer(skripta)
+                    skriptas_list.append(serilizer.data)
 
-            json_string = json.dumps(skriptas_list)
-            metafield_data = {
-                "metafield": {
-                    "namespace": "section",
-                    "key": "lists",
-                    "type": "json",
-                    "value": json_string
+                skriptas_json_string = json.dumps(skriptas_list)
+                metafield_data = {
+                    "metafield": {
+                        "namespace": "section",
+                        "key": "lists",
+                        "type": "json",
+                        "value": skriptas_json_string
+                    }
                 }
-            }
-            url = base_url + page_url
-            try:
-                response = requests.post(url, headers=headers, json = metafield_data)
-                print(response.json())
-                messages.success(request, "Page {page} uspješno ažuriran".format(page=skripta.page.title))
-            except:
-                messages.error(request, "Page {page} neuspješno ažuriran".format(page=skripta.page.title))
+                url = base_url + page_url
+                try:
+                    response = requests.post(url, headers=headers, json = metafield_data)
+                    print(response.json())
+                    messages.success(request, "Page {page} uspješno ažuriran sa skriptama".format(page=skripta.page.title))
+                except:
+                    messages.error(request, "Page {page} neuspješno ažuriran".format(page=skripta.page.title))
+
+            
+            section = Section.objects.get(page=page)
+            if(section):
+                skripta_section = Skripta.objects.filter(section__id = section.id)
+                problems_list = []
+
+                for skripta in skripta_section:
+                    problems = Problem.objects.filter(section = section, skripta__id = skripta.id, approval='approved', shop_availability='available' )
+                    serilizer = ShopifyPageProblemSerializer(problems, many=True)
+                    problems_list.append(serilizer.data)
+
+                problems_json_string = json.dumps(skriptas_list)
+                metafield_data = {
+                    "metafield": {
+                        "namespace": "section",
+                        "key": "problems_list",
+                        "type": "json",
+                        "value": problems_json_string
+                    }
+                }
+                url = base_url + page_url
+                try:
+                    response = requests.post(url, headers=headers, json = metafield_data)
+                    print(response.json())
+                    messages.success(request, "Page {page} uspješno ažuriran sa zadatcima".format(page=skripta.page.title))
+                except:
+                    messages.error(request, "Page {page} neuspješno ažuriran".format(page=skripta.page.title))
+            # problems_list = []
+
+            # for section in sections:
+
+
+
+
+        
     
 
 # class ProductAdmin(admin.ModelAdmin):

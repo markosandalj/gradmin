@@ -1,15 +1,57 @@
+from email import header
 from django.db.models.fields import IntegerField
+from django.db.models.functions import Cast
 from django.shortcuts import render
-from mature.models import MaturaSubject
+from django.conf import settings
+from django.http import HttpResponse
+from django.http import FileResponse
+from django.core.files.base import File
+import requests
+import json
+import time
+from pathlib import Path
+
 from rest_framework import generics, status
 from rest_framework.views import APIView
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
-from problems.models import AnswerChoice, Matura, Problem, Question, Section
-from skripte.models import Equation, Skripta, SkriptaSection
-from .serializers import FEMaturaSerializer, MaturaSerializer, ProblemSerializer, QRSkriptaListSerializer, QRSkriptaSectionSerializer, QRSkriptaSerializer, SectionSerializer, ShopifyPageSectionSerializer, ShopifyPageSkriptaListSerializer, ShopifyProductMaturaSerializer, UpdateQuestionSerializer
-import json
-from django.db.models.functions import Cast
+from weasyprint import HTML, CSS
+import cloudinary.uploader
+import cloudinary
+
+from media.models import (
+    PDF
+)
+from mature.models import (
+    MaturaSubject
+)
+from problems.models import (
+    AnswerChoice, 
+    Matura, 
+    Problem, 
+    Question, 
+    Section
+)
+from skripte.models import (
+    Equation, 
+    Skripta, 
+    SkriptaSection
+)
+from .serializers import (
+    PDFSerializer,
+    FEMaturaSerializer, 
+    MaturaSerializer, 
+    ProblemSerializer, 
+    QRSkriptaListSerializer, 
+    QRSkriptaSectionSerializer, 
+    QRSkriptaSerializer, 
+    SectionSerializer, 
+    ShopifyPageSectionSerializer, 
+    ShopifyPageSkriptaListSerializer, 
+    ShopifyProductMaturaSerializer, 
+    UpdateQuestionSerializer
+)
+
 
 # Create your views here.
 
@@ -96,7 +138,8 @@ class QRSkriptaSectionView(generics.ListAPIView):
             'name': section.name,
             'equations': equations,
             'problems': problems,
-            'section_order': skripta_section.section_order
+            'section_order': skripta_section.section_order,
+            'file': skripta.file
         }]
         return queryset
 
@@ -162,3 +205,41 @@ class UpdateQuestionApiView(APIView):
         # if('images' in data.keys()):
             # TODO upload images
         return Response(status=status.HTTP_200_OK)
+
+class PrintSkripta(APIView):
+    def post(self, request, format=None):
+        # try:
+            data = request.data
+            skripta = Skripta.objects.get(pk = data['id'])
+
+            html_string = json.loads(data['html'])
+            pdf_file_path = Path(settings.BASE_DIR / 'tmp.pdf')
+            html_file_path = Path(settings.BASE_DIR / 'tmp.html')
+
+            with open(html_file_path, 'w') as html_file:
+                html_file.write(html_string)
+
+            html = HTML(filename=html_file_path, encoding="UTF-8")
+            pdf_file = html.write_pdf(pdf_file_path, stylesheets=[Path(settings.STATICFILES_DIRS[0] / 'assets/print.css')])
+
+            if(skripta.file != None):
+                pdf_model = PDF.objects.get(pk = skripta.file.id)
+                pdf_model.file.save(skripta.name + '.pdf', File(open(pdf_file_path, 'rb')))
+                serializer = PDFSerializer(pdf_model, many=False)
+                data = json.dumps(serializer.data)
+            else:
+                pdf_model = PDF(name=skripta.name, file=File(open(pdf_file_path, 'rb')))
+                pdf_model.save()
+                skripta.file = pdf_model
+                skripta.save()
+                serializer = PDFSerializer(pdf_model, many=False)
+                data = json.dumps(serializer.data)
+
+            html_file_path.unlink()
+            pdf_file_path.unlink()
+
+            return Response(status=status.HTTP_200_OK, data=data)
+        # except:
+        #     return Response(status=status.HTTP_400_BAD_REQUEST)
+
+

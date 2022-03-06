@@ -21,6 +21,9 @@ import { getProblems } from "../../store/actions/SkriptaActions";
 import { toggleEditingView } from "../../store/actions/problemsViewActions";
 import { togglePrintingView } from "../../store/actions/problemsViewActions";
 
+// LOADER
+import { Oval } from  'react-loader-spinner'
+
 
 
 export default function Skripta() {
@@ -38,6 +41,9 @@ export default function Skripta() {
 
     const [displaySuccesAlert, setDisplaySuccesAlert] = useState(false)
     const [displayErrorAlert, setDisplayErrorAlert] = useState(false)
+    const [downloadLoading, setDownloadLoading] = useState(false)
+    const [displayDownloadModal, setDisplayDownloadModal] = useState(false)
+    const [downloadLink, setDownloadLink] = useState('')
 
     const closeAlert = () => {
         setDisplaySuccesAlert(false);
@@ -83,6 +89,7 @@ export default function Skripta() {
                 ).then(res => {
                     setDisplaySuccesAlert(true);
                     console.log(`Successfully sent form data` + res.data);
+                    setDisplayDownloadModal(true)
                 })
                 .catch(err => {
                     console.log(err);
@@ -106,9 +113,32 @@ export default function Skripta() {
 
     const handlePrint = () => {
         if(!view.printing) handlePrintingToggle();
-        setTimeout( () => {
-            window.print()
-        }, 100)
+        setDownloadLoading(!downloadLoading)
+        let apiUrl = `${window.location.origin}/api/skripta/print`;
+        let printElement = document.querySelector('#printThis')
+        
+        let formData = new FormData();
+        formData.append('html', JSON.stringify(printElement.innerHTML) )
+        formData.append('id', skripta_id)
+        
+        axios.post(
+            apiUrl,
+            formData,
+            {
+                headers: {'X-CSRFToken': csrftoken, "Content-type": "multipart/form-data"}
+            }
+        ).then(res => {
+            console.log(`Successfully sent form data`);
+            console.log(JSON.parse(res.data).file)
+            setDownloadLink(JSON.parse(res.data).file)
+            setDisplayDownloadModal(!displayDownloadModal)
+        })
+        .catch(err => {
+            console.log(err);
+            setDownloadLoading(!downloadLoading)
+            setDisplayDownloadModal(!displayDownloadModal)
+        })
+        setDownloadLoading(!downloadLoading)
     }
 
     return (
@@ -130,6 +160,7 @@ export default function Skripta() {
                             </button>
                         </div>}
                     <form id="printThis" onSubmit={handleSubmit}>
+                        <div className="only-print frontcover"></div>
                         <div className="problems-section__actions">
                             <button type="button" onClick={handleEditingToggle} className={`problems-section__edit ${view.editing && 'active'}`}>
                                 <FontAwesomeIcon icon={faPen} />
@@ -138,16 +169,30 @@ export default function Skripta() {
                                 <FontAwesomeIcon icon={faPrint} />
                             </button>
                             <button type="submit" className="btn btn--save">Save</button>
-                            <button type="button" onClick={handlePrint} className="btn btn--primary">Print</button>
+                            <button type="button" onClick={handlePrint} className="btn btn--primary">
+                                { downloadLoading ?
+                                    <Oval    
+                                        heigth="16"
+                                        width="16"
+                                        color='grey'
+                                        ariaLabel='loading'>
+                                    </Oval> : 'Print'}
+                            </button>
+                            {displayDownloadModal &&
+                                <div className="problems-section__modal">
+                                    <h3>Skripta je spremna za preuzimanje</h3>
+                                    <a className="btn btn--primary" href={downloadLink} target="_blank">Preuzmi</a>
+                                </div>
+                            }
                         </div>
                         {/* <div className="problems-section">
-                        {sections.map((section, section_index) => {
-                            return(
-                                <a href={`#${section.id}`}>
-                                    <h3 className="problems-section__link">{section_order ? section_order : section_index+1}. {section.name}</h3>
-                                </a>
-                            )
-                        })}
+                            {sections.map((section, section_index) => {
+                                return(
+                                    <a href={`#${section.id}`}>
+                                        <h3 className="problems-section__link">{section_order ? section_order : section_index+1}. {section.name}</h3>
+                                    </a>
+                                )
+                            })}
                         </div> */}
                         <div>
                             {sections.map((section, section_index) => {

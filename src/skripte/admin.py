@@ -56,7 +56,7 @@ class SkriptaAdmin(admin.ModelAdmin):
     list_filter = ('subject',)
     list_display = ('name','id', )
     search_fields = ('name',)
-    actions = ('update_shopify_page','update_secundary_list')
+    actions = ('update_shopify_page',)
 
     inlines = [
         SectionInline,
@@ -84,29 +84,7 @@ class SkriptaAdmin(admin.ModelAdmin):
             print(response.json())
             messages.success(request, "Page {page} uspješno ažuriran".format(page=skripta.page.title))
 
-    @admin.action(description='Update page (online skipta - sekundarni popis) on Shopify')
-    def update_secundary_list(self, request, queryset):
-        base_url = 'https://msandalj23.myshopify.com'
-        headers = {'Content-Type': 'application/json', 'X-Shopify-Access-Token': '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' }
-
-        for skripta in queryset:
-            page_url = '/admin/api/2021-10/pages/{id}/metafields.json'.format(id=skripta.page.page_id)
-            serilizer = ShopifyPageSectionSecondaryListSerializer(skripta)
-            json_string = json.dumps(serilizer.data)
-            metafield_data = {
-                "metafield": {
-                    "namespace": "section",
-                    "key": "secondary_list",
-                    "type": "json",
-                    "value": json_string
-                }
-            }
-            url = base_url + page_url
-            response = requests.post(url, headers=headers, json = metafield_data)
-            print(response.json())
-            messages.success(request, "Page {page} uspješno ažuriran".format(page=skripta.page.title))
-
-
+    
     
 class SectionAdmin(admin.ModelAdmin):
     model = Section
@@ -152,7 +130,7 @@ class SectionAdmin(admin.ModelAdmin):
         headers = { 'Content-Type': 'application/json', 'X-Shopify-Access-Token': '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' }
         skripta_id = str(request.POST['skripta'])
         for section in queryset:
-            problems = Problem.objects.annotate(number_field=Cast('number', IntegerField())).filter(section=section, shop_availability='available', approval='approved', skripta__id = skripta_id ).exclude(video_solution=None).order_by('number_field', 'name')
+            problems = Problem.objects.annotate(number_field=Cast('number', IntegerField())).filter(section=section, approval='approved', skripta__id = skripta_id ).exclude(video_solution=None, shop_availability = 'hidden',).order_by('number_field', 'name')
             if(len(problems) > 0 ):
                 serilizer = ShopifyPageProblemSerializer(problems, many=True)
                 json_string = json.dumps(serilizer.data)
@@ -178,7 +156,7 @@ class SectionAdmin(admin.ModelAdmin):
         headers = {'Content-Type': 'application/json', 'X-Shopify-Access-Token': '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' }
         skripta_id = str(request.POST['skripta'])
         for section in queryset:
-            problems = Problem.objects.annotate(number_field=Cast('number', IntegerField())).filter(section=section, shop_availability='available', approval='approved', skripta__id = skripta_id ).exclude(video_solution=None).order_by('number_field', 'name')
+            problems = Problem.objects.annotate(number_field=Cast('number', IntegerField())).filter(section=section, approval='approved', skripta__id = skripta_id ).exclude(shop_availability='hidden', video_solution=None).order_by('number_field', 'name')
             if(len(problems) > 0 ):
                 serilizer = ShopifyPageProblemSerializer(problems, many=True)
                 json_string = json.dumps(serilizer.data)

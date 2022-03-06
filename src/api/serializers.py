@@ -5,7 +5,7 @@ from django.db.models.expressions import F
 from django.utils import tree
 from rest_framework import serializers
 from problems.models import AnswerChoice, CorrectAnswer, Matura, Problem, Question
-from shopify_models.models import Page
+from shopify_models.models import Page, Product
 from skripte.models import Category, Equation, Razred, Section, SectionSection, Skripta, SkriptaSection, Subject
 from media.models import PDF, SVG, Image, Video
 from mature.models import Matura, MaturaSubject, Term, Year
@@ -14,6 +14,10 @@ from django.db.models.fields import IntegerField
 from django.db.models.functions.comparison import Cast
 
 ## --------- BASE SERIALIZERS --------- ##
+class ProuctSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Product
+        fields = ('product_id', 'handle')
 
 class PageSerializer(serializers.ModelSerializer):
     class Meta:
@@ -140,6 +144,7 @@ class MaturaSerializer(serializers.ModelSerializer):
     year = YearSerializer(many=False)
     subject = MaturaSubjectSerializer(many=False)
     number_of_problems = serializers.SerializerMethodField('get_number_of_problems')
+    product = ProuctSerializer(many=False)
 
     def get_number_of_problems(self, obj):
         matura = obj
@@ -148,7 +153,7 @@ class MaturaSerializer(serializers.ModelSerializer):
     
     class Meta:
         model = Matura
-        fields = ('id', 'year', 'term', 'subject', 'number_of_problems')
+        fields = ('id', 'year', 'term', 'subject', 'number_of_problems', 'product')
 
 class ProblemSerializer(serializers.ModelSerializer):
     question = QuestionSerializer(many=False, read_only=True)
@@ -227,10 +232,11 @@ class QRSkriptaListSerializer(serializers.ModelSerializer):
 class ShopifyPageProblemSerializer(serializers.ModelSerializer):
     question = QuestionSerializer(many=False, read_only=True)
     video_solution = VideoSerializer(many=False)
+    matura = MaturaSerializer(many=False)
 
     class Meta:
         model = Problem
-        fields = ('id', 'name', 'question', 'video_solution' )
+        fields = ('id', 'name', 'question', 'video_solution', 'approval', 'shop_availability', 'matura')
 
 class ShopifyPageSkriptaSerializer(serializers.ModelSerializer):
     page = PageSerializer(many=False, read_only=True)
@@ -306,10 +312,11 @@ class ShopifyPageSectionSerializer(serializers.ModelSerializer):
 
 class ShopifyProductSkriptaSerializer(serializers.ModelSerializer):
     file = PDFSerializer(many=False)
+    page = PageSerializer(many=False, read_only=True)
 
     class Meta:
         model = Skripta
-        fields = ('id', 'name', 'file',)
+        fields = ('id', 'name', 'file', 'page')
 
 class ShopifyProductProblemSerializer(serializers.ModelSerializer):
     equations = serializers.SerializerMethodField('get_equations')
@@ -323,7 +330,7 @@ class ShopifyProductProblemSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Problem
-        fields = ('id', 'approval', 'number', 'shop_availability', 'question', 'video_solution', 'section', 'equations')
+        fields = ('id', 'approval', 'number', 'shop_availability', 'question', 'video_solution', 'section', 'equations', )
 
 class ShopifyProductMaturaSerializer(serializers.ModelSerializer):
     problems = serializers.SerializerMethodField('get_problems')
