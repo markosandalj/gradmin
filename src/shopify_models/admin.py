@@ -9,7 +9,7 @@ from adminsortable2.admin import SortableAdminMixin, SortableInlineAdminMixin
 from .models import Product, Page, Template
 from skripte.models import Skripta, Section
 from problems.models import Problem
-from api.serializers import ShopifyPageSkriptaListSerializer, ShopifyPageSectionSerializer, ShopifyPageProblemSerializer
+from api.serializers import ShopifyPageSkriptaListSerializer, ShopifyPageProblemSerializer
 
 
 class SkriptaInline(SortableInlineAdminMixin, admin.StackedInline):
@@ -91,25 +91,28 @@ class PageAdmin(admin.ModelAdmin):
                 for skripta in skripta_section:
                     problems = Problem.objects.filter(section = section, skripta__id = skripta.id, approval='approved', shop_availability='available' )
                     serilizer = ShopifyPageProblemSerializer(problems, many=True)
-                    problems_list.append(serilizer.data)
+                    problems_list.append({
+                        'skripta_id': skripta.id,
+                        'problems': serilizer.data
+                    })
 
                 problems_json_string = json.dumps(problems_list)
                 metafield_data = {
                     "metafield": {
                         "namespace": "section",
-                        "key": "problems_list",
+                        "key": "problem_lists",
                         "type": "json",
                         "value": problems_json_string
                     }
                 }
                 url = base_url + page_url
-                
+
                 try:
                     response = requests.post(url, headers=headers, json = metafield_data)
                     print(response.json())
-                    messages.success(request, "Page {page} uspješno ažuriran sa zadatcima".format(page=skripta.page.title))
+                    messages.success(request, "Page {page} uspješno ažuriran sa zadatcima".format(page=page.title))
                 except:
-                    messages.error(request, "Page {page} neuspješno ažuriran".format(page=skripta.page.title))
+                    messages.error(request, "Page {page} neuspješno ažuriran".format(page=page.title))
 
 
 
