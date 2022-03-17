@@ -82,6 +82,7 @@ class MaturaAdmin(admin.ModelAdmin):
                             video.vimeo_secondary_id=item['link'].replace('https://vimeo.com/', '').split('/')[1]
                             video.vimeo_view_url=item['link']
                             video.vimeo_embed_url=tag['src']
+                            video.vimeo_thumbnail_url=item['pictures']['base_link']
                             video.save()
                             messages.success(request, "Video {v} uspješno ažuriran".format(v=item['name']))
                         else:
@@ -91,6 +92,7 @@ class MaturaAdmin(admin.ModelAdmin):
                                 vimeo_secondary_id=item['link'].replace('https://vimeo.com/', '').split('/')[1],
                                 vimeo_view_url=item['link'],
                                 vimeo_embed_url=tag['src'],
+                                vimeo_thumbnail_url=item['pictures']['base_link']
                             )
                             new_video_solution.save()
                             problem.video_solution = new_video_solution

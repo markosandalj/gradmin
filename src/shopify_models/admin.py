@@ -83,8 +83,9 @@ class PageAdmin(admin.ModelAdmin):
 
             
             section = Section.objects.get(page=page)
+
             if(section):
-                skripta_section = Skripta.objects.filter(section__id = section.id)
+                skripta_section = Skripta.objects.filter(skriptasection__section__id = section.id)
                 problems_list = []
 
                 for skripta in skripta_section:
@@ -92,7 +93,7 @@ class PageAdmin(admin.ModelAdmin):
                     serilizer = ShopifyPageProblemSerializer(problems, many=True)
                     problems_list.append(serilizer.data)
 
-                problems_json_string = json.dumps(skriptas_list)
+                problems_json_string = json.dumps(problems_list)
                 metafield_data = {
                     "metafield": {
                         "namespace": "section",
@@ -102,15 +103,13 @@ class PageAdmin(admin.ModelAdmin):
                     }
                 }
                 url = base_url + page_url
+                
                 try:
                     response = requests.post(url, headers=headers, json = metafield_data)
                     print(response.json())
                     messages.success(request, "Page {page} uspješno ažuriran sa zadatcima".format(page=skripta.page.title))
                 except:
                     messages.error(request, "Page {page} neuspješno ažuriran".format(page=skripta.page.title))
-            # problems_list = []
-
-            # for section in sections:
 
 
 
