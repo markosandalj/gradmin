@@ -30,3 +30,8 @@ __pycache__/
 # databse model images
 src/*.png
 src/backups/
+
+
+# random assets? bog zna sta je ovo i od kud to tu
+frontend/static/assets/
+./assets/

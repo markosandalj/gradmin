@@ -33,21 +33,21 @@ class VideoAdmin(admin.ModelAdmin):
                         video.length = duration
                         shuldSave = True
 
-                    if(video.vimeo_secondary_id == None):
-                        secondary_id = data['link'].replace('https://vimeo.com/', '').split('/')[1]
+                    secondary_id = data['link'].replace('https://vimeo.com/', '').split('/')[1]
+                    if(video.vimeo_secondary_id == None or video.vimeo_secondary_id != secondary_id):
                         video.vimeo_secondary_id = secondary_id
                         shuldSave = True
                         
-                    if(video.vimeo_embed_url == None):
-                        iframe = data['embed']['html']  
-                        soup = BeautifulSoup(iframe, 'html.parser')
-                        tag = soup.find_all('iframe')[0]
+                    iframe = data['embed']['html']  
+                    soup = BeautifulSoup(iframe, 'html.parser')
+                    tag = soup.find_all('iframe')[0]
+                    if(video.vimeo_embed_url == None or video.vimeo_embed_url != tag['src']):
                         video.vimeo_embed_url = tag['src']
                         shuldSave = True
-                    if(video.vimeo_view_url == None):
+                    if(video.vimeo_view_url == None or video.vimeo_view_url != data['link']):
                         video.vimeo_view_url = data['link']
                         shuldSave = True
-                    if(video.vimeo_thumbnail_url == None):
+                    if(video.vimeo_thumbnail_url == None or video.vimeo_thumbnail_url != data['pictures']['base_link']):
                         video.vimeo_thumbnail_url = data['pictures']['base_link']
                         shuldSave = True
                     
