@@ -34,4 +34,6 @@ src/backups/
 
 # random assets? bog zna sta je ovo i od kud to tu
 frontend/static/assets/
+frontend/static/assets/*
 ./assets/
+assets/
