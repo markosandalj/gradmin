@@ -10,7 +10,7 @@ from adminsortable2.admin import SortableAdminMixin, SortableInlineAdminMixin
 from .models import Product, Page, Template
 from skripte.models import Skripta, Section
 from problems.models import Problem
-from api.serializers import ShopifyPageSkriptaListSerializer, ShopifyPageProblemSerializer
+from api.serializers import ShopifyPageSkriptaListSerializer, ShopifyPageProblemSerializer, ShopifyPageSkriptaSerializer
 
 
 class SkriptaInline(SortableInlineAdminMixin, admin.StackedInline):
@@ -92,8 +92,9 @@ class PageAdmin(admin.ModelAdmin):
                 for skripta in skripta_section:
                     problems = Problem.objects.filter(section = section, skripta__id = skripta.id )
                     serilizer = ShopifyPageProblemSerializer(problems, many=True)
+                    skripta_serializer = ShopifyPageSkriptaSerializer(skripta, many=False)
                     problems_list.append({
-                        'skripta_id': skripta.id,
+                        'skripta': skripta_serializer.data,
                         'problems': serilizer.data
                     })
 
