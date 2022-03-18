@@ -89,7 +89,7 @@ class PageAdmin(admin.ModelAdmin):
                 problems_list = []
 
                 for skripta in skripta_section:
-                    problems = Problem.objects.filter(section = section, skripta__id = skripta.id, approval='approved', shop_availability='available' )
+                    problems = Problem.objects.filter(section = section, skripta__id = skripta.id )
                     serilizer = ShopifyPageProblemSerializer(problems, many=True)
                     problems_list.append({
                         'skripta_id': skripta.id,
