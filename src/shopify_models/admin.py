@@ -1,4 +1,5 @@
 from pyexpat import model
+import sys
 from django.contrib import admin
 from django.contrib import messages
 import requests
@@ -79,7 +80,7 @@ class PageAdmin(admin.ModelAdmin):
                     print(response.json())
                     messages.success(request, "Page {page} uspješno ažuriran sa skriptama".format(page=skripta.page.title))
                 except:
-                    messages.error(request, "Page {page} neuspješno ažuriran".format(page=skripta.page.title))
+                    messages.error(request, "Page {page} neuspješno ažuriran. Error: {err}".format(page=skripta.page.title, err=sys.exc_info()[0]))
 
             
             section = Section.objects.get(page=page)
@@ -112,7 +113,7 @@ class PageAdmin(admin.ModelAdmin):
                     print(response.json())
                     messages.success(request, "Page {page} uspješno ažuriran sa zadatcima".format(page=page.title))
                 except:
-                    messages.error(request, "Page {page} neuspješno ažuriran".format(page=page.title))
+                    messages.error(request, "Page {page} neuspješno ažuriran. Error: {err}".format(page=page.title, err=sys.exc_info()[0]))
 
 
 
