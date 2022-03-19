@@ -8,4 +8,8 @@ button {
   border: none;
   border-radius: none;
 }
+
+li {
+  list-style: none;
+}
 /*# sourceMappingURL=reset.css.map */
