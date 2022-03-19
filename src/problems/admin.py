@@ -94,10 +94,25 @@ class EmptyAnswerFilter(SimpleListFilter):
         elif self.value():
             return queryset
 
+class EmptySectionFilter(SimpleListFilter):
+    title = 'empty section' # or use _('country') for translated title
+    parameter_name = 'empty_section'
+
+    def lookups(self, request, model_admin):
+        return [ 
+            ('no_section', _('No section')),
+            ]
+
+    def queryset(self, request, queryset):
+        if self.value() == 'no_answer':
+            return queryset.filter(section=None)
+        elif self.value():
+            return queryset
+
 class ProblemAdmin(admin.ModelAdmin):
     model = Problem
     list_display = ('name', 'shop_availability', 'approval', 'question', )
-    list_filter = ('subject', 'matura','shop_availability', 'approval', EmptyAnswerFilter)
+    list_filter = ('subject', 'matura','shop_availability', 'approval', EmptyAnswerFilter, EmptySectionFilter)
     list_editable = ('shop_availability','approval',)
     search_fields = ('name', 'question__question_text', 'section__name',)
     autocomplete_fields = ('matura', 'question',)
