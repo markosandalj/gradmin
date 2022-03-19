@@ -21,6 +21,7 @@ from .models import Hint
 from .models import Problem
 from skripte.admin import ProblemEquationInline
 
+
 class EditLinkToInlineObject(object):
     def edit_link(self, instance):
         url = reverse('admin:%s_%s_change' % (
@@ -108,10 +109,6 @@ class EmptySectionFilter(SimpleListFilter):
             return queryset.filter(section=None)
         elif self.value():
             return queryset
-
-class FilteredSections(ChangeList):
-    def queryset(self, request, queryset):
-        return queryset.filter(subject = self.subject)
 
 class ProblemAdmin(admin.ModelAdmin):
     model = Problem
