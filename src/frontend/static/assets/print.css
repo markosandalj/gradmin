@@ -842,6 +842,9 @@ mjx-container[jax=SVG] use[data-c] {
     line-height: 1.3 !important;
     padding: 5px 4px;
   }
+  .problem__image-container img {
+    max-height: 80px;
+  }
 
   .solutions-table__item {
     break-before: alawys;
