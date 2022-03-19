@@ -1,4 +1,5 @@
 from email import header
+import sys
 from django.db.models.fields import IntegerField
 from django.db.models.functions import Cast
 from django.shortcuts import render
@@ -239,6 +240,6 @@ class PrintSkripta(APIView):
 
             return Response(status=status.HTTP_200_OK, data=data)
         except:
-            return Response(status=status.HTTP_400_BAD_REQUEST)
+            return Response(status=status.HTTP_400_BAD_REQUEST, data={ 'error': sys.exc_info()[0] })
 
 
