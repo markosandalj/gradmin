@@ -715,9 +715,9 @@ textarea {
     font-size: 9pt !important;
   }
   .solutions-table__item {
-    min-width: 25%;
+    min-width: 20%;
     width: 100%;
-    max-width: 33.33%;
+    max-width: 25%;
   }
   .solutions-table__item > div > div, .solutions-table__item > div > span {
     padding: 0 0 0.5rem 0;
@@ -736,9 +736,9 @@ textarea {
     border-top: 1px solid #000000;
   }
   .solutions-table__item:nth-child(5) {
-    border-top: 0;
+    border-top: 1px solid #000000;
   }
-  .solutions-table__item:nth-child(3n+1) {
+  .solutions-table__item:nth-child(4n+1) {
     border-right: 1px solid #000000;
   }
   .solutions-table__item:last-child {
