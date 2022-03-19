@@ -843,12 +843,16 @@ mjx-container[jax=SVG] use[data-c] {
     padding: 5px 4px;
   }
   .problem__image-container img {
-    max-height: 80px;
+    max-height: 120px;
+    max-width: 350px;
   }
 
   .solutions-table__item {
     break-before: alawys;
     font-size: 9pt !important;
+  }
+  .solutions-table__item .problem__image-container img {
+    max-height: 80px;
   }
 
   svg {

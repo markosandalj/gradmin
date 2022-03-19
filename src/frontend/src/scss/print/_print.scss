@@ -65,16 +65,22 @@
 
         &__image-container {
             img {
-                max-height: 80px;
+                max-height: 120px;
+                max-width: 350px;
             }
         }
     }
-
+    
     .solutions-table__item {
         // break-inside: avoid !important;
         // display: table;
         break-before: alawys;
         font-size: 9pt !important;
+        .problem__image-container {
+            img {
+                max-height: 80px;
+            }
+        }
     }
     
     svg {
