@@ -118,7 +118,7 @@ export default function Skripta() {
         let printElement = document.querySelector('#printThis')
         
         let formData = new FormData();
-        formData.append('html', JSON.stringify(printElement.innerHTML) )
+        formData.append('html', JSON.stringify(printElement.innerHTML) ) 
         formData.append('id', skripta_id)
         
         axios.post(
