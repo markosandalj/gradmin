@@ -243,7 +243,7 @@ class ShopifyPageSkriptaSerializer(serializers.ModelSerializer):
     
     class Meta:
         model = Skripta
-        fields = ('id', 'name', 'page', )
+        fields = ('id', 'name', 'label', 'label_short', 'page', )
 
 class ShopifyPageSectionListSerializer(serializers.ModelSerializer):
     subject_name = serializers.ReadOnlyField(source='subject.name')

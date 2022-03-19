@@ -66,6 +66,11 @@ class Skripta(models.Model):
         null=True, 
         max_length=255
     )
+    label_short = models.CharField(
+        blank=True,
+        null=True, 
+        max_length=255
+    )
     subject = models.ForeignKey(
         Subject,
         blank=True,
