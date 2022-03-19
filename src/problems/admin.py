@@ -34,7 +34,7 @@ class EditLinkToInlineObject(object):
 
 # QUESTIONS
 class FilterQuestionsByMatura(SimpleListFilter):
-    title = 'Questions by matura'
+    title = 'Matura'
     parameter_name = 'by_matura'
 
     def lookups(self, request, model_admin):
