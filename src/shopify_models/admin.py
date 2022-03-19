@@ -83,38 +83,41 @@ class PageAdmin(admin.ModelAdmin):
                     messages.error(request, "Page {page} neuspješno ažuriran. Error: {err}".format(page=skripta.page.title, err=sys.exc_info()[0]))
 
             
-            section = Section.objects.get(page=page)
+            try:
+                section = Section.objects.get(page=page)
 
-            if(section):
-                skripta_section = Skripta.objects.filter(skriptasection__section__id = section.id)
-                problems_list = []
+                if(section):
+                    skripta_section = Skripta.objects.filter(skriptasection__section__id = section.id)
+                    problems_list = []
 
-                for skripta in skripta_section:
-                    problems = Problem.objects.filter(section = section, skripta__id = skripta.id )
-                    serilizer = ShopifyPageProblemSerializer(problems, many=True)
-                    skripta_serializer = ShopifyPageSkriptaSerializer(skripta, many=False)
-                    problems_list.append({
-                        'skripta': skripta_serializer.data,
-                        'problems': serilizer.data
-                    })
+                    for skripta in skripta_section:
+                        problems = Problem.objects.filter(section = section, skripta__id = skripta.id )
+                        serilizer = ShopifyPageProblemSerializer(problems, many=True)
+                        skripta_serializer = ShopifyPageSkriptaSerializer(skripta, many=False)
+                        problems_list.append({
+                            'skripta': skripta_serializer.data,
+                            'problems': serilizer.data
+                        })
 
-                problems_json_string = json.dumps(problems_list)
-                metafield_data = {
-                    "metafield": {
-                        "namespace": "section",
-                        "key": "problem_lists",
-                        "type": "json",
-                        "value": problems_json_string
+                    problems_json_string = json.dumps(problems_list)
+                    metafield_data = {
+                        "metafield": {
+                            "namespace": "section",
+                            "key": "problem_lists",
+                            "type": "json",
+                            "value": problems_json_string
+                        }
                     }
-                }
-                url = base_url + page_url
+                    url = base_url + page_url
 
-                try:
-                    response = requests.post(url, headers=headers, json = metafield_data)
-                    print(response.json())
-                    messages.success(request, "Page {page} uspješno ažuriran sa zadatcima".format(page=page.title))
-                except:
-                    messages.error(request, "Page {page} neuspješno ažuriran. Error: {err}".format(page=page.title, err=sys.exc_info()[0]))
+                    try:
+                        response = requests.post(url, headers=headers, json = metafield_data)
+                        print(response.json())
+                        messages.success(request, "Page {page} uspješno ažuriran sa zadatcima".format(page=page.title))
+                    except:
+                        messages.error(request, "Page {page} neuspješno ažuriran. Error: {err}".format(page=page.title, err=sys.exc_info()[0]))
+            except:
+                messages.error(request, "Page {page} nema section?. Error: {err}".format(page=page.title, err=sys.exc_info()[0]))
 
 
 
