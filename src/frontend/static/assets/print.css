@@ -850,6 +850,12 @@ mjx-container[jax=SVG] use[data-c] {
   .problems-section {
     box-shadow: none !important;
   }
+  .problems-section__equations > .problems-section__equation {
+    margin-right: 1rem;
+  }
+  .problems-section__equations > .problems-section__equation:last-child {
+    margin-right: 0;
+  }
   .problems-section__actions, .problems-section__add-new {
     display: none !important;
   }
@@ -868,6 +874,9 @@ mjx-container[jax=SVG] use[data-c] {
     min-width: 25%;
     width: 100%;
     max-width: 33.33%;
+  }
+  .solutions-table__item > div, .solutions-table__item span {
+    padding: 0.625rem 0;
   }
   .solutions-table__item:nth-child(4n+1) {
     border-right: 0;
