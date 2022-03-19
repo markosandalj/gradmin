@@ -9,6 +9,7 @@ from django.core.validators import FileExtensionValidator
 
 class Image(models.Model):
     image = models.ImageField(null=True, blank=True)
+    image_dark = models.ImageField(null=True, blank=True)
     question = models.ForeignKey(
         'problems.Question', 
         blank=True,

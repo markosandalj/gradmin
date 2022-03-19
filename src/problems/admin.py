@@ -109,11 +109,15 @@ class EmptySectionFilter(SimpleListFilter):
         elif self.value():
             return queryset
 
+class FilteredSections(ChangeList):
+    def queryset(self, request, queryset):
+        return queryset.filter(subject = self.subject)
+
 class ProblemAdmin(admin.ModelAdmin):
     model = Problem
-    list_display = ('name', 'shop_availability', 'approval', 'question', )
+    list_display = ('name', 'shop_availability', 'approval', 'section' )
     list_filter = ('subject', 'matura','shop_availability', 'approval', EmptyAnswerFilter, EmptySectionFilter)
-    list_editable = ('shop_availability','approval',)
+    list_editable = ('shop_availability','approval', 'section')
     search_fields = ('name', 'question__question_text', 'section__name',)
     autocomplete_fields = ('matura', 'question',)
     actions = ['make_available', 'make_unavailable', 'make_hidden', 'approve', 'unapprove',]
