@@ -483,3 +483,51 @@ def importProblems(subject, filename, level = 0):
     print('Import ending!')
 
 importProblems('Fizika', 'gradiva_test')
+
+
+def addSkriptasToProblems():
+    problems = Problem.objects.filter(matura__subject__id = 2)
+    for problem in problems:
+        try:
+            print(problem)
+            problem.skripta.set( [Skripta.objects.get(id=2), Skripta.objects.get(id=9)] )
+        except:
+            print("Wut wut")
+
+def addSkriptasToMatura():
+    maturas = Matura.objects.filter(subject__id = 5)
+    for matura in maturas:
+        try:
+            print(maturas)
+            matura.skripta = Skripta.objects.get(id=4)
+            matura.save()
+        except:
+            print("Wut wut")
+
+
+# shop_url = "https://%s:%s@SHOP_NAME.myshopify.com/admin" % (API_KEY, PASSWORD)
+# shopify.ShopifyResource.set_site(shop_url)
+# shopify.Session.setup(api_key=API_KEY, secret=SHARED_SECRET)
+
+
+curl -X POST \
+  https://msandalj23.myshopify.com/admin/api/2021-01/graphql.json \
+  -H 'Content-Type: application/graphql' \
+  -H 'X-Shopify-Access-Token: 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' \
+  -d 'mutation {
+        metafieldStorefrontVisibilityCreate(
+            input: {
+                namespace: "section"
+                key: "problem_lists"
+                ownerType: PAGE
+            }
+        ) {
+            metafieldStorefrontVisibility {
+                id
+            }
+            userErrors {
+                field
+                message
+            }
+        }
+        }'

@@ -45,7 +45,6 @@ from .serializers import (
     QRSkriptaListSerializer, 
     QRSkriptaSectionSerializer, 
     QRSkriptaSerializer, 
-    SectionSerializer, 
     ShopifyPageSectionSerializer, 
     ShopifyPageSkriptaListSerializer, 
     ShopifyProductMaturaSerializer, 
@@ -208,7 +207,7 @@ class UpdateQuestionApiView(APIView):
 
 class PrintSkripta(APIView):
     def post(self, request, format=None):
-        # try:
+        try:
             data = request.data
             skripta = Skripta.objects.get(pk = data['id'])
 
@@ -239,7 +238,7 @@ class PrintSkripta(APIView):
             pdf_file_path.unlink()
 
             return Response(status=status.HTTP_200_OK, data=data)
-        # except:
-        #     return Response(status=status.HTTP_400_BAD_REQUEST)
+        except:
+            return Response(status=status.HTTP_400_BAD_REQUEST)
 
 
