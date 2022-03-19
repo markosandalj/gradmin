@@ -14,6 +14,7 @@ from django.contrib.admin import SimpleListFilter
 # Register your models here.
 from media.models import Image
 from skripte.models import Equation
+from mature.models import Matura
 from .models import Question
 from .models import AnswerChoice
 from .models import CorrectAnswer
@@ -32,6 +33,21 @@ class EditLinkToInlineObject(object):
             return ''
 
 # QUESTIONS
+class FilterQuestionsByMatura(SimpleListFilter):
+    title = 'Questions by matura'
+    parameter_name = 'by_matura'
+
+    def lookups(self, request, model_admin):
+        filter_list = [ (str(matura.id), _(str(matura)) ) for matura in Matura.objects.all() ]
+        print(filter_list)
+        return filter_list
+
+    def queryset(self, request, queryset): 
+        if self.value():
+            problems = Problem.objects.filter(matura__id = self.value())
+            questions_list = [ problem.question.id for problem in problems]
+            return queryset.filter( id__in = questions_list)
+
 class QuestionInline(EditLinkToInlineObject, admin.StackedInline):
     model = Question
     extra=0
@@ -62,8 +78,12 @@ class QuestionAdmin(admin.ModelAdmin):
         ImageInline,
     ]
     search_fields = ('id', 'question_text',)
-    list_display = ('id', 'question_text', )
+    list_filter = (FilterQuestionsByMatura,)
+    list_display = ('question_number', 'question_text')
     readonly_fields = ('created_at', 'updated_at',)
+
+    def question_number(self, obj):
+        return obj.question_text.split(' ')[0] + " zadatak"
 
 class AnswerChoiceAdmin(admin.ModelAdmin):
     model = AnswerChoice
