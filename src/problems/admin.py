@@ -104,7 +104,7 @@ class EmptySectionFilter(SimpleListFilter):
             ]
 
     def queryset(self, request, queryset):
-        if self.value() == 'no_answer':
+        if self.value() == 'no_section':
             return queryset.filter(section=None)
         elif self.value():
             return queryset
