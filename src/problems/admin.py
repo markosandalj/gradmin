@@ -39,7 +39,6 @@ class FilterQuestionsByMatura(SimpleListFilter):
 
     def lookups(self, request, model_admin):
         filter_list = [ (str(matura.id), _(str(matura)) ) for matura in Matura.objects.all() ]
-        print(filter_list)
         return filter_list
 
     def queryset(self, request, queryset): 

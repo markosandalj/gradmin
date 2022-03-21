@@ -10,15 +10,51 @@ from adminsortable2.admin import SortableAdminMixin, SortableInlineAdminMixin
 from .models import Product, Page, Template
 from skripte.models import Skripta, Section
 from problems.models import Problem
-from api.serializers import ShopifyPageSkriptaListSerializer, ShopifyPageProblemSerializer, ShopifyPageSkriptaSerializer
+from mature.models import Matura
+from api.serializers import ShopifyPageSkriptaListSerializer, ShopifyPageProblemSerializer, ShopifyPageSkriptaSerializer, ShopifyProductMaturaSerializer
 
 
 class SkriptaInline(SortableInlineAdminMixin, admin.StackedInline):
     model = Skripta
     extra = 0
 
+
+class ProductAdmin(admin.ModelAdmin):
+    actions = ['delete_pages', 'update_page_content', 'update_tabs']
+    
+    @admin.action(description='Update matura product on Shopify')
+    def update_tabs(self, request, queryset):
+        base_url = 'https://msandalj23.myshopify.com'
+        headers = {'Content-Type': 'application/json', 'X-Shopify-Access-Token': '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' }
+
+        for product in queryset:
+            metafields_url = '/admin/api/2021-10/products/{id}/metafields.json'.format(id=product.id)
+            maturas = Matura.objects.filter(product=product)
+            matura_tabs = []
+
+            for matura in maturas:
+                serializer = ShopifyProductMaturaSerializer(matura, many=False)
+                matura_tabs.append(serializer.data)
+
+
+            json_string = json.dumps(matura_tabs)
+
+            metafield_data = {
+                "metafield": {
+                        "namespace": "matura",
+                        "key": "tabs",
+                        "type": "json",
+                        "value": json_string,
+                    }
+                }
+            url = base_url + metafields_url
+            response = requests.post(url, headers=headers, json = metafield_data)
+            print(response.json())
+            print(metafield_data)
+            messages.success(request, "Proizvod uspješno ažuriran")
+
 class PageAdmin(admin.ModelAdmin):
-    actions = ['create_pages', 'delete_pages', 'update_page_content', 'publish_pages', 'hide_pages',]
+    actions = ['delete_pages', 'update_page_content',]
     list_filter = ('template',)
 
     inlines = [
@@ -130,5 +166,5 @@ class PageAdmin(admin.ModelAdmin):
 
 
 admin.site.register(Page, PageAdmin)
-admin.site.register(Product)
+admin.site.register(Product, ProductAdmin)
 admin.site.register(Template)
