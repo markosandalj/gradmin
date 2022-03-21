@@ -27,7 +27,7 @@ class ProductAdmin(admin.ModelAdmin):
         headers = {'Content-Type': 'application/json', 'X-Shopify-Access-Token': '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' }
 
         for product in queryset:
-            metafields_url = '/admin/api/2021-10/products/{id}/metafields.json'.format(id=product.id)
+            metafields_url = '/admin/api/2021-10/products/{id}/metafields.json'.format(id=product.product_id)
             maturas = Matura.objects.filter(product=product)
             matura_tabs = []
 
