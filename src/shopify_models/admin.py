@@ -1,4 +1,3 @@
-from pyexpat import model
 import sys
 from django.contrib import admin
 from django.contrib import messages
@@ -36,7 +35,6 @@ class ProductAdmin(admin.ModelAdmin):
                 serializer = ShopifyProductMaturaSerializer(matura, many=False)
                 matura_tabs.append(serializer.data)
 
-
             json_string = json.dumps(matura_tabs)
 
             metafield_data = {
@@ -50,8 +48,7 @@ class ProductAdmin(admin.ModelAdmin):
             url = base_url + metafields_url
             response = requests.post(url, headers=headers, json = metafield_data)
             print(response.json())
-            print(metafield_data)
-            messages.success(request, "Proizvod uspješno ažuriran")
+            messages.success(request, "Proizvod {p} uspješno ažuriran sa {n} tab-a".format(p = product, n = len(matura_tabs)))
 
 class PageAdmin(admin.ModelAdmin):
     actions = ['delete_pages', 'update_page_content',]
