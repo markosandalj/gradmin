@@ -27,9 +27,10 @@ class Term(models.Model):
         LJETO = 'ljeto', _('Ljetni rok')
         JESEN = 'jesen', _('Jesenski rok')
         ZIMA = 'zima', _('Zimski rok')
+        OGLEDNA = 'ogledna', _('Ogledni ispit')
 
     term = models.CharField(
-        max_length=5,
+        max_length=7,
         choices=TermChoices.choices,
         unique=True
     )
