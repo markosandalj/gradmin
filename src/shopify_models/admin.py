@@ -86,6 +86,8 @@ class ProductAdmin(admin.ModelAdmin):
                 data = response.json()['product']
                 product.product_id = data['id']
                 product.handle = data['handle']
+                product.type = "Kemija"
+                product.vendor = "Državna matura"
                 product.seo_title = seo_title
                 product.seo_description = seo_description
                 product.graphql_api_id = data['admin_graphql_api_id']
