@@ -19,7 +19,7 @@ class SkriptaInline(SortableInlineAdminMixin, admin.StackedInline):
 
 
 class ProductAdmin(admin.ModelAdmin):
-    actions = ['delete_pages', 'update_page_content', 'update_tabs']
+    actions = ['delete_pages', 'update_tabs', 'create_product']
     
     @admin.action(description='Update matura product on Shopify')
     def update_tabs(self, request, queryset):
@@ -49,6 +49,51 @@ class ProductAdmin(admin.ModelAdmin):
             response = requests.post(url, headers=headers, json = metafield_data)
             print(response.json())
             messages.success(request, "Proizvod {p} uspješno ažuriran sa {n} tab-a".format(p = product, n = len(matura_tabs)))
+
+    @admin.action(description='Create product on Shopify')
+    def create_product(self, request, queryset):
+        base_url = 'https://msandalj23.myshopify.com'
+        headers = {'Content-Type': 'application/json', 'X-Shopify-Access-Token': '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' }
+        products_url = '/admin/api/2021-10/products.json'
+
+        for product in queryset:
+            seo_title = "{n} - Rješenja mature {m} | Gradivo.hr".format(n = product.title.split(' - ')[0], m = product.title.split(' - ')[1])
+            seo_description = "Preko Preko 70 videa s u potpunosti riješenim i objašnjenim svim zadatcima iz mature iz kemije {y} godine (ljetni i jesenski rok)".format( y = product.title.split(' - ')[1] )
+            product_data = {
+                "product": {
+                    "title": product.title,
+                    "product_type": "Kemija",
+                    "vendor": "Državna matura",
+                    "published": False,
+                    "status": "draft",
+                    "metafields_global_title_tag": seo_title,
+                    "metafields_global_description_tag": seo_description,
+                    "tags": product.title.split(' - ')[1],
+                    "body_html": "Video rješenja državne mature",
+                    "metafields": [{
+                        "key": "intro_video", 
+                        "namespace": "product_media", 
+                        "type": "url", 
+                        "value": "https://player.vimeo.com/video/691094220?h=97a2c735ca&amp;badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479"
+                    }]
+                }
+            }
+            url = base_url + products_url
+            try:
+                print(url, product_data, headers)
+                response = requests.post(url, headers = headers, json = product_data)
+                print('response: ', response.json())
+                data = response.json()['product']
+                product.product_id = data['id']
+                product.handle = data['handle']
+                product.seo_title = seo_title
+                product.seo_description = seo_description
+                product.graphql_api_id = data['admin_graphql_api_id']
+                product.save()
+                messages.success(request, "Stranica {prod} uspješno kreiran sa Shopify-a".format(prod=product.title))
+            except:
+                messages.error(request, "Stranica {prod} NIJE uspješno kreiran. Error: {err}".format(prod=product.title, err=sys.exc_info()[0]))
+        
 
 class PageAdmin(admin.ModelAdmin):
     actions = ['delete_pages', 'update_page_content',]
