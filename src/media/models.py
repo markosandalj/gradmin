@@ -55,8 +55,14 @@ class SVG(models.Model):
     created_at = models.DateTimeField(auto_now_add=True, editable=False)
     updated_at = models.DateTimeField(auto_now=True, editable=False)
 
+    def __str__(self):
+        return str(self.name)
+
 class PDF(models.Model):
     name = models.TextField(blank=True,null=True,)
     file = models.FileField(upload_to="pdf/", validators=[FileExtensionValidator(['pdf'])])
     created_at = models.DateTimeField(auto_now_add=True, editable=False)
     updated_at = models.DateTimeField(auto_now=True, editable=False)
+
+        def __str__(self):
+        return str(self.name)
