@@ -233,10 +233,16 @@ class ShopifyPageProblemSerializer(serializers.ModelSerializer):
     question = QuestionSerializer(many=False, read_only=True)
     video_solution = VideoSerializer(many=False)
     matura = MaturaSerializer(many=False)
+    section = SectionSerializer(many=False)
+    question = QuestionSerializer(many=False, read_only=True)
+
+    def get_equations(self, instance):
+        response = EquationSerializer(instance.equations.all(), many=True).data
+        return response
 
     class Meta:
         model = Problem
-        fields = ('id', 'name', 'question', 'video_solution', 'approval', 'shop_availability', 'matura')
+        fields = ('id', 'name', 'question',  'approval', 'shop_availability', 'video_solution', 'matura', 'section', 'equations',)
 
 class ShopifyPageSkriptaSerializer(serializers.ModelSerializer):
     page = PageSerializer(many=False, read_only=True)
