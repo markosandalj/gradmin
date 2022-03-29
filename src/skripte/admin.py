@@ -222,7 +222,8 @@ class SectionAdmin(admin.ModelAdmin):
 
 class EquationAdmin(admin.ModelAdmin):
     model = Equation
-    list_display = ('name','equation', )
+    list_filter = ('subject',)
+    list_display = ('name','equation',  )
     search_fields = ('name', 'equation')
 
 
