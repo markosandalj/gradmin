@@ -286,7 +286,7 @@ def importEquations():
                                         name = equation_label,
                                         equation = equation,
                                         description = equation_label,
-                                        subject = Subject.objects.get(name='Fizika'),
+                                        subject = Subject.objects.get(name='Matematika'),
                                     )
                                     new_eq_obj.save()
                                     new_eq_obj.section.set([section_obj, ])

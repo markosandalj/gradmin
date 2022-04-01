@@ -505,6 +505,24 @@ def addSkriptasToMatura():
             print("Wut wut")
 
 
+def createKemijaMaturas():
+    terms = ['ljeto', 'jesen']
+    subject = 'Kemija'
+    years = [x for x in range(2010, 2022)]
+    for product, year in zip(Product.objects.filter(type = "Kemija"), years):
+        # for year in years:
+        for term in terms:
+            new_matura = Matura(
+                year=Year.objects.get(year=year),
+                term=Term.objects.get(term=term),
+                subject=MaturaSubject.objects.get(subject__name="Kemija", level = 0),
+                product = product
+            )
+            new_matura.save()
+
+
+
+
 # shop_url = "https://%s:%s@SHOP_NAME.myshopify.com/admin" % (API_KEY, PASSWORD)
 # shopify.ShopifyResource.set_site(shop_url)
 # shopify.Session.setup(api_key=API_KEY, secret=SHARED_SECRET)
