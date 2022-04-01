@@ -78,6 +78,12 @@ const Sidebar = () => {
                     },
                     ],
                 },
+                {
+                    url: '/index/problems_importer',
+                    label: 'Problems importer',
+                }
+
+
                 ]}
             />
         </Navigation>

@@ -9,6 +9,10 @@
     width: 100%;
     justify-content: space-between;
 
+    &--importer {
+        padding: 1rem;
+    }
+
     &__qr-link {
         height: fit-content;
         svg {
@@ -221,4 +225,24 @@
         cursor: pointer;
         opacity: .7;
     }
+}
+
+.py-2 {
+    padding-top: 2rem;
+    padding-bottom: 2rem;
+}
+
+.px-2 {
+    padding-left: 2rem;
+    padding-right: 2rem;
+}
+
+.flex-end {
+    display: flex;
+    justify-content: flex-end;
+}
+
+.flex-space-between {
+    display: flex;
+    justify-content: space-between;
 }

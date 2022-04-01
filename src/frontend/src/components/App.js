@@ -13,6 +13,7 @@ import Skripta from "./pages/Skripta";
 import SkriptaSections from "./pages/SkriptaSections";
 import MaturaList from "./pages/MaturaList";
 import MaturaProblems from "./pages/MaturaProblems";
+import ProblemsImporter from "./pages/ProblemsImporter";
 
 export default function App() {
   const [mobileNavigationActive, setMobileNavigationActive] = useState(false);
@@ -66,6 +67,9 @@ export default function App() {
           </Route>
           <Route exact path="/index/matura/:matura_id">
             <MaturaProblems></MaturaProblems>
+          </Route>
+          <Route exact path="/index/problems_importer">
+            <ProblemsImporter></ProblemsImporter>
           </Route>
         </Switch>
       </Frame>

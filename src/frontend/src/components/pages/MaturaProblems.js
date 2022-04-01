@@ -77,9 +77,10 @@ const MaturaProblems = () => {
                     {
                         headers: {'X-CSRFToken': csrftoken, "Content-type": "multipart/form-data"}
                     }
-                ).then(res => {
-                    setDisplaySuccesAlert(true);
+                ).then(res => {                    
                     console.log(`Successfully sent form data` + res.data);
+                }).then(() => {
+                    setDisplaySuccesAlert(true);
                 })
                 .catch(err => {
                     console.log(err);

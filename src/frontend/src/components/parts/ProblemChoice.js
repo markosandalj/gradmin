@@ -66,8 +66,8 @@ const ProblemChoice = ({ choice, choice_label, problem }) => {
             {hasImage && !view.site_preview && <span className='choice__label'>{choice_label}</span>}
             {hasImage && !view.site_preview && <img className='choice__image' src={imageSrc} /> }
             {view.site_preview && 
-                <div className={`choice__input ${problem.question?.correct_answer[0]?.answer_choice?.id === choice.id && 'choice__input--correct' }`}>
-                    <input id={choice.id} type="radio" className="choice__checkbox" name={`problem-choices-${problem.question.id}`} />
+                <div className={`choice__input ${problem?.question?.correct_answer[0]?.answer_choice?.id === choice.id && 'choice__input--correct' }`}>
+                    <input id={choice.id} type="radio" className="choice__checkbox" name={`problem-choices-${problem?.question.id}`} />
                     <label htmlFor={choice.id} >
                         {choice_label} {choiceText}
                     </label>

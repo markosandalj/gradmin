@@ -99,4 +99,3 @@ class Matura(models.Model):
     def __str__(self):
         razina = self.subject.level if self.subject.level != self.subject.MaturaLevels.NEMA_RAZINE else ''
         return f'DM {str(self.subject.subject.name)} {razina} {str(self.year)} {str(self.term)}'
-        

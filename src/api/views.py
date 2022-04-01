@@ -1,5 +1,10 @@
-from email import header
+import cv2
+from html5lib import serialize
+from pdf2image import convert_from_path, convert_from_bytes
 import sys
+import base64
+import numpy as np
+from PIL import Image
 from django.db.models.fields import IntegerField
 from django.db.models.functions import Cast
 from django.shortcuts import render
@@ -10,6 +15,7 @@ from django.core.files.base import File
 import requests
 import json
 import time
+import os
 from pathlib import Path
 
 from rest_framework import generics, status
@@ -21,10 +27,12 @@ import cloudinary.uploader
 import cloudinary
 
 from media.models import (
-    PDF
+    PDF,
+    Image
 )
 from mature.models import (
-    MaturaSubject
+    MaturaSubject,
+    Subject
 )
 from problems.models import (
     AnswerChoice, 
@@ -49,11 +57,51 @@ from .serializers import (
     ShopifyPageSectionSerializer, 
     ShopifyPageSkriptaListSerializer, 
     ShopifyProductMaturaSerializer, 
-    UpdateQuestionSerializer
+    UpdateQuestionSerializer,
+    ImageSerializer,
+    SubjectSerializer,
+    SectionSerializer,
+    SkriptaSerializer
 )
 
 
 # Create your views here.
+class AllSkriptasListApiView(generics.ListAPIView):
+    serializer_class = SkriptaSerializer    
+
+    def get_queryset(self):
+        skriptas = Skripta.objects.all()
+        queryset = skriptas
+        
+        return queryset
+
+
+class AllSectionsListApiView(generics.ListAPIView):
+    serializer_class = SectionSerializer    
+
+    def get_queryset(self):
+        sections = Section.objects.all()
+        queryset = sections
+        
+        return queryset
+
+class AllSubjectsListApiView(generics.ListAPIView):
+    serializer_class = SubjectSerializer    
+
+    def get_queryset(self):
+        subjects = Subject.objects.all()
+        queryset = subjects
+        
+        return queryset
+
+class AllMaturasListApiView(generics.ListAPIView):
+    serializer_class = MaturaSerializer
+
+    def get_queryset(self):
+        maturas = Matura.objects.all()
+        queryset = maturas
+        
+        return queryset
 
 class MaturaListApiView(generics.ListAPIView):
     serializer_class = MaturaSerializer
@@ -243,3 +291,115 @@ class PrintSkripta(APIView):
             return Response(status=status.HTTP_400_BAD_REQUEST, data={ 'error': sys.exc_info()[0] })
 
 
+class ProblemsImporterUpdateView(APIView):
+    def post(self, request, format=None):
+        data = request.data
+
+        print(data)
+
+
+class ProblemsImporterView(APIView):
+    def post(self, request, format=None):
+        try:
+            data = request.data
+            file = data['file'].read()
+            images = convert_from_bytes(file)
+
+            for i, image in enumerate(images):
+                try:
+                    image = np.asarray(image)
+                    image = getEdges(image)
+                    response_data = getAllProblemsArea(image)
+                    
+                except:
+                    print("Slika je krepala. Error: {err}".format(err = sys.exc_info[0]))
+
+            return Response(status=status.HTTP_200_OK, data=response_data)
+        except:
+            print("Not gonna happen! Error: {err}".format(i=i, err = sys.exc_info[0]))
+            return Response(status=status.HTTP_400_BAD_REQUEST, data=json.dumps({ 'error': sys.exc_info()[0] }))
+
+
+
+
+def getMathpixResponse(image):
+    try:
+        cv2.imwrite('tmp.png', image)
+        image_uri = "data:image/jpg;base64," + base64.b64encode(open('tmp.png', "rb").read()).decode()
+        r = requests.post(
+            "https://api.mathpix.com/v3/text",
+            data=json.dumps({'src': image_uri, 'include_line_data': True} ),
+            headers={
+                "app_id": "marko_sandalj23_gmail_com_cd23e6", 
+                "app_key": "b56dcf2eb92232d1b905",
+                "Content-type": "application/json"
+            }
+        )
+        print("Image", json.loads(r.text)["request_id"])
+        try:
+            image_object = Image()
+            image_object.image = File(open("tmp.png", 'rb'))
+            image_object.save()
+            serializer = ImageSerializer(image_object, many = False)
+            data = {
+                'image': serializer.data,
+                'mathpix_response': json.loads(r.text)
+            }
+        except:
+            print('Image se ne da spremiti u bazu. Error: {err}'.format(err = sys.exc_info[0]))
+
+        os.remove('tmp.png')
+        return data if data else None
+    except:
+        print('Mathpix response je krepao. Error: {err}'.format(err = sys.exc_info[0]))
+
+
+def getEdges(image):
+    gray = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
+    thresh_inv = cv2.threshold(gray, 0, 255, cv2.THRESH_BINARY_INV+cv2.THRESH_OTSU)[1]
+    blur = cv2.GaussianBlur(thresh_inv,(1,1),0)
+    thresh = cv2.threshold(blur, 0, 255, cv2.THRESH_BINARY+cv2.THRESH_OTSU)[1]
+    contours = cv2.findContours(thresh, cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_SIMPLE)[0]
+    mask = np.ones(image.shape[:2], dtype="uint8") * 255
+    
+    for c in contours:
+        x, y, w, h = cv2.boundingRect(c)
+        if w*h>1000:
+            cv2.rectangle(mask, (x, y), (x+w, y+h), (0, 0, 255), -1)
+
+    image = cv2.bitwise_and(image, image, mask=cv2.bitwise_not(mask))
+    
+    return image
+
+
+def getSingleProblemArea(img, cnt, contours, i):
+    cv2.drawContours(img, [cnt], -1, (0,255,0), 3)
+    mask = np.zeros_like(img) # Create mask where white is what we want, black otherwise
+    cv2.drawContours(mask, contours, i,(255,255,255), -1) # Draw filled contour in mask
+    out = np.zeros_like(img) # Extract out the object and place into output image
+    out[mask == 255] = img[mask == 255]
+    
+    x, y, w, h = cv2.boundingRect(cnt)
+    out = out[y:y+h,x:x+w]
+
+    return out
+
+
+
+def getAllProblemsArea(img):
+    data = []
+    imgray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
+    ret, thresh = cv2.threshold(imgray, 127, 255, 0)
+    contours, hierarchy = cv2.findContours(thresh, cv2.RETR_TREE, cv2.CHAIN_APPROX_SIMPLE)
+    contours = [cnt for cnt in contours if cv2.contourArea(cnt) > 150000.0]
+    i=len(contours)-1
+
+    for cnt in contours[::-1]:
+        area = cv2.contourArea(cnt)
+        image = getSingleProblemArea(img, cnt, contours, i)
+        response = getMathpixResponse(image)
+        if(response):
+            data.append(response)
+        i-=1
+
+    return data
