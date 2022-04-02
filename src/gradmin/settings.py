@@ -190,3 +190,18 @@ CLOUDINARY_STORAGE = {
     'API_KEY': '796223118618557',
     'API_SECRET': '5NHpFMFy5SKy7MVm-BOhjb11bPE'
 }
+
+# REST_FRAMEWORK = {
+#     'DEFAULT_PERMISSION_CLASSES': [
+#         'rest_framework.permissions.DjangoModelPermissionsOrAnonReadOnly'
+#     ]
+# }
+
+
+
+TEMPLATE_LOADERS = (
+    ('django.template.loaders.cached.Loader', (
+        'django.template.loaders.filesystem.Loader',
+        'django.template.loaders.app_directories.Loader',
+    )),
+)
