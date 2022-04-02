@@ -57,12 +57,12 @@ const Sidebar = () => {
                         label: 'Fizika',
                     },
                     {
-                        url: '/index/skripta/2/list',
+                        url: '/index/skripta/9/list',
                         disabled: false,
                         label: 'Matematika A',
                     },
                     {
-                        url: '/index/skripta/3/list',
+                        url: '/index/skripta/8/list',
                         disabled: false,
                         label: 'Matematika B',
                     },

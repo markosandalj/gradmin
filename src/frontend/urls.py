@@ -9,4 +9,5 @@ urlpatterns = [
     path('index/skripta/<str>/<int>/<i>', IndexView),
     path('index/matura/<int>/list', IndexView),
     path('index/matura/<int>', IndexView),
+    path('index/problems_importer', IndexView),
 ]
