@@ -4,7 +4,7 @@ from django import forms
 from adminsortable2.admin import SortableAdminMixin, SortableInlineAdminMixin
 import requests
 import json
-from api.serializers import CategorySerialzier, ShopifyPageProblemSerializer, ShopifyPageRelatedSectionSerializer, ShopifyPageSectionSecondaryListSerializer, ShopifyPageSkriptaListSerializer
+from api.serializers import CategorySerialzier, ShopifyPageProblemSerializer, ShopifyPageRelatedSectionSerializer, ShopifyPageSkriptaListSerializer
 from django.db.models.functions.comparison import Cast
 
 from shopify_models.models import Template
