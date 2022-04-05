@@ -21,6 +21,7 @@
         @bottom-right {
             content: counter(page);
             margin-right: 50px;
+            margin-top: 18px;
         }
     }
 
@@ -35,7 +36,8 @@
 
         @bottom-right {
             content: counter(page);
-            margin-right: 740px;
+            margin-right: 736px;
+            margin-top: 18px;
         }
     }
 
@@ -66,8 +68,8 @@
 
         &__image-container {
             img {
-                max-height: 120px;
-                max-width: 350px;
+                max-height: 150px;
+                max-width: 450px;
             }
         }
     }
@@ -79,7 +81,8 @@
         font-size: 9pt !important;
         .problem__image-container {
             img {
-                max-height: 80px;
+                max-height: 70px;
+                max-width: 45mm;
             }
         }
     }
@@ -110,7 +113,7 @@
 
         &__equations {
             > .problems-section__equation {
-                margin-right: 1.5rem;
+                margin-right: 3.5rem;
     
                 &:last-child {
                     margin-right: 0;
@@ -136,13 +139,17 @@
         }
 
         &__equation-name {
-            margin-bottom: .5rem;
+            margin-bottom: .375rem;
             font-size: 9pt !important;
         }
     }
 
     .solutions-table {
         font-size: 9pt !important;
+        
+        &__number {
+            margin-bottom: 10px;
+        }
         
         &__item {
             > div > div, > div > span {
