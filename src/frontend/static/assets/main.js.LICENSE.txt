@@ -9,6 +9,20 @@ object-assign
  * License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License)
  */
 
+/*! !!../../../css-loader/dist/cjs.js!../../../mini-css-extract-plugin/dist/loader.js!../../../css-loader/dist/cjs.js!../../../resolve-url-loader/index.js!../../../sass-loader/dist/cjs.js!./styles.css */
+
+/*! !../../../style-loader/dist/runtime/injectStylesIntoStyleTag.js */
+
+/*! !../../../style-loader/dist/runtime/insertBySelector.js */
+
+/*! !../../../style-loader/dist/runtime/insertStyleElement.js */
+
+/*! !../../../style-loader/dist/runtime/setAttributesWithoutAttributes.js */
+
+/*! !../../../style-loader/dist/runtime/styleDomAPI.js */
+
+/*! !../../../style-loader/dist/runtime/styleTagTransform.js */
+
 /*! *****************************************************************************
 Copyright (c) Microsoft Corporation.
 
@@ -24,8 +38,3351 @@ OTHER TORTIOUS ACTION, ARISING OUT OF OR IN CONNECTION WITH THE USE OR
 PERFORMANCE OF THIS SOFTWARE.
 ***************************************************************************** */
 
+/*! ../../../../../../utilities/i18n/hooks.js */
+
+/*! ../../../../../../utilities/unique-id/hooks.js */
+
+/*! ../../../../../Badge/Badge.js */
+
+/*! ../../../../../Button/Button.js */
+
+/*! ../../../../../Collapsible/Collapsible.js */
+
+/*! ../../../../../Heading/Heading.js */
+
+/*! ../../../../../Link/Link.js */
+
+/*! ../../../../../Modal/Modal.js */
+
+/*! ../../../../../Popover/Popover.js */
+
+/*! ../../../../../Stack/Stack.js */
+
+/*! ../../../../../TextContainer/TextContainer.js */
+
+/*! ../../../../Navigation.scss.js */
+
+/*! ../../../../_virtual/_rollupPluginBabelHelpers.js */
+
+/*! ../../../../types.js */
+
+/*! ../../../../utilities/breakpoints.js */
+
+/*! ../../../../utilities/capitalize.js */
+
+/*! ../../../../utilities/components.js */
+
+/*! ../../../../utilities/css.js */
+
+/*! ../../../../utilities/focus.js */
+
+/*! ../../../../utilities/get-width.js */
+
+/*! ../../../../utilities/i18n/hooks.js */
+
+/*! ../../../../utilities/media-query/hooks.js */
+
+/*! ../../../../utilities/theme/hooks.js */
+
+/*! ../../../../utilities/unique-id/hooks.js */
+
+/*! ../../../../utilities/use-deep-callback.js */
+
+/*! ../../../../utilities/use-deep-effect.js */
+
+/*! ../../../../utilities/use-is-mounted-ref.js */
+
+/*! ../../../../utilities/use-isomorphic-layout-effect.js */
+
+/*! ../../../../utilities/use-toggle.js */
+
+/*! ../../../ActionList/ActionList.js */
+
+/*! ../../../ActionMenu/ActionMenu.js */
+
+/*! ../../../Avatar/Avatar.js */
+
+/*! ../../../Badge/Badge.js */
+
+/*! ../../../Breadcrumbs/Breadcrumbs.js */
+
+/*! ../../../Button/Button.js */
+
+/*! ../../../Button/utils.js */
+
+/*! ../../../ButtonGroup/ButtonGroup.js */
+
+/*! ../../../Caption/Caption.js */
+
+/*! ../../../Collapsible/Collapsible.js */
+
+/*! ../../../DisplayText/DisplayText.js */
+
+/*! ../../../EventListener/EventListener.js */
+
+/*! ../../../Heading/Heading.js */
+
+/*! ../../../Icon/Icon.js */
+
+/*! ../../../Image/Image.js */
+
+/*! ../../../Indicator/Indicator.js */
+
+/*! ../../../KeypressListener/KeypressListener.js */
+
+/*! ../../../MessageIndicator/MessageIndicator.js */
+
+/*! ../../../OptionList/OptionList.js */
+
+/*! ../../../Pagination/Pagination.js */
+
+/*! ../../../Popover/Popover.js */
+
+/*! ../../../Portal/Portal.js */
+
+/*! ../../../PositionedOverlay/PositionedOverlay.js */
+
+/*! ../../../ScrollLock/ScrollLock.js */
+
+/*! ../../../Scrollable/Scrollable.js */
+
+/*! ../../../Stack/Stack.js */
+
+/*! ../../../Subheading/Subheading.js */
+
+/*! ../../../TextContainer/TextContainer.js */
+
+/*! ../../../TextField/TextField.js */
+
+/*! ../../../TextStyle/TextStyle.js */
+
+/*! ../../../ThemeProvider/ThemeProvider.js */
+
+/*! ../../../TrapFocus/TrapFocus.js */
+
+/*! ../../../UnstyledLink/UnstyledLink.js */
+
+/*! ../../../VisuallyHidden/VisuallyHidden.js */
+
+/*! ../../../css-loader/dist/runtime/api.js */
+
+/*! ../../../css-loader/dist/runtime/cssWithMappingToString.js */
+
+/*! ../../../shared.js */
+
+/*! ../../../utilities/geometry.js */
+
+/*! ../../ActionList.scss.js */
+
+/*! ../../ButtonGroup.scss.js */
+
+/*! ../../Card.scss.js */
+
+/*! ../../Connected.scss.js */
+
+/*! ../../FormLayout.scss.js */
+
+/*! ../../Layout.scss.js */
+
+/*! ../../Navigation.scss.js */
+
+/*! ../../Popover.scss.js */
+
+/*! ../../Stack.scss.js */
+
+/*! ../../TextField.scss.js */
+
+/*! ../../_virtual/_rollupPluginBabelHelpers.js */
+
+/*! ../../components/shared.js */
+
+/*! ../../context.js */
+
+/*! ../../images/upload-arrow.svg.js */
+
+/*! ../../store/actions/SkriptaActions */
+
+/*! ../../store/actions/problemFieldsActions */
+
+/*! ../../store/actions/problemsViewActions */
+
+/*! ../../types.js */
+
+/*! ../../utilities/arrays.js */
+
+/*! ../../utilities/banner-context.js */
+
+/*! ../../utilities/breakpoints.js */
+
+/*! ../../utilities/capitalize.js */
+
+/*! ../../utilities/components.js */
+
+/*! ../../utilities/css.js */
+
+/*! ../../utilities/features/context.js */
+
+/*! ../../utilities/focus-manager/context.js */
+
+/*! ../../utilities/focus-manager/hooks.js */
+
+/*! ../../utilities/focus.js */
+
+/*! ../../utilities/frame/context.js */
+
+/*! ../../utilities/geometry.js */
+
+/*! ../../utilities/get-width.js */
+
+/*! ../../utilities/i18n/I18n.js */
+
+/*! ../../utilities/i18n/context.js */
+
+/*! ../../utilities/i18n/hooks.js */
+
+/*! ../../utilities/is-input-focused.js */
+
+/*! ../../utilities/link/context.js */
+
+/*! ../../utilities/link/hooks.js */
+
+/*! ../../utilities/media-query/context.js */
+
+/*! ../../utilities/media-query/hooks.js */
+
+/*! ../../utilities/portals/context.js */
+
+/*! ../../utilities/portals/hooks.js */
+
+/*! ../../utilities/scroll-lock-manager/context.js */
+
+/*! ../../utilities/scroll-lock-manager/hooks.js */
+
+/*! ../../utilities/scroll-lock-manager/scroll-lock-manager.js */
+
+/*! ../../utilities/set-root-property.js */
+
+/*! ../../utilities/sticky-manager/context.js */
+
+/*! ../../utilities/sticky-manager/sticky-manager.js */
+
+/*! ../../utilities/target.js */
+
+/*! ../../utilities/theme/context.js */
+
+/*! ../../utilities/theme/hooks.js */
+
+/*! ../../utilities/theme/tokens.js */
+
+/*! ../../utilities/theme/utils.js */
+
+/*! ../../utilities/unique-id/context.js */
+
+/*! ../../utilities/unique-id/hooks.js */
+
+/*! ../../utilities/unique-id/unique-id-factory.js */
+
+/*! ../../utilities/use-component-did-mount.js */
+
+/*! ../../utilities/use-deep-effect.js */
+
+/*! ../../utilities/use-is-after-initial-mount.js */
+
+/*! ../../utilities/use-isomorphic-layout-effect.js */
+
+/*! ../../utilities/use-toggle.js */
+
+/*! ../../utilities/within-content-context.js */
+
+/*! ../../utilities/within-filter-context.js */
+
+/*! ../../utils/index.js */
+
+/*! ../ActionList/ActionList.js */
+
+/*! ../Backdrop/Backdrop.js */
+
+/*! ../Button/Button.js */
+
+/*! ../Button/utils.js */
+
+/*! ../ButtonGroup/ButtonGroup.js */
+
+/*! ../Caption/Caption.js */
+
+/*! ../Card/Card.js */
+
+/*! ../Checkbox/Checkbox.js */
+
+/*! ../CloseButton/CloseButton.js */
+
+/*! ../ComboBox/context.js */
+
+/*! ../Connected/Connected.js */
+
+/*! ../DisplayText/DisplayText.js */
+
+/*! ../EventListener/EventListener.js */
+
+/*! ../Focus/Focus.js */
+
+/*! ../FocusManager/FocusManager.js */
+
+/*! ../Heading/Heading.js */
+
+/*! ../Icon/Icon.js */
+
+/*! ../Image/Image.js */
+
+/*! ../InlineError/InlineError.js */
+
+/*! ../Item/Item.js */
+
+/*! ../KeypressListener/KeypressListener.js */
+
+/*! ../Label/Label.js */
+
+/*! ../Labelled/Labelled.js */
+
+/*! ../MediaQueryProvider/MediaQueryProvider.js */
+
+/*! ../Menu/Menu.js */
+
+/*! ../MenuGroup/MenuGroup.js */
+
+/*! ../Pane/Pane.js */
+
+/*! ../Popover/Popover.js */
+
+/*! ../Portal/Portal.js */
+
+/*! ../PortalsManager/PortalsManager.js */
+
+/*! ../ScrollLock/ScrollLock.js */
+
+/*! ../Scrollable/Scrollable.js */
+
+/*! ../SearchDismissOverlay/SearchDismissOverlay.js */
+
+/*! ../SecondaryAction/SecondaryAction.js */
+
+/*! ../Section/Section.js */
+
+/*! ../Spinner/Spinner.js */
+
+/*! ../Stack/Stack.js */
+
+/*! ../TextStyle/TextStyle.js */
+
+/*! ../ThemeProvider/ThemeProvider.js */
+
+/*! ../Toast/Toast.js */
+
+/*! ../Tooltip/Tooltip.js */
+
+/*! ../TrapFocus/TrapFocus.js */
+
+/*! ../UnstyledButton/UnstyledButton.js */
+
+/*! ../UnstyledButton/utils.js */
+
+/*! ../UnstyledLink/UnstyledLink.js */
+
+/*! ../VisuallyHidden/VisuallyHidden.js */
+
+/*! ../_virtual/_rollupPluginBabelHelpers.js */
+
+/*! ../actions/actionTypes */
+
+/*! ../api/api */
+
+/*! ../breakpoints.js */
+
+/*! ../cancel/isCancel */
+
+/*! ../components/App */
+
+/*! ../components/Context */
+
+/*! ../components/connectAdvanced */
+
+/*! ../core/buildFullPath */
+
+/*! ../core/createError */
+
+/*! ../defaults */
+
+/*! ../errors.js */
+
+/*! ../geometry.js */
+
+/*! ../get.js */
+
+/*! ../helpers/buildURL */
+
+/*! ../helpers/combineURLs */
+
+/*! ../helpers/isAbsoluteURL */
+
+/*! ../helpers/validator */
+
+/*! ../hooks/useFetch */
+
+/*! ../merge.js */
+
+/*! ../parts/ImageProblemChecker */
+
+/*! ../parts/ImporterInfoForm */
+
+/*! ../parts/Problem */
+
+/*! ../parts/ProblemImage */
+
+/*! ../shared.js */
+
+/*! ../target.js */
+
+/*! ../unique-id/hooks.js */
+
+/*! ../utils */
+
+/*! ../utils/Subscription */
+
+/*! ../utils/bindActionCreators */
+
+/*! ../utils/shallowEqual */
+
+/*! ../utils/useIsomorphicLayoutEffect */
+
+/*! ../utils/verifyPlainObject */
+
+/*! ../utils/warning */
+
+/*! ./../../package.json */
+
+/*! ./../core/settle */
+
+/*! ./../defaults */
+
+/*! ./../helpers/buildURL */
+
+/*! ./../helpers/cookies */
+
+/*! ./../helpers/isURLSameOrigin */
+
+/*! ./../helpers/parseHeaders */
+
+/*! ./../utils */
+
+/*! ./8BitByte */
+
+/*! ./ActionList.scss.js */
+
+/*! ./ActionMenu.scss.js */
+
+/*! ./Actions.scss.js */
+
+/*! ./Autocomplete.scss.js */
+
+/*! ./AutocompleteSelect */
+
+/*! ./Avatar.scss.js */
+
+/*! ./Backdrop.scss.js */
+
+/*! ./Badge.scss.js */
+
+/*! ./Banner.scss.js */
+
+/*! ./BitBuffer */
+
+/*! ./Breadcrumbs.scss.js */
+
+/*! ./Button.js */
+
+/*! ./Button.scss.js */
+
+/*! ./ButtonGroup.scss.js */
+
+/*! ./CSSAnimation.scss.js */
+
+/*! ./Cancel */
+
+/*! ./Caption.scss.js */
+
+/*! ./Card.scss.js */
+
+/*! ./Checkbox.scss.js */
+
+/*! ./CloseButton.scss.js */
+
+/*! ./Collapsible.scss.js */
+
+/*! ./ComboBox.scss.js */
+
+/*! ./Connected.scss.js */
+
+/*! ./Context */
+
+/*! ./ContextualSaveBar.scss.js */
+
+/*! ./Dialog.scss.js */
+
+/*! ./DisplayText.scss.js */
+
+/*! ./DropZone.scss.js */
+
+/*! ./ErrorCorrectLevel */
+
+/*! ./FileUpload.scss.js */
+
+/*! ./Footer.scss.js */
+
+/*! ./FormLayout.scss.js */
+
+/*! ./Frame.scss.js */
+
+/*! ./Header.scss.js */
+
+/*! ./Heading.scss.js */
+
+/*! ./Icon.scss.js */
+
+/*! ./Indicator.scss.js */
+
+/*! ./InlineError.scss.js */
+
+/*! ./InterceptorManager */
+
+/*! ./Label.scss.js */
+
+/*! ./Labelled.scss.js */
+
+/*! ./Layout.scss.js */
+
+/*! ./Link.scss.js */
+
+/*! ./Loading.scss.js */
+
+/*! ./MediaCard.scss.js */
+
+/*! ./Menu.scss.js */
+
+/*! ./MenuGroup.scss.js */
+
+/*! ./Message.scss.js */
+
+/*! ./MessageIndicator.scss.js */
+
+/*! ./Modal.scss.js */
+
+/*! ./Navigation.scss.js */
+
+/*! ./Option.scss.js */
+
+/*! ./OptionList.scss.js */
+
+/*! ./Page.scss.js */
+
+/*! ./Polynomial */
+
+/*! ./PositionedOverlay.scss.js */
+
+/*! ./ProblemChoice */
+
+/*! ./ProblemImage */
+
+/*! ./RSBlock */
+
+/*! ./RollupActions.scss.js */
+
+/*! ./Scrollable.scss.js */
+
+/*! ./Search.scss.js */
+
+/*! ./SearchDismissOverlay.scss.js */
+
+/*! ./SearchField.scss.js */
+
+/*! ./SecondaryAction.scss.js */
+
+/*! ./Section.scss.js */
+
+/*! ./SkriptaReducer */
+
+/*! ./Spinner.scss.js */
+
+/*! ./Stack.scss.js */
+
+/*! ./Subheading.scss.js */
+
+/*! ./Subquestions */
+
+/*! ./TextContainer.scss.js */
+
+/*! ./TextField.scss.js */
+
+/*! ./TextStyle.scss.js */
+
+/*! ./Title.scss.js */
+
+/*! ./Toast.scss.js */
+
+/*! ./ToastManager.scss.js */
+
+/*! ./TooltipOverlay.scss.js */
+
+/*! ./TopBar.scss.js */
+
+/*! ./Transition */
+
+/*! ./TransitionGroupContext */
+
+/*! ./UnstyledButton.js */
+
+/*! ./UserMenu.scss.js */
+
+/*! ./VisuallyHidden.scss.js */
+
+/*! ./_DataView */
+
+/*! ./_Hash */
+
+/*! ./_ListCache */
+
+/*! ./_Map */
+
+/*! ./_MapCache */
+
+/*! ./_Promise */
+
+/*! ./_Set */
+
+/*! ./_SetCache */
+
+/*! ./_Stack */
+
+/*! ./_Symbol */
+
+/*! ./_Uint8Array */
+
+/*! ./_WeakMap */
+
+/*! ./_arrayFilter */
+
+/*! ./_arrayLikeKeys */
+
+/*! ./_arrayPush */
+
+/*! ./_arraySome */
+
+/*! ./_assocIndexOf */
+
+/*! ./_baseGetAllKeys */
+
+/*! ./_baseGetTag */
+
+/*! ./_baseIsArguments */
+
+/*! ./_baseIsEqual */
+
+/*! ./_baseIsEqualDeep */
+
+/*! ./_baseIsNative */
+
+/*! ./_baseIsTypedArray */
+
+/*! ./_baseKeys */
+
+/*! ./_baseTimes */
+
+/*! ./_baseTrim */
+
+/*! ./_baseUnary */
+
+/*! ./_cacheHas */
+
+/*! ./_coreJsData */
+
+/*! ./_equalArrays */
+
+/*! ./_equalByTag */
+
+/*! ./_equalObjects */
+
+/*! ./_freeGlobal */
+
+/*! ./_getAllKeys */
+
+/*! ./_getMapData */
+
+/*! ./_getNative */
+
+/*! ./_getRawTag */
+
+/*! ./_getSymbols */
+
+/*! ./_getTag */
+
+/*! ./_getValue */
+
+/*! ./_hashClear */
+
+/*! ./_hashDelete */
+
+/*! ./_hashGet */
+
+/*! ./_hashHas */
+
+/*! ./_hashSet */
+
+/*! ./_isIndex */
+
+/*! ./_isKeyable */
+
+/*! ./_isMasked */
+
+/*! ./_isPrototype */
+
+/*! ./_listCacheClear */
+
+/*! ./_listCacheDelete */
+
+/*! ./_listCacheGet */
+
+/*! ./_listCacheHas */
+
+/*! ./_listCacheSet */
+
+/*! ./_mapCacheClear */
+
+/*! ./_mapCacheDelete */
+
+/*! ./_mapCacheGet */
+
+/*! ./_mapCacheHas */
+
+/*! ./_mapCacheSet */
+
+/*! ./_mapToArray */
+
+/*! ./_nativeCreate */
+
+/*! ./_nativeKeys */
+
+/*! ./_nodeUtil */
+
+/*! ./_objectToString */
+
+/*! ./_overArg */
+
+/*! ./_root */
+
+/*! ./_setCacheAdd */
+
+/*! ./_setCacheHas */
+
+/*! ./_setToArray */
+
+/*! ./_stackClear */
+
+/*! ./_stackDelete */
+
+/*! ./_stackGet */
+
+/*! ./_stackHas */
+
+/*! ./_stackSet */
+
+/*! ./_toSource */
+
+/*! ./_trimmedEndIndex */
+
+/*! ./actionTypes */
+
+/*! ./adapters/xhr */
+
+/*! ./batch */
+
+/*! ./cancel/Cancel */
+
+/*! ./cancel/CancelToken */
+
+/*! ./cancel/isCancel */
+
+/*! ./checkPropTypes */
+
+/*! ./cjs/react-dom.development.js */
+
+/*! ./cjs/react-is.development.js */
+
+/*! ./cjs/react.development.js */
+
+/*! ./cjs/scheduler-tracing.development.js */
+
+/*! ./cjs/scheduler.development.js */
+
+/*! ./color-factory */
+
+/*! ./components/Actions/Actions.js */
+
+/*! ./components/AnnotatedSection/AnnotatedSection.js */
+
+/*! ./components/App */
+
+/*! ./components/CSSAnimation/CSSAnimation.js */
+
+/*! ./components/ComboBox/ComboBox.js */
+
+/*! ./components/Context */
+
+/*! ./components/ContextualSaveBar/ContextualSaveBar.js */
+
+/*! ./components/Dialog/Dialog.js */
+
+/*! ./components/DiscardConfirmationModal/DiscardConfirmationModal.js */
+
+/*! ./components/FileUpload/FileUpload.js */
+
+/*! ./components/Footer/Footer.js */
+
+/*! ./components/Group/Group.js */
+
+/*! ./components/Header/Header.js */
+
+/*! ./components/Item/Item.js */
+
+/*! ./components/Loading/Loading.js */
+
+/*! ./components/Menu/Menu.js */
+
+/*! ./components/Message/Message.js */
+
+/*! ./components/Option/Option.js */
+
+/*! ./components/Pane/Pane.js */
+
+/*! ./components/PopoverOverlay/PopoverOverlay.js */
+
+/*! ./components/PortalsContainer/PortalsContainer.js */
+
+/*! ./components/Provider */
+
+/*! ./components/Resizer/Resizer.js */
+
+/*! ./components/RollupActions/RollupActions.js */
+
+/*! ./components/ScrollTo/ScrollTo.js */
+
+/*! ./components/Search/Search.js */
+
+/*! ./components/SearchField/SearchField.js */
+
+/*! ./components/Secondary/Secondary.js */
+
+/*! ./components/Section/Section.js */
+
+/*! ./components/Spinner/Spinner.js */
+
+/*! ./components/Subsection/Subsection.js */
+
+/*! ./components/TextField/TextField.js */
+
+/*! ./components/Title/Title.js */
+
+/*! ./components/ToastManager/ToastManager.js */
+
+/*! ./components/TooltipOverlay/TooltipOverlay.js */
+
+/*! ./components/UserMenu/UserMenu.js */
+
+/*! ./components/connectAdvanced */
+
+/*! ./config */
+
+/*! ./configs/base */
+
+/*! ./connect/connect */
+
+/*! ./context.js */
+
+/*! ./core/Axios */
+
+/*! ./core/enhanceError */
+
+/*! ./core/mergeConfig */
+
+/*! ./createError */
+
+/*! ./defaults */
+
+/*! ./defineProperty.js */
+
+/*! ./dispatchRequest */
+
+/*! ./enhanceError */
+
+/*! ./eq */
+
+/*! ./exports */
+
+/*! ./factoryWithTypeCheckers */
+
+/*! ./hasClass */
+
+/*! ./helpers/bind */
+
+/*! ./helpers/isAxiosError */
+
+/*! ./helpers/normalizeHeaderName */
+
+/*! ./helpers/spread */
+
+/*! ./hooks/useDispatch */
+
+/*! ./hooks/useSelector */
+
+/*! ./hooks/useStore */
+
+/*! ./index.scss */
+
+/*! ./is-element-in-viewport.js */
+
+/*! ./is-object.js */
+
+/*! ./isArguments */
+
+/*! ./isArray */
+
+/*! ./isArrayLike */
+
+/*! ./isBuffer */
+
+/*! ./isFunction */
+
+/*! ./isLength */
+
+/*! ./isObject */
+
+/*! ./isObjectLike */
+
+/*! ./isPlainObject */
+
+/*! ./isSymbol */
+
+/*! ./isTypedArray */
+
+/*! ./keys */
+
+/*! ./layout/Header */
+
+/*! ./layout/Sidebar */
+
+/*! ./lib/ReactPropTypesSecret */
+
+/*! ./lib/axios */
+
+/*! ./loader/Audio */
+
+/*! ./loader/BallTriangle */
+
+/*! ./loader/Bars */
+
+/*! ./loader/Circles */
+
+/*! ./loader/CradleLoader */
+
+/*! ./loader/Grid */
+
+/*! ./loader/Hearts */
+
+/*! ./loader/MutatingDots */
+
+/*! ./loader/Oval */
+
+/*! ./loader/Plane */
+
+/*! ./loader/Puff */
+
+/*! ./loader/RevolvingDot */
+
+/*! ./loader/Rings */
+
+/*! ./loader/TailSpin */
+
+/*! ./loader/ThreeDots */
+
+/*! ./loader/Triangle */
+
+/*! ./loader/Watch */
+
+/*! ./mapDispatchToProps */
+
+/*! ./mapStateToProps */
+
+/*! ./math */
+
+/*! ./mergeConfig */
+
+/*! ./mergeProps */
+
+/*! ./mode */
+
+/*! ./now */
+
+/*! ./pages/MaturaList */
+
+/*! ./pages/MaturaProblems */
+
+/*! ./pages/ProblemsImporter */
+
+/*! ./pages/Skripta */
+
+/*! ./pages/SkriptaSections */
+
+/*! ./pluck-deep.js */
+
+/*! ./problemFieldsReducer */
+
+/*! ./problemsViewReducer */
+
+/*! ./reducers/reducers */
+
+/*! ./selectorFactory */
+
+/*! ./set-activator-attributes.js */
+
+/*! ./setPrototypeOf.js */
+
+/*! ./store/store */
+
+/*! ./stubArray */
+
+/*! ./stubFalse */
+
+/*! ./target.js */
+
+/*! ./toNumber */
+
+/*! ./transformData */
+
+/*! ./use-deep-compare-ref.js */
+
+/*! ./use-is-after-initial-mount.js */
+
+/*! ./useReduxContext */
+
+/*! ./useStore */
+
+/*! ./util */
+
+/*! ./utilities/math.js */
+
+/*! ./utils */
+
+/*! ./utils/ChildMapping */
+
+/*! ./utils/PropTypes */
+
+/*! ./utils/batch */
+
+/*! ./utils/index.js */
+
+/*! ./utils/reactBatchedUpdates */
+
+/*! ./utils/shallowEqual */
+
+/*! ./verifySubselectors */
+
+/*! ./warning */
+
+/*! ./wrapMapToProps */
+
+/*! @babel/runtime/helpers/esm/assertThisInitialized */
+
+/*! @babel/runtime/helpers/esm/extends */
+
+/*! @babel/runtime/helpers/esm/inheritsLoose */
+
+/*! @babel/runtime/helpers/esm/objectSpread2 */
+
+/*! @babel/runtime/helpers/esm/objectWithoutPropertiesLoose */
+
+/*! @fortawesome/fontawesome-svg-core */
+
+/*! @fortawesome/free-solid-svg-icons */
+
+/*! @fortawesome/react-fontawesome */
+
+/*! @shopify/draggable */
+
+/*! @shopify/polaris */
+
+/*! @shopify/polaris-icons */
+
+/*! @shopify/polaris-tokens */
+
+/*! @shopify/polaris-tokens/dist-modern */
+
+/*! @shopify/polaris-tokens/dist-modern/configs/base */
+
+/*! @shopify/polaris-tokens/dist-modern/theme/base.json */
+
+/*! @shopify/polaris/dist/styles.css */
+
+/*! axios */
+
+/*! dom-helpers/addClass */
+
+/*! dom-helpers/removeClass */
+
+/*! focus-visible/dist/focus-visible */
+
+/*! history */
+
+/*! hoist-non-react-statics */
+
+/*! hsluv */
+
+/*! isarray */
+
+/*! lodash/debounce */
+
+/*! lodash/isEqual */
+
+/*! mini-create-react-context */
+
+/*! object-assign */
+
+/*! path-to-regexp */
+
+/*! prop-types */
+
+/*! qr.js/lib/ErrorCorrectLevel */
+
+/*! qr.js/lib/QRCode */
+
+/*! qrcode.react */
+
+/*! react */
+
+/*! react-dom */
+
+/*! react-is */
+
+/*! react-loader-spinner */
+
+/*! react-redux */
+
+/*! react-router */
+
+/*! react-router-dom */
+
+/*! react-transition-group */
+
+/*! redux */
+
+/*! redux-thunk */
+
+/*! resolve-pathname */
+
+/*! scheduler */
+
+/*! scheduler/tracing */
+
+/*! tiny-invariant */
+
+/*! tiny-warning */
+
+/*! tslib */
+
+/*! value-equal */
+
+/*!*******************************!*\
+  !*** ./frontend/src/index.js ***!
+  \*******************************/
+
+/*!*********************************!*\
+  !*** ./frontend/src/index.scss ***!
+  \*********************************/
+
+/*!***********************************!*\
+  !*** ./node_modules/lodash/eq.js ***!
+  \***********************************/
+
+/*!************************************!*\
+  !*** ./node_modules/lodash/now.js ***!
+  \************************************/
+
+/*!*************************************!*\
+  !*** ./frontend/src/store/store.js ***!
+  \*************************************/
+
+/*!*************************************!*\
+  !*** ./node_modules/axios/index.js ***!
+  \*************************************/
+
+/*!*************************************!*\
+  !*** ./node_modules/hsluv/hsluv.js ***!
+  \*************************************/
+
+/*!*************************************!*\
+  !*** ./node_modules/lodash/_Map.js ***!
+  \*************************************/
+
+/*!*************************************!*\
+  !*** ./node_modules/lodash/_Set.js ***!
+  \*************************************/
+
+/*!*************************************!*\
+  !*** ./node_modules/lodash/keys.js ***!
+  \*************************************/
+
+/*!*************************************!*\
+  !*** ./node_modules/react/index.js ***!
+  \*************************************/
+
+/*!**************************************!*\
+  !*** ./node_modules/lodash/_Hash.js ***!
+  \**************************************/
+
+/*!**************************************!*\
+  !*** ./node_modules/lodash/_root.js ***!
+  \**************************************/
+
+/*!***************************************!*\
+  !*** ./frontend/src/store/api/api.js ***!
+  \***************************************/
+
+/*!***************************************!*\
+  !*** ./node_modules/isarray/index.js ***!
+  \***************************************/
+
+/*!***************************************!*\
+  !*** ./node_modules/lodash/_Stack.js ***!
+  \***************************************/
+
+/*!****************************************!*\
+  !*** ./frontend/src/components/App.js ***!
+  \****************************************/
+
+/*!****************************************!*\
+  !*** ./node_modules/lodash/_Symbol.js ***!
+  \****************************************/
+
+/*!****************************************!*\
+  !*** ./node_modules/lodash/_getTag.js ***!
+  \****************************************/
+
+/*!****************************************!*\
+  !*** ./node_modules/lodash/isArray.js ***!
+  \****************************************/
+
+/*!****************************************!*\
+  !*** ./node_modules/lodash/isEqual.js ***!
+  \****************************************/
+
+/*!****************************************!*\
+  !*** ./node_modules/qr.js/lib/math.js ***!
+  \****************************************/
+
+/*!****************************************!*\
+  !*** ./node_modules/qr.js/lib/mode.js ***!
+  \****************************************/
+
+/*!****************************************!*\
+  !*** ./node_modules/qr.js/lib/util.js ***!
+  \****************************************/
+
+/*!****************************************!*\
+  !*** ./node_modules/react-is/index.js ***!
+  \****************************************/
+
+/*!****************************************!*\
+  !*** ./node_modules/redux/es/redux.js ***!
+  \****************************************/
+
+/*!*****************************************!*\
+  !*** ./node_modules/axios/lib/axios.js ***!
+  \*****************************************/
+
+/*!*****************************************!*\
+  !*** ./node_modules/axios/lib/utils.js ***!
+  \*****************************************/
+
+/*!*****************************************!*\
+  !*** ./node_modules/axios/package.json ***!
+  \*****************************************/
+
+/*!*****************************************!*\
+  !*** ./node_modules/lodash/_Promise.js ***!
+  \*****************************************/
+
+/*!*****************************************!*\
+  !*** ./node_modules/lodash/_WeakMap.js ***!
+  \*****************************************/
+
+/*!*****************************************!*\
+  !*** ./node_modules/lodash/_hashGet.js ***!
+  \*****************************************/
+
+/*!*****************************************!*\
+  !*** ./node_modules/lodash/_hashHas.js ***!
+  \*****************************************/
+
+/*!*****************************************!*\
+  !*** ./node_modules/lodash/_hashSet.js ***!
+  \*****************************************/
+
+/*!*****************************************!*\
+  !*** ./node_modules/lodash/_isIndex.js ***!
+  \*****************************************/
+
+/*!*****************************************!*\
+  !*** ./node_modules/lodash/_overArg.js ***!
+  \*****************************************/
+
+/*!*****************************************!*\
+  !*** ./node_modules/lodash/debounce.js ***!
+  \*****************************************/
+
+/*!*****************************************!*\
+  !*** ./node_modules/lodash/isBuffer.js ***!
+  \*****************************************/
+
+/*!*****************************************!*\
+  !*** ./node_modules/lodash/isLength.js ***!
+  \*****************************************/
+
+/*!*****************************************!*\
+  !*** ./node_modules/lodash/isObject.js ***!
+  \*****************************************/
+
+/*!*****************************************!*\
+  !*** ./node_modules/lodash/isSymbol.js ***!
+  \*****************************************/
+
+/*!*****************************************!*\
+  !*** ./node_modules/lodash/toNumber.js ***!
+  \*****************************************/
+
+/*!*****************************************!*\
+  !*** ./node_modules/react-dom/index.js ***!
+  \*****************************************/
+
+/*!*****************************************!*\
+  !*** ./node_modules/scheduler/index.js ***!
+  \*****************************************/
+
+/*!*****************************************!*\
+  !*** ./node_modules/tslib/tslib.es6.js ***!
+  \*****************************************/
+
+/*!******************************************!*\
+  !*** ./node_modules/lodash/_DataView.js ***!
+  \******************************************/
+
+/*!******************************************!*\
+  !*** ./node_modules/lodash/_MapCache.js ***!
+  \******************************************/
+
+/*!******************************************!*\
+  !*** ./node_modules/lodash/_SetCache.js ***!
+  \******************************************/
+
+/*!******************************************!*\
+  !*** ./node_modules/lodash/_baseKeys.js ***!
+  \******************************************/
+
+/*!******************************************!*\
+  !*** ./node_modules/lodash/_baseTrim.js ***!
+  \******************************************/
+
+/*!******************************************!*\
+  !*** ./node_modules/lodash/_cacheHas.js ***!
+  \******************************************/
+
+/*!******************************************!*\
+  !*** ./node_modules/lodash/_getValue.js ***!
+  \******************************************/
+
+/*!******************************************!*\
+  !*** ./node_modules/lodash/_isMasked.js ***!
+  \******************************************/
+
+/*!******************************************!*\
+  !*** ./node_modules/lodash/_nodeUtil.js ***!
+  \******************************************/
+
+/*!******************************************!*\
+  !*** ./node_modules/lodash/_stackGet.js ***!
+  \******************************************/
+
+/*!******************************************!*\
+  !*** ./node_modules/lodash/_stackHas.js ***!
+  \******************************************/
+
+/*!******************************************!*\
+  !*** ./node_modules/lodash/_stackSet.js ***!
+  \******************************************/
+
+/*!******************************************!*\
+  !*** ./node_modules/lodash/_toSource.js ***!
+  \******************************************/
+
+/*!******************************************!*\
+  !*** ./node_modules/lodash/stubArray.js ***!
+  \******************************************/
+
+/*!******************************************!*\
+  !*** ./node_modules/lodash/stubFalse.js ***!
+  \******************************************/
+
+/*!******************************************!*\
+  !*** ./node_modules/prop-types/index.js ***!
+  \******************************************/
+
+/*!******************************************!*\
+  !*** ./node_modules/qr.js/lib/QRCode.js ***!
+  \******************************************/
+
+/*!*******************************************!*\
+  !*** ./node_modules/lodash/_ListCache.js ***!
+  \*******************************************/
+
+/*!*******************************************!*\
+  !*** ./node_modules/lodash/_arrayPush.js ***!
+  \*******************************************/
+
+/*!*******************************************!*\
+  !*** ./node_modules/lodash/_arraySome.js ***!
+  \*******************************************/
+
+/*!*******************************************!*\
+  !*** ./node_modules/lodash/_baseTimes.js ***!
+  \*******************************************/
+
+/*!*******************************************!*\
+  !*** ./node_modules/lodash/_baseUnary.js ***!
+  \*******************************************/
+
+/*!*******************************************!*\
+  !*** ./node_modules/lodash/_getNative.js ***!
+  \*******************************************/
+
+/*!*******************************************!*\
+  !*** ./node_modules/lodash/_getRawTag.js ***!
+  \*******************************************/
+
+/*!*******************************************!*\
+  !*** ./node_modules/lodash/_hashClear.js ***!
+  \*******************************************/
+
+/*!*******************************************!*\
+  !*** ./node_modules/lodash/_isKeyable.js ***!
+  \*******************************************/
+
+/*!*******************************************!*\
+  !*** ./node_modules/lodash/isFunction.js ***!
+  \*******************************************/
+
+/*!*******************************************!*\
+  !*** ./node_modules/qr.js/lib/RSBlock.js ***!
+  \*******************************************/
+
+/*!*******************************************!*\
+  !*** ./node_modules/scheduler/tracing.js ***!
+  \*******************************************/
+
+/*!********************************************!*\
+  !*** ./node_modules/axios/lib/defaults.js ***!
+  \********************************************/
+
+/*!********************************************!*\
+  !*** ./node_modules/lodash/_Uint8Array.js ***!
+  \********************************************/
+
+/*!********************************************!*\
+  !*** ./node_modules/lodash/_baseGetTag.js ***!
+  \********************************************/
+
+/*!********************************************!*\
+  !*** ./node_modules/lodash/_coreJsData.js ***!
+  \********************************************/
+
+/*!********************************************!*\
+  !*** ./node_modules/lodash/_equalByTag.js ***!
+  \********************************************/
+
+/*!********************************************!*\
+  !*** ./node_modules/lodash/_freeGlobal.js ***!
+  \********************************************/
+
+/*!********************************************!*\
+  !*** ./node_modules/lodash/_getAllKeys.js ***!
+  \********************************************/
+
+/*!********************************************!*\
+  !*** ./node_modules/lodash/_getMapData.js ***!
+  \********************************************/
+
+/*!********************************************!*\
+  !*** ./node_modules/lodash/_getSymbols.js ***!
+  \********************************************/
+
+/*!********************************************!*\
+  !*** ./node_modules/lodash/_hashDelete.js ***!
+  \********************************************/
+
+/*!********************************************!*\
+  !*** ./node_modules/lodash/_mapToArray.js ***!
+  \********************************************/
+
+/*!********************************************!*\
+  !*** ./node_modules/lodash/_nativeKeys.js ***!
+  \********************************************/
+
+/*!********************************************!*\
+  !*** ./node_modules/lodash/_setToArray.js ***!
+  \********************************************/
+
+/*!********************************************!*\
+  !*** ./node_modules/lodash/_stackClear.js ***!
+  \********************************************/
+
+/*!********************************************!*\
+  !*** ./node_modules/lodash/isArguments.js ***!
+  \********************************************/
+
+/*!********************************************!*\
+  !*** ./node_modules/lodash/isArrayLike.js ***!
+  \********************************************/
+
+/*!********************************************!*\
+  !*** ./node_modules/qr.js/lib/8BitByte.js ***!
+  \********************************************/
+
+/*!*********************************************!*\
+  !*** ./node_modules/history/esm/history.js ***!
+  \*********************************************/
+
+/*!*********************************************!*\
+  !*** ./node_modules/lodash/_arrayFilter.js ***!
+  \*********************************************/
+
+/*!*********************************************!*\
+  !*** ./node_modules/lodash/_baseIsEqual.js ***!
+  \*********************************************/
+
+/*!*********************************************!*\
+  !*** ./node_modules/lodash/_equalArrays.js ***!
+  \*********************************************/
+
+/*!*********************************************!*\
+  !*** ./node_modules/lodash/_isPrototype.js ***!
+  \*********************************************/
+
+/*!*********************************************!*\
+  !*** ./node_modules/lodash/_mapCacheGet.js ***!
+  \*********************************************/
+
+/*!*********************************************!*\
+  !*** ./node_modules/lodash/_mapCacheHas.js ***!
+  \*********************************************/
+
+/*!*********************************************!*\
+  !*** ./node_modules/lodash/_mapCacheSet.js ***!
+  \*********************************************/
+
+/*!*********************************************!*\
+  !*** ./node_modules/lodash/_setCacheAdd.js ***!
+  \*********************************************/
+
+/*!*********************************************!*\
+  !*** ./node_modules/lodash/_setCacheHas.js ***!
+  \*********************************************/
+
+/*!*********************************************!*\
+  !*** ./node_modules/lodash/_stackDelete.js ***!
+  \*********************************************/
+
+/*!*********************************************!*\
+  !*** ./node_modules/lodash/isObjectLike.js ***!
+  \*********************************************/
+
+/*!*********************************************!*\
+  !*** ./node_modules/lodash/isTypedArray.js ***!
+  \*********************************************/
+
+/*!*********************************************!*\
+  !*** ./node_modules/object-assign/index.js ***!
+  \*********************************************/
+
+/*!*********************************************!*\
+  !*** ./node_modules/qr.js/lib/BitBuffer.js ***!
+  \*********************************************/
+
+/*!**********************************************!*\
+  !*** ./node_modules/axios/lib/core/Axios.js ***!
+  \**********************************************/
+
+/*!**********************************************!*\
+  !*** ./node_modules/lodash/_assocIndexOf.js ***!
+  \**********************************************/
+
+/*!**********************************************!*\
+  !*** ./node_modules/lodash/_baseIsNative.js ***!
+  \**********************************************/
+
+/*!**********************************************!*\
+  !*** ./node_modules/lodash/_equalObjects.js ***!
+  \**********************************************/
+
+/*!**********************************************!*\
+  !*** ./node_modules/lodash/_listCacheGet.js ***!
+  \**********************************************/
+
+/*!**********************************************!*\
+  !*** ./node_modules/lodash/_listCacheHas.js ***!
+  \**********************************************/
+
+/*!**********************************************!*\
+  !*** ./node_modules/lodash/_listCacheSet.js ***!
+  \**********************************************/
+
+/*!**********************************************!*\
+  !*** ./node_modules/lodash/_nativeCreate.js ***!
+  \**********************************************/
+
+/*!**********************************************!*\
+  !*** ./node_modules/qr.js/lib/Polynomial.js ***!
+  \**********************************************/
+
+/*!**********************************************!*\
+  !*** ./node_modules/react-redux/es/index.js ***!
+  \**********************************************/
+
+/*!**********************************************!*\
+  !*** ./node_modules/redux-thunk/es/index.js ***!
+  \**********************************************/
+
+/*!***********************************************!*\
+  !*** ./node_modules/axios/lib/core/settle.js ***!
+  \***********************************************/
+
+/*!***********************************************!*\
+  !*** ./node_modules/lodash/_arrayLikeKeys.js ***!
+  \***********************************************/
+
+/*!***********************************************!*\
+  !*** ./node_modules/lodash/_mapCacheClear.js ***!
+  \***********************************************/
+
+/*!************************************************!*\
+  !*** ./node_modules/axios/lib/adapters/xhr.js ***!
+  \************************************************/
+
+/*!************************************************!*\
+  !*** ./node_modules/axios/lib/helpers/bind.js ***!
+  \************************************************/
+
+/*!************************************************!*\
+  !*** ./node_modules/lodash/_baseGetAllKeys.js ***!
+  \************************************************/
+
+/*!************************************************!*\
+  !*** ./node_modules/lodash/_listCacheClear.js ***!
+  \************************************************/
+
+/*!************************************************!*\
+  !*** ./node_modules/lodash/_mapCacheDelete.js ***!
+  \************************************************/
+
+/*!************************************************!*\
+  !*** ./node_modules/lodash/_objectToString.js ***!
+  \************************************************/
+
+/*!************************************************!*\
+  !*** ./node_modules/qrcode.react/lib/index.js ***!
+  \************************************************/
+
+/*!************************************************!*\
+  !*** ./node_modules/react-redux/es/exports.js ***!
+  \************************************************/
+
+/*!*************************************************!*\
+  !*** ./frontend/src/store/reducers/reducers.js ***!
+  \*************************************************/
+
+/*!*************************************************!*\
+  !*** ./node_modules/axios/lib/cancel/Cancel.js ***!
+  \*************************************************/
+
+/*!*************************************************!*\
+  !*** ./node_modules/lodash/_baseIsArguments.js ***!
+  \*************************************************/
+
+/*!*************************************************!*\
+  !*** ./node_modules/lodash/_baseIsEqualDeep.js ***!
+  \*************************************************/
+
+/*!*************************************************!*\
+  !*** ./node_modules/lodash/_listCacheDelete.js ***!
+  \*************************************************/
+
+/*!*************************************************!*\
+  !*** ./node_modules/lodash/_trimmedEndIndex.js ***!
+  \*************************************************/
+
+/*!**************************************************!*\
+  !*** ./frontend/src/components/layout/Header.js ***!
+  \**************************************************/
+
+/*!**************************************************!*\
+  !*** ./frontend/src/components/pages/Skripta.js ***!
+  \**************************************************/
+
+/*!**************************************************!*\
+  !*** ./frontend/src/components/parts/Problem.js ***!
+  \**************************************************/
+
+/*!**************************************************!*\
+  !*** ./node_modules/axios/lib/helpers/spread.js ***!
+  \**************************************************/
+
+/*!**************************************************!*\
+  !*** ./node_modules/dom-helpers/esm/addClass.js ***!
+  \**************************************************/
+
+/*!**************************************************!*\
+  !*** ./node_modules/dom-helpers/esm/hasClass.js ***!
+  \**************************************************/
+
+/*!**************************************************!*\
+  !*** ./node_modules/lodash/_baseIsTypedArray.js ***!
+  \**************************************************/
+
+/*!***************************************************!*\
+  !*** ./frontend/src/components/hooks/useFetch.js ***!
+  \***************************************************/
+
+/*!***************************************************!*\
+  !*** ./frontend/src/components/layout/Sidebar.js ***!
+  \***************************************************/
+
+/*!***************************************************!*\
+  !*** ./frontend/src/store/actions/actionTypes.js ***!
+  \***************************************************/
+
+/*!***************************************************!*\
+  !*** ./node_modules/axios/lib/cancel/isCancel.js ***!
+  \***************************************************/
+
+/*!***************************************************!*\
+  !*** ./node_modules/axios/lib/helpers/cookies.js ***!
+  \***************************************************/
+
+/*!***************************************************!*\
+  !*** ./node_modules/prop-types/checkPropTypes.js ***!
+  \***************************************************/
+
+/*!****************************************************!*\
+  !*** ./node_modules/axios/lib/core/createError.js ***!
+  \****************************************************/
+
+/*!****************************************************!*\
+  !*** ./node_modules/axios/lib/core/mergeConfig.js ***!
+  \****************************************************/
+
+/*!****************************************************!*\
+  !*** ./node_modules/axios/lib/helpers/buildURL.js ***!
+  \****************************************************/
+
+/*!****************************************************!*\
+  !*** ./node_modules/react-redux/es/utils/batch.js ***!
+  \****************************************************/
+
+/*!*****************************************************!*\
+  !*** ./frontend/src/components/pages/MaturaList.js ***!
+  \*****************************************************/
+
+/*!*****************************************************!*\
+  !*** ./node_modules/axios/lib/core/enhanceError.js ***!
+  \*****************************************************/
+
+/*!*****************************************************!*\
+  !*** ./node_modules/axios/lib/helpers/validator.js ***!
+  \*****************************************************/
+
+/*!*****************************************************!*\
+  !*** ./node_modules/css-loader/dist/runtime/api.js ***!
+  \*****************************************************/
+
+/*!*****************************************************!*\
+  !*** ./node_modules/dom-helpers/esm/removeClass.js ***!
+  \*****************************************************/
+
+/*!*****************************************************!*\
+  !*** ./node_modules/qr.js/lib/ErrorCorrectLevel.js ***!
+  \*****************************************************/
+
+/*!*****************************************************!*\
+  !*** ./node_modules/react/cjs/react.development.js ***!
+  \*****************************************************/
+
+/*!*****************************************************!*\
+  !*** ./node_modules/value-equal/esm/value-equal.js ***!
+  \*****************************************************/
+
+/*!******************************************************!*\
+  !*** ./frontend/src/store/actions/SkriptaActions.js ***!
+  \******************************************************/
+
+/*!******************************************************!*\
+  !*** ./node_modules/axios/lib/cancel/CancelToken.js ***!
+  \******************************************************/
+
+/*!******************************************************!*\
+  !*** ./node_modules/axios/lib/core/buildFullPath.js ***!
+  \******************************************************/
+
+/*!******************************************************!*\
+  !*** ./node_modules/axios/lib/core/transformData.js ***!
+  \******************************************************/
+
+/*!******************************************************!*\
+  !*** ./node_modules/react-redux/es/utils/warning.js ***!
+  \******************************************************/
+
+/*!*******************************************************!*\
+  !*** ./frontend/src/components/parts/ProblemImage.js ***!
+  \*******************************************************/
+
+/*!*******************************************************!*\
+  !*** ./frontend/src/components/parts/Subquestions.js ***!
+  \*******************************************************/
+
+/*!*******************************************************!*\
+  !*** ./frontend/src/store/reducers/SkriptaReducer.js ***!
+  \*******************************************************/
+
+/*!*******************************************************!*\
+  !*** ./node_modules/@shopify/polaris/dist/styles.css ***!
+  \*******************************************************/
+
+/*!*******************************************************!*\
+  !*** ./node_modules/axios/lib/helpers/combineURLs.js ***!
+  \*******************************************************/
+
+/*!*******************************************************!*\
+  !*** ./node_modules/react-redux/es/hooks/useStore.js ***!
+  \*******************************************************/
+
+/*!*******************************************************!*\
+  !*** ./node_modules/react-router/esm/react-router.js ***!
+  \*******************************************************/
+
+/*!********************************************************!*\
+  !*** ./frontend/src/components/parts/ProblemChoice.js ***!
+  \********************************************************/
+
+/*!********************************************************!*\
+  !*** ./node_modules/axios/lib/core/dispatchRequest.js ***!
+  \********************************************************/
+
+/*!********************************************************!*\
+  !*** ./node_modules/axios/lib/helpers/isAxiosError.js ***!
+  \********************************************************/
+
+/*!********************************************************!*\
+  !*** ./node_modules/axios/lib/helpers/parseHeaders.js ***!
+  \********************************************************/
+
+/*!********************************************************!*\
+  !*** ./node_modules/react-redux/es/connect/connect.js ***!
+  \********************************************************/
+
+/*!*********************************************************!*\
+  !*** ./frontend/src/components/pages/MaturaProblems.js ***!
+  \*********************************************************/
+
+/*!*********************************************************!*\
+  !*** ./node_modules/@shopify/polaris/dist/esm/types.js ***!
+  \*********************************************************/
+
+/*!*********************************************************!*\
+  !*** ./node_modules/axios/lib/helpers/isAbsoluteURL.js ***!
+  \*********************************************************/
+
+/*!**********************************************************!*\
+  !*** ./frontend/src/components/pages/SkriptaSections.js ***!
+  \**********************************************************/
+
+/*!**********************************************************!*\
+  !*** ./node_modules/focus-visible/dist/focus-visible.js ***!
+  \**********************************************************/
+
+/*!**********************************************************!*\
+  !*** ./node_modules/react-redux/es/hooks/useDispatch.js ***!
+  \**********************************************************/
+
+/*!**********************************************************!*\
+  !*** ./node_modules/react-redux/es/hooks/useSelector.js ***!
+  \**********************************************************/
+
+/*!***********************************************************!*\
+  !*** ./frontend/src/components/pages/ProblemsImporter.js ***!
+  \***********************************************************/
+
+/*!***********************************************************!*\
+  !*** ./frontend/src/components/parts/ImporterInfoForm.js ***!
+  \***********************************************************/
+
+/*!***********************************************************!*\
+  !*** ./frontend/src/store/actions/problemsViewActions.js ***!
+  \***********************************************************/
+
+/*!***********************************************************!*\
+  !*** ./node_modules/axios/lib/core/InterceptorManager.js ***!
+  \***********************************************************/
+
+/*!***********************************************************!*\
+  !*** ./node_modules/axios/lib/helpers/isURLSameOrigin.js ***!
+  \***********************************************************/
+
+/*!***********************************************************!*\
+  !*** ./node_modules/react-is/cjs/react-is.development.js ***!
+  \***********************************************************/
+
+/*!***********************************************************!*\
+  !*** ./node_modules/react-redux/es/components/Context.js ***!
+  \***********************************************************/
+
+/*!***********************************************************!*\
+  !*** ./node_modules/react-redux/es/connect/mergeProps.js ***!
+  \***********************************************************/
+
+/*!***********************************************************!*\
+  !*** ./node_modules/react-redux/es/utils/Subscription.js ***!
+  \***********************************************************/
+
+/*!***********************************************************!*\
+  !*** ./node_modules/react-redux/es/utils/shallowEqual.js ***!
+  \***********************************************************/
+
+/*!***********************************************************!*\
+  !*** ./node_modules/react-transition-group/esm/config.js ***!
+  \***********************************************************/
+
+/*!************************************************************!*\
+  !*** ./frontend/src/store/actions/problemFieldsActions.js ***!
+  \************************************************************/
+
+/*!************************************************************!*\
+  !*** ./frontend/src/store/reducers/problemsViewReducer.js ***!
+  \************************************************************/
+
+/*!************************************************************!*\
+  !*** ./node_modules/@babel/runtime/helpers/esm/extends.js ***!
+  \************************************************************/
+
+/*!************************************************************!*\
+  !*** ./node_modules/prop-types/factoryWithTypeCheckers.js ***!
+  \************************************************************/
+
+/*!************************************************************!*\
+  !*** ./node_modules/react-redux/es/components/Provider.js ***!
+  \************************************************************/
+
+/*!************************************************************!*\
+  !*** ./node_modules/react-redux/es/utils/isPlainObject.js ***!
+  \************************************************************/
+
+/*!************************************************************!*\
+  !*** ./node_modules/tiny-warning/dist/tiny-warning.esm.js ***!
+  \************************************************************/
+
+/*!*************************************************************!*\
+  !*** ./frontend/src/components/parts/AutocompleteSelect.js ***!
+  \*************************************************************/
+
+/*!*************************************************************!*\
+  !*** ./frontend/src/store/reducers/problemFieldsReducer.js ***!
+  \*************************************************************/
+
+/*!*************************************************************!*\
+  !*** ./node_modules/prop-types/lib/ReactPropTypesSecret.js ***!
+  \*************************************************************/
+
+/*!*************************************************************!*\
+  !*** ./node_modules/react-dom/cjs/react-dom.development.js ***!
+  \*************************************************************/
+
+/*!*************************************************************!*\
+  !*** ./node_modules/react-loader-spinner/dist/esm/index.js ***!
+  \*************************************************************/
+
+/*!*************************************************************!*\
+  !*** ./node_modules/scheduler/cjs/scheduler.development.js ***!
+  \*************************************************************/
+
+/*!**************************************************************!*\
+  !*** ./frontend/src/components/parts/ImageProblemChecker.js ***!
+  \**************************************************************/
+
+/*!**************************************************************!*\
+  !*** ./node_modules/react-redux/es/hooks/useReduxContext.js ***!
+  \**************************************************************/
+
+/*!***************************************************************!*\
+  !*** ./node_modules/axios/lib/helpers/normalizeHeaderName.js ***!
+  \***************************************************************/
+
+/*!***************************************************************!*\
+  !*** ./node_modules/react-redux/es/connect/wrapMapToProps.js ***!
+  \***************************************************************/
+
+/*!***************************************************************!*\
+  !*** ./node_modules/react-router-dom/esm/react-router-dom.js ***!
+  \***************************************************************/
+
+/*!***************************************************************!*\
+  !*** ./node_modules/react-transition-group/esm/Transition.js ***!
+  \***************************************************************/
+
+/*!***************************************************************!*\
+  !*** ./node_modules/resolve-pathname/esm/resolve-pathname.js ***!
+  \***************************************************************/
+
+/*!***************************************************************!*\
+  !*** ./node_modules/style-loader/dist/runtime/styleDomAPI.js ***!
+  \***************************************************************/
+
+/*!****************************************************************!*\
+  !*** ./node_modules/@shopify/polaris-tokens/dist/index.esm.js ***!
+  \****************************************************************/
+
+/*!****************************************************************!*\
+  !*** ./node_modules/react-redux/es/connect/mapStateToProps.js ***!
+  \****************************************************************/
+
+/*!****************************************************************!*\
+  !*** ./node_modules/react-redux/es/connect/selectorFactory.js ***!
+  \****************************************************************/
+
+/*!****************************************************************!*\
+  !*** ./node_modules/react-redux/es/utils/verifyPlainObject.js ***!
+  \****************************************************************/
+
+/*!****************************************************************!*\
+  !*** ./node_modules/tiny-invariant/dist/tiny-invariant.esm.js ***!
+  \****************************************************************/
+
+/*!*****************************************************************!*\
+  !*** ./node_modules/@fortawesome/react-fontawesome/index.es.js ***!
+  \*****************************************************************/
+
+/*!*****************************************************************!*\
+  !*** ./node_modules/@shopify/draggable/lib/draggable.bundle.js ***!
+  \*****************************************************************/
+
+/*!*****************************************************************!*\
+  !*** ./node_modules/@shopify/polaris/dist/esm/utilities/css.js ***!
+  \*****************************************************************/
+
+/*!*****************************************************************!*\
+  !*** ./node_modules/@shopify/polaris/dist/esm/utilities/get.js ***!
+  \*****************************************************************/
+
+/*!*****************************************************************!*\
+  !*** ./node_modules/react-redux/es/utils/bindActionCreators.js ***!
+  \*****************************************************************/
+
+/*!******************************************************************!*\
+  !*** ./node_modules/@babel/runtime/helpers/esm/inheritsLoose.js ***!
+  \******************************************************************/
+
+/*!******************************************************************!*\
+  !*** ./node_modules/@babel/runtime/helpers/esm/objectSpread2.js ***!
+  \******************************************************************/
+
+/*!******************************************************************!*\
+  !*** ./node_modules/mini-create-react-context/dist/esm/index.js ***!
+  \******************************************************************/
+
+/*!******************************************************************!*\
+  !*** ./node_modules/react-redux/es/utils/reactBatchedUpdates.js ***!
+  \******************************************************************/
+
+/*!******************************************************************!*\
+  !*** ./node_modules/react-transition-group/esm/CSSTransition.js ***!
+  \******************************************************************/
+
+/*!*******************************************************************!*\
+  !*** ./node_modules/@babel/runtime/helpers/esm/defineProperty.js ***!
+  \*******************************************************************/
+
+/*!*******************************************************************!*\
+  !*** ./node_modules/@babel/runtime/helpers/esm/setPrototypeOf.js ***!
+  \*******************************************************************/
+
+/*!*******************************************************************!*\
+  !*** ./node_modules/@shopify/polaris-tokens/dist-modern/index.js ***!
+  \*******************************************************************/
+
+/*!*******************************************************************!*\
+  !*** ./node_modules/@shopify/polaris-tokens/dist-modern/utils.js ***!
+  \*******************************************************************/
+
+/*!*******************************************************************!*\
+  !*** ./node_modules/@shopify/polaris/dist/esm/utilities/focus.js ***!
+  \*******************************************************************/
+
+/*!*******************************************************************!*\
+  !*** ./node_modules/@shopify/polaris/dist/esm/utilities/merge.js ***!
+  \*******************************************************************/
+
+/*!*******************************************************************!*\
+  !*** ./node_modules/react-loader-spinner/dist/esm/loader/Bars.js ***!
+  \*******************************************************************/
+
+/*!*******************************************************************!*\
+  !*** ./node_modules/react-loader-spinner/dist/esm/loader/Grid.js ***!
+  \*******************************************************************/
+
+/*!*******************************************************************!*\
+  !*** ./node_modules/react-loader-spinner/dist/esm/loader/Oval.js ***!
+  \*******************************************************************/
+
+/*!*******************************************************************!*\
+  !*** ./node_modules/react-loader-spinner/dist/esm/loader/Puff.js ***!
+  \*******************************************************************/
+
+/*!*******************************************************************!*\
+  !*** ./node_modules/react-redux/es/components/connectAdvanced.js ***!
+  \*******************************************************************/
+
+/*!*******************************************************************!*\
+  !*** ./node_modules/react-redux/es/connect/mapDispatchToProps.js ***!
+  \*******************************************************************/
+
+/*!*******************************************************************!*\
+  !*** ./node_modules/react-redux/es/connect/verifySubselectors.js ***!
+  \*******************************************************************/
+
+/*!********************************************************************!*\
+  !*** ./node_modules/@fortawesome/fontawesome-svg-core/index.es.js ***!
+  \********************************************************************/
+
+/*!********************************************************************!*\
+  !*** ./node_modules/@fortawesome/free-solid-svg-icons/index.es.js ***!
+  \********************************************************************/
+
+/*!********************************************************************!*\
+  !*** ./node_modules/@shopify/polaris/dist/esm/utilities/arrays.js ***!
+  \********************************************************************/
+
+/*!********************************************************************!*\
+  !*** ./node_modules/@shopify/polaris/dist/esm/utilities/errors.js ***!
+  \********************************************************************/
+
+/*!********************************************************************!*\
+  !*** ./node_modules/@shopify/polaris/dist/esm/utilities/target.js ***!
+  \********************************************************************/
+
+/*!********************************************************************!*\
+  !*** ./node_modules/react-loader-spinner/dist/esm/loader/Audio.js ***!
+  \********************************************************************/
+
+/*!********************************************************************!*\
+  !*** ./node_modules/react-loader-spinner/dist/esm/loader/Plane.js ***!
+  \********************************************************************/
+
+/*!********************************************************************!*\
+  !*** ./node_modules/react-loader-spinner/dist/esm/loader/Rings.js ***!
+  \********************************************************************/
+
+/*!********************************************************************!*\
+  !*** ./node_modules/react-loader-spinner/dist/esm/loader/Watch.js ***!
+  \********************************************************************/
+
+/*!********************************************************************!*\
+  !*** ./node_modules/react-transition-group/esm/TransitionGroup.js ***!
+  \********************************************************************/
+
+/*!********************************************************************!*\
+  !*** ./node_modules/react-transition-group/esm/utils/PropTypes.js ***!
+  \********************************************************************/
+
+/*!********************************************************************!*\
+  !*** ./node_modules/style-loader/dist/runtime/insertBySelector.js ***!
+  \********************************************************************/
+
+/*!*********************************************************************!*\
+  !*** ./node_modules/@shopify/polaris/dist/esm/components/shared.js ***!
+  \*********************************************************************/
+
+/*!*********************************************************************!*\
+  !*** ./node_modules/react-loader-spinner/dist/esm/loader/Hearts.js ***!
+  \*********************************************************************/
+
+/*!*********************************************************************!*\
+  !*** ./node_modules/scheduler/cjs/scheduler-tracing.development.js ***!
+  \*********************************************************************/
+
+/*!*********************************************************************!*\
+  !*** ./node_modules/style-loader/dist/runtime/styleTagTransform.js ***!
+  \*********************************************************************/
+
+/*!**********************************************************************!*\
+  !*** ./node_modules/@shopify/polaris/dist/esm/utilities/geometry.js ***!
+  \**********************************************************************/
+
+/*!**********************************************************************!*\
+  !*** ./node_modules/react-loader-spinner/dist/esm/loader/Circles.js ***!
+  \**********************************************************************/
+
+/*!**********************************************************************!*\
+  !*** ./node_modules/style-loader/dist/runtime/insertStyleElement.js ***!
+  \**********************************************************************/
+
+/*!***********************************************************************!*\
+  !*** ./node_modules/@shopify/polaris/dist/esm/utilities/get-width.js ***!
+  \***********************************************************************/
+
+/*!***********************************************************************!*\
+  !*** ./node_modules/@shopify/polaris/dist/esm/utilities/i18n/I18n.js ***!
+  \***********************************************************************/
+
+/*!***********************************************************************!*\
+  !*** ./node_modules/@shopify/polaris/dist/esm/utilities/is-object.js ***!
+  \***********************************************************************/
+
+/*!***********************************************************************!*\
+  !*** ./node_modules/react-loader-spinner/dist/esm/loader/TailSpin.js ***!
+  \***********************************************************************/
+
+/*!***********************************************************************!*\
+  !*** ./node_modules/react-loader-spinner/dist/esm/loader/Triangle.js ***!
+  \***********************************************************************/
+
+/*!***********************************************************************!*\
+  !*** ./node_modules/react-transition-group/esm/utils/ChildMapping.js ***!
+  \***********************************************************************/
+
+/*!************************************************************************!*\
+  !*** ./node_modules/@shopify/polaris/dist/esm/components/Card/Card.js ***!
+  \************************************************************************/
+
+/*!************************************************************************!*\
+  !*** ./node_modules/@shopify/polaris/dist/esm/components/Form/Form.js ***!
+  \************************************************************************/
+
+/*!************************************************************************!*\
+  !*** ./node_modules/@shopify/polaris/dist/esm/components/Icon/Icon.js ***!
+  \************************************************************************/
+
+/*!************************************************************************!*\
+  !*** ./node_modules/@shopify/polaris/dist/esm/components/Link/Link.js ***!
+  \************************************************************************/
+
+/*!************************************************************************!*\
+  !*** ./node_modules/@shopify/polaris/dist/esm/components/Page/Page.js ***!
+  \************************************************************************/
+
+/*!************************************************************************!*\
+  !*** ./node_modules/@shopify/polaris/dist/esm/utilities/capitalize.js ***!
+  \************************************************************************/
+
+/*!************************************************************************!*\
+  !*** ./node_modules/@shopify/polaris/dist/esm/utilities/components.js ***!
+  \************************************************************************/
+
+/*!************************************************************************!*\
+  !*** ./node_modules/@shopify/polaris/dist/esm/utilities/i18n/hooks.js ***!
+  \************************************************************************/
+
+/*!************************************************************************!*\
+  !*** ./node_modules/@shopify/polaris/dist/esm/utilities/link/hooks.js ***!
+  \************************************************************************/
+
+/*!************************************************************************!*\
+  !*** ./node_modules/@shopify/polaris/dist/esm/utilities/pluck-deep.js ***!
+  \************************************************************************/
+
+/*!************************************************************************!*\
+  !*** ./node_modules/@shopify/polaris/dist/esm/utilities/use-toggle.js ***!
+  \************************************************************************/
+
+/*!************************************************************************!*\
+  !*** ./node_modules/css-loader/dist/runtime/cssWithMappingToString.js ***!
+  \************************************************************************/
+
+/*!************************************************************************!*\
+  !*** ./node_modules/react-loader-spinner/dist/esm/loader/ThreeDots.js ***!
+  \************************************************************************/
+
+/*!************************************************************************!*\
+  !*** ./node_modules/react-redux/es/utils/useIsomorphicLayoutEffect.js ***!
+  \************************************************************************/
+
+/*!************************************************************************!*\
+  !*** ./node_modules/react-router/node_modules/path-to-regexp/index.js ***!
+  \************************************************************************/
+
+/*!*************************************************************************!*\
+  !*** ./node_modules/@shopify/polaris/dist/esm/utilities/breakpoints.js ***!
+  \*************************************************************************/
+
+/*!*************************************************************************!*\
+  !*** ./node_modules/@shopify/polaris/dist/esm/utilities/theme/hooks.js ***!
+  \*************************************************************************/
+
+/*!*************************************************************************!*\
+  !*** ./node_modules/@shopify/polaris/dist/esm/utilities/theme/utils.js ***!
+  \*************************************************************************/
+
+/*!**************************************************************************!*\
+  !*** ./node_modules/@babel/runtime/helpers/esm/assertThisInitialized.js ***!
+  \**************************************************************************/
+
+/*!**************************************************************************!*\
+  !*** ./node_modules/@shopify/polaris-tokens/dist-modern/configs/base.js ***!
+  \**************************************************************************/
+
+/*!**************************************************************************!*\
+  !*** ./node_modules/@shopify/polaris-tokens/dist-modern/theme/base.json ***!
+  \**************************************************************************/
+
+/*!**************************************************************************!*\
+  !*** ./node_modules/@shopify/polaris/dist/esm/components/Badge/Badge.js ***!
+  \**************************************************************************/
+
+/*!**************************************************************************!*\
+  !*** ./node_modules/@shopify/polaris/dist/esm/components/Focus/Focus.js ***!
+  \**************************************************************************/
+
+/*!**************************************************************************!*\
+  !*** ./node_modules/@shopify/polaris/dist/esm/components/Frame/Frame.js ***!
+  \**************************************************************************/
+
+/*!**************************************************************************!*\
+  !*** ./node_modules/@shopify/polaris/dist/esm/components/Image/Image.js ***!
+  \**************************************************************************/
+
+/*!**************************************************************************!*\
+  !*** ./node_modules/@shopify/polaris/dist/esm/components/Label/Label.js ***!
+  \**************************************************************************/
+
+/*!**************************************************************************!*\
+  !*** ./node_modules/@shopify/polaris/dist/esm/components/Modal/Modal.js ***!
+  \**************************************************************************/
+
+/*!**************************************************************************!*\
+  !*** ./node_modules/@shopify/polaris/dist/esm/components/Stack/Stack.js ***!
+  \**************************************************************************/
+
+/*!**************************************************************************!*\
+  !*** ./node_modules/@shopify/polaris/dist/esm/utilities/i18n/context.js ***!
+  \**************************************************************************/
+
+/*!**************************************************************************!*\
+  !*** ./node_modules/@shopify/polaris/dist/esm/utilities/link/context.js ***!
+  \**************************************************************************/
+
+/*!**************************************************************************!*\
+  !*** ./node_modules/@shopify/polaris/dist/esm/utilities/theme/tokens.js ***!
+  \**************************************************************************/
+
+/*!***************************************************************************!*\
+  !*** ./node_modules/@shopify/polaris-icons/dist/icons/AlertMinor.svg.mjs ***!
+  \***************************************************************************/
+
+/*!***************************************************************************!*\
+  !*** ./node_modules/@shopify/polaris-tokens/dist-modern/color-factory.js ***!
+  \***************************************************************************/
+
+/*!***************************************************************************!*\
+  !*** ./node_modules/@shopify/polaris/dist/esm/components/Button/utils.js ***!
+  \***************************************************************************/
+
+/*!***************************************************************************!*\
+  !*** ./node_modules/@shopify/polaris/dist/esm/utilities/frame/context.js ***!
+  \***************************************************************************/
+
+/*!***************************************************************************!*\
+  !*** ./node_modules/@shopify/polaris/dist/esm/utilities/portals/hooks.js ***!
+  \***************************************************************************/
+
+/*!***************************************************************************!*\
+  !*** ./node_modules/@shopify/polaris/dist/esm/utilities/theme/context.js ***!
+  \***************************************************************************/
+
+/*!***************************************************************************!*\
+  !*** ./node_modules/react-loader-spinner/dist/esm/loader/BallTriangle.js ***!
+  \***************************************************************************/
+
+/*!***************************************************************************!*\
+  !*** ./node_modules/react-loader-spinner/dist/esm/loader/CradleLoader.js ***!
+  \***************************************************************************/
+
+/*!***************************************************************************!*\
+  !*** ./node_modules/react-loader-spinner/dist/esm/loader/MutatingDots.js ***!
+  \***************************************************************************/
+
+/*!***************************************************************************!*\
+  !*** ./node_modules/react-loader-spinner/dist/esm/loader/RevolvingDot.js ***!
+  \***************************************************************************/
+
+/*!***************************************************************************!*\
+  !*** ./node_modules/react-transition-group/esm/TransitionGroupContext.js ***!
+  \***************************************************************************/
+
+/*!****************************************************************************!*\
+  !*** ./node_modules/@shopify/polaris-icons/dist/icons/SearchMinor.svg.mjs ***!
+  \****************************************************************************/
+
+/*!****************************************************************************!*\
+  !*** ./node_modules/@shopify/polaris-icons/dist/icons/SelectMinor.svg.mjs ***!
+  \****************************************************************************/
+
+/*!****************************************************************************!*\
+  !*** ./node_modules/@shopify/polaris-icons/dist/icons/UploadMajor.svg.mjs ***!
+  \****************************************************************************/
+
+/*!****************************************************************************!*\
+  !*** ./node_modules/@shopify/polaris/dist/esm/components/Avatar/Avatar.js ***!
+  \****************************************************************************/
+
+/*!****************************************************************************!*\
+  !*** ./node_modules/@shopify/polaris/dist/esm/components/Banner/Banner.js ***!
+  \****************************************************************************/
+
+/*!****************************************************************************!*\
+  !*** ./node_modules/@shopify/polaris/dist/esm/components/Button/Button.js ***!
+  \****************************************************************************/
+
+/*!****************************************************************************!*\
+  !*** ./node_modules/@shopify/polaris/dist/esm/components/Layout/Layout.js ***!
+  \****************************************************************************/
+
+/*!****************************************************************************!*\
+  !*** ./node_modules/@shopify/polaris/dist/esm/components/Portal/Portal.js ***!
+  \****************************************************************************/
+
+/*!****************************************************************************!*\
+  !*** ./node_modules/@shopify/polaris/dist/esm/components/TopBar/TopBar.js ***!
+  \****************************************************************************/
+
+/*!****************************************************************************!*\
+  !*** ./node_modules/@shopify/polaris/dist/esm/utilities/banner-context.js ***!
+  \****************************************************************************/
+
+/*!****************************************************************************!*\
+  !*** ./node_modules/style-loader/dist/runtime/injectStylesIntoStyleTag.js ***!
+  \****************************************************************************/
+
+/*!*****************************************************************************!*\
+  !*** ./node_modules/@shopify/polaris-icons/dist/icons/CaretUpMinor.svg.mjs ***!
+  \*****************************************************************************/
+
+/*!*****************************************************************************!*\
+  !*** ./node_modules/@shopify/polaris/dist/esm/components/Card/Card.scss.js ***!
+  \*****************************************************************************/
+
+/*!*****************************************************************************!*\
+  !*** ./node_modules/@shopify/polaris/dist/esm/components/Icon/Icon.scss.js ***!
+  \*****************************************************************************/
+
+/*!*****************************************************************************!*\
+  !*** ./node_modules/@shopify/polaris/dist/esm/components/Link/Link.scss.js ***!
+  \*****************************************************************************/
+
+/*!*****************************************************************************!*\
+  !*** ./node_modules/@shopify/polaris/dist/esm/components/Page/Page.scss.js ***!
+  \*****************************************************************************/
+
+/*!*****************************************************************************!*\
+  !*** ./node_modules/@shopify/polaris/dist/esm/utilities/portals/context.js ***!
+  \*****************************************************************************/
+
+/*!*****************************************************************************!*\
+  !*** ./node_modules/@shopify/polaris/dist/esm/utilities/unique-id/hooks.js ***!
+  \*****************************************************************************/
+
+/*!*****************************************************************************!*\
+  !*** ./node_modules/@shopify/polaris/dist/esm/utilities/use-deep-effect.js ***!
+  \*****************************************************************************/
+
+/*!******************************************************************************!*\
+  !*** ./node_modules/@shopify/polaris/dist/esm/components/Caption/Caption.js ***!
+  \******************************************************************************/
+
+/*!******************************************************************************!*\
+  !*** ./node_modules/@shopify/polaris/dist/esm/components/Heading/Heading.js ***!
+  \******************************************************************************/
+
+/*!******************************************************************************!*\
+  !*** ./node_modules/@shopify/polaris/dist/esm/components/Popover/Popover.js ***!
+  \******************************************************************************/
+
+/*!******************************************************************************!*\
+  !*** ./node_modules/@shopify/polaris/dist/esm/components/Spinner/Spinner.js ***!
+  \******************************************************************************/
+
+/*!******************************************************************************!*\
+  !*** ./node_modules/@shopify/polaris/dist/esm/components/Tooltip/Tooltip.js ***!
+  \******************************************************************************/
+
+/*!******************************************************************************!*\
+  !*** ./node_modules/@shopify/polaris/dist/esm/utilities/features/context.js ***!
+  \******************************************************************************/
+
+/*!******************************************************************************!*\
+  !*** ./node_modules/@shopify/polaris/dist/esm/utilities/is-input-focused.js ***!
+  \******************************************************************************/
+
+/*!*******************************************************************************!*\
+  !*** ./node_modules/@shopify/polaris-icons/dist/icons/ArrowLeftMinor.svg.mjs ***!
+  \*******************************************************************************/
+
+/*!*******************************************************************************!*\
+  !*** ./node_modules/@shopify/polaris-icons/dist/icons/CaretDownMinor.svg.mjs ***!
+  \*******************************************************************************/
+
+/*!*******************************************************************************!*\
+  !*** ./node_modules/@shopify/polaris-icons/dist/icons/TickSmallMinor.svg.mjs ***!
+  \*******************************************************************************/
+
+/*!*******************************************************************************!*\
+  !*** ./node_modules/@shopify/polaris/dist/esm/components/Badge/Badge.scss.js ***!
+  \*******************************************************************************/
+
+/*!*******************************************************************************!*\
+  !*** ./node_modules/@shopify/polaris/dist/esm/components/DropZone/context.js ***!
+  \*******************************************************************************/
+
+/*!*******************************************************************************!*\
+  !*** ./node_modules/@shopify/polaris/dist/esm/components/Frame/Frame.scss.js ***!
+  \*******************************************************************************/
+
+/*!*******************************************************************************!*\
+  !*** ./node_modules/@shopify/polaris/dist/esm/components/Label/Label.scss.js ***!
+  \*******************************************************************************/
+
+/*!*******************************************************************************!*\
+  !*** ./node_modules/@shopify/polaris/dist/esm/components/Modal/Modal.scss.js ***!
+  \*******************************************************************************/
+
+/*!*******************************************************************************!*\
+  !*** ./node_modules/@shopify/polaris/dist/esm/components/Stack/Stack.scss.js ***!
+  \*******************************************************************************/
+
+/*!*******************************************************************************!*\
+  !*** ./node_modules/@shopify/polaris/dist/esm/utilities/media-query/hooks.js ***!
+  \*******************************************************************************/
+
+/*!*******************************************************************************!*\
+  !*** ./node_modules/@shopify/polaris/dist/esm/utilities/set-root-property.js ***!
+  \*******************************************************************************/
+
+/*!*******************************************************************************!*\
+  !*** ./node_modules/@shopify/polaris/dist/esm/utilities/unique-id/context.js ***!
+  \*******************************************************************************/
+
+/*!*******************************************************************************!*\
+  !*** ./node_modules/@shopify/polaris/dist/esm/utilities/use-deep-callback.js ***!
+  \*******************************************************************************/
+
+/*!********************************************************************************!*\
+  !*** ./node_modules/@shopify/polaris-icons/dist/icons/CircleTickMajor.svg.mjs ***!
+  \********************************************************************************/
+
+/*!********************************************************************************!*\
+  !*** ./node_modules/@shopify/polaris/dist/esm/components/Backdrop/Backdrop.js ***!
+  \********************************************************************************/
+
+/*!********************************************************************************!*\
+  !*** ./node_modules/@shopify/polaris/dist/esm/components/DropZone/DropZone.js ***!
+  \********************************************************************************/
+
+/*!********************************************************************************!*\
+  !*** ./node_modules/@shopify/polaris/dist/esm/components/Labelled/Labelled.js ***!
+  \********************************************************************************/
+
+/*!********************************************************************************!*\
+  !*** ./node_modules/@shopify/polaris/dist/esm/utilities/use-is-mounted-ref.js ***!
+  \********************************************************************************/
+
+/*!*********************************************************************************!*\
+  !*** ./node_modules/@babel/runtime/helpers/esm/objectWithoutPropertiesLoose.js ***!
+  \*********************************************************************************/
+
+/*!*********************************************************************************!*\
+  !*** ./node_modules/@shopify/polaris-icons/dist/icons/CancelSmallMinor.svg.mjs ***!
+  \*********************************************************************************/
+
+/*!*********************************************************************************!*\
+  !*** ./node_modules/@shopify/polaris-icons/dist/icons/ChevronLeftMinor.svg.mjs ***!
+  \*********************************************************************************/
+
+/*!*********************************************************************************!*\
+  !*** ./node_modules/@shopify/polaris-icons/dist/icons/CircleAlertMajor.svg.mjs ***!
+  \*********************************************************************************/
+
+/*!*********************************************************************************!*\
+  !*** ./node_modules/@shopify/polaris/dist/esm/components/Avatar/Avatar.scss.js ***!
+  \*********************************************************************************/
+
+/*!*********************************************************************************!*\
+  !*** ./node_modules/@shopify/polaris/dist/esm/components/Banner/Banner.scss.js ***!
+  \*********************************************************************************/
+
+/*!*********************************************************************************!*\
+  !*** ./node_modules/@shopify/polaris/dist/esm/components/Button/Button.scss.js ***!
+  \*********************************************************************************/
+
+/*!*********************************************************************************!*\
+  !*** ./node_modules/@shopify/polaris/dist/esm/components/Layout/Layout.scss.js ***!
+  \*********************************************************************************/
+
+/*!*********************************************************************************!*\
+  !*** ./node_modules/@shopify/polaris/dist/esm/components/Navigation/context.js ***!
+  \*********************************************************************************/
+
+/*!*********************************************************************************!*\
+  !*** ./node_modules/@shopify/polaris/dist/esm/components/Scrollable/context.js ***!
+  \*********************************************************************************/
+
+/*!*********************************************************************************!*\
+  !*** ./node_modules/@shopify/polaris/dist/esm/components/TopBar/TopBar.scss.js ***!
+  \*********************************************************************************/
+
+/*!*********************************************************************************!*\
+  !*** ./node_modules/@shopify/polaris/dist/esm/utilities/focus-manager/hooks.js ***!
+  \*********************************************************************************/
+
+/*!*********************************************************************************!*\
+  !*** ./node_modules/@shopify/polaris/dist/esm/utilities/media-query/context.js ***!
+  \*********************************************************************************/
+
+/*!**********************************************************************************!*\
+  !*** ./node_modules/@shopify/polaris-icons/dist/icons/ChevronRightMinor.svg.mjs ***!
+  \**********************************************************************************/
+
+/*!**********************************************************************************!*\
+  !*** ./node_modules/@shopify/polaris-icons/dist/icons/CircleCancelMinor.svg.mjs ***!
+  \**********************************************************************************/
+
+/*!**********************************************************************************!*\
+  !*** ./node_modules/@shopify/polaris-icons/dist/icons/DiamondAlertMajor.svg.mjs ***!
+  \**********************************************************************************/
+
+/*!**********************************************************************************!*\
+  !*** ./node_modules/@shopify/polaris-icons/dist/icons/MobileCancelMajor.svg.mjs ***!
+  \**********************************************************************************/
+
+/*!**********************************************************************************!*\
+  !*** ./node_modules/@shopify/polaris/dist/esm/components/Connected/Connected.js ***!
+  \**********************************************************************************/
+
+/*!**********************************************************************************!*\
+  !*** ./node_modules/@shopify/polaris/dist/esm/components/Indicator/Indicator.js ***!
+  \**********************************************************************************/
+
+/*!**********************************************************************************!*\
+  !*** ./node_modules/@shopify/polaris/dist/esm/components/MediaCard/MediaCard.js ***!
+  \**********************************************************************************/
+
+/*!**********************************************************************************!*\
+  !*** ./node_modules/@shopify/polaris/dist/esm/components/TextField/TextField.js ***!
+  \**********************************************************************************/
+
+/*!**********************************************************************************!*\
+  !*** ./node_modules/@shopify/polaris/dist/esm/components/TextStyle/TextStyle.js ***!
+  \**********************************************************************************/
+
+/*!**********************************************************************************!*\
+  !*** ./node_modules/@shopify/polaris/dist/esm/components/TrapFocus/TrapFocus.js ***!
+  \**********************************************************************************/
+
+/*!**********************************************************************************!*\
+  !*** ./node_modules/@shopify/polaris/dist/esm/utilities/use-deep-compare-ref.js ***!
+  \**********************************************************************************/
+
+/*!**********************************************************************************!*\
+  !*** ./node_modules/hoist-non-react-statics/dist/hoist-non-react-statics.cjs.js ***!
+  \**********************************************************************************/
+
+/*!**********************************************************************************!*\
+  !*** ./node_modules/style-loader/dist/runtime/setAttributesWithoutAttributes.js ***!
+  \**********************************************************************************/
+
+/*!***********************************************************************************!*\
+  !*** ./node_modules/@shopify/polaris-icons/dist/icons/ExternalSmallMinor.svg.mjs ***!
+  \***********************************************************************************/
+
+/*!***********************************************************************************!*\
+  !*** ./node_modules/@shopify/polaris/dist/esm/components/Caption/Caption.scss.js ***!
+  \***********************************************************************************/
+
+/*!***********************************************************************************!*\
+  !*** ./node_modules/@shopify/polaris/dist/esm/components/DropZone/utils/index.js ***!
+  \***********************************************************************************/
+
+/*!***********************************************************************************!*\
+  !*** ./node_modules/@shopify/polaris/dist/esm/components/Heading/Heading.scss.js ***!
+  \***********************************************************************************/
+
+/*!***********************************************************************************!*\
+  !*** ./node_modules/@shopify/polaris/dist/esm/components/Popover/Popover.scss.js ***!
+  \***********************************************************************************/
+
+/*!***********************************************************************************!*\
+  !*** ./node_modules/@shopify/polaris/dist/esm/components/Spinner/Spinner.scss.js ***!
+  \***********************************************************************************/
+
+/*!***********************************************************************************!*\
+  !*** ./node_modules/@shopify/polaris/dist/esm/components/UnstyledButton/utils.js ***!
+  \***********************************************************************************/
+
+/*!***********************************************************************************!*\
+  !*** ./node_modules/@shopify/polaris/dist/esm/utilities/focus-manager/context.js ***!
+  \***********************************************************************************/
+
+/*!***********************************************************************************!*\
+  !*** ./node_modules/@shopify/polaris/dist/esm/utilities/within-filter-context.js ***!
+  \***********************************************************************************/
+
+/*!************************************************************************************!*\
+  !*** ./node_modules/@shopify/polaris-icons/dist/icons/HorizontalDotsMinor.svg.mjs ***!
+  \************************************************************************************/
+
+/*!************************************************************************************!*\
+  !*** ./node_modules/@shopify/polaris/dist/esm/components/ActionList/ActionList.js ***!
+  \************************************************************************************/
+
+/*!************************************************************************************!*\
+  !*** ./node_modules/@shopify/polaris/dist/esm/components/ActionMenu/ActionMenu.js ***!
+  \************************************************************************************/
+
+/*!************************************************************************************!*\
+  !*** ./node_modules/@shopify/polaris/dist/esm/components/FormLayout/FormLayout.js ***!
+  \************************************************************************************/
+
+/*!************************************************************************************!*\
+  !*** ./node_modules/@shopify/polaris/dist/esm/components/Navigation/Navigation.js ***!
+  \************************************************************************************/
+
+/*!************************************************************************************!*\
+  !*** ./node_modules/@shopify/polaris/dist/esm/components/OptionList/OptionList.js ***!
+  \************************************************************************************/
+
+/*!************************************************************************************!*\
+  !*** ./node_modules/@shopify/polaris/dist/esm/components/Pagination/Pagination.js ***!
+  \************************************************************************************/
+
+/*!************************************************************************************!*\
+  !*** ./node_modules/@shopify/polaris/dist/esm/components/ScrollLock/ScrollLock.js ***!
+  \************************************************************************************/
+
+/*!************************************************************************************!*\
+  !*** ./node_modules/@shopify/polaris/dist/esm/components/Scrollable/Scrollable.js ***!
+  \************************************************************************************/
+
+/*!************************************************************************************!*\
+  !*** ./node_modules/@shopify/polaris/dist/esm/components/Subheading/Subheading.js ***!
+  \************************************************************************************/
+
+/*!************************************************************************************!*\
+  !*** ./node_modules/@shopify/polaris/dist/esm/utilities/is-element-in-viewport.js ***!
+  \************************************************************************************/
+
+/*!************************************************************************************!*\
+  !*** ./node_modules/@shopify/polaris/dist/esm/utilities/sticky-manager/context.js ***!
+  \************************************************************************************/
+
+/*!************************************************************************************!*\
+  !*** ./node_modules/@shopify/polaris/dist/esm/utilities/within-content-context.js ***!
+  \************************************************************************************/
+
+/*!*************************************************************************************!*\
+  !*** ./node_modules/@shopify/polaris-icons/dist/icons/MobileHamburgerMajor.svg.mjs ***!
+  \*************************************************************************************/
+
+/*!*************************************************************************************!*\
+  !*** ./node_modules/@shopify/polaris/dist/esm/components/Backdrop/Backdrop.scss.js ***!
+  \*************************************************************************************/
+
+/*!*************************************************************************************!*\
+  !*** ./node_modules/@shopify/polaris/dist/esm/components/DropZone/DropZone.scss.js ***!
+  \*************************************************************************************/
+
+/*!*************************************************************************************!*\
+  !*** ./node_modules/@shopify/polaris/dist/esm/components/Labelled/Labelled.scss.js ***!
+  \*************************************************************************************/
+
+/*!*************************************************************************************!*\
+  !*** ./node_modules/@shopify/polaris/dist/esm/utilities/use-component-did-mount.js ***!
+  \*************************************************************************************/
+
+/*!**************************************************************************************!*\
+  !*** ./node_modules/@shopify/polaris/dist/esm/_virtual/_rollupPluginBabelHelpers.js ***!
+  \**************************************************************************************/
+
+/*!**************************************************************************************!*\
+  !*** ./node_modules/@shopify/polaris/dist/esm/components/AppProvider/AppProvider.js ***!
+  \**************************************************************************************/
+
+/*!**************************************************************************************!*\
+  !*** ./node_modules/@shopify/polaris/dist/esm/components/Breadcrumbs/Breadcrumbs.js ***!
+  \**************************************************************************************/
+
+/*!**************************************************************************************!*\
+  !*** ./node_modules/@shopify/polaris/dist/esm/components/ButtonGroup/ButtonGroup.js ***!
+  \**************************************************************************************/
+
+/*!**************************************************************************************!*\
+  !*** ./node_modules/@shopify/polaris/dist/esm/components/Collapsible/Collapsible.js ***!
+  \**************************************************************************************/
+
+/*!**************************************************************************************!*\
+  !*** ./node_modules/@shopify/polaris/dist/esm/components/DisplayText/DisplayText.js ***!
+  \**************************************************************************************/
+
+/*!**************************************************************************************!*\
+  !*** ./node_modules/@shopify/polaris/dist/esm/components/InlineError/InlineError.js ***!
+  \**************************************************************************************/
+
+/*!***************************************************************************************!*\
+  !*** ./node_modules/@shopify/polaris-icons/dist/icons/CircleInformationMajor.svg.mjs ***!
+  \***************************************************************************************/
+
+/*!***************************************************************************************!*\
+  !*** ./node_modules/@shopify/polaris/dist/esm/components/Connected/Connected.scss.js ***!
+  \***************************************************************************************/
+
+/*!***************************************************************************************!*\
+  !*** ./node_modules/@shopify/polaris/dist/esm/components/Indicator/Indicator.scss.js ***!
+  \***************************************************************************************/
+
+/*!***************************************************************************************!*\
+  !*** ./node_modules/@shopify/polaris/dist/esm/components/MediaCard/MediaCard.scss.js ***!
+  \***************************************************************************************/
+
+/*!***************************************************************************************!*\
+  !*** ./node_modules/@shopify/polaris/dist/esm/components/TextField/TextField.scss.js ***!
+  \***************************************************************************************/
+
+/*!***************************************************************************************!*\
+  !*** ./node_modules/@shopify/polaris/dist/esm/components/TextStyle/TextStyle.scss.js ***!
+  \***************************************************************************************/
+
+/*!***************************************************************************************!*\
+  !*** ./node_modules/@shopify/polaris/dist/esm/utilities/scroll-lock-manager/hooks.js ***!
+  \***************************************************************************************/
+
+/*!****************************************************************************************!*\
+  !*** ./node_modules/@shopify/polaris/dist/esm/components/Autocomplete/Autocomplete.js ***!
+  \****************************************************************************************/
+
+/*!****************************************************************************************!*\
+  !*** ./node_modules/@shopify/polaris/dist/esm/components/FocusManager/FocusManager.js ***!
+  \****************************************************************************************/
+
+/*!****************************************************************************************!*\
+  !*** ./node_modules/@shopify/polaris/dist/esm/components/UnstyledLink/UnstyledLink.js ***!
+  \****************************************************************************************/
+
+/*!****************************************************************************************!*\
+  !*** ./node_modules/@shopify/polaris/dist/esm/utilities/use-is-after-initial-mount.js ***!
+  \****************************************************************************************/
+
+/*!*****************************************************************************************!*\
+  !*** ./node_modules/@shopify/polaris/dist/esm/components/ActionList/ActionList.scss.js ***!
+  \*****************************************************************************************/
+
+/*!*****************************************************************************************!*\
+  !*** ./node_modules/@shopify/polaris/dist/esm/components/ActionMenu/ActionMenu.scss.js ***!
+  \*****************************************************************************************/
+
+/*!*****************************************************************************************!*\
+  !*** ./node_modules/@shopify/polaris/dist/esm/components/FormLayout/FormLayout.scss.js ***!
+  \*****************************************************************************************/
+
+/*!*****************************************************************************************!*\
+  !*** ./node_modules/@shopify/polaris/dist/esm/components/Navigation/Navigation.scss.js ***!
+  \*****************************************************************************************/
+
+/*!*****************************************************************************************!*\
+  !*** ./node_modules/@shopify/polaris/dist/esm/components/OptionList/OptionList.scss.js ***!
+  \*****************************************************************************************/
+
+/*!*****************************************************************************************!*\
+  !*** ./node_modules/@shopify/polaris/dist/esm/components/Scrollable/Scrollable.scss.js ***!
+  \*****************************************************************************************/
+
+/*!*****************************************************************************************!*\
+  !*** ./node_modules/@shopify/polaris/dist/esm/components/Stack/components/Item/Item.js ***!
+  \*****************************************************************************************/
+
+/*!*****************************************************************************************!*\
+  !*** ./node_modules/@shopify/polaris/dist/esm/components/Subheading/Subheading.scss.js ***!
+  \*****************************************************************************************/
+
+/*!*****************************************************************************************!*\
+  !*** ./node_modules/@shopify/polaris/dist/esm/utilities/scroll-lock-manager/context.js ***!
+  \*****************************************************************************************/
+
+/*!*****************************************************************************************!*\
+  !*** ./node_modules/@shopify/polaris/dist/esm/utilities/unique-id/unique-id-factory.js ***!
+  \*****************************************************************************************/
+
+/*!******************************************************************************************!*\
+  !*** ./node_modules/@shopify/polaris/dist/esm/components/EventListener/EventListener.js ***!
+  \******************************************************************************************/
+
+/*!******************************************************************************************!*\
+  !*** ./node_modules/@shopify/polaris/dist/esm/components/TextContainer/TextContainer.js ***!
+  \******************************************************************************************/
+
+/*!******************************************************************************************!*\
+  !*** ./node_modules/@shopify/polaris/dist/esm/components/ThemeProvider/ThemeProvider.js ***!
+  \******************************************************************************************/
+
+/*!******************************************************************************************!*\
+  !*** ./node_modules/@shopify/polaris/dist/esm/components/TopBar/components/Menu/Menu.js ***!
+  \******************************************************************************************/
+
+/*!******************************************************************************************!*\
+  !*** ./node_modules/@shopify/polaris/dist/esm/utilities/use-isomorphic-layout-effect.js ***!
+  \******************************************************************************************/
+
+/*!*******************************************************************************************!*\
+  !*** ./node_modules/@shopify/polaris/dist/esm/components/Breadcrumbs/Breadcrumbs.scss.js ***!
+  \*******************************************************************************************/
+
+/*!*******************************************************************************************!*\
+  !*** ./node_modules/@shopify/polaris/dist/esm/components/ButtonGroup/ButtonGroup.scss.js ***!
+  \*******************************************************************************************/
+
+/*!*******************************************************************************************!*\
+  !*** ./node_modules/@shopify/polaris/dist/esm/components/Collapsible/Collapsible.scss.js ***!
+  \*******************************************************************************************/
+
+/*!*******************************************************************************************!*\
+  !*** ./node_modules/@shopify/polaris/dist/esm/components/DisplayText/DisplayText.scss.js ***!
+  \*******************************************************************************************/
+
+/*!*******************************************************************************************!*\
+  !*** ./node_modules/@shopify/polaris/dist/esm/components/Frame/components/Toast/Toast.js ***!
+  \*******************************************************************************************/
+
+/*!*******************************************************************************************!*\
+  !*** ./node_modules/@shopify/polaris/dist/esm/components/InlineError/InlineError.scss.js ***!
+  \*******************************************************************************************/
+
+/*!*******************************************************************************************!*\
+  !*** ./node_modules/@shopify/polaris/dist/esm/components/Popover/components/Pane/Pane.js ***!
+  \*******************************************************************************************/
+
+/*!*******************************************************************************************!*\
+  !*** ./node_modules/@shopify/polaris/dist/esm/utilities/sticky-manager/sticky-manager.js ***!
+  \*******************************************************************************************/
+
+/*!********************************************************************************************!*\
+  !*** ./node_modules/@shopify/polaris/dist/esm/components/Card/components/Header/Header.js ***!
+  \********************************************************************************************/
+
+/*!********************************************************************************************!*\
+  !*** ./node_modules/@shopify/polaris/dist/esm/components/Page/components/Header/Header.js ***!
+  \********************************************************************************************/
+
+/*!********************************************************************************************!*\
+  !*** ./node_modules/@shopify/polaris/dist/esm/components/PortalsManager/PortalsManager.js ***!
+  \********************************************************************************************/
+
+/*!********************************************************************************************!*\
+  !*** ./node_modules/@shopify/polaris/dist/esm/components/UnstyledButton/UnstyledButton.js ***!
+  \********************************************************************************************/
+
+/*!********************************************************************************************!*\
+  !*** ./node_modules/@shopify/polaris/dist/esm/components/VisuallyHidden/VisuallyHidden.js ***!
+  \********************************************************************************************/
+
+/*!*********************************************************************************************!*\
+  !*** ./node_modules/@shopify/polaris/dist/esm/components/Autocomplete/Autocomplete.scss.js ***!
+  \*********************************************************************************************/
+
+/*!*********************************************************************************************!*\
+  !*** ./node_modules/@shopify/polaris/dist/esm/components/Connected/components/Item/Item.js ***!
+  \*********************************************************************************************/
+
+/*!*********************************************************************************************!*\
+  !*** ./node_modules/@shopify/polaris/dist/esm/components/Modal/components/Dialog/Dialog.js ***!
+  \*********************************************************************************************/
+
+/*!*********************************************************************************************!*\
+  !*** ./node_modules/@shopify/polaris/dist/esm/components/Modal/components/Footer/Footer.js ***!
+  \*********************************************************************************************/
+
+/*!*********************************************************************************************!*\
+  !*** ./node_modules/@shopify/polaris/dist/esm/components/Modal/components/Header/Header.js ***!
+  \*********************************************************************************************/
+
+/*!**********************************************************************************************!*\
+  !*** ./node_modules/@shopify/polaris/dist/esm/components/ActionList/components/Item/Item.js ***!
+  \**********************************************************************************************/
+
+/*!**********************************************************************************************!*\
+  !*** ./node_modules/@shopify/polaris/dist/esm/components/Card/components/Section/Section.js ***!
+  \**********************************************************************************************/
+
+/*!**********************************************************************************************!*\
+  !*** ./node_modules/@shopify/polaris/dist/esm/components/FormLayout/components/Item/Item.js ***!
+  \**********************************************************************************************/
+
+/*!**********************************************************************************************!*\
+  !*** ./node_modules/@shopify/polaris/dist/esm/components/Navigation/components/Item/Item.js ***!
+  \**********************************************************************************************/
+
+/*!**********************************************************************************************!*\
+  !*** ./node_modules/@shopify/polaris/dist/esm/components/TopBar/components/Search/Search.js ***!
+  \**********************************************************************************************/
+
+/*!***********************************************************************************************!*\
+  !*** ./node_modules/@shopify/polaris/dist/esm/components/ButtonGroup/components/Item/Item.js ***!
+  \***********************************************************************************************/
+
+/*!***********************************************************************************************!*\
+  !*** ./node_modules/@shopify/polaris/dist/esm/components/DropZone/images/upload-arrow.svg.js ***!
+  \***********************************************************************************************/
+
+/*!***********************************************************************************************!*\
+  !*** ./node_modules/@shopify/polaris/dist/esm/components/Frame/components/Loading/Loading.js ***!
+  \***********************************************************************************************/
+
+/*!***********************************************************************************************!*\
+  !*** ./node_modules/@shopify/polaris/dist/esm/components/Modal/components/Section/Section.js ***!
+  \***********************************************************************************************/
+
+/*!***********************************************************************************************!*\
+  !*** ./node_modules/@shopify/polaris/dist/esm/components/Popover/set-activator-attributes.js ***!
+  \***********************************************************************************************/
+
+/*!***********************************************************************************************!*\
+  !*** ./node_modules/@shopify/polaris/dist/esm/components/PositionedOverlay/utilities/math.js ***!
+  \***********************************************************************************************/
+
+/*!***********************************************************************************************!*\
+  !*** ./node_modules/@shopify/polaris/dist/esm/components/TextContainer/TextContainer.scss.js ***!
+  \***********************************************************************************************/
+
+/*!***********************************************************************************************!*\
+  !*** ./node_modules/@shopify/polaris/dist/esm/components/TopBar/components/Menu/Menu.scss.js ***!
+  \***********************************************************************************************/
+
+/*!************************************************************************************************!*\
+  !*** ./node_modules/@shopify/polaris/dist/esm/components/FormLayout/components/Group/Group.js ***!
+  \************************************************************************************************/
+
+/*!************************************************************************************************!*\
+  !*** ./node_modules/@shopify/polaris/dist/esm/components/Frame/components/Toast/Toast.scss.js ***!
+  \************************************************************************************************/
+
+/*!************************************************************************************************!*\
+  !*** ./node_modules/@shopify/polaris/dist/esm/components/KeypressListener/KeypressListener.js ***!
+  \************************************************************************************************/
+
+/*!************************************************************************************************!*\
+  !*** ./node_modules/@shopify/polaris/dist/esm/components/Layout/components/Section/Section.js ***!
+  \************************************************************************************************/
+
+/*!************************************************************************************************!*\
+  !*** ./node_modules/@shopify/polaris/dist/esm/components/MessageIndicator/MessageIndicator.js ***!
+  \************************************************************************************************/
+
+/*!*************************************************************************************************!*\
+  !*** ./node_modules/@shopify/polaris/dist/esm/components/Page/components/Header/Header.scss.js ***!
+  \*************************************************************************************************/
+
+/*!*************************************************************************************************!*\
+  !*** ./node_modules/@shopify/polaris/dist/esm/components/Popover/components/Section/Section.js ***!
+  \*************************************************************************************************/
+
+/*!*************************************************************************************************!*\
+  !*** ./node_modules/@shopify/polaris/dist/esm/components/VisuallyHidden/VisuallyHidden.scss.js ***!
+  \*************************************************************************************************/
+
+/*!**************************************************************************************************!*\
+  !*** ./node_modules/@shopify/polaris/dist/esm/components/Modal/components/Dialog/Dialog.scss.js ***!
+  \**************************************************************************************************/
+
+/*!**************************************************************************************************!*\
+  !*** ./node_modules/@shopify/polaris/dist/esm/components/Modal/components/Footer/Footer.scss.js ***!
+  \**************************************************************************************************/
+
+/*!**************************************************************************************************!*\
+  !*** ./node_modules/@shopify/polaris/dist/esm/components/Modal/components/Header/Header.scss.js ***!
+  \**************************************************************************************************/
+
+/*!**************************************************************************************************!*\
+  !*** ./node_modules/@shopify/polaris/dist/esm/components/OptionList/components/Option/Option.js ***!
+  \**************************************************************************************************/
+
+/*!**************************************************************************************************!*\
+  !*** ./node_modules/@shopify/polaris/dist/esm/components/PositionedOverlay/PositionedOverlay.js ***!
+  \**************************************************************************************************/
+
+/*!**************************************************************************************************!*\
+  !*** ./node_modules/@shopify/polaris/dist/esm/components/TopBar/components/UserMenu/UserMenu.js ***!
+  \**************************************************************************************************/
+
+/*!***************************************************************************************************!*\
+  !*** ./node_modules/@shopify/polaris/dist/esm/components/TextField/components/Resizer/Resizer.js ***!
+  \***************************************************************************************************/
+
+/*!***************************************************************************************************!*\
+  !*** ./node_modules/@shopify/polaris/dist/esm/components/TextField/components/Spinner/Spinner.js ***!
+  \***************************************************************************************************/
+
+/*!***************************************************************************************************!*\
+  !*** ./node_modules/@shopify/polaris/dist/esm/components/TopBar/components/Search/Search.scss.js ***!
+  \***************************************************************************************************/
+
+/*!****************************************************************************************************!*\
+  !*** ./node_modules/@shopify/polaris/dist/esm/components/ActionList/components/Section/Section.js ***!
+  \****************************************************************************************************/
+
+/*!****************************************************************************************************!*\
+  !*** ./node_modules/@shopify/polaris/dist/esm/components/ActionMenu/components/Actions/Actions.js ***!
+  \****************************************************************************************************/
+
+/*!****************************************************************************************************!*\
+  !*** ./node_modules/@shopify/polaris/dist/esm/components/Card/components/Subsection/Subsection.js ***!
+  \****************************************************************************************************/
+
+/*!****************************************************************************************************!*\
+  !*** ./node_modules/@shopify/polaris/dist/esm/components/Frame/components/Loading/Loading.scss.js ***!
+  \****************************************************************************************************/
+
+/*!****************************************************************************************************!*\
+  !*** ./node_modules/@shopify/polaris/dist/esm/components/MediaQueryProvider/MediaQueryProvider.js ***!
+  \****************************************************************************************************/
+
+/*!****************************************************************************************************!*\
+  !*** ./node_modules/@shopify/polaris/dist/esm/components/Modal/components/Section/Section.scss.js ***!
+  \****************************************************************************************************/
+
+/*!****************************************************************************************************!*\
+  !*** ./node_modules/@shopify/polaris/dist/esm/components/Navigation/components/Section/Section.js ***!
+  \****************************************************************************************************/
+
+/*!*****************************************************************************************************!*\
+  !*** ./node_modules/@shopify/polaris/dist/esm/components/MessageIndicator/MessageIndicator.scss.js ***!
+  \*****************************************************************************************************/
+
+/*!*****************************************************************************************************!*\
+  !*** ./node_modules/@shopify/polaris/dist/esm/utilities/scroll-lock-manager/scroll-lock-manager.js ***!
+  \*****************************************************************************************************/
+
+/*!******************************************************************************************************!*\
+  !*** ./node_modules/@shopify/polaris/dist/esm/components/OptionList/components/Checkbox/Checkbox.js ***!
+  \******************************************************************************************************/
+
+/*!******************************************************************************************************!*\
+  !*** ./node_modules/@shopify/polaris/dist/esm/components/Scrollable/components/ScrollTo/ScrollTo.js ***!
+  \******************************************************************************************************/
+
+/*!*******************************************************************************************************!*\
+  !*** ./node_modules/@shopify/polaris/dist/esm/components/Autocomplete/components/ComboBox/context.js ***!
+  \*******************************************************************************************************/
+
+/*!*******************************************************************************************************!*\
+  !*** ./node_modules/@shopify/polaris/dist/esm/components/Modal/components/CloseButton/CloseButton.js ***!
+  \*******************************************************************************************************/
+
+/*!*******************************************************************************************************!*\
+  !*** ./node_modules/@shopify/polaris/dist/esm/components/OptionList/components/Option/Option.scss.js ***!
+  \*******************************************************************************************************/
+
+/*!*******************************************************************************************************!*\
+  !*** ./node_modules/@shopify/polaris/dist/esm/components/PositionedOverlay/PositionedOverlay.scss.js ***!
+  \*******************************************************************************************************/
+
+/*!*******************************************************************************************************!*\
+  !*** ./node_modules/@shopify/polaris/dist/esm/components/TopBar/components/UserMenu/UserMenu.scss.js ***!
+  \*******************************************************************************************************/
+
+/*!********************************************************************************************************!*\
+  !*** ./node_modules/@shopify/polaris/dist/esm/components/ActionMenu/components/MenuGroup/MenuGroup.js ***!
+  \********************************************************************************************************/
+
+/*!********************************************************************************************************!*\
+  !*** ./node_modules/@shopify/polaris/dist/esm/components/Autocomplete/components/ComboBox/ComboBox.js ***!
+  \********************************************************************************************************/
+
+/*!********************************************************************************************************!*\
+  !*** ./node_modules/@shopify/polaris/dist/esm/components/DropZone/components/FileUpload/FileUpload.js ***!
+  \********************************************************************************************************/
+
+/*!********************************************************************************************************!*\
+  !*** ./node_modules/@shopify/polaris/dist/esm/components/TopBar/components/SearchField/SearchField.js ***!
+  \********************************************************************************************************/
+
+/*!*********************************************************************************************************!*\
+  !*** ./node_modules/@shopify/polaris/dist/esm/components/ActionMenu/components/Actions/Actions.scss.js ***!
+  \*********************************************************************************************************/
+
+/*!*********************************************************************************************************!*\
+  !*** ./node_modules/@shopify/polaris/dist/esm/components/Frame/components/CSSAnimation/CSSAnimation.js ***!
+  \*********************************************************************************************************/
+
+/*!*********************************************************************************************************!*\
+  !*** ./node_modules/@shopify/polaris/dist/esm/components/Frame/components/ToastManager/ToastManager.js ***!
+  \*********************************************************************************************************/
+
+/*!**********************************************************************************************************!*\
+  !*** ./node_modules/@shopify/polaris/dist/esm/components/Autocomplete/components/TextField/TextField.js ***!
+  \**********************************************************************************************************/
+
+/*!***********************************************************************************************************!*\
+  !*** ./node_modules/@shopify/polaris/dist/esm/components/OptionList/components/Checkbox/Checkbox.scss.js ***!
+  \***********************************************************************************************************/
+
+/*!************************************************************************************************************!*\
+  !*** ./node_modules/@shopify/polaris/dist/esm/components/Modal/components/CloseButton/CloseButton.scss.js ***!
+  \************************************************************************************************************/
+
+/*!************************************************************************************************************!*\
+  !*** ./node_modules/@shopify/polaris/dist/esm/components/Page/components/Header/components/Title/Title.js ***!
+  \************************************************************************************************************/
+
+/*!*************************************************************************************************************!*\
+  !*** ./node_modules/@shopify/polaris/dist/esm/components/ActionMenu/components/MenuGroup/MenuGroup.scss.js ***!
+  \*************************************************************************************************************/
+
+/*!*************************************************************************************************************!*\
+  !*** ./node_modules/@shopify/polaris/dist/esm/components/Autocomplete/components/ComboBox/ComboBox.scss.js ***!
+  \*************************************************************************************************************/
+
+/*!*************************************************************************************************************!*\
+  !*** ./node_modules/@shopify/polaris/dist/esm/components/DropZone/components/FileUpload/FileUpload.scss.js ***!
+  \*************************************************************************************************************/
+
+/*!*************************************************************************************************************!*\
+  !*** ./node_modules/@shopify/polaris/dist/esm/components/TopBar/components/SearchField/SearchField.scss.js ***!
+  \*************************************************************************************************************/
+
+/*!**************************************************************************************************************!*\
+  !*** ./node_modules/@shopify/polaris/dist/esm/components/Frame/components/CSSAnimation/CSSAnimation.scss.js ***!
+  \**************************************************************************************************************/
+
+/*!**************************************************************************************************************!*\
+  !*** ./node_modules/@shopify/polaris/dist/esm/components/Frame/components/ToastManager/ToastManager.scss.js ***!
+  \**************************************************************************************************************/
+
+/*!***************************************************************************************************************!*\
+  !*** ./node_modules/@shopify/polaris/dist/esm/components/Popover/components/PopoverOverlay/PopoverOverlay.js ***!
+  \***************************************************************************************************************/
+
+/*!***************************************************************************************************************!*\
+  !*** ./node_modules/@shopify/polaris/dist/esm/components/Tooltip/components/TooltipOverlay/TooltipOverlay.js ***!
+  \***************************************************************************************************************/
+
+/*!****************************************************************************************************************!*\
+  !*** ./node_modules/@shopify/polaris/dist/esm/components/ActionMenu/components/RollupActions/RollupActions.js ***!
+  \****************************************************************************************************************/
+
+/*!****************************************************************************************************************!*\
+  !*** ./node_modules/@shopify/polaris/dist/esm/components/TopBar/components/Menu/components/Message/Message.js ***!
+  \****************************************************************************************************************/
+
+/*!*****************************************************************************************************************!*\
+  !*** ./node_modules/@shopify/polaris/dist/esm/components/Page/components/Header/components/Title/Title.scss.js ***!
+  \*****************************************************************************************************************/
+
+/*!******************************************************************************************************************!*\
+  !*** ./node_modules/@shopify/polaris/dist/esm/components/Layout/components/AnnotatedSection/AnnotatedSection.js ***!
+  \******************************************************************************************************************/
+
+/*!*******************************************************************************************************************!*\
+  !*** ./node_modules/@shopify/polaris/dist/esm/components/Frame/components/ContextualSaveBar/ContextualSaveBar.js ***!
+  \*******************************************************************************************************************/
+
+/*!********************************************************************************************************************!*\
+  !*** ./node_modules/@shopify/polaris/dist/esm/components/ActionMenu/components/SecondaryAction/SecondaryAction.js ***!
+  \********************************************************************************************************************/
+
+/*!********************************************************************************************************************!*\
+  !*** ./node_modules/@shopify/polaris/dist/esm/components/Tooltip/components/TooltipOverlay/TooltipOverlay.scss.js ***!
+  \********************************************************************************************************************/
+
+/*!*********************************************************************************************************************!*\
+  !*** ./node_modules/@shopify/polaris/dist/esm/components/ActionMenu/components/RollupActions/RollupActions.scss.js ***!
+  \*********************************************************************************************************************/
+
+/*!*********************************************************************************************************************!*\
+  !*** ./node_modules/@shopify/polaris/dist/esm/components/TopBar/components/Menu/components/Message/Message.scss.js ***!
+  \*********************************************************************************************************************/
+
+/*!************************************************************************************************************************!*\
+  !*** ./node_modules/@shopify/polaris/dist/esm/components/Frame/components/ContextualSaveBar/ContextualSaveBar.scss.js ***!
+  \************************************************************************************************************************/
+
+/*!************************************************************************************************************************!*\
+  !*** ./node_modules/@shopify/polaris/dist/esm/components/Navigation/components/Item/components/Secondary/Secondary.js ***!
+  \************************************************************************************************************************/
+
+/*!*************************************************************************************************************************!*\
+  !*** ./node_modules/@shopify/polaris/dist/esm/components/ActionMenu/components/SecondaryAction/SecondaryAction.scss.js ***!
+  \*************************************************************************************************************************/
+
+/*!**************************************************************************************************************************!*\
+  !*** ./node_modules/@shopify/polaris/dist/esm/components/PortalsManager/components/PortalsContainer/PortalsContainer.js ***!
+  \**************************************************************************************************************************/
+
+/*!**************************************************************************************************************************!*\
+  !*** ./node_modules/@shopify/polaris/dist/esm/components/TopBar/components/SearchDismissOverlay/SearchDismissOverlay.js ***!
+  \**************************************************************************************************************************/
+
+/*!*******************************************************************************************************************************!*\
+  !*** ./node_modules/@shopify/polaris/dist/esm/components/TopBar/components/SearchDismissOverlay/SearchDismissOverlay.scss.js ***!
+  \*******************************************************************************************************************************/
+
+/*!**************************************************************************************************************************************************************!*\
+  !*** ./node_modules/@shopify/polaris/dist/esm/components/Frame/components/ContextualSaveBar/components/DiscardConfirmationModal/DiscardConfirmationModal.js ***!
+  \**************************************************************************************************************************************************************/
+
+/*!***************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/css-loader/dist/cjs.js!./node_modules/mini-css-extract-plugin/dist/loader.js!./node_modules/css-loader/dist/cjs.js!./node_modules/resolve-url-loader/index.js!./node_modules/sass-loader/dist/cjs.js!./node_modules/@shopify/polaris/dist/styles.css ***!
+  \***************************************************************************************************************************************************************************************************************************************************************************/
+
+/**
+ * Checks if an event is supported in the current execution environment.
+ *
+ * NOTE: This will not work correctly for non-generic events such as `change`,
+ * `reset`, `load`, `error`, and `select`.
+ *
+ * Borrows from Modernizr.
+ *
+ * @param {string} eventNameSuffix Event name, e.g. "click".
+ * @return {boolean} True if the event is supported.
+ * @internal
+ * @license Modernizr 3.0.0pre (Custom Build) | MIT
+ */
+
 /** @license React v0.20.2
- * scheduler.production.min.js
+ * scheduler-tracing.development.js
+ *
+ * Copyright (c) Facebook, Inc. and its affiliates.
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+
+/** @license React v0.20.2
+ * scheduler.development.js
  *
  * Copyright (c) Facebook, Inc. and its affiliates.
  *
@@ -34,7 +3391,7 @@ PERFORMANCE OF THIS SOFTWARE.
  */
 
 /** @license React v16.13.1
- * react-is.production.min.js
+ * react-is.development.js
  *
  * Copyright (c) Facebook, Inc. and its affiliates.
  *
@@ -43,7 +3400,7 @@ PERFORMANCE OF THIS SOFTWARE.
  */
 
 /** @license React v17.0.2
- * react-dom.production.min.js
+ * react-dom.development.js
  *
  * Copyright (c) Facebook, Inc. and its affiliates.
  *
@@ -52,7 +3409,7 @@ PERFORMANCE OF THIS SOFTWARE.
  */
 
 /** @license React v17.0.2
- * react.production.min.js
+ * react.development.js
  *
  * Copyright (c) Facebook, Inc. and its affiliates.
  *
