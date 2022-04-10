@@ -159,7 +159,7 @@ export default function Skripta() {
                                 <FontAwesomeIcon icon={faTimes} />
                             </button>
                         </div>}
-                    <form id="printThis" onSubmit={handleSubmit}>
+                    <form id="printThis" onSubmit={handleSubmit} className={`skripta-${skripta_id}`}>
                         <div className="only-print frontcover"></div>
                         <div className="problems-section__actions">
                             <button type="button" onClick={handleEditingToggle} className={`problems-section__edit ${view.editing && 'active'}`}>
