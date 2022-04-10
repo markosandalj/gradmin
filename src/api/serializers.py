@@ -32,7 +32,7 @@ class EquationSerializer(serializers.ModelSerializer):
 class ImageSerializer(serializers.ModelSerializer):
     class Meta:
         model = Image
-        fields = ('id', 'image')
+        fields = ('id', 'image', 'image_dark')
 
 class VideoSerializer(serializers.ModelSerializer):
     class Meta:
