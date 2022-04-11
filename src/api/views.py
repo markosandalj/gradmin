@@ -118,7 +118,7 @@ class MaturaApiView(generics.ListAPIView):
 
     def get_queryset(self):
         matura = Matura.objects.get(pk = self.kwargs.get('matura_id'))
-        problems = Problem.objects.annotate(number_field=Cast('number', IntegerField())).filter(matura=matura).order_by('number_field')
+        problems = Problem.objects.annotate(number_field=Cast('number', IntegerField())).filter(matura=matura).order_by('number_field', 'name')
         queryset = [{
             'id': matura.id,
             'term': matura.term,
