@@ -2,6 +2,7 @@
 import React, { useState, useCallback, useEffect } from "react";
 import { useSelector, useDispatch } from 'react-redux';
 
+
 // SHOPIFY
 import { TextField } from '@shopify/polaris';
 
@@ -12,11 +13,14 @@ import { faPen } from '@fortawesome/free-solid-svg-icons'
 // ACTIONS
 import { addQuestion } from "../../store/actions/problemFieldsActions";
 
+// COMPONENTS
+import ProblemImage from "./ProblemImage";
 
 const Subquestions = ({question, subquestion_index, is_from_matura}) => {
     const [questionText, setQuestionText] = useState(question.question_text)
     const [subquestions, setSubquestions] = useState(question.subquestions)
     const [questionChoices, setQuestionChocies] = useState(question.answer_choices)
+    const [questionImages, setQuestionImages] = useState(question.images);
     const [editFieldOpen, setEditFieldOpen] = useState(false);
     const [hasChanged, setHasChanged] = useState(false)
     const [numberOfChoiceImages, setNumberOfChoiceImages] = useState(question.answer_choices.filter( choice => choice.images.length > 0).length)
@@ -73,6 +77,15 @@ const Subquestions = ({question, subquestion_index, is_from_matura}) => {
                     multiline={4}
                     id={question.id}
                 />
+            }
+            {questionImages.length > 0 && !view.site_preview &&
+              <div className="problem__images">
+                {questionImages.map(image => {
+                  return (
+                    <ProblemImage image={image} key={image.id}></ProblemImage>
+                  )
+              })}
+              </div>
             }
             <div className={`problem__choices ${numberOfChoiceImages > 0 ? imageWidthClasses[numberOfChoiceImages] : ''}`}>
               {questionChoices && questionChoices.map( (choice, index) => {
