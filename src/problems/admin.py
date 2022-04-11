@@ -64,7 +64,7 @@ class CorrectAnswerInline(EditLinkToInlineObject, admin.StackedInline):
     extra=0
     readonly_fields = ('edit_link', )
 
-class ImageInline(admin.StackedInline):
+class ImageInline(admin.StackedInline, SortableInlineAdminMixin):
     model = Image
     extra = 0
 
