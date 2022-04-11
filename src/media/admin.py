@@ -10,6 +10,10 @@ import requests
 import json
 from bs4 import BeautifulSoup
 
+class ImageAdmin(admin.ModelAdmin):
+    model = Image
+    autocomplete_fields = ('question',)
+
 class VideoAdmin(admin.ModelAdmin):
     model = Video
     list_display = ('name', 'vimeo_id',)
@@ -72,6 +76,6 @@ class VideoAdmin(admin.ModelAdmin):
 
 
 admin.site.register(Video, VideoAdmin)
-admin.site.register(Image)
+admin.site.register(Image, ImageAdmin)
 admin.site.register(SVG)
 admin.site.register(PDF)
