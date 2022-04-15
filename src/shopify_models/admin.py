@@ -35,7 +35,7 @@ class ProductAdmin(admin.ModelAdmin):
 
         for product in queryset:
             metafields_url = '/admin/api/2021-10/products/{id}/metafields.json'.format(id=product.product_id)
-            maturas = Matura.objects.filter(product=product)
+            maturas = Matura.objects.filter(product=product).order_by('-term')
             matura_tabs = []
 
             for matura in maturas:
