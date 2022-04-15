@@ -17,8 +17,15 @@ class SkriptaInline(SortableInlineAdminMixin, admin.StackedInline):
     model = Skripta
     extra = 0
 
+class MaturaInline(SortableInlineAdminMixin, admin.StackedInline):
+    model = Matura
+    extra = 0
+
 
 class ProductAdmin(admin.ModelAdmin):
+    inlines = [
+        MaturaInline,
+    ]
     actions = ['delete_pages', 'update_tabs', 'create_product']
     
     @admin.action(description='Update matura product on Shopify')
