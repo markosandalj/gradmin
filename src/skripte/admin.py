@@ -27,7 +27,7 @@ class SectionProblemInline(SortableInlineAdminMixin, admin.StackedInline):
     model = Problem
     extra = 0
     autocomplete_fields = ('section', 'skripta', 'question',)
-    exclude = ('skripta', 'subject', 'shop_availability','approval','matura', 'number')
+    exclude = ('skripta', 'subject','approval','matura', 'number')
 
 class SectionInline(SortableInlineAdminMixin, admin.TabularInline):
     model = Section.skripta.through
