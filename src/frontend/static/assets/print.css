@@ -70,6 +70,11 @@ li {
   height: fit-content !important;
 }
 
+.Polaris-FormLayout__Item > div {
+  height: auto !important;
+  margin-bottom: 2rem !important;
+}
+
 .problem {
   padding: 1rem 0;
   display: flex;

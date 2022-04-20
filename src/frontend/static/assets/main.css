@@ -70,6 +70,11 @@ li {
   height: fit-content !important;
 }
 
+.Polaris-FormLayout__Item > div {
+  height: auto !important;
+  margin-bottom: 2rem !important;
+}
+
 .btn {
   display: flex;
   justify-content: center;

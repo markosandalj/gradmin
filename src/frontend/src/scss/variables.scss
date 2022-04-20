@@ -66,3 +66,10 @@ $dark-primary: #383838;
     white-space: nowrap !important;
     height: fit-content !important;
 }
+
+.Polaris-FormLayout__Item {
+    > div {
+        height: auto !important;
+        margin-bottom: 2rem !important;
+    }
+}
