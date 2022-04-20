@@ -131,9 +131,9 @@ class EmptySectionFilter(SimpleListFilter):
 
 class ProblemAdmin(admin.ModelAdmin):
     model = Problem
-    list_display = ('name', 'shop_availability', 'approval', 'section' )
-    list_filter = ('subject', 'matura','shop_availability', 'approval', EmptyAnswerFilter, EmptySectionFilter)
-    list_editable = ('shop_availability','approval', 'section')
+    list_display = ('name', 'question', 'section' )
+    list_filter = ('subject', 'matura','section', 'shop_availability', 'approval', EmptyAnswerFilter, EmptySectionFilter)
+    list_editable = ( 'section',)
     search_fields = ('name', 'question__question_text', 'section__name',)
     autocomplete_fields = ('matura', 'question',)
     actions = ['make_available', 'make_unavailable', 'make_hidden', 'approve', 'unapprove',]
