@@ -205,3 +205,5 @@ TEMPLATE_LOADERS = (
         'django.template.loaders.app_directories.Loader',
     )),
 )
+
+DATA_UPLOAD_MAX_NUMBER_FIELDS = None
