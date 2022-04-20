@@ -18,6 +18,7 @@ import time
 import os
 from pathlib import Path
 
+
 from rest_framework import generics, status
 from rest_framework.views import APIView
 from rest_framework.decorators import api_view
@@ -260,16 +261,21 @@ class PrintSkripta(APIView):
             data = request.data
             skripta = Skripta.objects.get(pk = data['id'])
 
+
             html_string = json.loads(data['html'])
             pdf_file_path = Path(settings.BASE_DIR / 'tmp.pdf')
             html_file_path = Path(settings.BASE_DIR / 'tmp.html')
+            
 
             with open(html_file_path, 'w') as html_file:
                 html_file.write(html_string)
+            
 
             html = HTML(filename=html_file_path, encoding="UTF-8")
+            print(html, pdf_file_path, Path(settings.STATICFILES_DIRS[0] / 'assets/print.css'))
             pdf_file = html.write_pdf(pdf_file_path, stylesheets=[Path(settings.STATICFILES_DIRS[0] / 'assets/print.css')])
 
+            
             if(skripta.file != None):
                 pdf_model = PDF.objects.get(pk = skripta.file.id)
                 pdf_model.file.save(skripta.name + '.pdf', File(open(pdf_file_path, 'rb')))
@@ -292,10 +298,75 @@ class PrintSkripta(APIView):
 
 
 class ProblemsImporterUpdateView(APIView):
-    def post(self, request, format=None):
-        data = request.data
+    def post(self, request, format = None):
+        data = json.loads( request.data['data'] )
+        # print(data)
+        matura = data['matura'][0] if data['matura'] else None
+        skripta = data['skripta'][0] if data['skripta'] else None
+        subject = data['subject'][0] if data['subject'] else None
+        section = data['section'][0] if data['section'] else None
+        subject_label = Subject.objects.get(pk = int(subject)).name if subject else None
+        matura_level = Matura.objects.get(pk = int(matura)).subject.level if matura else 0
+        level_label = matura_level if matura_level != '0' else ''
+        matura_godina = Matura.objects.get(pk = int(matura)).year.year if matura else None
+        matura_rok = Matura.objects.get(pk = int(matura)).term.term if matura else None
+        new_questions = []
+        new_answer_choices = []
+        new_problems = []
 
-        print(data)
+        for problem in data['problems']:
+            try:
+                try:
+                    new_question = Question.objects.create(
+                        question_text = problem['question']['text']
+                    )
+                    new_questions.append(new_question)
+                except:
+                    print('Question error: ', sys.exc_info()[0])
+
+                    try: 
+                        for choice in problem['answer_choices']:
+                            new_answer_choice = AnswerChoice.objects.create(
+                                choice_text = choice['text'],
+                                question = new_question
+                            )
+                            new_answer_choices.append(new_answer_choice)
+
+                        try:
+                            new_problem = Problem.objects.create(
+                                name=f"{subject_label}{level_label} - {matura_godina}. {matura_rok}, { problem['number'] }",
+                                number = problem['number'],
+                                matura = Matura.objects.get(pk = int(matura)) if matura else None,
+                                subject = Subject.objects.get(pk = int(subject)) if subject else None,
+                                section = Section.objects.get(pk = int(section)) if section else None,
+                                question = new_question
+                            )
+                            related_skripta = Skripta.objects.get(pk = int(skripta)) if skripta else None,
+
+                            if(related_skripta):
+                                new_problem.skripta.set([int(skripta), ])
+                                
+                            new_problems.append(new_problem)
+                        except:
+                            print('Problem error: ', sys.exc_info()[0])
+                    except:
+                        print('Choice error: ', sys.exc_info()[0])
+
+                try:
+                    image = Image.objects.get(id = int(problem['image_id']))
+                    image.delete()
+                    cloudinary.uploader.destroy(problem['image_public_id'], invalidate=True)
+                except:
+                    print('Image error: ', sys.exc_info()[0])
+
+            except:
+                print('Krep krepalo', sys.exc_info()[0])
+            
+        try:
+            return Response(status=status.HTTP_200_OK)
+
+        except:
+            return Response(status=status.HTTP_400_BAD_REQUEST)
 
 
 class ProblemsImporterView(APIView):
@@ -304,19 +375,20 @@ class ProblemsImporterView(APIView):
             data = request.data
             file = data['file'].read()
             images = convert_from_bytes(file)
+            response_data = []
 
             for i, image in enumerate(images):
                 try:
                     image = np.asarray(image)
                     image = getEdges(image)
-                    response_data = getAllProblemsArea(image)
+                    response_data += getAllProblemsArea(image)
                     
                 except:
-                    print("Slika je krepala. Error: {err}".format(err = sys.exc_info[0]))
+                    print("Slika je krepala. Error: {err}".format(err = sys.exc_info()[0]))
 
             return Response(status=status.HTTP_200_OK, data=response_data)
         except:
-            print("Not gonna happen! Error: {err}".format(i=i, err = sys.exc_info[0]))
+            print("Not gonna happen! Error: {err}".format(i=i, err = sys.exc_info()[0]))
             return Response(status=status.HTTP_400_BAD_REQUEST, data=json.dumps({ 'error': sys.exc_info()[0] }))
 
 
@@ -346,12 +418,12 @@ def getMathpixResponse(image):
                 'mathpix_response': json.loads(r.text)
             }
         except:
-            print('Image se ne da spremiti u bazu. Error: {err}'.format(err = sys.exc_info[0]))
+            print('Image se ne da spremiti u bazu. Error: {err}'.format(err = sys.exc_info()[0]))
 
         os.remove('tmp.png')
         return data if data else None
     except:
-        print('Mathpix response je krepao. Error: {err}'.format(err = sys.exc_info[0]))
+        print('Mathpix response je krepao. Error: {err}'.format(err = sys.exc_info()[0]))
 
 
 def getEdges(image):

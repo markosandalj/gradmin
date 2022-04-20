@@ -25,7 +25,6 @@ export default function AutocompleteSelect({apiUrl, label, setData}) {
             label: item?.name || `${item.subject.subject_name} ${item.subject.level != '0' ? item.subject.level : ''} ${item.year.year}., ${item.term.term}`,
           })
         })
-        console.log(reducedData)
     
         setDeselectedOptions(reducedData)
         setOptions(reducedData)
@@ -57,6 +56,7 @@ export default function AutocompleteSelect({apiUrl, label, setData}) {
           const matchedOption = options.find((option) => {
             return option.value.match(selectedItem);
           });
+          
           return matchedOption && matchedOption.label;
         });
   

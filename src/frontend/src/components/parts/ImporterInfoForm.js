@@ -6,24 +6,20 @@ import axios from "axios";
 // SHOPIFY
 import { Form, FormLayout, Button } from '@shopify/polaris';
 
-import AutocompleteSelect from "./AutocompleteSelect";
+import AutocompleteSelect from "./AutocompleteSelect"; 
 
-export default function ImporterInfoForm({formData, setFormData}) {
+export default function ImporterInfoForm({ setInfo }) {
     const [matura, setMatura] = useState();
     const [subject, setSubject] = useState()
     const [section, setSection] = useState();
     const [skripta, setSkripta] = useState();
 
-    const handleSubmit = (event) => {
-        event.preventDefault();
-        
-        setFormData({
-            ...formData,
-            matura: matura,
-            subject: subject,
-            section: section,
-            skripta: skripta,
-        });
+    useEffect(() => {
+        setInfo({ matura: matura || '', subject: subject || '', section: section || '', skripta: skripta || '' })
+    }, [matura, subject, section, skripta])
+
+    const handleSubmit = (e) => {
+        e.preventDefault();
     }
 
     return (
@@ -37,7 +33,6 @@ export default function ImporterInfoForm({formData, setFormData}) {
                     <AutocompleteSelect apiUrl={`/api/section/all`} label={'Section'} setData={setSection}></AutocompleteSelect>
                     <AutocompleteSelect apiUrl={`/api/skripta/all`} label={'Skripta'} setData={setSkripta}></AutocompleteSelect>
                 </FormLayout.Group>
-                <Button submit>Save</Button>
             </FormLayout>
         </Form>
     )

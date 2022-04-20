@@ -8,19 +8,18 @@ import axios from "axios";
 import { Page, Layout, Button, ButtonGroup, DropZone, Spinner, Banner, Card } from '@shopify/polaris';
 
 import ImporterInfoForm from '../parts/ImporterInfoForm';
-import ImageProblemsChecker from "../parts/ImageProblemChecker";
+import ProblemsTable from "../parts/ProblemsTable";
 
 
 export default function ProblemsImporter() {
     const [file, setFile] = useState(false);
     const [errorMsg, setErrorMsg] = useState('');
     const [mathpixResposneData, setMathpixResponseData] = useState([]);
-    const [activeImage, setActiveImage] = useState({});
     const [isLoaderActive, setIsLoaderActive] = useState(false);
     const [showErrorBanner, setShowErrorBanner] = useState(false);
     const [showSuccesBanner, setShowSuccesBanner] = useState(false);
     const [isCheckingProcessActive, setIscheckingProcessActive] = useState(false);
-    const [formData, setFormData] = useState();
+    const [info, setInfo] = useState( { matura: '', subject: '', section: '', skripta: '' } )
 
     const handleDropZoneDrop = useCallback(
         (_dropFiles, acceptedFiles, _rejectedFiles) =>
@@ -36,7 +35,7 @@ export default function ProblemsImporter() {
         return (!isLoaderActive && !showSuccesBanner && !showErrorBanner)
     }
 
-    const handleSubmit = async (event) => {
+    const handleUpload = async (event) => {
         event.preventDefault();
         setIsLoaderActive(true)
 
@@ -56,7 +55,8 @@ export default function ProblemsImporter() {
                 setIsLoaderActive(false)
                 setShowSuccesBanner(true)
                 setMathpixResponseData(data)
-                setActiveImage(data[0])
+                toggleCheckingProcess()
+                
                 return data
             })
             .catch(err => {
@@ -73,31 +73,29 @@ export default function ProblemsImporter() {
         <Page>
             <Layout>
                 <Layout.Section>
+                    { showSuccesBanner &&
+                        <div className="my-2">
+                            <Banner
+                                title="PDF uspješno uploadan. Bravo!"
+                                status="success"
+                            />
+                        </div>}
+
+                    { showErrorBanner &&
+                        <div className="my-2">
+                            <Banner
+                                title="Nešto u pozadini je krepalo. Refreshaj stranicu i probaj opet!"
+                                status="critical"
+                            >
+                                <p>
+                                    {errorMsg}
+                                </p>
+                            </Banner>
+                        </div>}
+
                     { !isCheckingProcessActive &&
                         <Card title="Problems importer">
                             <Card.Section title="Upload PDF">
-                                {showErrorBanner &&
-                                    <Banner
-                                        title="Nešto u pozadini je kraplo. refreshaj stranicu i probaj opet!"
-                                        status="critical"
-                                    >
-                                        <p>
-                                            {errorMsg}
-                                        </p>
-                                    </Banner>}
-                                {showSuccesBanner &&
-                                    <Banner
-                                        title="PDF uspješno uploadan. Bravo!"
-                                        status="success"
-                                        action={{onAction: toggleCheckingProcess, content: "Kreni s provjerom"}}
-                                    >
-                                        <p>
-                                            "PDF uspješno uploadan i procesiran. Ispuni formu s podatcim koji će se primjeniti na sve zadatke u ovom pdf-u."
-                                        </p>
-                                    </Banner>}
-                                {showSuccesBanner &&
-                                    <ImporterInfoForm formData={formData} setFormData={setFormData}></ImporterInfoForm>
-                                }
                                 { showDropZone() && 
                                     <DropZone allowMultiple={false} onDrop={handleDropZoneDrop}>
                                         {fileUpload}
@@ -107,15 +105,21 @@ export default function ProblemsImporter() {
                                     <Spinner accessibilityLabel="Spinner example" size="large" /> }
                                     <div className="py-2 flex-end">
                                         <ButtonGroup>
-                                            <Button primary onClick={handleSubmit} loading={isLoaderActive} disabled={!file || showSuccesBanner}>Upload</Button>
+                                            <Button primary onClick={handleUpload} loading={isLoaderActive} disabled={!file || showSuccesBanner}>Upload</Button>
                                         </ButtonGroup>
                                     </div>
                             </Card.Section>
                         </Card>}
                         
                         { isCheckingProcessActive && 
-                            <ImageProblemsChecker mathpixResposneData={mathpixResposneData} activeImage={activeImage} setActiveImage={setActiveImage} formData={formData} setFormData={setFormData}></ImageProblemsChecker>
-                        }
+                            <>
+                                <Card title="Problems importer">
+                                    <Card.Section title="Upload PDF">
+                                        <ImporterInfoForm setInfo={setInfo}></ImporterInfoForm>
+                                    </Card.Section>
+                                </Card>
+                                <ProblemsTable problems={mathpixResposneData} info={info}></ProblemsTable>
+                            </>}
                 </Layout.Section>
             </Layout>
         </Page>

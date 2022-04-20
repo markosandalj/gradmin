@@ -54,8 +54,8 @@ class ProductAdmin(admin.ModelAdmin):
                     }
                 }
             url = base_url + metafields_url
-            response = requests.post(url, headers=headers, json = metafield_data)
-            print(response.json())
+            # response = requests.post(url, headers=headers, json = metafield_data)
+            # print(response.json())
             messages.success(request, "Proizvod {p} uspješno ažuriran sa {n} tab-a".format(p = product, n = len(matura_tabs)))
 
     @admin.action(description='Create product on Shopify')
