@@ -1,8 +1,10 @@
 // REACT & REDUX
 import React, { Component, useState, useEffect, useCallback } from "react";
 import { useParams } from 'react-router';
+import { Prompt } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import axios from "axios";
+
 
 import { Card, ResourceList, ResourceItem, Button, ButtonGroup } from '@shopify/polaris'
 import ProblemsTableItem from "./ProblemsTableItem";
@@ -12,6 +14,23 @@ export default function ProblemsTable({ problems, info }) {
     const [ existingProblems, setExistingProblems ] = useState( problems.map(item => ({ ...item, id: item.mathpix_response.request_id})) )
     const [formData, setFormData] = useState( { ...info, problems: [] } );
     const [sortValue, setSortValue] = useState('PROBLEMS_NUMBER_DESC');
+    const [showPrompt, setShowPrompt] = useState(false)
+    const [isSubmited, setIsSubmited] = useState(false)
+
+    useEffect(() => {
+      window.addEventListener('beforeunload', alertUser)
+      window.addEventListener('unload', handleCancle)
+      return () => {
+        window.removeEventListener('beforeunload', alertUser)
+        window.addEventListener('unload', handleCancle)
+      }
+    }, [])
+
+    const alertUser = (e) => {
+      e.preventDefault()
+      e.returnValue = ''
+      setShowPrompt(!isSubmited)
+    }
 
     useEffect(() => {
       setFormData({
@@ -22,6 +41,7 @@ export default function ProblemsTable({ problems, info }) {
 
     const handleCancle = (event) => {
       event.preventDefault();
+      setShowPrompt(!isSubmited)
       setExistingProblems([])
       setSelectedItems([])
 
@@ -46,8 +66,14 @@ export default function ProblemsTable({ problems, info }) {
               { headers: {'X-CSRFToken': csrftoken, "Content-type": "multipart/form-data"} }
           )
           .then(res => res.data)
-          .then(data => console.log(data))
-          .catch(err => console.log(err))
+          .then(data => {
+            console.log(data)
+            setIsSubmited(true)
+          })
+          .catch(err => {
+            console.log(err)
+            setIsSubmited(false)
+          })
   }
 
     const resourceName = {
@@ -122,12 +148,20 @@ export default function ProblemsTable({ problems, info }) {
                 }}
                 // showHeader
             ></ResourceList>
-            <div className="py-2 flex-end">
-                <ButtonGroup>
-                    <Button destructive onClick={handleCancle}>Cancle</Button>
-                    <Button primary onClick={handleSubmit}>Submit</Button>
-                </ButtonGroup>
-            </div>
+            <Card.Section>
+              <div className="flex-end">
+                  <ButtonGroup>
+                      <Button destructive onClick={handleCancle}>Cancle</Button>
+                      <Button primary onClick={handleSubmit}>Submit</Button>
+                  </ButtonGroup>
+              </div>
+            </Card.Section>
+            <Prompt
+              when={showPrompt}
+              title={"Alert"}
+              message={() => 'Nisi submit-ao ili cancel-ao. Grrrrr....'}
+            >
+            </Prompt>
         </Card>
     )
 

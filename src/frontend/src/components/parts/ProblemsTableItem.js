@@ -58,7 +58,7 @@ export default function ProblemsTableItem({ id, text, line_data, confidence, con
 				}
 			})
 	
-			problem_number = Number.isInteger(parseInt(text?.substr(0, 2), 10)) ? text?.substr(0,2).replace(/\s/g, '') : null
+			problem_number = Number.isInteger(parseInt(text?.substr(0, 3), 10)) ? text?.substr(0,3).replace(/\s/g, '') : null
 	
 			answer_choices = answer_choices.map( item => {
 				return {
@@ -93,7 +93,7 @@ export default function ProblemsTableItem({ id, text, line_data, confidence, con
 				<div className="flex-space-between">
 					<h3>
 						<TextStyle variation="strong">
-							{problem.number}. Zadatak
+							{problem.number} Zadatak
 						</TextStyle>
 					</h3>
 					<Button onClick={handleToggle} ariaExpanded={isOpen}>
