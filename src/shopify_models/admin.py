@@ -54,9 +54,12 @@ class ProductAdmin(admin.ModelAdmin):
                     }
                 }
             url = base_url + metafields_url
-            # response = requests.post(url, headers=headers, json = metafield_data)
-            # print(response.json())
-            messages.success(request, "Proizvod {p} uspješno ažuriran sa {n} tab-a".format(p = product, n = len(matura_tabs)))
+            try:
+                response = requests.post(url, headers=headers, json = metafield_data)
+                print(response.json())
+                messages.success(request, "Proizvod {p} uspješno ažuriran sa {n} tab-a".format(p = product, n = len(matura_tabs)))
+            except:
+                messages.error(request, "Nešto je krepalo. Error: {e}.".format(e=sys.exc_info()[0]))
 
     @admin.action(description='Create product on Shopify')
     def create_product(self, request, queryset):
