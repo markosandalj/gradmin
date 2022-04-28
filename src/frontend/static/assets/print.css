@@ -197,7 +197,7 @@ li {
 }
 .problem__choice .choice__label {
   bottom: 0;
-  left: 0;
+  left: 0.75rem;
   position: absolute;
 }
 .problem__choices {
@@ -216,6 +216,9 @@ li {
   flex-direction: row;
   gap: 0;
   align-items: flex-end;
+}
+.problem__choices--with-images .problem__choice {
+  padding: 0 0 1rem 1.5rem;
 }
 .problem__choices--with-images--single .problem__choice {
   width: 65%;
