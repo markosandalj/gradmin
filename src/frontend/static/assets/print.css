@@ -207,6 +207,9 @@ li {
   margin: 1rem 0 0 1rem;
   padding-right: 2rem;
 }
+.problem__choices--horizontal {
+  flex-direction: row;
+}
 .problem__choices--with-images {
   display: flex;
   flex-wrap: wrap;

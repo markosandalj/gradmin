@@ -5,6 +5,12 @@ object-assign
 */
 
 /*!
+  Copyright (c) 2018 Jed Watson.
+  Licensed under the MIT License (MIT), see
+  http://jedwatson.github.io/classnames
+*/
+
+/*!
  * Font Awesome Free 5.15.4 by @fontawesome - https://fontawesome.com
  * License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License)
  */
@@ -1174,6 +1180,8 @@ PERFORMANCE OF THIS SOFTWARE.
 
 /*! axios */
 
+/*! classnames */
+
 /*! dom-helpers/addClass */
 
 /*! dom-helpers/removeClass */
@@ -1419,6 +1427,10 @@ PERFORMANCE OF THIS SOFTWARE.
 /*!*****************************************!*\
   !*** ./node_modules/tslib/tslib.es6.js ***!
   \*****************************************/
+
+/*!******************************************!*\
+  !*** ./node_modules/classnames/index.js ***!
+  \******************************************/
 
 /*!******************************************!*\
   !*** ./node_modules/lodash/_DataView.js ***!

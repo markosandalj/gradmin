@@ -1,6 +1,7 @@
 // REACT & REDUX
 import React, { useState, useCallback, useEffect } from "react";
 import { useSelector, useDispatch } from 'react-redux';
+import classNames from 'classnames'
 
 // SHOPIFY
 import { TextField } from '@shopify/polaris';
@@ -102,6 +103,15 @@ const Problem = ({ sectionIndex, problem_index, problem } ) => {
     '5': 'problem__choices--with-images problem__choices--with-images--fifth',
   }
 
+  const problemChoicesClasses = classNames('problem__choices', {
+    'problem__choices--horizontal': questionChoices.length && questionChoices.length < 5 && (questionChoices.reduce( (a, b) => a + b?.choice_text?.length, 0 )/[...questionChoices]?.length) < 30,
+    'problem__choices--with-images problem__choices--with-images--single': numberOfChoiceImages === 1,
+    'problem__choices--with-images problem__choices--with-images--half': numberOfChoiceImages === 2,
+    'problem__choices--with-images problem__choices--with-images--third': numberOfChoiceImages === 3,
+    'problem__choices--with-images problem__choices--with-images--quarter': numberOfChoiceImages === 4,
+    'problem__choices--with-images problem__choices--with-images--fifth': numberOfChoiceImages === 5,
+  })
+
   return (
     <div className="drag-item">
       <div className='problem'>
@@ -154,7 +164,7 @@ const Problem = ({ sectionIndex, problem_index, problem } ) => {
                 )
               }
             )}
-            <div className={`problem__choices ${numberOfChoiceImages > 0 ? choiceImageWidthClasses[numberOfChoiceImages] : ''}`}>
+            <div className={problemChoicesClasses}>
               {questionChoices.map( (choice, index) => {
                 return (
                   <ProblemChoice 
