@@ -8,6 +8,7 @@ from django.utils.translation import ngettext
 from django.utils.safestring import mark_safe
 from django.utils.translation import gettext_lazy as _
 from django.urls import reverse
+from django.db.models import Q
 from django.contrib.admin import SimpleListFilter
 # from django_reverse_admin import ReverseModelAdmin
 
@@ -104,13 +105,24 @@ class EmptyAnswerFilter(SimpleListFilter):
             ]
 
     def queryset(self, request, queryset):
-        answer_question_ids = [ans.question.id for ans in CorrectAnswer.objects.all()]
-        no_ans_queryset = queryset.exclude(question__id__in = answer_question_ids)
-        has_ans_queryset = queryset.filter(question__id__in = answer_question_ids)
+        all_invalid_answers = CorrectAnswer.objects.filter( Q(answer_text = None, answer_choice=None, image=None) )
+        answer_question_ids = [ans.question.id for ans in all_invalid_answers]
+        problem_ids = [prob.id for prob in queryset.filter(question__id__in = answer_question_ids)]
+
+        for prob in queryset:
+            subquestions = Question.objects.filter(main_question__id = prob.question.id)
+            if(len(subquestions) > 0):
+                subquestions = subquestions.filter(id__in = answer_question_ids)
+                if(len(subquestions) > 0):
+                    problem_ids.append(prob.id)
+                else:
+                    if(prob.id in problem_ids):
+                        problem_ids.remove(prob.id)
+
+        no_ans_queryset = queryset.filter(id__in = problem_ids)
+
         if self.value() == 'no_answer':
             return no_ans_queryset
-        elif self.value() == 'has_answer':
-            return has_ans_queryset
         elif self.value():
             return queryset
 
