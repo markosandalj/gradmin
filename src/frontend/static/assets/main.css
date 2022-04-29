@@ -785,6 +785,7 @@ textarea {
   .problems-section {
     box-shadow: none !important;
     font-size: 9pt !important;
+    counter-increment: section;
   }
   .problems-section__equations > .problems-section__equation {
     margin-right: 3.5rem;
@@ -795,8 +796,14 @@ textarea {
   .problems-section__actions, .problems-section__add-new {
     display: none !important;
   }
+  .problems-section__link {
+    text-decoration: none;
+    color: #000000;
+    font-weight: normal;
+    font-size: 9pt;
+  }
   .problems-section__link:after {
-    content: leader(".") target-counter(attr(href), page);
+    content: leader(".") counter(page);
     font-size: 80%;
   }
   .problems-section__equation-latex {

@@ -185,7 +185,7 @@ export default function Skripta() {
                                 </div>
                             }
                         </div>
-                        {/* <div className="problems-section">
+                        <div className="problems-section">
                             {sections.map((section, section_index) => {
                                 return(
                                     <a href={`#${section.id}`}>
@@ -193,7 +193,7 @@ export default function Skripta() {
                                     </a>
                                 )
                             })}
-                        </div> */}
+                        </div>
                         <div>
                             {sections.map((section, section_index) => {
                                 if (section.problems.length > 0 || section.equations.length > 0 ) {
