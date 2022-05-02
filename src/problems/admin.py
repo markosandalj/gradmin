@@ -101,11 +101,10 @@ class EmptyAnswerFilter(SimpleListFilter):
     def lookups(self, request, model_admin):
         return [ 
             ('no_answer', _('No answer')),
-            ('has_answer', _('Has answer')),
             ]
 
     def queryset(self, request, queryset):
-        all_invalid_answers = CorrectAnswer.objects.filter( Q(answer_text = None, answer_choice=None, image=None) )
+        all_invalid_answers = CorrectAnswer.objects.filter(answer_text = None, answer_choice = None, image = None)
         answer_question_ids = [ans.question.id for ans in all_invalid_answers]
         problem_ids = [prob.id for prob in queryset.filter(question__id__in = answer_question_ids)]
 
@@ -115,10 +114,16 @@ class EmptyAnswerFilter(SimpleListFilter):
                 subquestions = subquestions.filter(id__in = answer_question_ids)
                 if(len(subquestions) > 0):
                     problem_ids.append(prob.id)
+                    print('1', prob)
                 else:
                     if(prob.id in problem_ids):
                         problem_ids.remove(prob.id)
 
+            has_ans = CorrectAnswer.objects.filter(question__id = prob.question.id)
+            if(len(has_ans) == 0 and prob.id not in problem_ids):
+                print('2', prob, has_ans)
+                problem_ids.append(prob.id)
+                
         no_ans_queryset = queryset.filter(id__in = problem_ids)
 
         if self.value() == 'no_answer':
@@ -143,9 +148,9 @@ class EmptySectionFilter(SimpleListFilter):
 
 class ProblemAdmin(admin.ModelAdmin):
     model = Problem
-    list_display = ('name', 'question', 'shop_availability', 'section' )
+    list_display = ('name', )
     list_filter = ('subject', 'matura','section', 'shop_availability', 'approval', EmptyAnswerFilter, EmptySectionFilter)
-    list_editable = ( 'section', 'shop_availability')
+    # list_editable = ( 'section', 'shop_availability')
     search_fields = ('name', 'question__question_text', 'section__name',)
     autocomplete_fields = ('matura', 'question',)
     actions = ['make_available', 'make_unavailable', 'make_hidden', 'approve', 'unapprove',]
