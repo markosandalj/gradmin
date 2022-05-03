@@ -118,11 +118,11 @@ class EmptyAnswerFilter(SimpleListFilter):
                 else:
                     if(prob.id in problem_ids):
                         problem_ids.remove(prob.id)
-
-            has_ans = CorrectAnswer.objects.filter(question__id = prob.question.id)
-            if(len(has_ans) == 0 and prob.id not in problem_ids):
-                print('2', prob, has_ans)
-                problem_ids.append(prob.id)
+            else:
+                has_ans = CorrectAnswer.objects.filter(question__id = prob.question.id)
+                if(len(has_ans) == 0 and prob.id not in problem_ids):
+                    print('2', prob, has_ans)
+                    problem_ids.append(prob.id)
                 
         no_ans_queryset = queryset.filter(id__in = problem_ids)
 
