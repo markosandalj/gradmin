@@ -4,10 +4,12 @@ from pdf2image import convert_from_path, convert_from_bytes
 import sys
 import base64
 import numpy as np
+from rest_framework import viewsets
+from rest_framework.response import Response
 from PIL import Image
 from django.db.models.fields import IntegerField
 from django.db.models.functions import Cast
-from django.shortcuts import render
+from django.shortcuts import get_object_or_404, render
 from django.conf import settings
 from django.http import HttpResponse
 from django.http import FileResponse
@@ -26,6 +28,13 @@ from rest_framework.response import Response
 from weasyprint import HTML, CSS
 import cloudinary.uploader
 import cloudinary
+
+from cheatsheets.models import (
+    Cheatsheet,
+    CheatsheetSection,
+    CheatsheetTable,
+    CheatsheetLayout
+)
 
 from media.models import (
     PDF,
@@ -62,7 +71,10 @@ from .serializers import (
     ImageSerializer,
     SubjectSerializer,
     SectionSerializer,
-    SkriptaSerializer
+    SkriptaSerializer,
+    CheatsheetSerializer,
+    CheatsheetFullViewSerializer,
+    CheatsheetLayoutSerializer
 )
 
 
@@ -223,6 +235,26 @@ class ShopifyProductMaturaView(generics.ListAPIView):
     def get_queryset(self):
         queryset = Matura.objects.filter(pk=self.kwargs.get('matura_id'))
         return queryset
+
+
+
+## --------- CHEATSHEETS VIEWS --------- ##
+class CheatsheetsListView(generics.ListAPIView):
+    serializer_class = CheatsheetSerializer
+
+    def get_queryset(self):
+        queryset = Cheatsheet.objects.all()
+
+        return queryset
+
+class CheatsheetsFullView(viewsets.ViewSet):
+
+    def retrieve(self, request, id=None):
+        cheatsheet = Cheatsheet.objects.get(pk=self.kwargs.get('id'))
+        serializer = CheatsheetFullViewSerializer(cheatsheet)
+        layout_serializer = CheatsheetLayoutSerializer(CheatsheetLayout.objects.all(), many=True)
+        data = { **serializer.data, 'layouts': layout_serializer.data}
+        return Response(data)
 
 
 ## --------- POST VIEWS --------- ##

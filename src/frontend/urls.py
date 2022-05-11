@@ -10,4 +10,6 @@ urlpatterns = [
     path('index/matura/<int>/list', IndexView),
     path('index/matura/<int>', IndexView),
     path('index/problems_importer', IndexView),
+    path('index/cheatsheets/<int>', IndexView),
+    path('index/cheatsheets/list', IndexView),
 ]

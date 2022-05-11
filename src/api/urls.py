@@ -16,7 +16,9 @@ from .views import (
     AllSubjectsListApiView,
     AllSectionsListApiView,
     AllSkriptasListApiView,
-    ProblemsImporterUpdateView
+    ProblemsImporterUpdateView,
+    CheatsheetsListView,
+    CheatsheetsFullView
 )
 
 urlpatterns = [
@@ -25,6 +27,8 @@ urlpatterns = [
     # path('maturas/<str:subject__name>', MaturaWithoutProblemsApiView.as_view()),
     # path('maturas/<str:subject__name>/<str:year__year>', MaturaWithoutProblemsApiView.as_view()),
     # path('maturas/<str:subject__name>/<str:year__year>/<str:term__term>', MaturaWithoutProblemsApiView.as_view()),
+    path('cheatsheets/list', CheatsheetsListView.as_view()),
+    path('cheatsheets/<int:id>', CheatsheetsFullView.as_view({'get': 'retrieve'})),
     path('question/update', UpdateQuestionApiView.as_view()),
     path('problems_importer', ProblemsImporterView.as_view()),
     path('problems_importer/update', ProblemsImporterUpdateView.as_view()),

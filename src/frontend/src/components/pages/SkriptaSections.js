@@ -1,7 +1,7 @@
 import React, { Component, useState, useEffect } from "react";
 import { useParams } from 'react-router';
 
-import {Page, Layout} from '@shopify/polaris';
+import { Page, Layout, SkeletonBodyText } from '@shopify/polaris';
 import { Sortable } from '@shopify/draggable';
 import { Link } from "react-router-dom";
 import useFetch from "../hooks/useFetch";
@@ -12,7 +12,7 @@ export default function SkriptaSections() {
     const apiUrl = `${window.location.origin}/api/skripta/${skripta_id}/list`
     const { data, loading, error } = useFetch(apiUrl)
 
-    if (loading) return "Loading..."; 
+    if (loading) return <SkeletonBodyText />; 
     if (error) return "Error!"; 
 
     return(

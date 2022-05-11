@@ -7,29 +7,43 @@ import axios from "axios";
 import {Autocomplete, Icon, TextField } from '@shopify/polaris';
 import {SearchMinor} from '@shopify/polaris-icons';
 
-export default function AutocompleteSelect({apiUrl, label, setData}) {
+export default function AutocompleteSelect({apiUrl, label, setData, data }) {
   const [selectedOptions, setSelectedOptions] = useState([]);
   const [inputValue, setInputValue] = useState('');
   const [deselectedOptions, setDeselectedOptions] = useState([])
   const [options, setOptions] = useState([]);
 
   useEffect(() => {
-    axios.get(window.location.origin + apiUrl)
-      .then(res => res.data)
-      .then(data => {
-        let reducedData = []
+    if(apiUrl) {
+      axios.get(window.location.origin + apiUrl)
+        .then(res => res.data)
+        .then(data => {
+          let reducedData = []
 
-        data.map((item) => {
-          reducedData.push({
-            value: item.id.toString(),
-            label: item?.name || `${item.subject.subject_name} ${item.subject.level != '0' ? item.subject.level : ''} ${item.year.year}., ${item.term.term}`,
+          data.map((item) => {
+            reducedData.push({
+              value: item.id.toString(),
+              label: item?.name || `${item.subject.subject_name} ${item.subject.level != '0' ? item.subject.level : ''} ${item.year.year}., ${item.term.term}`,
+            })
           })
+      
+          setDeselectedOptions(reducedData)
+          setOptions(reducedData)
         })
-    
-        setDeselectedOptions(reducedData)
-        setOptions(reducedData)
+        .catch(err => console.log(err))
+    }
+
+    if(data) {
+      let reducedData = []
+      data.map((item) => {
+        reducedData.push({
+          value: item.id.toString(),
+          label: item?.name
+        })
       })
-      .catch(err => console.log(err))
+      setDeselectedOptions(reducedData)
+      setOptions(reducedData)
+    }
   }, [])
   
     const updateText = useCallback(

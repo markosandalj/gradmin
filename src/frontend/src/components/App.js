@@ -2,6 +2,7 @@
 import React, { Component, useState, useEffect, useCallback } from "react";
 import { render } from "react-dom";
 import { BrowserRouter as Router, Route, Switch, Link } from "react-router-dom";
+import { useParams } from 'react-router';
 
 // SHOPIFY
 import { AppProvider, Frame, TopBar } from '@shopify/polaris';
@@ -14,6 +15,8 @@ import SkriptaSections from "./pages/SkriptaSections";
 import MaturaList from "./pages/MaturaList";
 import MaturaProblems from "./pages/MaturaProblems";
 import ProblemsImporter from "./pages/ProblemsImporter";
+import CheatsheetsList from "./pages/CheatsheetsList";
+import CheatsheetPage from "./pages/CheatsheetPage";
 
 export default function App() {
   const [mobileNavigationActive, setMobileNavigationActive] = useState(false);
@@ -70,6 +73,12 @@ export default function App() {
           </Route>
           <Route exact path="/index/problems_importer">
             <ProblemsImporter></ProblemsImporter>
+          </Route>
+          <Route exact path="/index/cheatsheets/list">
+            <CheatsheetsList />          
+          </Route>
+          <Route exact path="/index/cheatsheets/:cheatsheet_id">
+            <CheatsheetPage/>          
           </Route>
         </Switch>
       </Frame>

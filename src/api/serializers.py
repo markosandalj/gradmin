@@ -7,6 +7,7 @@ from rest_framework import serializers
 from problems.models import AnswerChoice, CorrectAnswer, Matura, Problem, Question
 from shopify_models.models import Page, Product
 from skripte.models import Category, Equation, Razred, Section, SectionSection, Skripta, SkriptaSection, Subject
+from cheatsheets.models import Cheatsheet, CheatsheetSeactionEquation, CheatsheetSection, CheatsheetTable, CheatsheetTableEquation, CheatsheetLayout
 from media.models import PDF, SVG, Image, Video
 from mature.models import Matura, MaturaSubject, Term, Year
 
@@ -172,7 +173,64 @@ class SkriptaSerializer(serializers.ModelSerializer):
         model = Skripta
         fields = ('id', 'name', 'subject',)
 
+class CheatsheetSerializer(serializers.ModelSerializer):
+    subject = SubjectSerializer(many=False)
 
+    class Meta:
+        model = Cheatsheet
+        fields = ('id', 'name', 'subject')
+
+class CheatsheetSectionSerializer(serializers.ModelSerializer):
+    equations = serializers.SerializerMethodField('get_equations')
+
+    def get_equations(self, instance):
+        seaction_equations = CheatsheetSeactionEquation.objects.filter(cheatsheet_section__id = instance.id)
+        equations = Equation.objects.filter(id__in = [seaction_equatio.equation.id for seaction_equatio in seaction_equations])
+        response = EquationSerializer(equations, many=True).data
+        return response
+
+    class Meta:
+        model = CheatsheetSection
+        fields = ('name', 'decorator', 'equations')
+
+class CheatsheetTableSerializer(serializers.ModelSerializer):
+    equations = serializers.SerializerMethodField('get_equations')
+
+    def get_equations(self, instance):
+        table_equations = CheatsheetTableEquation.objects.filter(cheatsheet_table__id = instance.id)
+        equations = Equation.objects.filter(id__in = [table_equation.equation.id for table_equation in table_equations])
+        response = EquationSerializer(equations, many=True).data
+        return response
+
+    class Meta:
+        model = CheatsheetTable
+        fields = ('name', 'decorator', 'equations')
+
+class CheatsheetLayoutSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = CheatsheetLayout
+        fields = '__all__'
+
+
+class CheatsheetFullViewSerializer(serializers.ModelSerializer):
+    subject = SubjectSerializer(many=False)
+    layout = CheatsheetLayoutSerializer(many=False)
+    cheatsheet_sections = serializers.SerializerMethodField('get_cheatsheet_sections')
+    cheatsheet_tables = serializers.SerializerMethodField('get_cheatsheet_tables')
+
+    def get_cheatsheet_sections(self, instance):
+        cheatsheet_sections = CheatsheetSection.objects.filter(cheatsheet__id = instance.id)
+        response = CheatsheetSectionSerializer(cheatsheet_sections, many=True).data
+        return response
+    
+    def get_cheatsheet_tables(self, instance):
+        cheatsheet_tables = CheatsheetTable.objects.filter(cheatsheet__id = instance.id)
+        response = CheatsheetTableSerializer(cheatsheet_tables, many=True).data
+        return response
+
+    class Meta:
+        model = Cheatsheet
+        fields = ('id', 'name', 'subject', 'cheatsheet_sections', 'cheatsheet_tables', 'layout')
 
 
 ## --------- FE MATURA SERIALIZERS --------- ##

@@ -140,6 +140,7 @@
     .problems-section {
         box-shadow: none !important;
         font-size: 9pt !important;
+        counter-increment: section;
 
         &__equations {
             > .problems-section__equation {
@@ -156,8 +157,13 @@
         }
 
         &__link {
+            text-decoration: none;
+            color: $black;
+            font-weight: normal;
+            font-size: 9pt;
+
             &:after {
-                content: leader('.') target-counter(attr(href), page);
+                content: leader('.') counter(page);
                 font-size: 80%;
             }
         }

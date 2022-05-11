@@ -15,7 +15,7 @@ module.exports = {
   output: {
     path: path.resolve(__dirname, "./frontend/static/assets"),
     filename: "[name].js",
-    clean: true,
+    // clean: true,
   },
   devtool: "source-map",
   module: {
@@ -27,6 +27,18 @@ module.exports = {
           loader: "babel-loader",
         },
       },
+      // {
+      //   test: /\.js$/,
+      //   include: path.resolve(__dirname, 'src'),
+      //   exclude: /node_modules/,
+      //   loader: "babel-loader",
+      //   options: {
+      //       presets: [
+      //           '@babel/preset-env',
+      //           {'plugins': ['@babel/plugin-proposal-class-properties']},
+      //       ],
+      //   }
+      // },
       {
         test: /\.css$/i,
         use: ['style-loader', 'css-loader'],
@@ -50,9 +62,14 @@ module.exports = {
       },
     ],
   },
-  optimization: {
-    minimize: true,
+  watchOptions: {
+    aggregateTimeout: 1000,
+    poll: 500,
+    ignored: /node_modules/,
   },
+  // optimization: {
+  //   minimize: true,
+  // },
   plugins: [
     new MiniCssExtractPlugin({
       filename: '[name].css',

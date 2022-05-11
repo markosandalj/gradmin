@@ -52,6 +52,7 @@ INSTALLED_APPS = [
     'mature',
     'media',
     'shopify_models',
+    'cheatsheets',
     'adminsortable2',
     'rest_framework',
     'api',

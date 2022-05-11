@@ -81,9 +81,11 @@ const Sidebar = () => {
                 {
                     url: '/index/problems_importer',
                     label: 'Problems importer',
+                },
+                {
+                    url: '/index/cheatsheets/list',
+                    label: 'Cheatsheets',
                 }
-
-
                 ]}
             />
         </Navigation>

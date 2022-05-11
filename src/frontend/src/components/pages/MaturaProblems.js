@@ -6,7 +6,7 @@ import { useDispatch, useSelector } from "react-redux";
 import axios from 'axios'
 
 // SHOPIFY
-import {Page, Layout} from '@shopify/polaris';
+import {Page, Layout, SkeletonBodyText } from '@shopify/polaris';
 
 // CUSTOM HOOKS
 import useFetch from "../hooks/useFetch";
@@ -38,7 +38,7 @@ const MaturaProblems = () => {
         setDisplayErrorAlert(false);
     }
 
-    if (loading) return "Loading..."; 
+    if (loading) return <SkeletonBodyText />; 
     if (error) return "Error!"; 
 
     const mathTypeset = () => {
