@@ -364,12 +364,6 @@ class ProblemsImporterUpdateView(APIView):
                             new_answer_choices.append(new_answer_choice)
 
                         try:
-                            print(new_question)
-                            print(Subject.objects.get(pk = int(subject)))
-                            print(Matura.objects.get(pk = int(matura)))
-                            print( f"{subject_label}{level_label} - {matura_godina}. {matura_rok}, { problem['number'] }")
-                            print(str(problem['number']))
-                            
                             new_problem = Problem.objects.create(
                                 name=f"{subject_label}{level_label} - {matura_godina}. {matura_rok}, { problem['number'] }",
                                 number = str(problem['number']),
@@ -380,7 +374,6 @@ class ProblemsImporterUpdateView(APIView):
                             )
                             try:
                                 related_skripta = Skripta.objects.get(pk = int(skripta)) if skripta else None,
-                                print(related_skripta)
                                 if(related_skripta):
                                     new_problem.skripta.set([int(skripta),])
                             except:
@@ -409,7 +402,7 @@ class ProblemsImporterUpdateView(APIView):
                 print('Krep krepalo', sys.exc_info()[0])
         
         try:
-            return Response(status=status.HTTP_200_OK)
+            return Response(status=status.HTTP_200_OK, data="Uspješno!")
 
         except:
             return Response(status=status.HTTP_400_BAD_REQUEST)

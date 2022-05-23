@@ -15,7 +15,7 @@ export default function ProblemsTableItem({ id, text, line_data, confidence, con
   }, [line_data])
 
   useEffect(() => {
-	if(problem.number != '0.') {
+	if(problem.number != '0.' && formData.problems.findIndex(prob => prob.id !== id)) {
 		formData.problems.push(problem)
 		setFormData({
 			...formData

@@ -39847,6 +39847,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _shopify_polaris__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @shopify/polaris */ "./node_modules/@shopify/polaris/dist/esm/components/ResourceList/ResourceList.js");
 /* harmony import */ var _shopify_polaris__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @shopify/polaris */ "./node_modules/@shopify/polaris/dist/esm/components/ButtonGroup/ButtonGroup.js");
 /* harmony import */ var _shopify_polaris__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! @shopify/polaris */ "./node_modules/@shopify/polaris/dist/esm/components/Button/Button.js");
+/* harmony import */ var _shopify_polaris__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! @shopify/polaris */ "./node_modules/@shopify/polaris/dist/esm/components/Banner/Banner.js");
 /* harmony import */ var _ProblemsTableItem__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./ProblemsTableItem */ "./frontend/src/components/parts/ProblemsTableItem.js");
 // REACT & REDUX
 
@@ -39915,6 +39916,7 @@ function ProblemsTable({
     }).then(res => res.data).then(data => {
       console.log(data);
       setIsSubmited(true);
+      window.scrollTo(0, document.body.scrollHeight);
     }).catch(err => {
       console.log(err);
       setIsSubmited(false);
@@ -39961,7 +39963,7 @@ function ProblemsTable({
     }));
   };
 
-  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_shopify_polaris__WEBPACK_IMPORTED_MODULE_5__.Card, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_shopify_polaris__WEBPACK_IMPORTED_MODULE_6__.ResourceList, {
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_shopify_polaris__WEBPACK_IMPORTED_MODULE_5__.Card, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_shopify_polaris__WEBPACK_IMPORTED_MODULE_6__.ResourceList, {
     resourceName: resourceName,
     items: existingProblems,
     renderItem: renderItem,
@@ -39981,16 +39983,13 @@ function ProblemsTable({
       value: 'PROBLEMS_NUMBER_DESC'
     }],
     onSortChange: selected => {
-      console.log('prije: ', existingProblems);
       setSortValue(selected);
       setExistingProblems(existingProblems.sort((a, b) => {
         if (selected === 'CONFIDENCE_HIGHEST') return b.mathpix_response.confidence - a.mathpix_response.confidence;
         if (selected === 'CONFIDENCE_LOWEST') return a.mathpix_response.confidence - b.mathpix_response.confidence;
       }));
       console.log(`Sort option changed to ${selected}.`);
-      console.log('poslije: ', existingProblems);
-    } // showHeader
-
+    }
   }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_shopify_polaris__WEBPACK_IMPORTED_MODULE_5__.Card.Section, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
     className: "flex-end"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_shopify_polaris__WEBPACK_IMPORTED_MODULE_7__.ButtonGroup, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_shopify_polaris__WEBPACK_IMPORTED_MODULE_8__.Button, {
@@ -40003,7 +40002,12 @@ function ProblemsTable({
     when: showPrompt,
     title: "Alert",
     message: () => 'Nisi submit-ao ili cancel-ao. Grrrrr....'
-  }));
+  })), isSubmited && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+    className: "my-2"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_shopify_polaris__WEBPACK_IMPORTED_MODULE_10__.Banner, {
+    title: "Zadaci uspje\u0161no uba\u010Deni u bazu",
+    status: "success"
+  })));
 }
 
 /***/ }),
@@ -40051,7 +40055,7 @@ function ProblemsTableItem({
     generateProblem();
   }, [line_data]);
   (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(() => {
-    if (problem.number != '0.') {
+    if (problem.number != '0.' && formData.problems.findIndex(prob => prob.id !== id)) {
       formData.problems.push(problem);
       setFormData({ ...formData
       });

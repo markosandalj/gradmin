@@ -6,7 +6,7 @@ import { useDispatch, useSelector } from "react-redux";
 import axios from "axios";
 
 
-import { Card, ResourceList, ResourceItem, Button, ButtonGroup } from '@shopify/polaris'
+import { Card, ResourceList, ResourceItem, Button, ButtonGroup, Banner } from '@shopify/polaris'
 import ProblemsTableItem from "./ProblemsTableItem";
 
 export default function ProblemsTable({ problems, info }) {
@@ -69,6 +69,7 @@ export default function ProblemsTable({ problems, info }) {
           .then(data => {
             console.log(data)
             setIsSubmited(true)
+            window.scrollTo(0, document.body.scrollHeight);
           })
           .catch(err => {
             console.log(err)
@@ -120,6 +121,7 @@ export default function ProblemsTable({ problems, info }) {
     }
 
     return (
+      <>
         <Card>
             <ResourceList
                 resourceName={resourceName}
@@ -136,7 +138,6 @@ export default function ProblemsTable({ problems, info }) {
                   {label: 'Problem number', value: 'PROBLEMS_NUMBER_DESC'},
                 ]}
                 onSortChange={(selected) => {
-                  console.log('prije: ', existingProblems);
                   setSortValue(selected);
                   setExistingProblems(
                     existingProblems.sort((a, b) => {
@@ -144,9 +145,7 @@ export default function ProblemsTable({ problems, info }) {
                       if(selected === 'CONFIDENCE_LOWEST') return a.mathpix_response.confidence - b.mathpix_response.confidence
                     }))
                   console.log(`Sort option changed to ${selected}.`);
-                  console.log('poslije: ', existingProblems);
                 }}
-                // showHeader
             ></ResourceList>
             <Card.Section>
               <div className="flex-end">
@@ -163,6 +162,14 @@ export default function ProblemsTable({ problems, info }) {
             >
             </Prompt>
         </Card>
+        {isSubmited &&
+          <div className="my-2">
+              <Banner
+                  title="Zadaci uspješno ubačeni u bazu"
+                  status="success"
+              />
+          </div>}
+      </>
     )
 
 }
