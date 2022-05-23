@@ -38,11 +38,11 @@ export default function ProblemsTableItem({ id, text, line_data, confidence, con
 
 		try {
 			const isAnswerChoice = (text) => {
-				return (text.startsWith('\nA.') 
-						|| text.startsWith('\nB.') 
-						|| text.startsWith('\nC.') 
-						|| text.startsWith('\nD.') 
-						|| text.startsWith('\nE.')
+				return (text?.startsWith('\nA.') 
+						|| text?.startsWith('\nB.') 
+						|| text?.startsWith('\nC.') 
+						|| text?.startsWith('\nD.') 
+						|| text?.startsWith('\nE.')
 					)
 			}
 			
