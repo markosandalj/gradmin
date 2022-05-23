@@ -40,13 +40,20 @@ class FilterQuestionsByMatura(SimpleListFilter):
 
     def lookups(self, request, model_admin):
         filter_list = [ (str(matura.id), _(str(matura)) ) for matura in Matura.objects.all() ]
+        filter_list.append(( 'Nema', _('Nema') ))
         return filter_list
 
     def queryset(self, request, queryset): 
-        if self.value():
+        if self.value() != 'Nema':
             problems = Problem.objects.filter(matura__id = self.value())
             questions_list = [ problem.question.id for problem in problems]
             return queryset.filter( id__in = questions_list)
+        elif self.value() == 'Nema':
+            problems = Problem.objects.all()
+            questions_list = [problem.question.id for problem in problems]
+            return queryset.exclude(Q(id__in = questions_list)| Q(main_question__isnull=False))
+
+
 
 class QuestionInline(EditLinkToInlineObject, admin.StackedInline):
     model = Question
