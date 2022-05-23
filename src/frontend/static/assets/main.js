@@ -38175,7 +38175,6 @@ const useFetch = apiUrl => {
   const [error, setError] = (0,react__WEBPACK_IMPORTED_MODULE_1__.useState)(null);
   (0,react__WEBPACK_IMPORTED_MODULE_1__.useEffect)(() => {
     axios__WEBPACK_IMPORTED_MODULE_0___default()(apiUrl).then(response => {
-      console.log("Data: ", response.data);
       setData(response.data);
     }).catch(error => {
       console.error("Error fetching data: ", error);
@@ -40085,7 +40084,8 @@ function ProblemsTableItem({
 
     try {
       const isAnswerChoice = text => {
-        return text.startsWith('\nA.') || text.startsWith('\nB.') || text.startsWith('\nC.') || text.startsWith('\nD.') || text.startsWith('\nE.');
+        console.log(text);
+        return text ? (text === null || text === void 0 ? void 0 : text.startsWith('\nA.')) || (text === null || text === void 0 ? void 0 : text.startsWith('\nB.')) || (text === null || text === void 0 ? void 0 : text.startsWith('\nC.')) || (text === null || text === void 0 ? void 0 : text.startsWith('\nD.')) || (text === null || text === void 0 ? void 0 : text.startsWith('\nE.')) : false;
       };
 
       line_data.map((item, index) => {
@@ -40099,7 +40099,7 @@ function ProblemsTableItem({
           });
         }
       });
-      problem_number = Number.isInteger(parseInt(text === null || text === void 0 ? void 0 : text.substr(0, 3), 10)) ? text === null || text === void 0 ? void 0 : text.substr(0, 3).replace(/\s/g, '') : null;
+      problem_number = Number.isInteger(parseInt(text === null || text === void 0 ? void 0 : text.split(' ')[0], 10)) ? text === null || text === void 0 ? void 0 : text.split(' ')[0].replace(/\s/g, '') : null;
       answer_choices = answer_choices.map(item => {
         return { ...item,
           text: (item === null || item === void 0 ? void 0 : item.text.length) <= 4 ? '(slika)' : item === null || item === void 0 ? void 0 : item.text.substr(4, item === null || item === void 0 ? void 0 : item.text.length)

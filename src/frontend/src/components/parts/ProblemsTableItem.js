@@ -38,11 +38,12 @@ export default function ProblemsTableItem({ id, text, line_data, confidence, con
 
 		try {
 			const isAnswerChoice = (text) => {
-				return (text?.startsWith('\nA.') 
+				console.log(text)
+				return ( text ? (text?.startsWith('\nA.') 
 						|| text?.startsWith('\nB.') 
 						|| text?.startsWith('\nC.') 
 						|| text?.startsWith('\nD.') 
-						|| text?.startsWith('\nE.')
+						|| text?.startsWith('\nE.')) : false
 					)
 			}
 			
@@ -58,7 +59,7 @@ export default function ProblemsTableItem({ id, text, line_data, confidence, con
 				}
 			})
 	
-			problem_number = Number.isInteger(parseInt(text?.substr(0, 3), 10)) ? text?.substr(0,3).replace(/\s/g, '') : null
+			problem_number = Number.isInteger(parseInt(text?.split(' ')[0], 10)) ? text?.split(' ')[0].replace(/\s/g, '') : null
 	
 			answer_choices = answer_choices.map( item => {
 				return {
