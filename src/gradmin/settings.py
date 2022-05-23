@@ -28,7 +28,7 @@ SECRET_KEY = 'django-insecure--b59a9xgnba6n^qvew%0+2^kt-_5)#57undlgi3u&3v1blqhqe
 DEBUG = True
 
 ALLOWED_HOSTS = [
-    'theehhdude23.eu.pythonanywhere.com'    
+    # 'theehhdude23.eu.pythonanywhere.com'    
 ]
 
 
@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'colorfield',
     'django.contrib.admin',
     'django.contrib.auth',
+    'polymorphic',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
@@ -57,9 +58,13 @@ INSTALLED_APPS = [
     'rest_framework',
     'api',
     'frontend',
+    'courses',
     "corsheaders",
     'dbbackup',  # django-dbbackup
     'django_extensions',
+    'ckeditor',
+    'ckeditor_uploader',
+    # 'merged_inlines',
 ]
 
 X_FRAME_OPTIONS = 'SAMEORIGIN'
@@ -106,16 +111,16 @@ WSGI_APPLICATION = 'gradmin.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'TheEhhDude23$gradmin',
-        'HOST': 'TheEhhDude23.mysql.eu.pythonanywhere-services.com',
-        'PORT': '3306',
-        'USER': 'TheEhhDude23',
-        'PASSWORD': 'dreamfar23',
-        # 'NAME': 'gradmin',
-        # 'HOST': '127.0.0.1',
+        # 'NAME': 'TheEhhDude23$gradmin',
+        # 'HOST': 'TheEhhDude23.mysql.eu.pythonanywhere-services.com',
         # 'PORT': '3306',
-        # 'USER': 'root',
-        # 'PASSWORD': 'root',
+        # 'USER': 'TheEhhDude23',
+        # 'PASSWORD': 'dreamfar23',
+        'NAME': 'gradmin',
+        'HOST': '127.0.0.1',
+        'PORT': '3306',
+        'USER': 'root',
+        'PASSWORD': 'root',
     }
 }
 
@@ -157,7 +162,8 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.2/howto/static-files/
 
 STATIC_URL = '/static/'
-STATIC_ROOT = '/home/TheEhhDude23/gradmin/src/static'
+STATIC_ROOT = 'assets/'
+# STATIC_ROOT = '/home/TheEhhDude23/gradmin/src/static'
 
 STATICFILES_DIRS = [
     # BASE_DIR / "static",
@@ -174,6 +180,14 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 MEDIA_ROOT = Path(BASE_DIR / 'problems' / 'static' / 'problems' / 'images')
 # MEDIA_URL = str('/problems/static/problems/images/')
 DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
+CKEDITOR_UPLOAD_PATH = 'uploads/'
+
+CKEDITOR_CONFIGS = {
+    'default': {
+        'toolbar': None,
+        'extraPlugins': 'codesnippet',
+    },
+}
 
 CORS_ALLOWED_ORIGINS = [
     "http://localhost:8000",

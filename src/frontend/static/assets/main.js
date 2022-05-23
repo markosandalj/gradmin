@@ -38058,10 +38058,10 @@ module.exports = {
 
 /***/ }),
 
-/***/ "./frontend/src/components/App.js":
-/*!****************************************!*\
-  !*** ./frontend/src/components/App.js ***!
-  \****************************************/
+/***/ "./frontend/src/es6/components/App.js":
+/*!********************************************!*\
+  !*** ./frontend/src/es6/components/App.js ***!
+  \********************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
@@ -38076,15 +38076,15 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _shopify_polaris__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! @shopify/polaris */ "./node_modules/@shopify/polaris/dist/esm/components/TopBar/TopBar.js");
 /* harmony import */ var _shopify_polaris__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! @shopify/polaris */ "./node_modules/@shopify/polaris/dist/esm/components/AppProvider/AppProvider.js");
 /* harmony import */ var _shopify_polaris__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! @shopify/polaris */ "./node_modules/@shopify/polaris/dist/esm/components/Frame/Frame.js");
-/* harmony import */ var _layout_Header__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./layout/Header */ "./frontend/src/components/layout/Header.js");
-/* harmony import */ var _layout_Sidebar__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./layout/Sidebar */ "./frontend/src/components/layout/Sidebar.js");
-/* harmony import */ var _pages_Skripta__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./pages/Skripta */ "./frontend/src/components/pages/Skripta.js");
-/* harmony import */ var _pages_SkriptaSections__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./pages/SkriptaSections */ "./frontend/src/components/pages/SkriptaSections.js");
-/* harmony import */ var _pages_MaturaList__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./pages/MaturaList */ "./frontend/src/components/pages/MaturaList.js");
-/* harmony import */ var _pages_MaturaProblems__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./pages/MaturaProblems */ "./frontend/src/components/pages/MaturaProblems.js");
-/* harmony import */ var _pages_ProblemsImporter__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./pages/ProblemsImporter */ "./frontend/src/components/pages/ProblemsImporter.js");
-/* harmony import */ var _pages_CheatsheetsList__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./pages/CheatsheetsList */ "./frontend/src/components/pages/CheatsheetsList.js");
-/* harmony import */ var _pages_CheatsheetPage__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./pages/CheatsheetPage */ "./frontend/src/components/pages/CheatsheetPage.js");
+/* harmony import */ var _layout_Header__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./layout/Header */ "./frontend/src/es6/components/layout/Header.js");
+/* harmony import */ var _layout_Sidebar__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./layout/Sidebar */ "./frontend/src/es6/components/layout/Sidebar.js");
+/* harmony import */ var _pages_Skripta__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./pages/Skripta */ "./frontend/src/es6/components/pages/Skripta.js");
+/* harmony import */ var _pages_SkriptaSections__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./pages/SkriptaSections */ "./frontend/src/es6/components/pages/SkriptaSections.js");
+/* harmony import */ var _pages_MaturaList__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./pages/MaturaList */ "./frontend/src/es6/components/pages/MaturaList.js");
+/* harmony import */ var _pages_MaturaProblems__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./pages/MaturaProblems */ "./frontend/src/es6/components/pages/MaturaProblems.js");
+/* harmony import */ var _pages_ProblemsImporter__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./pages/ProblemsImporter */ "./frontend/src/es6/components/pages/ProblemsImporter.js");
+/* harmony import */ var _pages_CheatsheetsList__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./pages/CheatsheetsList */ "./frontend/src/es6/components/pages/CheatsheetsList.js");
+/* harmony import */ var _pages_CheatsheetPage__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./pages/CheatsheetPage */ "./frontend/src/es6/components/pages/CheatsheetPage.js");
 // REACT & REDUX
 
 
@@ -38152,10 +38152,124 @@ function App() {
 
 /***/ }),
 
-/***/ "./frontend/src/components/hooks/useFetch.js":
-/*!***************************************************!*\
-  !*** ./frontend/src/components/hooks/useFetch.js ***!
-  \***************************************************/
+/***/ "./frontend/src/es6/components/config/ApiRoutes.js":
+/*!*********************************************************!*\
+  !*** ./frontend/src/es6/components/config/ApiRoutes.js ***!
+  \*********************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+const base = window.location.origin + '/api';
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
+  base: window.location.origin + '/api',
+  cheatsheets: base + '/cheatsheets/',
+  print: base + '/print'
+});
+
+/***/ }),
+
+/***/ "./frontend/src/es6/components/helpers/handlePrint.js":
+/*!************************************************************!*\
+  !*** ./frontend/src/es6/components/helpers/handlePrint.js ***!
+  \************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _config_ApiRoutes__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../config/ApiRoutes */ "./frontend/src/es6/components/config/ApiRoutes.js");
+// REACT & REDUX
+
+
+
+
+const handlePrint = async (selector, pdfFileName = 'tmp', id = null, cssFileName = 'print') => {
+  const apiUrl = _config_ApiRoutes__WEBPACK_IMPORTED_MODULE_2__["default"].print;
+  const printElement = document.querySelector(selector); // TO-DO implement namings on BE 11.05.2022
+
+  let formData = new FormData();
+  formData.append('html', JSON.stringify(printElement.innerHTML));
+  formData.append('css_file', cssFileName);
+  formData.append('pdf_name', pdfFileName);
+  formData.append('id', id);
+  return await axios__WEBPACK_IMPORTED_MODULE_1___default().post(apiUrl, formData, {
+    headers: {
+      'X-CSRFToken': csrftoken,
+      "Content-type": "multipart/form-data"
+    }
+  }).then(response => {
+    console.log(`Response from ${apiUrl}: `, JSON.parse(response.data));
+    return JSON.parse(response.data);
+  }).catch(error => {
+    console.error("Error fetching data: ", error);
+    return error;
+  });
+};
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (handlePrint);
+
+/***/ }),
+
+/***/ "./frontend/src/es6/components/helpers/typsetMathjax.js":
+/*!**************************************************************!*\
+  !*** ./frontend/src/es6/components/helpers/typsetMathjax.js ***!
+  \**************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "typsetMathjax": () => (/* binding */ typsetMathjax)
+/* harmony export */ });
+const typsetMathjax = () => {
+  if (window.MathJax) {
+    console.log("MathJax typset succesfull");
+    return window.MathJax.typesetPromise().catch(err => console.log('Typeset failed: ' + err.message));
+  }
+};
+
+/***/ }),
+
+/***/ "./frontend/src/es6/components/helpers/viewType.js":
+/*!*********************************************************!*\
+  !*** ./frontend/src/es6/components/helpers/viewType.js ***!
+  \*********************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+const viewType = view => {
+  console.log('Checking view type: ', view);
+  const print_preview = view === 'print_preview';
+  const editing = view === 'editing';
+  const standard = view === 'editing';
+  return {
+    print_preview,
+    editing,
+    standard
+  };
+};
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (viewType);
+
+/***/ }),
+
+/***/ "./frontend/src/es6/components/hooks/useFetch.js":
+/*!*******************************************************!*\
+  !*** ./frontend/src/es6/components/hooks/useFetch.js ***!
+  \*******************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
@@ -38169,21 +38283,27 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-const useFetch = apiUrl => {
+const useFetch = (apiUrl, dependencyArray = []) => {
   const [data, setData] = (0,react__WEBPACK_IMPORTED_MODULE_1__.useState)(null);
   const [loading, setLoading] = (0,react__WEBPACK_IMPORTED_MODULE_1__.useState)(true);
   const [error, setError] = (0,react__WEBPACK_IMPORTED_MODULE_1__.useState)(null);
   (0,react__WEBPACK_IMPORTED_MODULE_1__.useEffect)(() => {
-    axios__WEBPACK_IMPORTED_MODULE_0___default()(apiUrl).then(response => {
-      console.log("Data: ", response.data);
-      setData(response.data);
-    }).catch(error => {
-      console.error("Error fetching data: ", error);
-      setError(error);
-    }).finally(() => {
-      setLoading(false);
-    });
-  }, []);
+    const fetchData = async () => {
+      console.log('Fetching: ', apiUrl);
+      setLoading(true);
+      await axios__WEBPACK_IMPORTED_MODULE_0___default()(apiUrl).then(response => {
+        console.log(`Response from ${apiUrl}: `, response.data);
+        setData(response.data);
+      }).catch(error => {
+        console.error("Error fetching data: ", error);
+        setError(error);
+      }).finally(() => {
+        setLoading(false);
+      });
+    };
+
+    if (apiUrl) fetchData();
+  }, dependencyArray);
   return {
     data,
     loading,
@@ -38195,10 +38315,10 @@ const useFetch = apiUrl => {
 
 /***/ }),
 
-/***/ "./frontend/src/components/layout/Header.js":
-/*!**************************************************!*\
-  !*** ./frontend/src/components/layout/Header.js ***!
-  \**************************************************/
+/***/ "./frontend/src/es6/components/layout/Header.js":
+/*!******************************************************!*\
+  !*** ./frontend/src/es6/components/layout/Header.js ***!
+  \******************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
@@ -38245,10 +38365,10 @@ const Header = () => {
 
 /***/ }),
 
-/***/ "./frontend/src/components/layout/Sidebar.js":
-/*!***************************************************!*\
-  !*** ./frontend/src/components/layout/Sidebar.js ***!
-  \***************************************************/
+/***/ "./frontend/src/es6/components/layout/Sidebar.js":
+/*!*******************************************************!*\
+  !*** ./frontend/src/es6/components/layout/Sidebar.js ***!
+  \*******************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
@@ -38336,10 +38456,10 @@ const Sidebar = () => {
 
 /***/ }),
 
-/***/ "./frontend/src/components/pages/CheatsheetPage.js":
-/*!*********************************************************!*\
-  !*** ./frontend/src/components/pages/CheatsheetPage.js ***!
-  \*********************************************************/
+/***/ "./frontend/src/es6/components/pages/CheatsheetPage.js":
+/*!*************************************************************!*\
+  !*** ./frontend/src/es6/components/pages/CheatsheetPage.js ***!
+  \*************************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
@@ -38348,83 +38468,90 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
-/* harmony import */ var react_router__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! react-router */ "./node_modules/react-router/esm/react-router.js");
-/* harmony import */ var _shopify_polaris__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @shopify/polaris */ "./node_modules/@shopify/polaris/dist/esm/components/SkeletonBodyText/SkeletonBodyText.js");
-/* harmony import */ var _shopify_polaris__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @shopify/polaris */ "./node_modules/@shopify/polaris/dist/esm/components/Page/Page.js");
-/* harmony import */ var _shopify_polaris__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @shopify/polaris */ "./node_modules/@shopify/polaris/dist/esm/components/Layout/Layout.js");
-/* harmony import */ var _shopify_polaris__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @shopify/polaris */ "./node_modules/@shopify/polaris/dist/esm/components/Card/Card.js");
-/* harmony import */ var _parts_AutocompleteSelect__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../parts/AutocompleteSelect */ "./frontend/src/components/parts/AutocompleteSelect.js");
-/* harmony import */ var _hooks_useFetch__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../hooks/useFetch */ "./frontend/src/components/hooks/useFetch.js");
+/* harmony import */ var react_router__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! react-router */ "./node_modules/react-router/esm/react-router.js");
+/* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
+/* harmony import */ var _shopify_polaris__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! @shopify/polaris */ "./node_modules/@shopify/polaris/dist/esm/components/SkeletonBodyText/SkeletonBodyText.js");
+/* harmony import */ var _shopify_polaris__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! @shopify/polaris */ "./node_modules/@shopify/polaris/dist/esm/components/Page/Page.js");
+/* harmony import */ var _shopify_polaris__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! @shopify/polaris */ "./node_modules/@shopify/polaris/dist/esm/components/Layout/Layout.js");
+/* harmony import */ var _shopify_polaris__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! @shopify/polaris */ "./node_modules/@shopify/polaris/dist/esm/components/Card/Card.js");
+/* harmony import */ var _parts_AutocompleteSelect__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../parts/AutocompleteSelect */ "./frontend/src/es6/components/parts/AutocompleteSelect.js");
+/* harmony import */ var _parts_PageActions__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../parts/PageActions */ "./frontend/src/es6/components/parts/PageActions.js");
+/* harmony import */ var _parts_EquationSection_EquationSection__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../parts/EquationSection/EquationSection */ "./frontend/src/es6/components/parts/EquationSection/EquationSection.js");
+/* harmony import */ var _hooks_useFetch__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../hooks/useFetch */ "./frontend/src/es6/components/hooks/useFetch.js");
+/* harmony import */ var _config_ApiRoutes__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../config/ApiRoutes */ "./frontend/src/es6/components/config/ApiRoutes.js");
+/* harmony import */ var _store_actions_CheatsheetActions__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../../store/actions/CheatsheetActions */ "./frontend/src/es6/store/actions/CheatsheetActions.js");
 // REACT & REDUX
+
 
  // SHOPIFY
 
  // CUSTOM COMPONENTS
 
+
+
  // CUSTOM HOOKS
+
+
+ // ACTIONS
 
 
 
 const CheatsheetPage = () => {
+  var _data$cheatsheet_sect, _data$cheatsheet_tabl;
+
   const {
     cheatsheet_id
-  } = (0,react_router__WEBPACK_IMPORTED_MODULE_3__.useParams)();
-  const apiUrl = `${window.location.origin}/api/cheatsheets/${cheatsheet_id}`;
-  const {
-    data,
-    loading,
-    error
-  } = (0,_hooks_useFetch__WEBPACK_IMPORTED_MODULE_2__["default"])(apiUrl);
-  const [layout, setLayout] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(null);
-  if (loading) return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_shopify_polaris__WEBPACK_IMPORTED_MODULE_4__.SkeletonBodyText, null);
+  } = (0,react_router__WEBPACK_IMPORTED_MODULE_8__.useParams)();
+  const dispatch = (0,react_redux__WEBPACK_IMPORTED_MODULE_1__.useDispatch)();
+  const state = (0,react_redux__WEBPACK_IMPORTED_MODULE_1__.useSelector)(state => state);
+  const data = (0,react_redux__WEBPACK_IMPORTED_MODULE_1__.useSelector)(state => state === null || state === void 0 ? void 0 : state.cheatsheet); // const apiUrl = ApiRoutes.cheatsheets + cheatsheet_id
+  // const { data, loading, error } = useFetch(apiUrl) 
+
+  const [loading, setLoading] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(false);
+  const [error, setError] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(false);
+  const [layout, setLayout] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(data === null || data === void 0 ? void 0 : data.layout);
+  (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(() => {
+    setLoading(true);
+    dispatch((0,_store_actions_CheatsheetActions__WEBPACK_IMPORTED_MODULE_7__.getCheatsheetData)(cheatsheet_id));
+    setLoading(false);
+  }, [dispatch]);
+  if (loading) return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_shopify_polaris__WEBPACK_IMPORTED_MODULE_9__.SkeletonBodyText, null);
   if (error) return "Error!";
-  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_shopify_polaris__WEBPACK_IMPORTED_MODULE_5__.Page, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_shopify_polaris__WEBPACK_IMPORTED_MODULE_6__.Layout, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_shopify_polaris__WEBPACK_IMPORTED_MODULE_6__.Layout.Section, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_shopify_polaris__WEBPACK_IMPORTED_MODULE_7__.Card, {
-    sectioned: true
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_shopify_polaris__WEBPACK_IMPORTED_MODULE_7__.Card.Section, {
-    key: 1
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_parts_AutocompleteSelect__WEBPACK_IMPORTED_MODULE_1__["default"], {
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_shopify_polaris__WEBPACK_IMPORTED_MODULE_10__.Page, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_shopify_polaris__WEBPACK_IMPORTED_MODULE_11__.Layout, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_parts_PageActions__WEBPACK_IMPORTED_MODULE_3__["default"], {
+    title: data.name
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_shopify_polaris__WEBPACK_IMPORTED_MODULE_11__.Layout.Section, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_shopify_polaris__WEBPACK_IMPORTED_MODULE_12__.Card, {
+    sectioned: true,
+    key: "1213124124"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_parts_AutocompleteSelect__WEBPACK_IMPORTED_MODULE_2__["default"], {
     label: "Pick layout",
     data: data.layouts,
     setData: setLayout
-  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_shopify_polaris__WEBPACK_IMPORTED_MODULE_7__.Card.Section, {
-    key: 2
-  }, data === null || data === void 0 ? void 0 : data.name, data === null || data === void 0 ? void 0 : data.cheatsheet_sections.map(section => {
-    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
-      className: "problems-section__equations",
-      key: section.id
-    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("h4", {
-      className: "problems-section__equations-title"
-    }, section.name), section.equations.map(equation => {
-      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
-        key: equation.id,
-        className: "problems-section__equation"
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
-        className: "problems-section__equation-name"
-      }, equation.name), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
-        className: "problems-section__equation-latex"
-      }, "$ ", equation.equation, " $"));
-    }));
-  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_shopify_polaris__WEBPACK_IMPORTED_MODULE_7__.Card.Section, {
-    key: 3
-  }, data === null || data === void 0 ? void 0 : data.cheatsheet_tables.map(table => {
-    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
-      key: table.id
-    }, table.name, table.equations.map(equation => {
-      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("span", {
-        key: equation.id
-      }, "$", equation.equation, "$");
-    }));
-  }))))));
+  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_shopify_polaris__WEBPACK_IMPORTED_MODULE_12__.Card, {
+    sectioned: true,
+    key: "2123214124"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+    id: "printThis"
+  }, data === null || data === void 0 ? void 0 : (_data$cheatsheet_sect = data.cheatsheet_sections) === null || _data$cheatsheet_sect === void 0 ? void 0 : _data$cheatsheet_sect.map(section => /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_parts_EquationSection_EquationSection__WEBPACK_IMPORTED_MODULE_4__["default"], {
+    key: section.id,
+    colored: true,
+    equations: section.equations,
+    name: section.name
+  })), data === null || data === void 0 ? void 0 : (_data$cheatsheet_tabl = data.cheatsheet_tables) === null || _data$cheatsheet_tabl === void 0 ? void 0 : _data$cheatsheet_tabl.map(table => /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_parts_EquationSection_EquationSection__WEBPACK_IMPORTED_MODULE_4__["default"], {
+    key: table.id,
+    colored: true,
+    equations: table.equations,
+    name: table.name
+  })))))));
 };
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (CheatsheetPage);
 
 /***/ }),
 
-/***/ "./frontend/src/components/pages/CheatsheetsList.js":
-/*!**********************************************************!*\
-  !*** ./frontend/src/components/pages/CheatsheetsList.js ***!
-  \**********************************************************/
+/***/ "./frontend/src/es6/components/pages/CheatsheetsList.js":
+/*!**************************************************************!*\
+  !*** ./frontend/src/es6/components/pages/CheatsheetsList.js ***!
+  \**************************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
@@ -38443,7 +38570,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _shopify_polaris__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! @shopify/polaris */ "./node_modules/@shopify/polaris/dist/esm/components/Layout/Layout.js");
 /* harmony import */ var _shopify_polaris__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! @shopify/polaris */ "./node_modules/@shopify/polaris/dist/esm/components/Card/Card.js");
 /* harmony import */ var _shopify_polaris__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! @shopify/polaris */ "./node_modules/@shopify/polaris/dist/esm/components/ResourceList/ResourceList.js");
-/* harmony import */ var _hooks_useFetch__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../hooks/useFetch */ "./frontend/src/components/hooks/useFetch.js");
+/* harmony import */ var _hooks_useFetch__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../hooks/useFetch */ "./frontend/src/es6/components/hooks/useFetch.js");
 // REACT & REDUX
 
 
@@ -38494,10 +38621,10 @@ const CheatsheetsList = () => {
 
 /***/ }),
 
-/***/ "./frontend/src/components/pages/MaturaList.js":
-/*!*****************************************************!*\
-  !*** ./frontend/src/components/pages/MaturaList.js ***!
-  \*****************************************************/
+/***/ "./frontend/src/es6/components/pages/MaturaList.js":
+/*!*********************************************************!*\
+  !*** ./frontend/src/es6/components/pages/MaturaList.js ***!
+  \*********************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
@@ -38513,7 +38640,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _shopify_polaris__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @shopify/polaris */ "./node_modules/@shopify/polaris/dist/esm/components/SkeletonBodyText/SkeletonBodyText.js");
 /* harmony import */ var _shopify_polaris__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @shopify/polaris */ "./node_modules/@shopify/polaris/dist/esm/components/Page/Page.js");
 /* harmony import */ var _shopify_polaris__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @shopify/polaris */ "./node_modules/@shopify/polaris/dist/esm/components/Layout/Layout.js");
-/* harmony import */ var _hooks_useFetch__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../hooks/useFetch */ "./frontend/src/components/hooks/useFetch.js");
+/* harmony import */ var _hooks_useFetch__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../hooks/useFetch */ "./frontend/src/es6/components/hooks/useFetch.js");
 // REACT & REDUX
 
 
@@ -38551,10 +38678,10 @@ const MaturaList = () => {
 
 /***/ }),
 
-/***/ "./frontend/src/components/pages/MaturaProblems.js":
-/*!*********************************************************!*\
-  !*** ./frontend/src/components/pages/MaturaProblems.js ***!
-  \*********************************************************/
+/***/ "./frontend/src/es6/components/pages/MaturaProblems.js":
+/*!*************************************************************!*\
+  !*** ./frontend/src/es6/components/pages/MaturaProblems.js ***!
+  \*************************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
@@ -38570,11 +38697,11 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _shopify_polaris__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! @shopify/polaris */ "./node_modules/@shopify/polaris/dist/esm/components/SkeletonBodyText/SkeletonBodyText.js");
 /* harmony import */ var _shopify_polaris__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! @shopify/polaris */ "./node_modules/@shopify/polaris/dist/esm/components/Page/Page.js");
 /* harmony import */ var _shopify_polaris__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! @shopify/polaris */ "./node_modules/@shopify/polaris/dist/esm/components/Layout/Layout.js");
-/* harmony import */ var _hooks_useFetch__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../hooks/useFetch */ "./frontend/src/components/hooks/useFetch.js");
-/* harmony import */ var _parts_Problem__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../parts/Problem */ "./frontend/src/components/parts/Problem.js");
+/* harmony import */ var _hooks_useFetch__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../hooks/useFetch */ "./frontend/src/es6/components/hooks/useFetch.js");
+/* harmony import */ var _parts_Problem__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../parts/Problem */ "./frontend/src/es6/components/parts/Problem.js");
 /* harmony import */ var _fortawesome_react_fontawesome__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @fortawesome/react-fontawesome */ "./node_modules/@fortawesome/react-fontawesome/index.es.js");
 /* harmony import */ var _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! @fortawesome/free-solid-svg-icons */ "./node_modules/@fortawesome/free-solid-svg-icons/index.es.js");
-/* harmony import */ var _store_actions_problemsViewActions__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../../store/actions/problemsViewActions */ "./frontend/src/store/actions/problemsViewActions.js");
+/* harmony import */ var _store_actions_pageViewActions__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../../store/actions/pageViewActions */ "./frontend/src/es6/store/actions/pageViewActions.js");
 // REACT & REDUX
 
 
@@ -38603,7 +38730,7 @@ const MaturaProblems = () => {
     error
   } = (0,_hooks_useFetch__WEBPACK_IMPORTED_MODULE_3__["default"])(apiUrl);
   const dispatch = (0,react_redux__WEBPACK_IMPORTED_MODULE_1__.useDispatch)();
-  const view = (0,react_redux__WEBPACK_IMPORTED_MODULE_1__.useSelector)(state => state === null || state === void 0 ? void 0 : state.problems_view);
+  const view = (0,react_redux__WEBPACK_IMPORTED_MODULE_1__.useSelector)(state => state === null || state === void 0 ? void 0 : state.page_view);
   const problem_fields = (0,react_redux__WEBPACK_IMPORTED_MODULE_1__.useSelector)(state => state.problem_fields);
   const [displaySuccesAlert, setDisplaySuccesAlert] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(false);
   const [displayErrorAlert, setDisplayErrorAlert] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(false);
@@ -38625,14 +38752,14 @@ const MaturaProblems = () => {
 
   const handleEditingToggle = () => {
     let prevState = view.editing ? view.editing : false;
-    dispatch((0,_store_actions_problemsViewActions__WEBPACK_IMPORTED_MODULE_6__.toggleEditingView)(!prevState));
-    if (view.site_preview) dispatch((0,_store_actions_problemsViewActions__WEBPACK_IMPORTED_MODULE_6__.toggleSitePreviewView)(prevState));
+    dispatch((0,_store_actions_pageViewActions__WEBPACK_IMPORTED_MODULE_6__.toggleEditingView)(!prevState));
+    if (view.site_preview) dispatch((0,_store_actions_pageViewActions__WEBPACK_IMPORTED_MODULE_6__.toggleSitePreviewView)(prevState));
   };
 
   const handleSitePreviewToggle = () => {
     let prevState = view.site_preview ? view.site_preview : false;
-    dispatch((0,_store_actions_problemsViewActions__WEBPACK_IMPORTED_MODULE_6__.toggleSitePreviewView)(!prevState));
-    if (view.editing) dispatch((0,_store_actions_problemsViewActions__WEBPACK_IMPORTED_MODULE_6__.toggleEditingView)(prevState));
+    dispatch((0,_store_actions_pageViewActions__WEBPACK_IMPORTED_MODULE_6__.toggleSitePreviewView)(!prevState));
+    if (view.editing) dispatch((0,_store_actions_pageViewActions__WEBPACK_IMPORTED_MODULE_6__.toggleEditingView)(prevState));
   };
 
   const handleSubmit = event => {
@@ -38725,10 +38852,10 @@ const MaturaProblems = () => {
 
 /***/ }),
 
-/***/ "./frontend/src/components/pages/ProblemsImporter.js":
-/*!***********************************************************!*\
-  !*** ./frontend/src/components/pages/ProblemsImporter.js ***!
-  \***********************************************************/
+/***/ "./frontend/src/es6/components/pages/ProblemsImporter.js":
+/*!***************************************************************!*\
+  !*** ./frontend/src/es6/components/pages/ProblemsImporter.js ***!
+  \***************************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
@@ -38748,8 +38875,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _shopify_polaris__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! @shopify/polaris */ "./node_modules/@shopify/polaris/dist/esm/components/Spinner/Spinner.js");
 /* harmony import */ var _shopify_polaris__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! @shopify/polaris */ "./node_modules/@shopify/polaris/dist/esm/components/ButtonGroup/ButtonGroup.js");
 /* harmony import */ var _shopify_polaris__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! @shopify/polaris */ "./node_modules/@shopify/polaris/dist/esm/components/Button/Button.js");
-/* harmony import */ var _parts_ImporterInfoForm__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../parts/ImporterInfoForm */ "./frontend/src/components/parts/ImporterInfoForm.js");
-/* harmony import */ var _parts_ProblemsTable__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../parts/ProblemsTable */ "./frontend/src/components/parts/ProblemsTable.js");
+/* harmony import */ var _parts_ImporterInfoForm__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../parts/ImporterInfoForm */ "./frontend/src/es6/components/parts/ImporterInfoForm.js");
+/* harmony import */ var _parts_ProblemsTable__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../parts/ProblemsTable */ "./frontend/src/es6/components/parts/ProblemsTable.js");
 // REACT & REDUX
 
 
@@ -38850,10 +38977,10 @@ function ProblemsImporter() {
 
 /***/ }),
 
-/***/ "./frontend/src/components/pages/Skripta.js":
-/*!**************************************************!*\
-  !*** ./frontend/src/components/pages/Skripta.js ***!
-  \**************************************************/
+/***/ "./frontend/src/es6/components/pages/Skripta.js":
+/*!******************************************************!*\
+  !*** ./frontend/src/es6/components/pages/Skripta.js ***!
+  \******************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
@@ -38872,10 +38999,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _shopify_draggable__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(_shopify_draggable__WEBPACK_IMPORTED_MODULE_3__);
 /* harmony import */ var _fortawesome_react_fontawesome__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @fortawesome/react-fontawesome */ "./node_modules/@fortawesome/react-fontawesome/index.es.js");
 /* harmony import */ var _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! @fortawesome/free-solid-svg-icons */ "./node_modules/@fortawesome/free-solid-svg-icons/index.es.js");
-/* harmony import */ var _parts_Problem__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../parts/Problem */ "./frontend/src/components/parts/Problem.js");
-/* harmony import */ var _parts_ProblemImage__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../parts/ProblemImage */ "./frontend/src/components/parts/ProblemImage.js");
-/* harmony import */ var _store_actions_SkriptaActions__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../../store/actions/SkriptaActions */ "./frontend/src/store/actions/SkriptaActions.js");
-/* harmony import */ var _store_actions_problemsViewActions__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../../store/actions/problemsViewActions */ "./frontend/src/store/actions/problemsViewActions.js");
+/* harmony import */ var _parts_Problem__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../parts/Problem */ "./frontend/src/es6/components/parts/Problem.js");
+/* harmony import */ var _parts_ProblemImage__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../parts/ProblemImage */ "./frontend/src/es6/components/parts/ProblemImage.js");
+/* harmony import */ var _store_actions_SkriptaActions__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../../store/actions/SkriptaActions */ "./frontend/src/es6/store/actions/SkriptaActions.js");
+/* harmony import */ var _store_actions_pageViewActions__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../../store/actions/pageViewActions */ "./frontend/src/es6/store/actions/pageViewActions.js");
 /* harmony import */ var react_loader_spinner__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! react-loader-spinner */ "./node_modules/react-loader-spinner/dist/esm/index.js");
 // REACT & REDUX
 
@@ -38909,7 +39036,7 @@ function Skripta() {
   }, [dispatch]);
   const state = (0,react_redux__WEBPACK_IMPORTED_MODULE_1__.useSelector)(state => state);
   const sections = (0,react_redux__WEBPACK_IMPORTED_MODULE_1__.useSelector)(state => state === null || state === void 0 ? void 0 : state.sections);
-  const view = (0,react_redux__WEBPACK_IMPORTED_MODULE_1__.useSelector)(state => state === null || state === void 0 ? void 0 : state.problems_view);
+  const view = (0,react_redux__WEBPACK_IMPORTED_MODULE_1__.useSelector)(state => state === null || state === void 0 ? void 0 : state.page_view);
   const problem_fields = (0,react_redux__WEBPACK_IMPORTED_MODULE_1__.useSelector)(state => state.problem_fields);
   const [displaySuccesAlert, setDisplaySuccesAlert] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(false);
   const [displayErrorAlert, setDisplayErrorAlert] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(false);
@@ -38931,14 +39058,14 @@ function Skripta() {
 
   const handleEditingToggle = () => {
     let prevState = view.editing ? view.editing : false;
-    dispatch((0,_store_actions_problemsViewActions__WEBPACK_IMPORTED_MODULE_8__.toggleEditingView)(!prevState));
-    if (view.printing) dispatch((0,_store_actions_problemsViewActions__WEBPACK_IMPORTED_MODULE_8__.togglePrintingView)(prevState));
+    dispatch((0,_store_actions_pageViewActions__WEBPACK_IMPORTED_MODULE_8__.toggleEditingView)(!prevState));
+    if (view.printing) dispatch((0,_store_actions_pageViewActions__WEBPACK_IMPORTED_MODULE_8__.togglePrintPreviewView)(prevState));
   };
 
   const handlePrintingToggle = () => {
     let prevState = view.printing ? view.printing : false;
-    dispatch((0,_store_actions_problemsViewActions__WEBPACK_IMPORTED_MODULE_8__.togglePrintingView)(!prevState));
-    if (view.editing) dispatch((0,_store_actions_problemsViewActions__WEBPACK_IMPORTED_MODULE_8__.toggleEditingView)(prevState));
+    dispatch((0,_store_actions_pageViewActions__WEBPACK_IMPORTED_MODULE_8__.togglePrintPreviewView)(!prevState));
+    if (view.editing) dispatch((0,_store_actions_pageViewActions__WEBPACK_IMPORTED_MODULE_8__.toggleEditingView)(prevState));
   };
 
   const handleSubmit = event => {
@@ -39158,10 +39285,10 @@ function Skripta() {
 
 /***/ }),
 
-/***/ "./frontend/src/components/pages/SkriptaSections.js":
-/*!**********************************************************!*\
-  !*** ./frontend/src/components/pages/SkriptaSections.js ***!
-  \**********************************************************/
+/***/ "./frontend/src/es6/components/pages/SkriptaSections.js":
+/*!**************************************************************!*\
+  !*** ./frontend/src/es6/components/pages/SkriptaSections.js ***!
+  \**************************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
@@ -39177,7 +39304,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _shopify_draggable__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @shopify/draggable */ "./node_modules/@shopify/draggable/lib/draggable.bundle.js");
 /* harmony import */ var _shopify_draggable__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_shopify_draggable__WEBPACK_IMPORTED_MODULE_1__);
 /* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
-/* harmony import */ var _hooks_useFetch__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../hooks/useFetch */ "./frontend/src/components/hooks/useFetch.js");
+/* harmony import */ var _hooks_useFetch__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../hooks/useFetch */ "./frontend/src/es6/components/hooks/useFetch.js");
 
 
 
@@ -39213,10 +39340,10 @@ function SkriptaSections() {
 
 /***/ }),
 
-/***/ "./frontend/src/components/parts/AutocompleteSelect.js":
-/*!*************************************************************!*\
-  !*** ./frontend/src/components/parts/AutocompleteSelect.js ***!
-  \*************************************************************/
+/***/ "./frontend/src/es6/components/parts/AutocompleteSelect.js":
+/*!*****************************************************************!*\
+  !*** ./frontend/src/es6/components/parts/AutocompleteSelect.js ***!
+  \*****************************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
@@ -39322,10 +39449,128 @@ function AutocompleteSelect({
 
 /***/ }),
 
-/***/ "./frontend/src/components/parts/ImporterInfoForm.js":
-/*!***********************************************************!*\
-  !*** ./frontend/src/components/parts/ImporterInfoForm.js ***!
-  \***********************************************************/
+/***/ "./frontend/src/es6/components/parts/Equation/Equation.js":
+/*!****************************************************************!*\
+  !*** ./frontend/src/es6/components/parts/Equation/Equation.js ***!
+  \****************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (/* binding */ Equation)
+/* harmony export */ });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
+/* harmony import */ var classnames__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! classnames */ "./node_modules/classnames/index.js");
+/* harmony import */ var classnames__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(classnames__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var _shopify_polaris__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @shopify/polaris */ "./node_modules/@shopify/polaris/dist/esm/components/TextField/TextField.js");
+/* harmony import */ var _Equation_scss__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./Equation.scss */ "./frontend/src/es6/components/parts/Equation/Equation.scss");
+/* harmony import */ var _store_actions_CheatsheetActions__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../../store/actions/CheatsheetActions */ "./frontend/src/es6/store/actions/CheatsheetActions.js");
+/* harmony import */ var _helpers_viewType__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../helpers/viewType */ "./frontend/src/es6/components/helpers/viewType.js");
+// REACT & REDUX
+
+
+ // SHOPIFY 
+
+ // CUSTOM HOOKS
+// CUSTOM COMPONENTS
+// STYLES
+
+ // ACTIOSN
+
+ // HELPERS
+
+
+function Equation({
+  id,
+  equation,
+  showEquationNames,
+  name
+}) {
+  const [equationLatex, setEquationLatex] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(equation);
+  const [equationName, setEquationName] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(name);
+  const dispatch = (0,react_redux__WEBPACK_IMPORTED_MODULE_1__.useDispatch)();
+  const state = (0,react_redux__WEBPACK_IMPORTED_MODULE_1__.useSelector)(state => state);
+  const view = (0,react_redux__WEBPACK_IMPORTED_MODULE_1__.useSelector)(state => state.view);
+  const classes = classnames__WEBPACK_IMPORTED_MODULE_2___default()("equation", {});
+
+  const handleChange = (newValue, id) => {
+    dispatch((0,_store_actions_CheatsheetActions__WEBPACK_IMPORTED_MODULE_4__.updateEquation)(id, newValue));
+  };
+
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+    className: classes
+  }, showEquationNames && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+    className: "equation__name"
+  }, equationName), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+    className: "equation__latex"
+  }, "$ ", equationLatex, " $", (0,_helpers_viewType__WEBPACK_IMPORTED_MODULE_5__["default"])(view).editing && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_shopify_polaris__WEBPACK_IMPORTED_MODULE_6__.TextField, {
+    value: equationLatex,
+    onChange: handleChange,
+    readOnly: false,
+    multiline: 2,
+    id: id
+  })));
+}
+
+/***/ }),
+
+/***/ "./frontend/src/es6/components/parts/EquationSection/EquationSection.js":
+/*!******************************************************************************!*\
+  !*** ./frontend/src/es6/components/parts/EquationSection/EquationSection.js ***!
+  \******************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (/* binding */ EquationSection)
+/* harmony export */ });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var classnames__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! classnames */ "./node_modules/classnames/index.js");
+/* harmony import */ var classnames__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(classnames__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _Equation_Equation__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../Equation/Equation */ "./frontend/src/es6/components/parts/Equation/Equation.js");
+/* harmony import */ var _EquationSection_scss__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./EquationSection.scss */ "./frontend/src/es6/components/parts/EquationSection/EquationSection.scss");
+// REACT & REDUX
+
+ // SHOPIFY 
+// CUSTOM HOOKS
+// CUSTOM COMPONENTS
+
+ // STYLES
+
+
+function EquationSection({
+  equations,
+  showEquationNames,
+  name,
+  rounded,
+  colored
+}) {
+  const classes = classnames__WEBPACK_IMPORTED_MODULE_1___default()("equation-section", {
+    "equation-section--rounded": rounded,
+    "equation-section--colored": colored
+  });
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+    className: classes
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("h4", {
+    className: "equation-section__title"
+  }, name), equations.map(equation => /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_Equation_Equation__WEBPACK_IMPORTED_MODULE_2__["default"], {
+    key: equation.id,
+    id: equation.id,
+    equation: equation.equation,
+    showEquationNames: showEquationNames,
+    name: equation.name
+  })));
+}
+
+/***/ }),
+
+/***/ "./frontend/src/es6/components/parts/ImporterInfoForm.js":
+/*!***************************************************************!*\
+  !*** ./frontend/src/es6/components/parts/ImporterInfoForm.js ***!
+  \***************************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
@@ -39339,7 +39584,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_2__);
 /* harmony import */ var _shopify_polaris__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @shopify/polaris */ "./node_modules/@shopify/polaris/dist/esm/components/Form/Form.js");
 /* harmony import */ var _shopify_polaris__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @shopify/polaris */ "./node_modules/@shopify/polaris/dist/esm/components/FormLayout/FormLayout.js");
-/* harmony import */ var _AutocompleteSelect__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./AutocompleteSelect */ "./frontend/src/components/parts/AutocompleteSelect.js");
+/* harmony import */ var _AutocompleteSelect__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./AutocompleteSelect */ "./frontend/src/es6/components/parts/AutocompleteSelect.js");
 
 
 
@@ -39394,10 +39639,118 @@ function ImporterInfoForm({
 
 /***/ }),
 
-/***/ "./frontend/src/components/parts/Problem.js":
-/*!**************************************************!*\
-  !*** ./frontend/src/components/parts/Problem.js ***!
-  \**************************************************/
+/***/ "./frontend/src/es6/components/parts/PageActions.js":
+/*!**********************************************************!*\
+  !*** ./frontend/src/es6/components/parts/PageActions.js ***!
+  \**********************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react_router__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! react-router */ "./node_modules/react-router/esm/react-router.js");
+/* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
+/* harmony import */ var _shopify_polaris__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @shopify/polaris */ "./node_modules/@shopify/polaris/dist/esm/components/Layout/Layout.js");
+/* harmony import */ var _shopify_polaris__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! @shopify/polaris */ "./node_modules/@shopify/polaris/dist/esm/components/Stack/Stack.js");
+/* harmony import */ var _shopify_polaris__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! @shopify/polaris */ "./node_modules/@shopify/polaris/dist/esm/components/Heading/Heading.js");
+/* harmony import */ var _shopify_polaris__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! @shopify/polaris */ "./node_modules/@shopify/polaris/dist/esm/components/ButtonGroup/ButtonGroup.js");
+/* harmony import */ var _shopify_polaris__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! @shopify/polaris */ "./node_modules/@shopify/polaris/dist/esm/components/Button/Button.js");
+/* harmony import */ var _fortawesome_react_fontawesome__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @fortawesome/react-fontawesome */ "./node_modules/@fortawesome/react-fontawesome/index.es.js");
+/* harmony import */ var _helpers_typsetMathjax__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../helpers/typsetMathjax */ "./frontend/src/es6/components/helpers/typsetMathjax.js");
+/* harmony import */ var _helpers_handlePrint__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../helpers/handlePrint */ "./frontend/src/es6/components/helpers/handlePrint.js");
+/* harmony import */ var _store_actions_pageViewActions__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../store/actions/pageViewActions */ "./frontend/src/es6/store/actions/pageViewActions.js");
+// REACT & REDUX
+
+
+ // SHOPIFY
+
+ // FONTAWESOME
+
+
+ // HELPERS
+
+
+ // ACTIONS
+
+
+
+
+const PageActions = ({
+  title,
+  viewTypeSwitcher
+}) => {
+  const {
+    cheatsheet_id
+  } = (0,react_router__WEBPACK_IMPORTED_MODULE_6__.useParams)();
+  const [isFirstButtonActive, setIsFirstButtonActive] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(true);
+  const [printLoader, setPrintLoader] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(false);
+  const [downloadLink, setDownloadLink] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(null);
+  const dispatch = (0,react_redux__WEBPACK_IMPORTED_MODULE_1__.useDispatch)();
+  const state = (0,react_redux__WEBPACK_IMPORTED_MODULE_1__.useSelector)(state => state);
+  const view = (0,react_redux__WEBPACK_IMPORTED_MODULE_1__.useSelector)(state => state.view);
+  const handleFirstButtonClick = (0,react__WEBPACK_IMPORTED_MODULE_0__.useCallback)(() => {
+    if (isFirstButtonActive) return;
+    dispatch((0,_store_actions_pageViewActions__WEBPACK_IMPORTED_MODULE_5__.togglePrintPreviewView)());
+    setIsFirstButtonActive(true);
+  }, [isFirstButtonActive]);
+  const handleSecondButtonClick = (0,react__WEBPACK_IMPORTED_MODULE_0__.useCallback)(() => {
+    if (!isFirstButtonActive) return;
+    dispatch((0,_store_actions_pageViewActions__WEBPACK_IMPORTED_MODULE_5__.toggleEditingView)());
+    setIsFirstButtonActive(false);
+  }, [isFirstButtonActive]);
+
+  const handlePrintFn = async () => {
+    setPrintLoader(true);
+    dispatch((0,_store_actions_pageViewActions__WEBPACK_IMPORTED_MODULE_5__.togglePrintPreviewView)());
+    await (0,_helpers_typsetMathjax__WEBPACK_IMPORTED_MODULE_3__.typsetMathjax)();
+    const data = await (0,_helpers_handlePrint__WEBPACK_IMPORTED_MODULE_4__["default"])('#printThis', title, cheatsheet_id);
+    console.log(typeof data);
+    setDownloadLink(data.file);
+    setPrintLoader(false);
+  };
+
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_shopify_polaris__WEBPACK_IMPORTED_MODULE_7__.Layout.Section, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_shopify_polaris__WEBPACK_IMPORTED_MODULE_8__.Stack, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_shopify_polaris__WEBPACK_IMPORTED_MODULE_8__.Stack.Item, {
+    fill: true
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_shopify_polaris__WEBPACK_IMPORTED_MODULE_9__.Heading, null, title)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_shopify_polaris__WEBPACK_IMPORTED_MODULE_8__.Stack.Item, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_shopify_polaris__WEBPACK_IMPORTED_MODULE_10__.ButtonGroup, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_shopify_polaris__WEBPACK_IMPORTED_MODULE_10__.ButtonGroup, {
+    segmented: true
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_shopify_polaris__WEBPACK_IMPORTED_MODULE_11__.Button, {
+    pressed: isFirstButtonActive,
+    onClick: handleFirstButtonClick
+  }, "Print preview"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_shopify_polaris__WEBPACK_IMPORTED_MODULE_11__.Button, {
+    pressed: !isFirstButtonActive,
+    onClick: handleSecondButtonClick
+  }, "Editing")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_shopify_polaris__WEBPACK_IMPORTED_MODULE_11__.Button, {
+    primary: true,
+    connectedDisclosure: {
+      accessibilityLabel: 'Other save actions',
+      actions: [{
+        content: 'Typset LaTeX',
+        onAction: _helpers_typsetMathjax__WEBPACK_IMPORTED_MODULE_3__.typsetMathjax
+      }, {
+        content: 'Print',
+        onAction: () => handlePrintFn()
+      }]
+    }
+  }, "Save")))), (printLoader || downloadLink) && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_shopify_polaris__WEBPACK_IMPORTED_MODULE_8__.Stack, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_shopify_polaris__WEBPACK_IMPORTED_MODULE_11__.Button, {
+    external: true,
+    url: downloadLink,
+    loading: printLoader,
+    fullWidth: true,
+    primary: true
+  }, "Download")));
+};
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (PageActions);
+
+/***/ }),
+
+/***/ "./frontend/src/es6/components/parts/Problem.js":
+/*!******************************************************!*\
+  !*** ./frontend/src/es6/components/parts/Problem.js ***!
+  \******************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
@@ -39414,10 +39767,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! @fortawesome/free-solid-svg-icons */ "./node_modules/@fortawesome/free-solid-svg-icons/index.es.js");
 /* harmony import */ var qrcode_react__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! qrcode.react */ "./node_modules/qrcode.react/lib/index.js");
 /* harmony import */ var qrcode_react__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(qrcode_react__WEBPACK_IMPORTED_MODULE_4__);
-/* harmony import */ var _ProblemChoice__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./ProblemChoice */ "./frontend/src/components/parts/ProblemChoice.js");
-/* harmony import */ var _Subquestions__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./Subquestions */ "./frontend/src/components/parts/Subquestions.js");
-/* harmony import */ var _ProblemImage__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./ProblemImage */ "./frontend/src/components/parts/ProblemImage.js");
-/* harmony import */ var _store_actions_problemFieldsActions__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../../store/actions/problemFieldsActions */ "./frontend/src/store/actions/problemFieldsActions.js");
+/* harmony import */ var _ProblemChoice__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./ProblemChoice */ "./frontend/src/es6/components/parts/ProblemChoice.js");
+/* harmony import */ var _Subquestions__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./Subquestions */ "./frontend/src/es6/components/parts/Subquestions.js");
+/* harmony import */ var _ProblemImage__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./ProblemImage */ "./frontend/src/es6/components/parts/ProblemImage.js");
+/* harmony import */ var _store_actions_problemFieldsActions__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../../store/actions/problemFieldsActions */ "./frontend/src/es6/store/actions/problemFieldsActions.js");
 // REACT & REDUX
 
 
@@ -39469,7 +39822,7 @@ const Problem = ({
     7: 'H'
   };
   const dispatch = (0,react_redux__WEBPACK_IMPORTED_MODULE_1__.useDispatch)();
-  const view = (0,react_redux__WEBPACK_IMPORTED_MODULE_1__.useSelector)(state => state === null || state === void 0 ? void 0 : state.problems_view);
+  const view = (0,react_redux__WEBPACK_IMPORTED_MODULE_1__.useSelector)(state => state === null || state === void 0 ? void 0 : state.page_view);
   const problem_fields = (0,react_redux__WEBPACK_IMPORTED_MODULE_1__.useSelector)(state => state === null || state === void 0 ? void 0 : state.problem_fields);
 
   const mathTypeset = () => {
@@ -39635,10 +39988,10 @@ const Problem = ({
 
 /***/ }),
 
-/***/ "./frontend/src/components/parts/ProblemChoice.js":
-/*!********************************************************!*\
-  !*** ./frontend/src/components/parts/ProblemChoice.js ***!
-  \********************************************************/
+/***/ "./frontend/src/es6/components/parts/ProblemChoice.js":
+/*!************************************************************!*\
+  !*** ./frontend/src/es6/components/parts/ProblemChoice.js ***!
+  \************************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
@@ -39652,7 +40005,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _shopify_polaris__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @shopify/polaris */ "./node_modules/@shopify/polaris/dist/esm/components/TextField/TextField.js");
 /* harmony import */ var _fortawesome_react_fontawesome__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @fortawesome/react-fontawesome */ "./node_modules/@fortawesome/react-fontawesome/index.es.js");
 /* harmony import */ var _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @fortawesome/free-solid-svg-icons */ "./node_modules/@fortawesome/free-solid-svg-icons/index.es.js");
-/* harmony import */ var _store_actions_problemFieldsActions__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../store/actions/problemFieldsActions */ "./frontend/src/store/actions/problemFieldsActions.js");
+/* harmony import */ var _store_actions_problemFieldsActions__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../store/actions/problemFieldsActions */ "./frontend/src/es6/store/actions/problemFieldsActions.js");
 // REACT & REDUX
 
  // SHOPIFY
@@ -39677,7 +40030,7 @@ const ProblemChoice = ({
   const [hasImage, setHasImage] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(choice.images.length > 0 || choice.choice_text === '(slika)');
   const [imageSrc, setImgSrc] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(choice.images.length > 0 ? choice.images[0].image : null);
   const [file, setFile] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)();
-  const view = (0,react_redux__WEBPACK_IMPORTED_MODULE_1__.useSelector)(state => state === null || state === void 0 ? void 0 : state.problems_view);
+  const view = (0,react_redux__WEBPACK_IMPORTED_MODULE_1__.useSelector)(state => state === null || state === void 0 ? void 0 : state.page_view);
   const answer_choices = (0,react_redux__WEBPACK_IMPORTED_MODULE_1__.useSelector)(state => state === null || state === void 0 ? void 0 : state.problem_fields);
   const dispatch = (0,react_redux__WEBPACK_IMPORTED_MODULE_1__.useDispatch)();
   const handleDropZoneDrop = (0,react__WEBPACK_IMPORTED_MODULE_0__.useCallback)((_dropFiles, acceptedFiles, _rejectedFiles) => setFile(file => acceptedFiles[0]), []);
@@ -39754,10 +40107,10 @@ const ProblemChoice = ({
 
 /***/ }),
 
-/***/ "./frontend/src/components/parts/ProblemImage.js":
-/*!*******************************************************!*\
-  !*** ./frontend/src/components/parts/ProblemImage.js ***!
-  \*******************************************************/
+/***/ "./frontend/src/es6/components/parts/ProblemImage.js":
+/*!***********************************************************!*\
+  !*** ./frontend/src/es6/components/parts/ProblemImage.js ***!
+  \***********************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
@@ -39786,7 +40139,7 @@ const ProblemImage = ({
   const [hasChanged, setHasChanged] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(false);
   const [editImageFieldOpen, setEditImageFieldOpen] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(false);
   const [file, setFile] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)();
-  const view = (0,react_redux__WEBPACK_IMPORTED_MODULE_1__.useSelector)(state => state === null || state === void 0 ? void 0 : state.problems_view);
+  const view = (0,react_redux__WEBPACK_IMPORTED_MODULE_1__.useSelector)(state => state === null || state === void 0 ? void 0 : state.page_view);
 
   const handleEditImageFieldToggle = () => {
     if (editImageFieldOpen && hasChanged) {
@@ -39827,10 +40180,10 @@ const ProblemImage = ({
 
 /***/ }),
 
-/***/ "./frontend/src/components/parts/ProblemsTable.js":
-/*!********************************************************!*\
-  !*** ./frontend/src/components/parts/ProblemsTable.js ***!
-  \********************************************************/
+/***/ "./frontend/src/es6/components/parts/ProblemsTable.js":
+/*!************************************************************!*\
+  !*** ./frontend/src/es6/components/parts/ProblemsTable.js ***!
+  \************************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
@@ -39848,7 +40201,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _shopify_polaris__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @shopify/polaris */ "./node_modules/@shopify/polaris/dist/esm/components/ResourceList/ResourceList.js");
 /* harmony import */ var _shopify_polaris__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @shopify/polaris */ "./node_modules/@shopify/polaris/dist/esm/components/ButtonGroup/ButtonGroup.js");
 /* harmony import */ var _shopify_polaris__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! @shopify/polaris */ "./node_modules/@shopify/polaris/dist/esm/components/Button/Button.js");
-/* harmony import */ var _ProblemsTableItem__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./ProblemsTableItem */ "./frontend/src/components/parts/ProblemsTableItem.js");
+/* harmony import */ var _ProblemsTableItem__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./ProblemsTableItem */ "./frontend/src/es6/components/parts/ProblemsTableItem.js");
 // REACT & REDUX
 
 
@@ -40009,10 +40362,10 @@ function ProblemsTable({
 
 /***/ }),
 
-/***/ "./frontend/src/components/parts/ProblemsTableItem.js":
-/*!************************************************************!*\
-  !*** ./frontend/src/components/parts/ProblemsTableItem.js ***!
-  \************************************************************/
+/***/ "./frontend/src/es6/components/parts/ProblemsTableItem.js":
+/*!****************************************************************!*\
+  !*** ./frontend/src/es6/components/parts/ProblemsTableItem.js ***!
+  \****************************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
@@ -40180,10 +40533,10 @@ function ProblemsTableItem({
 
 /***/ }),
 
-/***/ "./frontend/src/components/parts/Subquestions.js":
-/*!*******************************************************!*\
-  !*** ./frontend/src/components/parts/Subquestions.js ***!
-  \*******************************************************/
+/***/ "./frontend/src/es6/components/parts/Subquestions.js":
+/*!***********************************************************!*\
+  !*** ./frontend/src/es6/components/parts/Subquestions.js ***!
+  \***********************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
@@ -40196,8 +40549,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _shopify_polaris__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @shopify/polaris */ "./node_modules/@shopify/polaris/dist/esm/components/TextField/TextField.js");
 /* harmony import */ var _fortawesome_react_fontawesome__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @fortawesome/react-fontawesome */ "./node_modules/@fortawesome/react-fontawesome/index.es.js");
 /* harmony import */ var _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @fortawesome/free-solid-svg-icons */ "./node_modules/@fortawesome/free-solid-svg-icons/index.es.js");
-/* harmony import */ var _store_actions_problemFieldsActions__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../store/actions/problemFieldsActions */ "./frontend/src/store/actions/problemFieldsActions.js");
-/* harmony import */ var _ProblemImage__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./ProblemImage */ "./frontend/src/components/parts/ProblemImage.js");
+/* harmony import */ var _store_actions_problemFieldsActions__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../store/actions/problemFieldsActions */ "./frontend/src/es6/store/actions/problemFieldsActions.js");
+/* harmony import */ var _ProblemImage__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./ProblemImage */ "./frontend/src/es6/components/parts/ProblemImage.js");
 // REACT & REDUX
 
  // SHOPIFY
@@ -40224,7 +40577,7 @@ const Subquestions = ({
   const [hasChanged, setHasChanged] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(false);
   const [numberOfChoiceImages, setNumberOfChoiceImages] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(question.answer_choices.filter(choice => choice.images.length > 0).length);
   const dispatch = (0,react_redux__WEBPACK_IMPORTED_MODULE_1__.useDispatch)();
-  const view = (0,react_redux__WEBPACK_IMPORTED_MODULE_1__.useSelector)(state => state === null || state === void 0 ? void 0 : state.problems_view);
+  const view = (0,react_redux__WEBPACK_IMPORTED_MODULE_1__.useSelector)(state => state === null || state === void 0 ? void 0 : state.page_view);
   const problem_fields = (0,react_redux__WEBPACK_IMPORTED_MODULE_1__.useSelector)(state => state === null || state === void 0 ? void 0 : state.problem_fields);
   const choiceLabel = {
     0: 'A',
@@ -40319,10 +40672,49 @@ const Subquestions = ({
 
 /***/ }),
 
-/***/ "./frontend/src/store/actions/SkriptaActions.js":
-/*!******************************************************!*\
-  !*** ./frontend/src/store/actions/SkriptaActions.js ***!
-  \******************************************************/
+/***/ "./frontend/src/es6/store/actions/CheatsheetActions.js":
+/*!*************************************************************!*\
+  !*** ./frontend/src/es6/store/actions/CheatsheetActions.js ***!
+  \*************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "getCheatsheetData": () => (/* binding */ getCheatsheetData),
+/* harmony export */   "updateEquation": () => (/* binding */ updateEquation)
+/* harmony export */ });
+/* harmony import */ var _actionTypes__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./actionTypes */ "./frontend/src/es6/store/actions/actionTypes.js");
+/* harmony import */ var _api_api__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../api/api */ "./frontend/src/es6/store/api/api.js");
+
+
+const getCheatsheetData = id => async dispatch => {
+  try {
+    const {
+      data
+    } = await _api_api__WEBPACK_IMPORTED_MODULE_1__.fetchCheatsheet(id);
+    dispatch({
+      type: _actionTypes__WEBPACK_IMPORTED_MODULE_0__.FETCH_CHEATSHEET,
+      payload: data
+    });
+  } catch (error) {
+    console.log(error.message);
+  }
+};
+const updateEquation = (id, equation) => ({
+  type: _actionTypes__WEBPACK_IMPORTED_MODULE_0__.UPDATE_EQUATION,
+  payload: {
+    id: id,
+    equation: equation
+  }
+});
+
+/***/ }),
+
+/***/ "./frontend/src/es6/store/actions/SkriptaActions.js":
+/*!**********************************************************!*\
+  !*** ./frontend/src/es6/store/actions/SkriptaActions.js ***!
+  \**********************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
@@ -40336,8 +40728,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "updateAnswerChoiceImage": () => (/* binding */ updateAnswerChoiceImage),
 /* harmony export */   "updateProblemOrder": () => (/* binding */ updateProblemOrder)
 /* harmony export */ });
-/* harmony import */ var _actionTypes__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./actionTypes */ "./frontend/src/store/actions/actionTypes.js");
-/* harmony import */ var _api_api__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../api/api */ "./frontend/src/store/api/api.js");
+/* harmony import */ var _actionTypes__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./actionTypes */ "./frontend/src/es6/store/actions/actionTypes.js");
+/* harmony import */ var _api_api__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../api/api */ "./frontend/src/es6/store/api/api.js");
 
 
 const getProblems = (skripta_id, section_id) => async dispatch => {
@@ -40407,10 +40799,10 @@ const updateProblemOrder = (problem_id, order) => ({
 
 /***/ }),
 
-/***/ "./frontend/src/store/actions/actionTypes.js":
-/*!***************************************************!*\
-  !*** ./frontend/src/store/actions/actionTypes.js ***!
-  \***************************************************/
+/***/ "./frontend/src/es6/store/actions/actionTypes.js":
+/*!*******************************************************!*\
+  !*** ./frontend/src/es6/store/actions/actionTypes.js ***!
+  \*******************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
@@ -40425,6 +40817,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "FETCH_SKRIPTA_PROBLEMS": () => (/* binding */ FETCH_SKRIPTA_PROBLEMS),
 /* harmony export */   "TOGGLE_EDITING": () => (/* binding */ TOGGLE_EDITING),
 /* harmony export */   "TOGGLE_PRINT_PREVIEW": () => (/* binding */ TOGGLE_PRINT_PREVIEW),
+/* harmony export */   "TOGGLE_PRINT": () => (/* binding */ TOGGLE_PRINT),
 /* harmony export */   "TOGGLE_SITE_PREVIEW": () => (/* binding */ TOGGLE_SITE_PREVIEW),
 /* harmony export */   "UPDATE_IMAGE_FIELDS": () => (/* binding */ UPDATE_IMAGE_FIELDS),
 /* harmony export */   "UPDATE_QUESTION_FIELDS": () => (/* binding */ UPDATE_QUESTION_FIELDS),
@@ -40432,6 +40825,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "APPROVE_PROBLEM": () => (/* binding */ APPROVE_PROBLEM),
 /* harmony export */   "FETCH_MATURA_LIST": () => (/* binding */ FETCH_MATURA_LIST),
 /* harmony export */   "FETCH_MATURA_PROBLEMS": () => (/* binding */ FETCH_MATURA_PROBLEMS),
+/* harmony export */   "FETCH_CHEATSHEET": () => (/* binding */ FETCH_CHEATSHEET),
+/* harmony export */   "UPDATE_CHEATSHEET": () => (/* binding */ UPDATE_CHEATSHEET),
+/* harmony export */   "UPDATE_EQUATION": () => (/* binding */ UPDATE_EQUATION),
 /* harmony export */   "TYPSET_MATHJAX": () => (/* binding */ TYPSET_MATHJAX),
 /* harmony export */   "ADD_INPUT_FIELD": () => (/* binding */ ADD_INPUT_FIELD)
 /* harmony export */ });
@@ -40447,6 +40843,7 @@ const FETCH_SKRIPTA_PROBLEMS = 'FETCH_SKRIPTA_PROBLEMS'; // PROBLEMS VIEW TYPE
 
 const TOGGLE_EDITING = 'TOGGLE_EDITING';
 const TOGGLE_PRINT_PREVIEW = 'TOGGLE_PRINT_PREVIEW';
+const TOGGLE_PRINT = 'TOGGLE_PRINT';
 const TOGGLE_SITE_PREVIEW = 'TOGGLE_SITE_PREVIEW'; // FORM FIELDS
 
 const UPDATE_IMAGE_FIELDS = 'UPDATE_IMAGE_FIELDS';
@@ -40455,16 +40852,56 @@ const UPDATE_ANSWER_CHOICE_FIELDS = 'UPDATE_ANSWER_CHOICE_FIELDS';
 const APPROVE_PROBLEM = 'APPROVE_PROBLEM'; // MATURA
 
 const FETCH_MATURA_LIST = 'FETCH_MATURA_LIST';
-const FETCH_MATURA_PROBLEMS = 'FETCH_MATURA_PROBLEMS';
+const FETCH_MATURA_PROBLEMS = 'FETCH_MATURA_PROBLEMS'; // CHEATSHEETS
+
+const FETCH_CHEATSHEET = 'FETCH_CHEATSHEET';
+const UPDATE_CHEATSHEET = 'UPDATE_CHEATSHEET';
+const UPDATE_EQUATION = 'UPDATE_EQUATION';
 const TYPSET_MATHJAX = 'TYPSET_MATHJAX';
 const ADD_INPUT_FIELD = 'ADD_INPUT_FIELD';
 
 /***/ }),
 
-/***/ "./frontend/src/store/actions/problemFieldsActions.js":
-/*!************************************************************!*\
-  !*** ./frontend/src/store/actions/problemFieldsActions.js ***!
-  \************************************************************/
+/***/ "./frontend/src/es6/store/actions/pageViewActions.js":
+/*!***********************************************************!*\
+  !*** ./frontend/src/es6/store/actions/pageViewActions.js ***!
+  \***********************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "toggleEditingView": () => (/* binding */ toggleEditingView),
+/* harmony export */   "togglePrintPreviewView": () => (/* binding */ togglePrintPreviewView),
+/* harmony export */   "toggleSitePreviewView": () => (/* binding */ toggleSitePreviewView)
+/* harmony export */ });
+/* harmony import */ var _actionTypes__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./actionTypes */ "./frontend/src/es6/store/actions/actionTypes.js");
+
+const toggleEditingView = (view = 'editing') => ({
+  type: _actionTypes__WEBPACK_IMPORTED_MODULE_0__.TOGGLE_EDITING,
+  payload: {
+    view: view
+  }
+});
+const togglePrintPreviewView = (view = 'print_preview') => ({
+  type: _actionTypes__WEBPACK_IMPORTED_MODULE_0__.TOGGLE_PRINT_PREVIEW,
+  payload: {
+    view: view
+  }
+});
+const toggleSitePreviewView = (view = 'standard') => ({
+  type: _actionTypes__WEBPACK_IMPORTED_MODULE_0__.TOGGLE_SITE_PREVIEW,
+  payload: {
+    view: view
+  }
+});
+
+/***/ }),
+
+/***/ "./frontend/src/es6/store/actions/problemFieldsActions.js":
+/*!****************************************************************!*\
+  !*** ./frontend/src/es6/store/actions/problemFieldsActions.js ***!
+  \****************************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
@@ -40473,9 +40910,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "addImage": () => (/* binding */ addImage),
 /* harmony export */   "addQuestion": () => (/* binding */ addQuestion),
 /* harmony export */   "addAnswerChoice": () => (/* binding */ addAnswerChoice),
-/* harmony export */   "approveProblem": () => (/* binding */ approveProblem)
+/* harmony export */   "approveProblem": () => (/* binding */ approveProblem),
+/* harmony export */   "editEquation": () => (/* binding */ editEquation)
 /* harmony export */ });
-/* harmony import */ var _actionTypes__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./actionTypes */ "./frontend/src/store/actions/actionTypes.js");
+/* harmony import */ var _actionTypes__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./actionTypes */ "./frontend/src/es6/store/actions/actionTypes.js");
 
 const addImage = (image, id) => ({
   type: _actionTypes__WEBPACK_IMPORTED_MODULE_0__.UPDATE_IMAGE_FIELDS,
@@ -40505,54 +40943,26 @@ const approveProblem = (approval, id) => ({
     approval: approval
   }
 });
-
-/***/ }),
-
-/***/ "./frontend/src/store/actions/problemsViewActions.js":
-/*!***********************************************************!*\
-  !*** ./frontend/src/store/actions/problemsViewActions.js ***!
-  \***********************************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "toggleEditingView": () => (/* binding */ toggleEditingView),
-/* harmony export */   "togglePrintingView": () => (/* binding */ togglePrintingView),
-/* harmony export */   "toggleSitePreviewView": () => (/* binding */ toggleSitePreviewView)
-/* harmony export */ });
-/* harmony import */ var _actionTypes__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./actionTypes */ "./frontend/src/store/actions/actionTypes.js");
-
-const toggleEditingView = (editing = null) => ({
-  type: _actionTypes__WEBPACK_IMPORTED_MODULE_0__.TOGGLE_EDITING,
+const editEquation = (equation, id) => ({
+  type: _actionTypes__WEBPACK_IMPORTED_MODULE_0__.APPROVE_PROBLEM,
   payload: {
-    editing: editing
-  }
-});
-const togglePrintingView = (printing = null) => ({
-  type: _actionTypes__WEBPACK_IMPORTED_MODULE_0__.TOGGLE_PRINT_PREVIEW,
-  payload: {
-    printing: printing
-  }
-});
-const toggleSitePreviewView = (site_preview = null) => ({
-  type: _actionTypes__WEBPACK_IMPORTED_MODULE_0__.TOGGLE_SITE_PREVIEW,
-  payload: {
-    site_preview: site_preview
+    id: id,
+    equation: equation
   }
 });
 
 /***/ }),
 
-/***/ "./frontend/src/store/api/api.js":
-/*!***************************************!*\
-  !*** ./frontend/src/store/api/api.js ***!
-  \***************************************/
+/***/ "./frontend/src/es6/store/api/api.js":
+/*!*******************************************!*\
+  !*** ./frontend/src/es6/store/api/api.js ***!
+  \*******************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "fetchCheatsheet": () => (/* binding */ fetchCheatsheet),
 /* harmony export */   "fetchProblems": () => (/* binding */ fetchProblems),
 /* harmony export */   "fetchMaturaList": () => (/* binding */ fetchMaturaList),
 /* harmony export */   "fetchMaturaProblems": () => (/* binding */ fetchMaturaProblems),
@@ -40560,7 +40970,13 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _components_config_ApiRoutes__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../components/config/ApiRoutes */ "./frontend/src/es6/components/config/ApiRoutes.js");
 
+
+const fetchCheatsheet = id => {
+  let apiUrl = _components_config_ApiRoutes__WEBPACK_IMPORTED_MODULE_1__["default"].cheatsheets + id;
+  return axios__WEBPACK_IMPORTED_MODULE_0___default().get(apiUrl);
+};
 const fetchProblems = (skripta_id, section_id = null) => {
   let apiUrl = `${window.location.origin}`;
 
@@ -40592,10 +41008,10 @@ const postProblems = formData => {
 
 /***/ }),
 
-/***/ "./frontend/src/store/reducers/SkriptaReducer.js":
-/*!*******************************************************!*\
-  !*** ./frontend/src/store/reducers/SkriptaReducer.js ***!
-  \*******************************************************/
+/***/ "./frontend/src/es6/store/reducers/CheatsheetReducer.js":
+/*!**************************************************************!*\
+  !*** ./frontend/src/es6/store/reducers/CheatsheetReducer.js ***!
+  \**************************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
@@ -40603,7 +41019,49 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
-/* harmony import */ var _actions_actionTypes__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../actions/actionTypes */ "./frontend/src/store/actions/actionTypes.js");
+/* harmony import */ var _actions_actionTypes__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../actions/actionTypes */ "./frontend/src/es6/store/actions/actionTypes.js");
+
+
+const CheatsheetReducer = (cheatsheet = {}, action) => {
+  switch (action.type) {
+    case _actions_actionTypes__WEBPACK_IMPORTED_MODULE_0__.FETCH_CHEATSHEET:
+      console.log('Data fetched: ', action.payload);
+      return action.payload;
+
+    case _actions_actionTypes__WEBPACK_IMPORTED_MODULE_0__.UPDATE_CHEATSHEET:
+      return;
+
+    case _actions_actionTypes__WEBPACK_IMPORTED_MODULE_0__.UPDATE_EQUATION:
+      const equations = [...cheatsheet.cheatsheet_sections.map(section => section.equations), ...cheatsheet.cheatsheet_tables.map(table => table.equations)].flat();
+      const equation = { ...equations.find(eq => eq.id === action.payload.id),
+        id: action.payload.id,
+        equation: action.payload.equation
+      };
+      console.log('cheatsheet: ', equations, equation, cheatsheet);
+      return { ...cheatsheet
+      };
+
+    default:
+      return cheatsheet;
+  }
+};
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (CheatsheetReducer);
+
+/***/ }),
+
+/***/ "./frontend/src/es6/store/reducers/SkriptaReducer.js":
+/*!***********************************************************!*\
+  !*** ./frontend/src/es6/store/reducers/SkriptaReducer.js ***!
+  \***********************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _actions_actionTypes__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../actions/actionTypes */ "./frontend/src/es6/store/actions/actionTypes.js");
 
 
 const SkriptaReducer = (sections = [], action) => {
@@ -40654,10 +41112,10 @@ const SkriptaReducer = (sections = [], action) => {
 
 /***/ }),
 
-/***/ "./frontend/src/store/reducers/problemFieldsReducer.js":
-/*!*************************************************************!*\
-  !*** ./frontend/src/store/reducers/problemFieldsReducer.js ***!
-  \*************************************************************/
+/***/ "./frontend/src/es6/store/reducers/pageViewReducer.js":
+/*!************************************************************!*\
+  !*** ./frontend/src/es6/store/reducers/pageViewReducer.js ***!
+  \************************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
@@ -40665,7 +41123,41 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
-/* harmony import */ var _actions_actionTypes__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../actions/actionTypes */ "./frontend/src/store/actions/actionTypes.js");
+/* harmony import */ var _actions_actionTypes__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../actions/actionTypes */ "./frontend/src/es6/store/actions/actionTypes.js");
+
+
+const PageViewReducer = (view = '', action) => {
+  switch (action.type) {
+    case _actions_actionTypes__WEBPACK_IMPORTED_MODULE_0__.TOGGLE_EDITING:
+      return 'editing';
+
+    case _actions_actionTypes__WEBPACK_IMPORTED_MODULE_0__.TOGGLE_PRINT_PREVIEW:
+      return 'print_preview';
+
+    case _actions_actionTypes__WEBPACK_IMPORTED_MODULE_0__.TOGGLE_SITE_PREVIEW:
+      return 'standard';
+
+    default:
+      return 'standard';
+  }
+};
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (PageViewReducer);
+
+/***/ }),
+
+/***/ "./frontend/src/es6/store/reducers/problemFieldsReducer.js":
+/*!*****************************************************************!*\
+  !*** ./frontend/src/es6/store/reducers/problemFieldsReducer.js ***!
+  \*****************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _actions_actionTypes__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../actions/actionTypes */ "./frontend/src/es6/store/actions/actionTypes.js");
 
 
 const ProblemFieldsReducer = (problem_fields = {}, action) => {
@@ -40751,10 +41243,10 @@ const ProblemFieldsReducer = (problem_fields = {}, action) => {
 
 /***/ }),
 
-/***/ "./frontend/src/store/reducers/problemsViewReducer.js":
-/*!************************************************************!*\
-  !*** ./frontend/src/store/reducers/problemsViewReducer.js ***!
-  \************************************************************/
+/***/ "./frontend/src/es6/store/reducers/reducers.js":
+/*!*****************************************************!*\
+  !*** ./frontend/src/es6/store/reducers/reducers.js ***!
+  \*****************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
@@ -40762,69 +41254,29 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
-/* harmony import */ var _actions_actionTypes__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../actions/actionTypes */ "./frontend/src/store/actions/actionTypes.js");
-
-
-const ProblemsView = (view = {}, action) => {
-  switch (action.type) {
-    case _actions_actionTypes__WEBPACK_IMPORTED_MODULE_0__.TOGGLE_EDITING:
-      view.editing = view.editing ? !view.editing : action.payload.editing;
-      return { ...view
-      };
-
-    case _actions_actionTypes__WEBPACK_IMPORTED_MODULE_0__.TOGGLE_PRINT_PREVIEW:
-      view.printing = view.printing ? !view.printing : action.payload.printing;
-      return { ...view
-      };
-
-    case _actions_actionTypes__WEBPACK_IMPORTED_MODULE_0__.TOGGLE_SITE_PREVIEW:
-      view.site_preview = view.site_preview ? !view.site_preview : action.payload.site_preview;
-      return { ...view
-      };
-    // case actions.TOGGLE_MATURA_LIST:
-    //     view.site_preview = view.site_preview ? !view.site_preview : action.payload.site_preview 
-    //     return {...view}
-
-    default:
-      return view;
-  }
-};
-
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (ProblemsView);
-
-/***/ }),
-
-/***/ "./frontend/src/store/reducers/reducers.js":
-/*!*************************************************!*\
-  !*** ./frontend/src/store/reducers/reducers.js ***!
-  \*************************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
-/* harmony export */ });
-/* harmony import */ var redux__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! redux */ "./node_modules/redux/es/redux.js");
-/* harmony import */ var _SkriptaReducer__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./SkriptaReducer */ "./frontend/src/store/reducers/SkriptaReducer.js");
-/* harmony import */ var _problemsViewReducer__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./problemsViewReducer */ "./frontend/src/store/reducers/problemsViewReducer.js");
-/* harmony import */ var _problemFieldsReducer__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./problemFieldsReducer */ "./frontend/src/store/reducers/problemFieldsReducer.js");
+/* harmony import */ var redux__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! redux */ "./node_modules/redux/es/redux.js");
+/* harmony import */ var _SkriptaReducer__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./SkriptaReducer */ "./frontend/src/es6/store/reducers/SkriptaReducer.js");
+/* harmony import */ var _pageViewReducer__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./pageViewReducer */ "./frontend/src/es6/store/reducers/pageViewReducer.js");
+/* harmony import */ var _problemFieldsReducer__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./problemFieldsReducer */ "./frontend/src/es6/store/reducers/problemFieldsReducer.js");
+/* harmony import */ var _CheatsheetReducer__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./CheatsheetReducer */ "./frontend/src/es6/store/reducers/CheatsheetReducer.js");
 
 
 
 
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ((0,redux__WEBPACK_IMPORTED_MODULE_3__.combineReducers)({
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ((0,redux__WEBPACK_IMPORTED_MODULE_4__.combineReducers)({
   sections: _SkriptaReducer__WEBPACK_IMPORTED_MODULE_0__["default"],
-  problems_view: _problemsViewReducer__WEBPACK_IMPORTED_MODULE_1__["default"],
-  problem_fields: _problemFieldsReducer__WEBPACK_IMPORTED_MODULE_2__["default"]
+  view: _pageViewReducer__WEBPACK_IMPORTED_MODULE_1__["default"],
+  problem_fields: _problemFieldsReducer__WEBPACK_IMPORTED_MODULE_2__["default"],
+  cheatsheet: _CheatsheetReducer__WEBPACK_IMPORTED_MODULE_3__["default"]
 }));
 
 /***/ }),
 
-/***/ "./frontend/src/store/store.js":
-/*!*************************************!*\
-  !*** ./frontend/src/store/store.js ***!
-  \*************************************/
+/***/ "./frontend/src/es6/store/store.js":
+/*!*****************************************!*\
+  !*** ./frontend/src/es6/store/store.js ***!
+  \*****************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
@@ -40837,8 +41289,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
 /* harmony import */ var redux__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! redux */ "./node_modules/redux/es/redux.js");
 /* harmony import */ var redux_thunk__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! redux-thunk */ "./node_modules/redux-thunk/es/index.js");
-/* harmony import */ var _components_App__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../components/App */ "./frontend/src/components/App.js");
-/* harmony import */ var _reducers_reducers__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./reducers/reducers */ "./frontend/src/store/reducers/reducers.js");
+/* harmony import */ var _components_App__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../components/App */ "./frontend/src/es6/components/App.js");
+/* harmony import */ var _reducers_reducers__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./reducers/reducers */ "./frontend/src/es6/store/reducers/reducers.js");
 
 
 
@@ -46680,6 +47132,32 @@ function createReactContext(defaultValue, calculateChangedBits) {
 var index = react__WEBPACK_IMPORTED_MODULE_0__.createContext || createReactContext;
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (index);
+
+
+/***/ }),
+
+/***/ "./frontend/src/es6/components/parts/Equation/Equation.scss":
+/*!******************************************************************!*\
+  !*** ./frontend/src/es6/components/parts/Equation/Equation.scss ***!
+  \******************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+// extracted by mini-css-extract-plugin
+
+
+/***/ }),
+
+/***/ "./frontend/src/es6/components/parts/EquationSection/EquationSection.scss":
+/*!********************************************************************************!*\
+  !*** ./frontend/src/es6/components/parts/EquationSection/EquationSection.scss ***!
+  \********************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+// extracted by mini-css-extract-plugin
 
 
 /***/ }),
@@ -87527,8 +88005,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _shopify_polaris_dist_styles_css__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @shopify/polaris/dist/styles.css */ "./node_modules/@shopify/polaris/dist/styles.css");
 /* harmony import */ var _shopify_draggable__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @shopify/draggable */ "./node_modules/@shopify/draggable/lib/draggable.bundle.js");
 /* harmony import */ var _shopify_draggable__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_shopify_draggable__WEBPACK_IMPORTED_MODULE_2__);
-/* harmony import */ var _store_store__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./store/store */ "./frontend/src/store/store.js");
-/* harmony import */ var _components_App__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./components/App */ "./frontend/src/components/App.js");
+/* harmony import */ var _es6_store_store__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./es6/store/store */ "./frontend/src/es6/store/store.js");
+/* harmony import */ var _es6_components_App__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./es6/components/App */ "./frontend/src/es6/components/App.js");
 
  // import "react-loader-spinner/dist/loader/css/react-spinner-loader.css";
 

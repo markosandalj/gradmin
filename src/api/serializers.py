@@ -1,3 +1,4 @@
+from pyexpat import model
 from django.db import models
 from django.db.models import fields
 from django.db.models.base import Model

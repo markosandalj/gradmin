@@ -18,7 +18,8 @@ from .views import (
     AllSkriptasListApiView,
     ProblemsImporterUpdateView,
     CheatsheetsListView,
-    CheatsheetsFullView
+    CheatsheetsFullView,
+    PrintView
 )
 
 urlpatterns = [
@@ -33,6 +34,7 @@ urlpatterns = [
     path('problems_importer', ProblemsImporterView.as_view()),
     path('problems_importer/update', ProblemsImporterUpdateView.as_view()),
     path('skripta/print', PrintSkripta.as_view()),
+    path('print', PrintView.as_view()),
     path('skripta/<int:skripta_id>/list', QRSkriptaListView.as_view()),
     path('skripta/<int:pk>', QRSkriptaView.as_view()),
     path('skripta/<int:skripta_id>/<int:section_id>', QRSkriptaSectionView.as_view()),

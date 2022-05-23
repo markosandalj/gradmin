@@ -2,8 +2,8 @@ import './index.scss'
 import '@shopify/polaris/dist/styles.css';
 // import "react-loader-spinner/dist/loader/css/react-spinner-loader.css";
 import { Sortable } from '@shopify/draggable';
-import store from './store/store';
-import App from './components/App';
+import store from './es6/store/store';
+import App from './es6/components/App';
 
 function initializeMathJax() {
     if (document.body.querySelector('#app') ||

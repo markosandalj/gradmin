@@ -328,6 +328,45 @@ class PrintSkripta(APIView):
         except:
             return Response(status=status.HTTP_400_BAD_REQUEST, data={ 'error': sys.exc_info()[0] })
 
+class PrintView(APIView):
+    def post(self, request, format=None):
+        try:
+            data = request.data
+            id = data['id']
+            pdf_name = data['pdf_name']
+            css_file = data['css_file']
+            cheatsheet = Cheatsheet.objects.get(id = id)
+
+            html_string = json.loads(data['html'])
+            pdf_file_path = Path(settings.BASE_DIR / str(pdf_name.replace(' ', '') + '.pdf'))
+            html_file_path = Path(settings.BASE_DIR / str(pdf_name.replace(' ', '') + '.html'))
+
+            with open(html_file_path, 'w') as html_file:
+                html_file.write(html_string)
+
+            html = HTML(filename=html_file_path, encoding="UTF-8")
+            pdf_file = html.write_pdf( pdf_file_path, stylesheets=[Path(settings.STATICFILES_DIRS[0] / str('assets/' + css_file+ '.css'))] )
+
+            if(cheatsheet.file != None):
+                pdf_model = PDF.objects.get(id = cheatsheet.file.id)
+                pdf_model.file.save(pdf_name, File(open(pdf_file_path, 'rb')))
+                serializer = PDFSerializer(pdf_model, many=False)
+                response_data = json.dumps(serializer.data)
+            else:
+                try:
+                    pdf_model = PDF.objects.create(name=pdf_name, file=File(open(pdf_file_path, 'rb')))
+                except:
+                    print("Oops!", sys.exc_info()[0], "occurred.")
+                    
+                serializer = PDFSerializer(pdf_model, many=False)
+
+            html_file_path.unlink()
+            pdf_file_path.unlink()
+
+            return Response(status=status.HTTP_200_OK, data=response_data)
+        except:
+            return Response(status=status.HTTP_400_BAD_REQUEST, data={ 'error': sys.exc_info()[0] })
+
 
 class ProblemsImporterUpdateView(APIView):
     def post(self, request, format = None):

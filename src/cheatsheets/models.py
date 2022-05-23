@@ -7,6 +7,7 @@ class Cheatsheet(models.Model):
     name = models.TextField(blank=False, null=False)
     subject = models.ForeignKey("skripte.Subject", null=True, blank=True, on_delete=models.SET_NULL)
     layout = models.ForeignKey('CheatsheetLayout', null=True, blank=True, on_delete=models.SET_NULL)
+    file = models.ForeignKey('media.PDF', null = True, blank = True, on_delete=models.SET_NULL)
 
     def __str__(self):
         return str(self.name)

@@ -13118,5 +13118,51 @@ html, body {
   padding: 0 !important;
   border: 0 !important;
 }
+/*!**********************************************************************************************************************************************************************************************!*\
+  !*** css ./node_modules/css-loader/dist/cjs.js!./node_modules/resolve-url-loader/index.js!./node_modules/sass-loader/dist/cjs.js!./frontend/src/es6/components/parts/Equation/Equation.scss ***!
+  \**********************************************************************************************************************************************************************************************/
+.equation {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  margin-bottom: 1rem;
+  margin-right: 2rem;
+}
+.equation__name {
+  font-weight: bold;
+  font-size: 0.875rem;
+  text-transform: uppercase;
+}
+.equation__latex {
+  padding-left: 0.75rem;
+  position: relative;
+}
+/*!************************************************************************************************************************************************************************************************************!*\
+  !*** css ./node_modules/css-loader/dist/cjs.js!./node_modules/resolve-url-loader/index.js!./node_modules/sass-loader/dist/cjs.js!./frontend/src/es6/components/parts/EquationSection/EquationSection.scss ***!
+  \************************************************************************************************************************************************************************************************************/
+.equation-section {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  gap: 6rem;
+  padding: 1.5rem;
+  border-radius: 0.75rem;
+  border: 2.5px solid rgba(0, 0, 0, 0.2);
+  margin: 1.5rem 0;
+  position: relative;
+}
+.equation-section__title {
+  position: absolute;
+  bottom: 100%;
+  background: #FFFFFF;
+  z-index: 1;
+  padding: 0.5rem 0.75rem;
+  left: 0.75rem;
+  transform: translateY(46%);
+  text-transform: uppercase;
+  font-size: 0.75rem;
+  font-weight: bold;
+  color: rgba(0, 0, 0, 0.5);
+}
 
 /*# sourceMappingURL=main.css.map*/
