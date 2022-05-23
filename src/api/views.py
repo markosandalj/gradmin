@@ -365,7 +365,7 @@ class ProblemsImporterUpdateView(APIView):
 
                         try:
                             new_problem = Problem.objects.create(
-                                name=f"{subject_label}{level_label} - {matura_godina}. {matura_rok}, { problem['number'] }",
+                                name=f"{subject_label} {level_label} - {matura_godina}. {matura_rok}, { problem['number'] }",
                                 number = str(problem['number']),
                                 matura = Matura.objects.get(pk = int(matura)) if matura else None,
                                 subject = Subject.objects.get(pk = int(subject)) if subject else None,

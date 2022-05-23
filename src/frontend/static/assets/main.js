@@ -40055,7 +40055,7 @@ function ProblemsTableItem({
     generateProblem();
   }, [line_data]);
   (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(() => {
-    if (problem.number != '0.' && formData.problems.findIndex(prob => prob.id !== id)) {
+    if (problem.number != '0.' && !formData.problems.some(prob => prob.id === problem.id)) {
       formData.problems.push(problem);
       setFormData({ ...formData
       });
