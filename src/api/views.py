@@ -345,6 +345,7 @@ class ProblemsImporterUpdateView(APIView):
         new_questions = []
         new_answer_choices = []
         new_problems = []
+        errors = []
 
         for problem in data['problems']:
             try:
@@ -355,34 +356,37 @@ class ProblemsImporterUpdateView(APIView):
                     new_questions.append(new_question)
                 except:
                     print('Question error: ', sys.exc_info()[0])
+                    errors.append({ 'Question error: ': sys.exc_info()[0] })
 
-                    try: 
-                        for choice in problem['answer_choices']:
-                            new_answer_choice = AnswerChoice.objects.create(
-                                choice_text = choice['text'],
-                                question = new_question
-                            )
-                            new_answer_choices.append(new_answer_choice)
+                try: 
+                    for choice in problem['answer_choices']:
+                        new_answer_choice = AnswerChoice.objects.create(
+                            choice_text = choice['text'],
+                            question = new_question
+                        )
+                        new_answer_choices.append(new_answer_choice)
 
-                        try:
-                            new_problem = Problem.objects.create(
-                                name=f"{subject_label}{level_label} - {matura_godina}. {matura_rok}, { problem['number'] }",
-                                number = problem['number'],
-                                matura = Matura.objects.get(pk = int(matura)) if matura else None,
-                                subject = Subject.objects.get(pk = int(subject)) if subject else None,
-                                section = Section.objects.get(pk = int(section)) if section else None,
-                                question = new_question
-                            )
-                            related_skripta = Skripta.objects.get(pk = int(skripta)) if skripta else None,
+                    try:
+                        new_problem = Problem.objects.create(
+                            name=f"{subject_label}{level_label} - {matura_godina}. {matura_rok}, { problem['number'] }",
+                            number = problem['number'],
+                            matura = Matura.objects.get(pk = int(matura)) if matura else None,
+                            subject = Subject.objects.get(pk = int(subject)) if subject else None,
+                            section = Section.objects.get(pk = int(section)) if section else None,
+                            question = new_question
+                        )
+                        related_skripta = Skripta.objects.get(pk = int(skripta)) if skripta else None,
 
-                            if(related_skripta):
-                                new_problem.skripta.set([int(skripta), ])
-                                
-                            new_problems.append(new_problem)
-                        except:
-                            print('Problem error: ', sys.exc_info()[0])
+                        if(related_skripta):
+                            new_problem.skripta.set([int(skripta), ])
+                            
+                        new_problems.append(new_problem)
                     except:
-                        print('Choice error: ', sys.exc_info()[0])
+                        print('Problem error: ', sys.exc_info()[0])
+                        errors.append({ 'Problem error: ', sys.exc_info()[0] })
+                except:
+                    print('Choice error: ', sys.exc_info()[0])
+                    errors.append({ 'Choice error: ': sys.exc_info()[0] })
 
                 try:
                     image = Image.objects.get(id = int(problem['image_id']))
@@ -390,12 +394,13 @@ class ProblemsImporterUpdateView(APIView):
                     cloudinary.uploader.destroy(problem['image_public_id'], invalidate=True)
                 except:
                     print('Image error: ', sys.exc_info()[0])
+                    errors.append({ 'Image error: ': sys.exc_info()[0] })
 
             except:
                 print('Krep krepalo', sys.exc_info()[0])
-            
+        
         try:
-            return Response(status=status.HTTP_200_OK)
+            return Response(status=status.HTTP_200_OK, data=errors)
 
         except:
             return Response(status=status.HTTP_400_BAD_REQUEST)
