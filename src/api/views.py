@@ -354,39 +354,48 @@ class ProblemsImporterUpdateView(APIView):
                         question_text = problem['question']['text']
                     )
                     new_questions.append(new_question)
+                    
+                    try: 
+                        for choice in problem['answer_choices']:
+                            new_answer_choice = AnswerChoice.objects.create(
+                                choice_text = choice['text'],
+                                question = new_question
+                            )
+                            new_answer_choices.append(new_answer_choice)
+
+                        try:
+                            print(new_question)
+                            print(Subject.objects.get(pk = int(subject)))
+                            print(Matura.objects.get(pk = int(matura)))
+                            print( f"{subject_label}{level_label} - {matura_godina}. {matura_rok}, { problem['number'] }")
+                            print(str(problem['number']))
+                            
+                            new_problem = Problem.objects.create(
+                                name=f"{subject_label}{level_label} - {matura_godina}. {matura_rok}, { problem['number'] }",
+                                number = str(problem['number']),
+                                matura = Matura.objects.get(pk = int(matura)) if matura else None,
+                                subject = Subject.objects.get(pk = int(subject)) if subject else None,
+                                section = Section.objects.get(pk = int(section)) if section else None,
+                                question = new_question
+                            )
+                            try:
+                                related_skripta = Skripta.objects.get(pk = int(skripta)) if skripta else None,
+                                print(related_skripta)
+                                if(related_skripta):
+                                    new_problem.skripta.set([int(skripta),])
+                            except:
+                                print('related_skripta error: ', sys.exc_info()[0])
+                                
+                            new_problems.append(new_problem)
+                        except:
+                            print('Problem error: ', sys.exc_info()[0])
+                            errors.append({ 'Problem error: ', sys.exc_info()[0] })
+                    except:
+                        print('Choice error: ', sys.exc_info()[0])
+                        errors.append({ 'Choice error: ': sys.exc_info()[0] })
                 except:
                     print('Question error: ', sys.exc_info()[0])
                     errors.append({ 'Question error: ': sys.exc_info()[0] })
-
-                try: 
-                    for choice in problem['answer_choices']:
-                        new_answer_choice = AnswerChoice.objects.create(
-                            choice_text = choice['text'],
-                            question = new_question
-                        )
-                        new_answer_choices.append(new_answer_choice)
-
-                    try:
-                        new_problem = Problem.objects.create(
-                            name=f"{subject_label}{level_label} - {matura_godina}. {matura_rok}, { problem['number'] }",
-                            number = problem['number'],
-                            matura = Matura.objects.get(pk = int(matura)) if matura else None,
-                            subject = Subject.objects.get(pk = int(subject)) if subject else None,
-                            section = Section.objects.get(pk = int(section)) if section else None,
-                            question = new_question
-                        )
-                        related_skripta = Skripta.objects.get(pk = int(skripta)) if skripta else None,
-
-                        if(related_skripta):
-                            new_problem.skripta.set([int(skripta), ])
-                            
-                        new_problems.append(new_problem)
-                    except:
-                        print('Problem error: ', sys.exc_info()[0])
-                        errors.append({ 'Problem error: ', sys.exc_info()[0] })
-                except:
-                    print('Choice error: ', sys.exc_info()[0])
-                    errors.append({ 'Choice error: ': sys.exc_info()[0] })
 
                 try:
                     image = Image.objects.get(id = int(problem['image_id']))
@@ -400,7 +409,7 @@ class ProblemsImporterUpdateView(APIView):
                 print('Krep krepalo', sys.exc_info()[0])
         
         try:
-            return Response(status=status.HTTP_200_OK, data=errors)
+            return Response(status=status.HTTP_200_OK)
 
         except:
             return Response(status=status.HTTP_400_BAD_REQUEST)

@@ -40084,7 +40084,6 @@ function ProblemsTableItem({
 
     try {
       const isAnswerChoice = text => {
-        console.log(text);
         return text ? (text === null || text === void 0 ? void 0 : text.startsWith('\nA.')) || (text === null || text === void 0 ? void 0 : text.startsWith('\nB.')) || (text === null || text === void 0 ? void 0 : text.startsWith('\nC.')) || (text === null || text === void 0 ? void 0 : text.startsWith('\nD.')) || (text === null || text === void 0 ? void 0 : text.startsWith('\nE.')) : false;
       };
 

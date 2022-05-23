@@ -71,7 +71,6 @@ class MaturaAdmin(admin.ModelAdmin):
                 problems = Problem.objects.annotate(number_field=Cast('number', IntegerField())).filter(matura=matura).order_by('number_field', 'name')
                 if(len(data) == len(problems)):
                     for item, problem in zip(reversed(data), problems):
-                        print(item['name'], problem.name, item['link'].replace('https://vimeo.com/', '').split('/')[1])
                         iframe = item['embed']['html']  
                         soup = BeautifulSoup(iframe, 'html.parser')
                         tag = soup.find_all('iframe')[0]

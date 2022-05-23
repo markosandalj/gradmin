@@ -38,7 +38,6 @@ export default function ProblemsTableItem({ id, text, line_data, confidence, con
 
 		try {
 			const isAnswerChoice = (text) => {
-				console.log(text)
 				return ( text ? (text?.startsWith('\nA.') 
 						|| text?.startsWith('\nB.') 
 						|| text?.startsWith('\nC.') 
