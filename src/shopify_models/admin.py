@@ -192,7 +192,6 @@ class PageAdmin(admin.ModelAdmin):
 
                     try:
                         response = requests.post(url, headers=headers, json = metafield_data)
-                        print(response.json())
                         messages.success(request, "Page {page} uspješno ažuriran sa zadatcima".format(page=page.title))
                     except:
                         messages.error(request, "Page {page} neuspješno ažuriran. Error: {err}".format(page=page.title, err=traceback.format_exc()))
