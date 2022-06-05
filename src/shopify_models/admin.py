@@ -3,6 +3,7 @@ from django.contrib import admin
 from django.contrib import messages
 import requests
 import json
+import os
 from adminsortable2.admin import SortableAdminMixin, SortableInlineAdminMixin
 
 # Register your models here.
@@ -157,10 +158,9 @@ class PageAdmin(admin.ModelAdmin):
                 url = base_url + page_url
                 try:
                     response = requests.post(url, headers=headers, json = metafield_data)
-                    print(response.json())
                     messages.success(request, "Page {page} uspješno ažuriran sa skriptama".format(page=skripta.page.title))
                 except:
-                    messages.error(request, "Page {page} neuspješno ažuriran. Error: {err}".format(page=skripta.page.title, err=sys.exc_info()[0]))
+                    messages.error(request, "Page {page} neuspješno ažuriran. Error: {err}, {err_desc}".format(page=skripta.page.title, err=sys.exc_info()[0], err_desc=os.ttyname(1)))
 
             
             try:
