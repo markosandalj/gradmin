@@ -323,7 +323,7 @@ class ShopifyPageSectionListSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Section
-        fields = ('id', 'name', 'subject_name', 'category', 'page', 'icon', )
+        fields = ('id', 'name', 'subject_name', 'category', 'page', 'icon', 'exclude')
 
 class ShopifyPageSkriptaListSerializer(serializers.ModelSerializer):
     sections = serializers.SerializerMethodField('get_sections')
