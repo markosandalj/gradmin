@@ -160,7 +160,7 @@ class PageAdmin(admin.ModelAdmin):
                     response = requests.post(url, headers=headers, json = metafield_data)
                     messages.success(request, "Page {page} uspješno ažuriran sa skriptama".format(page=skripta.page.title))
                 except:
-                    messages.error(request, "Page {page} neuspješno ažuriran. Error: {err}, {err_desc}".format(page=skripta.page.title, err=sys.exc_info()[0], err_desc=os.ttyname(1)))
+                    messages.error(request, "Page {page} neuspješno ažuriran. Error: _{err_desc}_, {err}".format( page=skripta.page.title, err_desc=os.ttyname(1), err=sys.exc_info()[0] ))
 
             
             try:
