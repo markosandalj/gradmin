@@ -195,7 +195,7 @@ class PageAdmin(admin.ModelAdmin):
                         print(response.json())
                         messages.success(request, "Page {page} uspješno ažuriran sa zadatcima".format(page=page.title))
                     except:
-                        messages.error(request, "Page {page} neuspješno ažuriran. Error: {err}".format(page=page.title, err=sys.exc_info()[0]))
+                        messages.error(request, "Page {page} (novo) neuspješno ažuriran. Error: _{err_desc}_, {err}".format( page=skripta.page.title, err_desc=os.ttyname(1), err=sys.exc_info()[0] ))
             except:
                 messages.error(request, "Page {page} nema section?. Error: {err}".format(page=page.title, err=sys.exc_info()[0]))
 
