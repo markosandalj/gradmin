@@ -12,6 +12,11 @@ from django.db.models import Q
 from django.contrib.admin import SimpleListFilter
 # from django_reverse_admin import ReverseModelAdmin
 
+from wagtail.contrib.modeladmin.options import (
+    ModelAdmin,
+    modeladmin_register,
+)
+
 # Register your models here.
 from media.models import Image
 from skripte.models import Equation
@@ -218,6 +223,18 @@ class CorrectAnswersAdmin(admin.ModelAdmin):
     autocomplete_fields = ('answer_choice',)
 
 
+class CorrectAnswersWagmin(ModelAdmin):
+    model = CorrectAnswer
+    menu_icon = "placeholder"
+    menu_label = 'Corecct answers'
+    menu_order = 290
+    add_to_settings_menu = False
+    exclude_from_explorer = False
+    list_display = ('id', 'answer_text', 'answer_choice', 'question','created_at',)
+    search_fields = ('question__question_text','id', 'answer_text', 'answer_choice__choice_text') 
+    readonly_fields = ('created_at', 'updated_at',)
+    autocomplete_fields = ('answer_choice',)
+
 admin.site.register(Question, QuestionAdmin)
 admin.site.register(AnswerChoice, AnswerChoiceAdmin)
 admin.site.register(CorrectAnswer, CorrectAnswersAdmin)
@@ -225,3 +242,4 @@ admin.site.register(Hint)
 admin.site.register(Problem, ProblemAdmin)
 
 
+modeladmin_register(CorrectAnswersWagmin)

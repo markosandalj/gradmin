@@ -11,7 +11,9 @@ https://docs.djangoproject.com/en/3.2/ref/settings/
 """
 
 from pathlib import Path
+import environ
 import os
+
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -28,7 +30,7 @@ SECRET_KEY = 'django-insecure--b59a9xgnba6n^qvew%0+2^kt-_5)#57undlgi3u&3v1blqhqe
 DEBUG = True
 
 ALLOWED_HOSTS = [
-    'theehhdude23.eu.pythonanywhere.com'    
+    # 'theehhdude23.eu.pythonanywhere.com'    
 ]
 
 
@@ -41,10 +43,33 @@ INSTALLED_APPS = [
     'colorfield',
     'django.contrib.admin',
     'django.contrib.auth',
+    'polymorphic',
+
+    'wagmin',
+
+    'wagtail.contrib.forms',
+    'wagtail.contrib.redirects',
+    'wagtail.embeds',
+    'wagtail.sites',
+    'wagtail.users',
+    'wagtail.snippets',
+    'wagtail.documents',
+    'wagtail.images',
+    'wagtail.search',
+    'wagtail.admin',
+    'wagtail',
+    'wagtail.contrib.styleguide',
+    'wagtail.contrib.modeladmin',
+    'wagtailfontawesome',
+    
+    'taggit',
+    'modelcluster',
+
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    "debug_toolbar",
     'cloudinary_storage',
     'cloudinary',
     'problems',
@@ -57,10 +82,18 @@ INSTALLED_APPS = [
     'rest_framework',
     'api',
     'frontend',
+    'courses',
+    'course',
     "corsheaders",
     'dbbackup',  # django-dbbackup
     'django_extensions',
+    'ckeditor',
+    'ckeditor_uploader',
+
+    # 'merged_inlines',
 ]
+
+WAGTAIL_SITE_NAME = 'My Example Site'
 
 X_FRAME_OPTIONS = 'SAMEORIGIN'
 SILENCED_SYSTEM_CHECKS = ['security.W019']
@@ -69,6 +102,7 @@ DBBACKUP_STORAGE = 'django.core.files.storage.FileSystemStorage'
 DBBACKUP_STORAGE_OPTIONS = {'location': Path(BASE_DIR / 'backups') }
 
 MIDDLEWARE = [
+    "debug_toolbar.middleware.DebugToolbarMiddleware",
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -77,6 +111,8 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     "corsheaders.middleware.CorsMiddleware",
     "django.middleware.common.CommonMiddleware",
+    
+    'wagtail.contrib.redirects.middleware.RedirectMiddleware',
 ]
 
 ROOT_URLCONF = 'gradmin.urls'
@@ -106,16 +142,11 @@ WSGI_APPLICATION = 'gradmin.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'TheEhhDude23$gradmin',
-        'HOST': 'TheEhhDude23.mysql.eu.pythonanywhere-services.com',
+        'NAME': 'gradmin',
+        'HOST': '127.0.0.1',
         'PORT': '3306',
-        'USER': 'TheEhhDude23',
-        'PASSWORD': 'dreamfar23',
-        # 'NAME': 'gradmin',
-        # 'HOST': '127.0.0.1',
-        # 'PORT': '3306',
-        # 'USER': 'root',
-        # 'PASSWORD': 'root',
+        'USER': 'root',
+        'PASSWORD': 'root',
     }
 }
 
@@ -157,7 +188,8 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.2/howto/static-files/
 
 STATIC_URL = '/static/'
-STATIC_ROOT = '/home/TheEhhDude23/gradmin/src/static'
+STATIC_ROOT = 'assets/'
+# STATIC_ROOT = '/home/TheEhhDude23/gradmin/src/static'
 
 STATICFILES_DIRS = [
     # BASE_DIR / "static",
@@ -174,6 +206,14 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 MEDIA_ROOT = Path(BASE_DIR / 'problems' / 'static' / 'problems' / 'images')
 # MEDIA_URL = str('/problems/static/problems/images/')
 DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
+CKEDITOR_UPLOAD_PATH = 'uploads/'
+
+CKEDITOR_CONFIGS = {
+    'default': {
+        'toolbar': None,
+        'extraPlugins': 'codesnippet',
+    },
+}
 
 CORS_ALLOWED_ORIGINS = [
     "http://localhost:8000",
@@ -208,3 +248,4 @@ TEMPLATE_LOADERS = (
 )
 
 DATA_UPLOAD_MAX_NUMBER_FIELDS = None
+WAGTAILADMIN_BASE_URL = '/cms'
