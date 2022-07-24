@@ -67,7 +67,7 @@ INSTALLED_APPS = [
     'rest_framework',
     'api',
     'frontend',
-    'courses',
+    # 'courses',
     'course',
     "corsheaders",
     'dbbackup',  # django-dbbackup
