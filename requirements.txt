@@ -1,6 +1,6 @@
 anyascii==0.3.1
 asgiref==3.4.1
-beautifulsoup4==4.9.3
+beautifulsoup4==4.9.0
 Brotli==1.0.9
 certifi==2021.5.30
 cffi==1.15.0
