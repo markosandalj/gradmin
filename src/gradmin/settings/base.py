@@ -17,8 +17,6 @@ SECRET_KEY = config('SECRET_KEY')
 DEBUG = config('DEBUG', default=True, cast=bool)
 ALLOWED_HOSTS = config('ALLOWED_HOSTS', cast=lambda v: [s.strip() for s in v.split(',')])
 
-ALLOWED_HOSTS = ['*']
-
 # Application definition
 
 # APPS == components
@@ -172,8 +170,7 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.2/howto/static-files/
 
 STATIC_URL = '/static/'
-STATIC_ROOT = 'assets/'
-# STATIC_ROOT = '/home/TheEhhDude23/gradmin/src/static'
+STATIC_ROOT = config('STATIC_ROOT', cast=str)
 
 STATICFILES_DIRS = [
     # BASE_DIR / "static",
@@ -207,15 +204,8 @@ CORS_ALLOWED_ORIGINS = [
     'https://theehhdude23.eu.pythonanywhere.com',
     'https://gradivo.hr',
     'https://msandalj23.myshopify.com',
-    'https://gradivo-hr23.myshopify.com/'
+    'https://gradivo-hr23.myshopify.com'
 ]
-
-
-CLOUDINARY_STORAGE = {
-    'CLOUD_NAME': 'gradivo-hr',
-    'API_KEY': '796223118618557',
-    'API_SECRET': '5NHpFMFy5SKy7MVm-BOhjb11bPE'
-}
 
 # REST_FRAMEWORK = {
 #     'DEFAULT_PERMISSION_CLASSES': [
@@ -234,3 +224,24 @@ TEMPLATE_LOADERS = (
 
 DATA_UPLOAD_MAX_NUMBER_FIELDS = None
 WAGTAILADMIN_BASE_URL = '/cms'
+
+# SHOPIFY
+SHOPIFY_ACCESS_TOKEN = config('SHOPIFY_ACCESS_TOKEN')
+SHOPIFY_STORE_URL = config('SHOPIFY_STORE_URL')
+SHOPIFY_API_VERSION = config('SHOPIFY_API_VERSION')
+
+# CLOUDINARY
+CLOUDINARY_STORAGE = {
+    'CLOUD_NAME': config('CLOUDINARY_CLOUD_NAME'),
+    'API_KEY': config('CLOUDINARY_API_KEY'),
+    'API_SECRET': config('CLOUDINARY_API_SECRET'),
+}
+
+# VIMEO
+VIMEO_TOKEN = config('VIMEO_TOKEN')
+VIMEO_KEY = config('VIMEO_KEY')
+VIMEO_SECRET = config('VIMEO_SECRET')
+
+# MATHPIX
+MATHPIX_APP_ID = config('MATHPIX_APP_ID')
+MATHPIX_APP_KEY = config('MATHPIX_APP_KEY')

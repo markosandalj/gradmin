@@ -1,3 +1,4 @@
+from sys import api_version
 from django.contrib import admin, messages
 from django.db.models.fields import IntegerField
 from django import forms
@@ -8,6 +9,8 @@ from api.serializers import CategorySerialzier, ShopifyPageProblemSerializer, Sh
 from django.db.models.functions.comparison import Cast
 
 from shopify_models.models import Template
+
+from django.conf import settings
 
 # Register your models here.
 from .models import Category, ProblemEquation, Razred, SectionSection, SkriptaSection, Subject, Section, Equation, Skripta
@@ -64,11 +67,13 @@ class SkriptaAdmin(admin.ModelAdmin):
 
     @admin.action(description='Update page (online skipta - popis) on Shopify')
     def update_shopify_page(self, request, queryset):
-        base_url = 'https://msandalj23.myshopify.com'
-        headers = {'Content-Type': 'application/json', 'X-Shopify-Access-Token': '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' }
+        headers = {
+            'Content-Type': 'application/json', 
+            'X-Shopify-Access-Token': settings.SHOPIFY_ACCESS_TOKEN
+        }
 
         for skripta in queryset:
-            page_url = '/admin/api/2021-10/pages/{id}/metafields.json'.format(id=skripta.page.page_id)
+            page_url = '/admin/api/{api_version}/pages/{id}/metafields.json'.format(id=skripta.page.page_id, api_version=settings.SHOPIFY_API_VERSION)
             serilizer = ShopifyPageSkriptaListSerializer(skripta)
             json_string = json.dumps(serilizer.data)
             metafield_data = {
@@ -79,9 +84,9 @@ class SkriptaAdmin(admin.ModelAdmin):
                     "value": json_string
                 }
             }
-            url = base_url + page_url
+            url = settings.SHOPIFY_STORE_URL + page_url
             response = requests.post(url, headers=headers, json = metafield_data)
-            print(response.json())
+
             messages.success(request, "Page {page} uspješno ažuriran".format(page=skripta.page.title))
 
     
@@ -102,9 +107,11 @@ class SectionAdmin(admin.ModelAdmin):
     @admin.action(description='Create page on Shopify')
     def create_shopify_page(self, request, queryset):
         action_form = UpdateShopifyPageForm
-        base_url = 'https://msandalj23.myshopify.com'
-        headers = { 'Content-Type': 'application/json', 'X-Shopify-Access-Token': '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' }
-        pages_url = '/admin/api/2021-10/pages.json'
+        headers = { 
+            'Content-Type': 'application/json', 
+            'X-Shopify-Access-Token': settings.SHOPIFY_ACCESS_TOKEN
+        }
+        pages_url = '/admin/api/{api_version}/pages.json'.format(api_version=settings.SHOPIFY_API_VERSION)
         for section in queryset:
             if( not section.page.page_id ):
                 template = str(request.POST['template'])
@@ -115,9 +122,8 @@ class SectionAdmin(admin.ModelAdmin):
                         'template_suffix' : template
                     }
                 }
-                url = base_url + pages_url
+                url = settings.SHOPIFY_STORE_URL + pages_url
                 response = requests.post(url, headers=headers, json = page_data)
-                print(response.json()['page']['id'])
                 section.page.page_id=response.json()['page']['id']
                 section.save()
                 messages.success(request, "Page for {s} created".format(s=section.name))
@@ -126,8 +132,10 @@ class SectionAdmin(admin.ModelAdmin):
 
     @admin.action(description='Update pages metafield with problems on Shopify')
     def update_problems_metafield(self, request, queryset):
-        base_url = 'https://msandalj23.myshopify.com'
-        headers = { 'Content-Type': 'application/json', 'X-Shopify-Access-Token': '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' }
+        headers = { 
+            'Content-Type': 'application/json', 
+            'X-Shopify-Access-Token': settings.SHOPIFY_ACCESS_TOKEN
+        }
         skripta_id = str(request.POST['skripta'])
         for section in queryset:
             problems = Problem.objects.annotate(number_field=Cast('number', IntegerField())).filter(section=section, approval='approved', skripta__id = skripta_id ).exclude(video_solution=None, shop_availability = 'hidden',).order_by('number_field', 'name')
@@ -142,18 +150,20 @@ class SectionAdmin(admin.ModelAdmin):
                         "value": json_string
                     }
                 }
-                page_url = '/admin/api/2021-10/pages/{id}/metafields.json'.format(id=section.page.page_id)
-                url = base_url + page_url
+                page_url = '/admin/api/{api_version}/pages/{id}/metafields.json'.format(id=section.page.page_id, api_version=settings.SHOPIFY_API_VERSION)
+                url = settings.SHOPIFY_STORE_URL + page_url
                 response = requests.post(url, headers=headers, json = metafield_data)
-                print(response.json())
+                
                 messages.success(request, "Page {page} uspješno ažuriran".format(page=section.page.title))
             else:
                 messages.error(request, "U gradivu {section} nema niti jedan zadatak koji zadovoljava sve uvjete.".format(section=section.name))
 
     @admin.action(description='Update pages metafield with secondary problems on Shopify')
     def update_secondary_problems_metafield(self, request, queryset):
-        base_url = 'https://msandalj23.myshopify.com'
-        headers = {'Content-Type': 'application/json', 'X-Shopify-Access-Token': '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' }
+        headers = {
+            'Content-Type': 'application/json', 
+            'X-Shopify-Access-Token': settings.SHOPIFY_ACCESS_TOKEN
+        }
         skripta_id = str(request.POST['skripta'])
         for section in queryset:
             problems = Problem.objects.annotate(number_field=Cast('number', IntegerField())).filter(section=section, approval='approved', skripta__id = skripta_id ).exclude(shop_availability='hidden', video_solution=None).order_by('number_field', 'name')
@@ -168,10 +178,10 @@ class SectionAdmin(admin.ModelAdmin):
                         "value": json_string
                     }
                 }
-                page_url = '/admin/api/2021-10/pages/{id}/metafields.json'.format(id=section.page.page_id)
-                url = base_url + page_url
+                page_url = '/admin/api/{api_version}/pages/{id}/metafields.json'.format(id=section.page.page_id, api_version=settings.SHOPIFY_API_VERSION)
+                url = settings.SHOPIFY_STORE_URL + page_url
                 response = requests.post(url, headers=headers, json = metafield_data)
-                print(response.json())
+                
                 messages.success(request, "Page {page} uspješno ažuriran".format(page=section.page.title))
             else:
                 messages.error(request, "U gradivu {section} nema niti jedan zadatak koji zadovoljava sve uvjete.".format(section=section.name))
@@ -179,8 +189,10 @@ class SectionAdmin(admin.ModelAdmin):
 
     @admin.action(description='Update pages metafield with navigation on Shopify')
     def update_navigation_metafield(self, request, queryset):
-        base_url = 'https://msandalj23.myshopify.com'
-        headers = {'Content-Type': 'application/json', 'X-Shopify-Access-Token': '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' }
+        headers = {
+            'Content-Type': 'application/json', 
+            'X-Shopify-Access-Token': settings.SHOPIFY_ACCESS_TOKEN
+        }
         skripta_id = str(request.POST['skripta'])
         for section in queryset:
             skripta = Skripta.objects.get(id=int(skripta_id))
@@ -210,10 +222,10 @@ class SectionAdmin(admin.ModelAdmin):
                         "value": json.dumps(json_string)
                     }
                 }
-                page_url = '/admin/api/2021-10/pages/{id}/metafields.json'.format(id=section.page.page_id)
-                url = base_url + page_url
+                page_url = '/admin/api/{api_version}/pages/{id}/metafields.json'.format(id=section.page.page_id, api_version=settings.SHOPIFY_API_VERSION)
+                url = settings.SHOPIFY_STORE_URL + page_url
                 response = requests.post(url, headers=headers, json = metafield_data)
-                print(response.json())
+                
                 messages.success(request, "Page {page} uspješno ažuriran".format(page=section.page.title))
             except:
                 messages.error(request, 'Gradivo {section} ne postoji u skripti {skripta}'.format(section=section, skripta=skripta.name))

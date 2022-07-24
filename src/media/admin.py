@@ -9,6 +9,7 @@ from django.contrib import messages
 import requests
 import json
 from bs4 import BeautifulSoup
+from django.conf import settings
 
 class ImageAdmin(admin.ModelAdmin):
     model = Image
@@ -23,9 +24,9 @@ class VideoAdmin(admin.ModelAdmin):
     @admin.action(description='Update videos info from Vimeo')
     def update_video_info(self, request, queryset):
         c = vimeo.VimeoClient(
-                token='efe0a81055184db54700aa97ec9aa821',
-                key='8e5f364f348c8c12ab10a8a3d48e35461a1e55fb',
-                secret='zQHi4Z9WAalZ6LPUPP9lybCu5utepNl5mHtvL1QEnYpR/sgsKLFsC5Xvj/hMopJf9T0jJGfNHuWFTutePS7dGmZ8pRg1n3cVxf+RQOSRt0Kyf3eotVkWglaWmhX34UQn'
+                token=settings.VIMEO_TOKEN,
+                key=settings.VIMEO_KEY,
+                secret=settings.VIMEO_SECRET
             )
         for video in queryset:
             if(video.vimeo_id != None):

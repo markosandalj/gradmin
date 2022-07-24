@@ -1,6 +1,5 @@
 import sys
-from django.contrib import admin
-from django.contrib import messages
+from django.contrib import admin, messages
 import requests
 import traceback
 import json
@@ -12,6 +11,8 @@ from skripte.models import Skripta, Section
 from problems.models import Problem
 from mature.models import Matura
 from api.serializers import ShopifyPageSkriptaListSerializer, ShopifyPageProblemSerializer, ShopifyPageSkriptaSerializer, ShopifyProductMaturaSerializer
+
+from django.conf import settings
 
 
 class SkriptaInline(SortableInlineAdminMixin, admin.StackedInline):
@@ -31,11 +32,12 @@ class ProductAdmin(admin.ModelAdmin):
     
     @admin.action(description='Update matura product on Shopify')
     def update_tabs(self, request, queryset):
-        base_url = 'https://msandalj23.myshopify.com'
-        headers = {'Content-Type': 'application/json', 'X-Shopify-Access-Token': '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' }
+        headers = {
+            'Content-Type': 'application/json', 
+            'X-Shopify-Access-Token': settings.SHOPIFY_ACCESS_TOKEN }
 
         for product in queryset:
-            metafields_url = '/admin/api/2021-10/products/{id}/metafields.json'.format(id=product.product_id)
+            metafields_url = '/admin/api/{api_version}/products/{id}/metafields.json'.format(id=product.product_id, api_version=settings.SHOPIFY_API_VERSION)
             maturas = Matura.objects.filter(product=product).order_by('term')
             matura_tabs = []
 
@@ -53,7 +55,7 @@ class ProductAdmin(admin.ModelAdmin):
                         "value": json_string,
                     }
                 }
-            url = base_url + metafields_url
+            url = settings.SHOPIFY_STORE_URL + metafields_url
             try:
                 response = requests.post(url, headers=headers, json = metafield_data)
                 print(response.json())
@@ -63,9 +65,11 @@ class ProductAdmin(admin.ModelAdmin):
 
     @admin.action(description='Create product on Shopify')
     def create_product(self, request, queryset):
-        base_url = 'https://msandalj23.myshopify.com'
-        headers = {'Content-Type': 'application/json', 'X-Shopify-Access-Token': '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' }
-        products_url = '/admin/api/2021-10/products.json'
+        headers = {
+            'Content-Type': 'application/json', 
+            'X-Shopify-Access-Token': settings.SHOPIFY_ACCESS_TOKEN
+        }
+        products_url = '/admin/api/{api_version}/products.json'.format(api_version=settings.SHOPIFY_API_VERSION)
 
         for product in queryset:
             if(product.id == None):
@@ -82,7 +86,7 @@ class ProductAdmin(admin.ModelAdmin):
                         "metafields_global_description_tag": product.seo_description if product.seo_description != None else "",                        
                     }
                 }
-                url = base_url + products_url
+                url = settings.SHOPIFY_STORE_URL + products_url
                 try:
                     response = requests.post(url, headers = headers, json = product_data)
                     print('response: ', response.json())
@@ -112,12 +116,14 @@ class PageAdmin(admin.ModelAdmin):
 
     @admin.action(description='OPREZNO!!!! Delete selected pages from Shopify')
     def delete_pages(self, request, queryset):
-        base_url = 'https://msandalj23.myshopify.com'
-        headers = { 'Content-Type': 'application/json', 'X-Shopify-Access-Token': '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' }
+        headers = { 
+            'Content-Type': 'application/json', 
+            'X-Shopify-Access-Token': settings.SHOPIFY_ACCESS_TOKEN
+        }
         pages = queryset
         for page in pages:
-            delete_url = '/admin/api/2021-10/pages/{page_id}.json'.format(page_id=page.page_id)
-            url = base_url + delete_url
+            delete_url = '/admin/api/{api_version}/pages/{page_id}.json'.format(page_id=page.page_id, api_version=settings.SHOPIFY_API_VERSION)
+            url = settings.SHOPIFY_STORE_URL + delete_url
             response = requests.delete(url, headers=headers)
             print('response: ', response.json())
             messages.success(request, "Stranica {str} uspješno obrisana sa Shopify-a".format(str=page.title))
@@ -133,11 +139,13 @@ class PageAdmin(admin.ModelAdmin):
 
     @admin.action(description='Update selected pages content on Shopify')
     def update_page_content(self, request, queryset):
-        base_url = 'https://msandalj23.myshopify.com'
-        headers = {'Content-Type': 'application/json', 'X-Shopify-Access-Token': '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' }
+        headers = {
+            'Content-Type': 'application/json', 
+            'X-Shopify-Access-Token': settings.SHOPIFY_ACCESS_TOKEN
+        }
 
         for page in queryset:
-            page_url = '/admin/api/2021-10/pages/{id}/metafields.json'.format(id=page.page_id)
+            page_url = '/admin/api/{api_version}/pages/{id}/metafields.json'.format(id=page.page_id, api_version=settings.SHOPIFY_API_VERSION)
             skriptas = Skripta.objects.filter(page=page).order_by('order')
             skriptas_list = []
             
@@ -155,7 +163,7 @@ class PageAdmin(admin.ModelAdmin):
                         "value": skriptas_json_string
                     }
                 }
-                url = base_url + page_url
+                url = settings.SHOPIFY_STORE_URL + page_url
                 try:
                     response = requests.post(url, headers=headers, json = metafield_data)
                     messages.success(request, "Page {page} uspješno ažuriran sa skriptama".format(page=skripta.page.title))
@@ -188,7 +196,7 @@ class PageAdmin(admin.ModelAdmin):
                             "value": problems_json_string
                         }
                     }
-                    url = base_url + page_url
+                    url = settings.SHOPIFY_STORE_URL + page_url
 
                     try:
                         response = requests.post(url, headers=headers, json = metafield_data)

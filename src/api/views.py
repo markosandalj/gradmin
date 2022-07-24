@@ -441,8 +441,8 @@ def getMathpixResponse(image):
             "https://api.mathpix.com/v3/text",
             data=json.dumps({'src': image_uri, 'include_line_data': True} ),
             headers={
-                "app_id": "marko_sandalj23_gmail_com_cd23e6", 
-                "app_key": "b56dcf2eb92232d1b905",
+                "app_id": settings.MATHPIX_APP_ID, 
+                "app_key": settings.MATHPIX_APP_KEY,
                 "Content-type": "application/json"
             }
         )
