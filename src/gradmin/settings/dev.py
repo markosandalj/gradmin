@@ -13,7 +13,7 @@ DEBUG = config('DEBUG', default=True, cast=bool)
 
 ALLOWED_HOSTS = config('ALLOWED_HOSTS', cast=lambda v: [s.strip() for s in v.split(',')])
 
-STATIC_ROOT = config('STATIC_ROOT')
+STATIC_ROOT = config('STATIC_ROOT', cast=str)
 
 DATABASES['default']['NAME'] = config('DATABASE_NAME', cast=str)
 DATABASES['default']['HOST'] = config('DATABASE_HOST', cast=str)

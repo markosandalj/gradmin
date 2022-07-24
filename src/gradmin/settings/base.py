@@ -207,6 +207,7 @@ CORS_ALLOWED_ORIGINS = [
     'https://theehhdude23.eu.pythonanywhere.com',
     'https://gradivo.hr',
     'https://msandalj23.myshopify.com',
+    'https://gradivo-hr23.myshopify.com/'
 ]
 
 
