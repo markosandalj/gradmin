@@ -13,14 +13,13 @@ DEBUG = config('DEBUG', default=False, cast=bool)
 
 ALLOWED_HOSTS = config('ALLOWED_HOSTS', cast=lambda v: [s.strip() for s in v.split(',')])
 
-SHOPIFY__ACCESS_TOKEN = config('SHOPIFY__ACCESS_TOKEN')
-SHOPIFY_STORE_URL = config('SHOPIFY_STORE_URL')
+STATIC_ROOT = config('STATIC_ROOT')
 
-DATABASES['default']['NAME'] = config('DATABASE_NAME')
-DATABASES['default']['HOST'] = config('DATABASE_HOST')
-DATABASES['default']['PORT'] = config('DATABASE_PORT')
-DATABASES['default']['USER'] = config('DATABASE_USER')
-DATABASES['default']['PASSWORD'] = config('DATABASE_PASSWORD')
+DATABASES['default']['NAME'] = config('DATABASE_NAME', cast=str)
+DATABASES['default']['HOST'] = config('DATABASE_HOST', cast=str)
+DATABASES['default']['PORT'] = config('DATABASE_PORT', cast=str)
+DATABASES['default']['USER'] = config('DATABASE_USER', cast=str)
+DATABASES['default']['PASSWORD'] = config('DATABASE_PASSWORD', cast=str)
 
 SESSION_COOKIE_SECURE = True
 CSRF_COQKIE_SECURE = True

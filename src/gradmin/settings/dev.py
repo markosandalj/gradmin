@@ -1,6 +1,7 @@
 from .base import *
 
 """ Override base settings so it suits development environment """
+
 DOTENV_FILE = os.path.join(BASE_DIR.parent, '.env.dev')
 
 env.read_env(DOTENV_FILE)
@@ -12,6 +13,16 @@ DEBUG = config('DEBUG', default=True, cast=bool)
 
 ALLOWED_HOSTS = config('ALLOWED_HOSTS', cast=lambda v: [s.strip() for s in v.split(',')])
 
+STATIC_ROOT = config('STATIC_ROOT')
+
+DATABASES['default']['NAME'] = config('DATABASE_NAME', cast=str)
+DATABASES['default']['HOST'] = config('DATABASE_HOST', cast=str)
+DATABASES['default']['PORT'] = config('DATABASE_PORT', cast=str)
+DATABASES['default']['USER'] = config('DATABASE_USER', cast=str)
+DATABASES['default']['PASSWORD'] = config('DATABASE_PASSWORD', cast=str)
+
+INTERNAL_IPS = ("127.0.0.1", "172.17.0.1")
+
 INSTALLED_APPS += [
     'debug_toolbar',
 ]
@@ -19,14 +30,6 @@ INSTALLED_APPS += [
 MIDDLEWARE += [
     'debug_toolbar.middleware.DebugToolbarMiddleware', 
 ]
-
-DATABASES['default']['NAME'] = config('DATABASE_NAME')
-DATABASES['default']['HOST'] = config('DATABASE_HOST')
-DATABASES['default']['PORT'] = config('DATABASE_PORT')
-DATABASES['default']['USER'] = config('DATABASE_USER')
-DATABASES['default']['PASSWORD'] = config('DATABASE_PASSWORD')
-
-INTERNAL_IPS = ("127.0.0.1", "172.17.0.1")
 
 SHOPIFY__ACCESS_TOKEN = config('SHOPIFY_ACCESS_TOKEN')
 SHOPIFY_STORE_URL = config('SHOPIFY_STORE_URL')
