@@ -1,21 +1,17 @@
-@import './scss/reset.scss';
-@import './scss/variables.scss';
-@import './scss/buttons.scss';
-@import './scss/forms.scss';
 
-@import './scss/parts/_header.scss';
-@import './scss/parts/_problem';
-@import './scss/parts/_problems-section';
-@import './scss/parts/matura';
-@import './scss/parts/alerts';
-@import './scss/parts/sidebar';
+// @import './scss/variables.scss';
+// @import './scss/buttons.scss';
+// @import './scss/forms.scss';
 
-@import './scss/layout/page';
+// @import './scss/parts/_header.scss';
+// @import './scss/parts/_problem';
+// @import './scss/parts/_problems-section';
+// @import './scss/parts/matura';
+// @import './scss/parts/alerts';
+// @import './scss/parts/sidebar';
 
-@import './scss/print/_print';
+// @import './scss/layout/page';
 
-@media screen {
-  // :root {
-  //   font-size: 16px !important;
-  // }
-}
+@import './styles/reset.scss';
+@import './styles/variables';
+// @import './scss/print/_print';
