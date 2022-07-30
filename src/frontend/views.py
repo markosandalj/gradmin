@@ -5,4 +5,5 @@ from django.contrib.auth.decorators import login_required
 
 @login_required(login_url='/admin/login/')
 def IndexView(request, *args, **kwargs):
+    
     return render(request, 'frontend/index.html')

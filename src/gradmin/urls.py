@@ -32,5 +32,5 @@ urlpatterns = [
     path('cms/', include(wagtailadmin_urls)),
     path('documents/', include(wagtaildocs_urls)),
     path('', include(wagtail_urls)),
-    path('__debug__/', include(debug_toolbar.urls))
+    # path('__debug__/', include(debug_toolbar.urls))
 ] 

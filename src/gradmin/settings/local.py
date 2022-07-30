@@ -24,12 +24,13 @@ DATABASES['default']['PASSWORD'] = config('DATABASE_PASSWORD', cast=str)
 INTERNAL_IPS = ("127.0.0.1", "172.17.0.1")
 
 INSTALLED_APPS += [
-    'debug_toolbar',
+    # 'debug_toolbar',
+    # 'drf_yasg',
 ]
 
-MIDDLEWARE += [
-    'debug_toolbar.middleware.DebugToolbarMiddleware', 
-]
+# MIDDLEWARE += [
+#     'debug_toolbar.middleware.DebugToolbarMiddleware', 
+# ]
 
 # SHOPIFY
 SHOPIFY_ACCESS_TOKEN = config('SHOPIFY_ACCESS_TOKEN')

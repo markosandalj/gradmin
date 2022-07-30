@@ -24,7 +24,8 @@ DATABASES['default']['PASSWORD'] = config('DATABASE_PASSWORD', cast=str)
 INTERNAL_IPS = ("127.0.0.1", "172.17.0.1")
 
 INSTALLED_APPS += [
-    'debug_toolbar',
+    # 'debug_toolbar',
+    # 'drf_yasg',
 ]
 
 MIDDLEWARE += [
