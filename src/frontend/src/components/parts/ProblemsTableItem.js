@@ -1,80 +1,56 @@
-// REACT & REDUX
-import React, { Component, useState, useEffect } from "react";
-import { ResourceItem, TextStyle, Collapsible, TextContainer, Button, Badge, ButtonGroup } from "@shopify/polaris";
+import React, { useState, useEffect } from "react";
 
-export default function ProblemsTableItem({ id, text, line_data, confidence, confidence_rate, image, formData, setFormData }) {
-  const [isOpen, setIsOpen] = useState(true);
-  const [problem, setProblem] = useState({
-		question: { text: 'Lorem ispum dorem cit', confidence: 0 },
-		answer_choices: [],
+// SHOPIFY
+import { TextStyle, Collapsible, TextContainer, Button, Badge, Stack } from "@shopify/polaris";
+
+// REDUX
+import { useDispatch, useSelector } from "react-redux";
+import { addItem, updateAnswerChoiceText, updateQuestionText, updateSubquestionText } from "../../store/importerSlice";
+
+// UTILS
+import { generateProblemObject } from "../../utils/generateProblemObject";
+
+// COMPONENTS
+import { EditableTextField } from "../EditableTextField";
+
+// STYLES
+import styled from 'styled-components'
+
+const Wrapper = styled.div`
+    padding-bottom: 1.6rem;
+`
+
+
+export default function ProblemsTableItem({ id, text, line_data, confidence, confidence_rate, image }) {
+  	const dispatch = useDispatch()
+	const { items } = useSelector(store => store.importer)
+
+	const [isOpen, setIsOpen] = useState(true);
+  	const [problem, setProblem] = useState({
+		question: { question_text: 'Lorem ispum dorem cit', confidence: 0, subquestions: [], answer_choices: [] },
 		number: '0.'
 	});
 
-  useEffect(() => {
-	generateProblem()
-  }, [line_data])
+	useEffect(() => {
+		generateProblem()
+	}, [line_data])
 
-  useEffect(() => {
-	if(problem.number != '0.' && !formData.problems.some(prob => prob.id === problem.id) ) {
-		formData.problems.push(problem)
-		setFormData({
-			...formData
-		})
-	}
-  }, [problem])
+	useEffect(() => {
+		if(problem.number != '0.' && !items.some(item => item.id === problem.id) ) {
+			dispatch(addItem(problem))
+		}
+	}, [problem])
   
 
-  const handleToggle = () => {
-    setIsOpen(!isOpen);
-  };
-
-  const choiceLabel = { 0: 'A', 1: 'B', 2: 'C', 3: 'D', 4: 'E', 5: 'F', 6 : 'G', 7 : 'H' }
+	const handleToggle = () => {
+		setIsOpen(!isOpen);
+	};
 
   	const generateProblem = () => {
-		let problem_text = text;
-		let problem_number = ''
-		let question = { text: '', confidence: 0 }
-		let answer_choices = []
-
 		try {
-			const isAnswerChoice = (text) => {
-				return ( text ? (text?.startsWith('\nA.') 
-						|| text?.startsWith('\nB.') 
-						|| text?.startsWith('\nC.') 
-						|| text?.startsWith('\nD.') 
-						|| text?.startsWith('\nE.')) : false
-					)
-			}
-			
-			line_data.map((item, index) => {
-				question.text += (item.included && !isAnswerChoice(item.text)) ? item.text : '';
-				question.confidence = (item.included && !isAnswerChoice(item.text)) ? (index * question.confidence + item.confidence)/(index + 1) : question.confidence;
-				
-				if(isAnswerChoice(item.text)) {
-					answer_choices.push({
-						text: item.text,
-						confidence: item.confidence
-					})
-				}
-			})
-	
-			problem_number = Number.isInteger(parseInt(text?.split(' ')[0], 10)) ? text?.split(' ')[0].replace(/\s/g, '') : null
-	
-			answer_choices = answer_choices.map( item => {
-				return {
-					...item,
-					text: item?.text.length <= 4 ? '(slika)' : item?.text.substr(4, item?.text.length)
-				}
-			})
-	
-			setProblem({
-				id: id,
-				image_public_id: image.image.replace('https://res.cloudinary.com/gradivo-hr/image/upload/', ''),
-				image_id: image.id,
-				question: question,
-				answer_choices: answer_choices,
-				number: problem_number
-			});
+			const prob = generateProblemObject(text, line_data, image, id)
+		  	setProblem(prob);
+			dispatch(addItem(prob))
 	
 			setTimeout(() => {window.MathJax?.typeset()}, 800)
 		} catch (error) {	
@@ -89,58 +65,79 @@ export default function ProblemsTableItem({ id, text, line_data, confidence, con
 
 	return (
 		<>
-			<div>
-				<div className="flex-space-between">
-					<h3>
-						<TextStyle variation="strong">
-							{problem.number} Zadatak
-						</TextStyle>
-					</h3>
+			<Stack>
+				<Stack.Item fill>
+					<TextStyle variation="strong">
+						{problem.number} Zadatak
+					</TextStyle>
+				</Stack.Item>
+				<Stack.Item>
 					<Button onClick={handleToggle} ariaExpanded={isOpen}>
 						{isOpen ? 'Close' : 'Open'}
 					</Button>
-				</div>
-				<div>
-					Result quality: <Badge status={badgeStatus(confidence)}>{confidence}%</Badge> | Input quality: <Badge status={badgeStatus(confidence_rate)}>{confidence_rate}%</Badge>
-				</div>
-			</div>
+				</Stack.Item>
+			</Stack>
+			Result quality: <Badge status={badgeStatus(confidence)}>{confidence}%</Badge> | Input quality: <Badge status={badgeStatus(confidence_rate)}>{confidence_rate}%</Badge>
 			<Collapsible
 				open={isOpen}
-				id="basic-collapsible"
 				transition={{ duration: "300ms", timingFunction: "ease-in-out" }}
 				expandOnPrint
 			>	
-				<div className="my-1">
-					<TextContainer>
-						<img
-							src={image?.image}
-							alt=""
-							width="100%"
-							height="100%"
-							style={{
-								objectFit: "cover",
-								objectPosition: "center"
-							}}
-						/>
-						
-						<div className="problem__content">
-							<div className="flex-space-between">
-								<span>{problem.question.text}</span> <Badge status={badgeStatus(problem.question.confidence)}>Question text</Badge>
-							</div>
-							<div className="problem__choices">
-								{problem.answer_choices.map( (choice, index) => {
-									return(
-										<div key={index} className="flex-space-between">
-											<div  className='problem__choice'>{choiceLabel[index]}. {choice.text}</div>
-											<Badge status={badgeStatus(choice.confidence)} >Answer choice</Badge>
-										</div>
-									)
-								})}
-							</div>
-						</div>
+				<TextContainer>
+					<img
+						src={image?.image}
+						width="100%"
+						height="100%"
+						style={{
+							marginTop: "1.6rem",
+							objectFit: "cover",
+							objectPosition: "center"
+						}}
+					/>						
+					<EditableTextField 
+						key={problem.id}
+						id={problem.id}
+						value={problem.question.question_text}
+						children={<Badge status={badgeStatus(problem.question.confidence)}>Question text</Badge>}
+						containsMath
+						canContainImages
+						onChangeFn={(data) => dispatch(updateQuestionText(data))}
+					/>	
+					<Stack vertical>
+						{problem.question.answer_choices.map( (choice, index) => {
+							return(
+								<EditableTextField 
+									key={index}
+									index={index}
+									id={problem.id}
+									label={`${String.fromCharCode(index+65)}. `}
+									value={choice.choice_text}
+									children={<Badge status={badgeStatus(choice.confidence)} >Answer choice</Badge>}
+									containsMath
+									canContainImages
+									onChangeFn={(data) => dispatch(updateAnswerChoiceText(data))}
+								/>
+							)
+						})}
+					</Stack>
+					<Stack vertical>
+						{problem.question.subquestions.map( (subquestion, index) => {
+							return (
+								<EditableTextField 
+									key={`sq-${problem.id}`}
+									id={problem.id}
+									index={index}
+									value={subquestion.question_text}
+									children={<Badge status={badgeStatus(subquestion.confidence)}>Subuestion text</Badge>}
+									containsMath
+									canContainImages
+									onChangeFn={(data) => dispatch(updateSubquestionText(data))}
+								/>	
+							)
+						})}
+					</Stack>
 				</TextContainer>
-				</div>
 			</Collapsible>
 		</>
-	);
-	}
+	)
+}
