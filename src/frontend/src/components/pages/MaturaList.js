@@ -1,39 +1,49 @@
 // REACT & REDUX
-import React, { Component, useState, useEffect } from "react";
+import React from "react";
 import { useParams } from 'react-router';
-import { Link } from "react-router-dom";
-import axios from 'axios'
 
-// SHOPIFY 
-import {Page, Layout, SkeletonBodyText } from '@shopify/polaris';
+// SHOPIFY  
+import { Layout, Card, ResourceList, ResourceItem, TextStyle } from '@shopify/polaris';
 
 // CUSTOM HOOKS
 import useFetch from "../hooks/useFetch";
 
-const MaturaList = () => {
-    const { subject_id } = useParams();
-    const apiUrl = `${window.location.origin}/api/matura/${subject_id}/list`
-    const { data, loading, error } = useFetch(apiUrl)
+// SETTINGS
+import { maturaListApiRoute } from "../../settings/apiRoutes";
 
-    if (loading) return <SkeletonBodyText />; 
-    if (error) return "Error!"; 
+export const MaturaList = () => {
+    const { subject_id } = useParams();
+    const { data, loading, error } = useFetch(maturaListApiRoute(subject_id))
+
+    if(loading) return <></> // remove and replace by loader inside useFetch hook
+
+    const renderItem = (item) => {
+        const { id, subject, term, year } = item
+        const url = `/index/matura/${id}`
+        const name = `${subject.subject_name} ${ subject.level !== '0' ? subject.level : '' } - ${year.year}. ${term.term}`
+
+        return (
+            <ResourceItem
+              id={id}
+              url={url}
+              accessibilityLabel={`View details for ${name}`}
+            >
+              <h3>
+                <TextStyle variation="strong">{name}</TextStyle>
+              </h3>
+            </ResourceItem>
+          );
+    }
 
     return (
-        <Page>
-            <Layout>
-                <Layout.Section>
-                    {data.map( (matura, matura_index) => {
-                        let matura_name = matura.subject.level != 0 ? matura.subject.subject_name + ' ' + matura.subject.level : matura.subject.subject_name;
-                        return (
-                            <div className='problems-section' key={matura.id}>
-                                <Link to={'/index/matura/'+matura.id}>{matura_name} - {matura.year.year}. {matura.term.term}</Link>
-                            </div>
-                        )
-                    })} 
-                </Layout.Section>
-            </Layout>
-        </Page>
+        <Layout.AnnotatedSection title={`Popis svih matura`} >
+            <Card>
+                <ResourceList 
+                    resourceName={{ singular: "Matura", plural: "Mature" }}
+                    items={data}
+                    renderItem={renderItem}
+                />
+            </Card>
+        </Layout.AnnotatedSection>
     )
 }
-
-export default MaturaList;

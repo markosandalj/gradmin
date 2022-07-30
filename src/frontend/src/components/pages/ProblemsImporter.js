@@ -1,127 +1,102 @@
-// REACT & REDUX
-import React, { Component, useState, useEffect, useCallback } from "react";
-import { useParams } from 'react-router';
-import { useDispatch, useSelector } from "react-redux";
+import React, {  useState, useCallback } from "react";
 import axios from "axios";
 
 // SHOPIFY
-import { Page, Layout, Button, ButtonGroup, DropZone, Spinner, Banner, Card } from '@shopify/polaris';
+import { Layout, Button, ButtonGroup, DropZone, Spinner, Card } from '@shopify/polaris';
 
+// COMPONENTS
 import ImporterInfoForm from '../parts/ImporterInfoForm';
 import ProblemsTable from "../parts/ProblemsTable";
 
+// CONSTANTS
+import { SUCCESS, CRITICAL } from "../../settings/constants";
+import { importerApiRoute } from "../../settings/apiRoutes";
+
+// REDUX
+import { useDispatch, useSelector } from "react-redux";
+import { closeBanner, showBanner } from "../../store/bannerSlice";
+import { setUploadIsDone, setUploadInProgress, setItems } from "../../store/importerSlice";
+
 
 export default function ProblemsImporter() {
-    const [file, setFile] = useState(false);
-    const [errorMsg, setErrorMsg] = useState('');
-    const [mathpixResposneData, setMathpixResponseData] = useState([]);
-    const [isLoaderActive, setIsLoaderActive] = useState(false);
-    const [showErrorBanner, setShowErrorBanner] = useState(false);
-    const [showSuccesBanner, setShowSuccesBanner] = useState(false);
-    const [isCheckingProcessActive, setIscheckingProcessActive] = useState(false);
-    const [info, setInfo] = useState( { matura: '', subject: '', section: '', skripta: '' } )
+    const dispatch = useDispatch()
+    const { isUploadInProgress, isUploadDone, items } = useSelector(store => store.importer)
+    const [file, setFile] = useState()
 
     const handleDropZoneDrop = useCallback(
         (_dropFiles, acceptedFiles, _rejectedFiles) =>
-            setFile((file) => acceptedFiles[0]),  
+            setFile(file => acceptedFiles[0]),  
         [],
     );
 
-    const toggleCheckingProcess = () => {
-        setIscheckingProcessActive(!isCheckingProcessActive)
-    }
+    const handleUpload = async () => {
+        dispatch(setUploadInProgress())
 
-    const showDropZone = () => {
-        return (!isLoaderActive && !showSuccesBanner && !showErrorBanner)
-    }
+        let formData = new FormData();
 
-    const handleUpload = async (event) => {
-        event.preventDefault();
-        setIsLoaderActive(true)
-
-        let data = new FormData();
-
-        data.append('file', file)
+        formData.append('file', file)
 
         const response = await axios.post(
-                window.location.origin + '/api/problems_importer', 
-                data,
+                importerApiRoute, 
+                formData,
                 { headers: {'X-CSRFToken': csrftoken, "Content-type": "multipart/form-data"} }
             )
             .then(res => {
                 return res.data
             })
             .then(data => {
-                setIsLoaderActive(false)
-                setShowSuccesBanner(true)
-                setMathpixResponseData(data)
-                toggleCheckingProcess()
-                
+                dispatch(setItems(data.map(item => ({ ...item, id: item.mathpix_response.request_id}))))
+                dispatch(showBanner({ 
+                        title: 'PDF uspješno uploadan. Bravo!',
+                        status: SUCCESS
+                    }))
+            
                 return data
             })
             .catch(err => {
                 console.log(err);
-                setErrorMsg(err);
-                setShowErrorBanner(true)
-            })   
+                dispatch(showBanner({ 
+                    title: "Nešto u pozadini je krepalo. Refreshaj stranicu i probaj opet!",
+                    status: CRITICAL,
+                    message: err
+                }))
+            })
+            .finally(() => {
+                dispatch(setUploadIsDone())
+            })
     }
 
     const fileUpload = !file && <DropZone.FileUpload />;
 
 
     return (
-        <Page>
-            <Layout>
-                <Layout.Section>
-                    { showSuccesBanner &&
-                        <div className="my-2">
-                            <Banner
-                                title="PDF uspješno uploadan. Bravo!"
-                                status="success"
-                            />
-                        </div>}
-
-                    { showErrorBanner &&
-                        <div className="my-2">
-                            <Banner
-                                title="Nešto u pozadini je krepalo. Refreshaj stranicu i probaj opet!"
-                                status="critical"
-                            >
-                                <p>
-                                    {errorMsg}
-                                </p>
-                            </Banner>
-                        </div>}
-
-                    { !isCheckingProcessActive &&
-                        <Card title="Problems importer">
-                            <Card.Section title="Upload PDF">
-                                { showDropZone() && 
-                                    <DropZone allowMultiple={false} onDrop={handleDropZoneDrop}>
-                                        {fileUpload}
-                                        {file && file.name}
-                                    </DropZone>}
-                                { isLoaderActive && 
-                                    <Spinner accessibilityLabel="Spinner example" size="large" /> }
-                                    <div className="py-2 flex-end">
-                                        <ButtonGroup>
-                                            <Button primary onClick={handleUpload} loading={isLoaderActive} disabled={!file || showSuccesBanner}>Upload</Button>
-                                        </ButtonGroup>
-                                    </div>
-                            </Card.Section>
-                        </Card>}
-                        
-                        { isCheckingProcessActive && 
-                            <>
-                                <Card title="Problems importer">
-                                    <Card.Section title="Upload PDF">
-                                        <ImporterInfoForm setInfo={setInfo}></ImporterInfoForm>
-                                    </Card.Section>
-                                </Card>
-                                <ProblemsTable problems={mathpixResposneData} info={info}></ProblemsTable>
-                            </>}
-                </Layout.Section>
-            </Layout>
-        </Page>
+        <Layout.Section>
+            <Card 
+                title="Problems importer"
+                primaryFooterAction={{ 
+                    content: "Upload", 
+                    onClick: handleUpload,
+                    loading: isUploadInProgress,
+                    disabled: !file || isUploadDone
+                }}
+            >
+                <Card.Section title="Upload PDF">
+                    { isUploadInProgress ? 
+                        <Spinner accessibilityLabel="Spinner example" size="large" />  
+                            : 
+                                <DropZone allowMultiple={false} onDrop={handleDropZoneDrop}>
+                                    {fileUpload}
+                                    {file && file.name}
+                                </DropZone>}
+                </Card.Section>
+            </Card>
+                                
+            <Card title="Problems importer">
+                <Card.Section title="Pick matura, section, skripta and subject">
+                    <ImporterInfoForm />
+                </Card.Section>
+            </Card>
+            <ProblemsTable items={items} />
+        </Layout.Section>
     )
 }
