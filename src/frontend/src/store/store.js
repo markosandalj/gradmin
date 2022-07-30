@@ -1,32 +1,22 @@
-import React from 'react';
-import { render } from "react-dom";
-import { Provider } from 'react-redux';
-import { createStore, applyMiddleware, compose } from 'redux';
-import thunk from 'redux-thunk';
+import { configureStore } from '@reduxjs/toolkit';
+import importerReducer from './importerSlice'
+import viewReducer from './viewSlice'
+import bannerReducer from './bannerSlice';
+import toastReducer from './toastSlice';
+import saveBarReducer from './saveBarSlice';
+import modalReducer from './modalSlice';
+import pageReducer from './pageSlice.js';
+import updateReducer from './updateSlice';
 
-import App from '../components/App'
-
-import rootReducer from './reducers/reducers';
-
-const initialState = {
-    loading: false,
-    error: false,
-    problems: [],
-};
-
-const middleware = [thunk];
-
-const store = createStore(
-    rootReducer,
-    compose(applyMiddleware(...middleware))
-);
-
-export default  store;
-
-const container = document.getElementById("app");
-render(
-    <Provider store={store}>
-        <App />
-    </Provider>
-    , container
-);
+export const store = configureStore({
+    reducer: {
+        importer: importerReducer,
+        view: viewReducer,
+        banner: bannerReducer,
+        toast: toastReducer,
+        saveBar: saveBarReducer,
+        modal: modalReducer,
+        page: pageReducer,
+        update: updateReducer
+    },
+})
