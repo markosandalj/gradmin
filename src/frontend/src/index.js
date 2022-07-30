@@ -1,34 +1,28 @@
-import './index.scss'
-import '@shopify/polaris/dist/styles.css';
-// import "react-loader-spinner/dist/loader/css/react-spinner-loader.css";
-import { Sortable } from '@shopify/draggable';
-import store from './store/store';
-import App from './components/App';
+import React from "react";
+import { createRoot } from "react-dom/client";
+import { store } from './store/store'
+import { Provider } from 'react-redux';
 
-function initializeMathJax() {
-    if (document.body.querySelector('#app') ||
-    document.body.textContent.match(/(?:\$|\\\(|\\\[|\\begin\{.*?})/)) {
-            if (!window.MathJax) {
-                window.MathJax = {
-                    tex: {
-                        inlineMath: {'[+]': [['$', '$']]}
-                    },
-                    svg: {fontCache: 'local'}
-                };
-            }
-            var script = document.createElement('script');
-            script.setAttribute('id', 'MathJaxScriptTag')
-            script.src = 'https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js';
-            // script.src = 'https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML-full'
-            // script.src = 'https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js';
-            document.body.appendChild(script);
-    }
+// STYLES
+import './index.scss'
+
+// SHOPIFY 
+import '@shopify/polaris/build/esm/styles.css';
+
+import { App } from './App';
+import { initializeMathJax } from "./utils/mathjaxInit";
+// import './index.scss'
+
+const container = document.getElementById("app");
+if(container) {
+    const root = createRoot(container);
+    root.render(
+        <Provider store={store}>
+            <App />
+        </Provider>
+    );
 }
 
 setTimeout( () => {
     initializeMathJax()
-    const sortable = new Sortable(document.querySelectorAll('.problems-section'), {
-        draggable: '.drag-item',
-        handle: '.drag-handle'
-    })
 }, 1500)
