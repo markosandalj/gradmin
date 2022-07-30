@@ -15,7 +15,7 @@ export default function AutocompleteSelect({apiUrl, label, setData, data }) {
 
   useEffect(() => {
     if(apiUrl) {
-      axios.get(window.location.origin + apiUrl)
+      axios.get(apiUrl)
         .then(res => res.data)
         .then(data => {
           let reducedData = []
@@ -75,7 +75,7 @@ export default function AutocompleteSelect({apiUrl, label, setData, data }) {
         });
   
         setSelectedOptions(selected);
-        setData(selected);
+        setData({ id: selected[0], name: selectedValue[0] });
         setInputValue(selectedValue[0]);
       },
       [options],

@@ -1,22 +1,20 @@
-import React, { Component, useState, useEffect, useCallback } from "react";
-import { useParams } from 'react-router';
-import { useDispatch, useSelector } from "react-redux";
-import axios from "axios";
+import React from "react";
+import { useDispatch } from "react-redux";
 
-// SHOPIFY
-import { Form, FormLayout, Button } from '@shopify/polaris';
-
+// COMPONENTS
 import AutocompleteSelect from "./AutocompleteSelect"; 
 
-export default function ImporterInfoForm({ setInfo }) {
-    const [matura, setMatura] = useState();
-    const [subject, setSubject] = useState()
-    const [section, setSection] = useState();
-    const [skripta, setSkripta] = useState();
+// SHOPIFY
+import { Form, FormLayout } from '@shopify/polaris';
 
-    useEffect(() => {
-        setInfo({ matura: matura || '', subject: subject || '', section: section || '', skripta: skripta || '' })
-    }, [matura, subject, section, skripta])
+// CONSTATNTS
+import { allMaturasListApiRoute, SectionListApiRoute, SkriptaListApiRoute, SubjectListApiRoute } from "../../settings/apiRoutes";
+
+// REDUX 
+import { setSelectedMatura, setSelectedSection, setSelectedSkripta, setSelectedSubject } from "../../store/importerSlice";
+
+export default function ImporterInfoForm() {
+    const dispatch = useDispatch()
 
     const handleSubmit = (e) => {
         e.preventDefault();
@@ -26,12 +24,28 @@ export default function ImporterInfoForm({ setInfo }) {
         <Form onSubmit={handleSubmit}>
             <FormLayout>
                 <FormLayout.Group condensed>
-                    <AutocompleteSelect apiUrl={`/api/matura/all`} label={'Matura'} setData={setMatura}></AutocompleteSelect>
-                    <AutocompleteSelect apiUrl={`/api/subject/all`} label={'Subject'} setData={setSubject}></AutocompleteSelect>
+                    <AutocompleteSelect 
+                        apiUrl={allMaturasListApiRoute} 
+                        label={'Matura'} 
+                        setData={(data) => dispatch(setSelectedMatura(data))}
+                    />
+                    <AutocompleteSelect 
+                        apiUrl={SubjectListApiRoute} 
+                        label={'Subject'} 
+                        setData={(data) => dispatch(setSelectedSubject(data))}
+                    />
                 </FormLayout.Group>
                 <FormLayout.Group condensed>
-                    <AutocompleteSelect apiUrl={`/api/section/all`} label={'Section'} setData={setSection}></AutocompleteSelect>
-                    <AutocompleteSelect apiUrl={`/api/skripta/all`} label={'Skripta'} setData={setSkripta}></AutocompleteSelect>
+                    <AutocompleteSelect 
+                        apiUrl={SkriptaListApiRoute} 
+                        label={'Skripta'} 
+                        setData={(data) => dispatch(setSelectedSkripta(data))}
+                    />
+                    <AutocompleteSelect 
+                        apiUrl={SectionListApiRoute} 
+                        label={'Section'} 
+                        setData={(data) => dispatch(setSelectedSection(data))}
+                    />
                 </FormLayout.Group>
             </FormLayout>
         </Form>
